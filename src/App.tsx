@@ -101,10 +101,10 @@ function App() {
   const navigation = [
     { id: 'home', label: 'Home', icon: '🌸' },
     { id: 'about', label: 'About', icon: '🌙' },
-    { id: 'services', label: 'Services', icon: '🌿' },
-    { id: 'products', label: 'Products', icon: '🔮' },
-    { id: 'community', label: 'Community', icon: '💫' },
-    { id: 'gallery', label: 'Gallery', icon: '🎨' },
+    { id: 'shop', label: 'Shop', icon: '🛍️' },
+    { id: 'journal', label: 'Journal', icon: '📝' },
+    { id: 'tarot', label: 'Tarot Deck', icon: '🔮' },
+    { id: 'membership', label: 'Membership', icon: '💫' },
     { id: 'contact', label: 'Contact', icon: '✨' }
   ]
 
