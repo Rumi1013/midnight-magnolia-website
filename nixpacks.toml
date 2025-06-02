@@ -1,11 +1,18 @@
 [providers]
 node = "18"
 
-[start]
-cmd = "npm run preview -- --host 0.0.0.0 --port $PORT"
+[phases.setup]
+nixPkgs = ["nodejs-18_x", "npm"]
+aptPkgs = []
+
+[phases.install]
+cmd = "npm ci"
 
 [phases.build]
-cmds = ["npm run build"]
+cmd = "npm run build"
+
+[start]
+cmd = "npm run preview -- --host 0.0.0.0 --port $PORT"
 
 [variables]
 NODE_ENV = "production"

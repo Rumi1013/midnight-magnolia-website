@@ -252,6 +252,51 @@ function App() {
               </ul>
             </div>
           </div>
+
+          <div className="business-ecosystem">
+            <h3>🌙 The Digital Grimoire Ecosystem</h3>
+            <p>
+              Midnight Magnolia operates as a comprehensive digital ecosystem—part creative studio, part healing sanctuary, 
+              part community hub. Our Digital Grimoire serves as the central command hub integrating tarot system development, 
+              digital products, Patreon community, and marketplace publishing.
+            </p>
+            
+            <div className="ecosystem-grid">
+              <div className="ecosystem-card">
+                <h4>🔮 Tarot System Development</h4>
+                <p>
+                  Currently developing a complete 78-card Southern Oracle Tarot deck featuring historical Black figures 
+                  as personas. Each card includes custom affirmations, journal prompts, and healing-centered interpretations 
+                  rooted in ancestral wisdom.
+                </p>
+              </div>
+              
+              <div className="ecosystem-card">
+                <h4>📚 Digital Product Catalog</h4>
+                <p>
+                  Active product line including Digital Entrepreneur's Starter Kit ($37), Brand Identity Workbook ($29), 
+                  and Automation Workflow Templates ($49). Focus on tools that support neurodivergent entrepreneurs 
+                  and community organizations.
+                </p>
+              </div>
+              
+              <div className="ecosystem-card">
+                <h4>💫 Community Revenue Streams</h4>
+                <p>
+                  Multi-platform approach with Patreon tiers ($3-$75), KDP publishing, Etsy shop, and consulting services. 
+                  Currently achieving 67.5% of $4,000 monthly revenue goal through diversified income streams.
+                </p>
+              </div>
+              
+              <div className="ecosystem-card">
+                <h4>🧠 AI-Powered Content Creation</h4>
+                <p>
+                  Leveraging AI tools for tarot interpretations, journal prompts, affirmation sets, and product descriptions 
+                  while maintaining authentic voice and healing-centered approach. Custom prompt templates ensure brand consistency.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -1741,3 +1741,63 @@ body {
   line-height: 1.7;
   opacity: 0.9;
 }
+
+/* Business Ecosystem Styles */
+.business-ecosystem {
+  margin-top: 4rem;
+  padding: 3rem;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 25px;
+}
+
+.business-ecosystem h3 {
+  color: var(--rich-gold);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.business-ecosystem > p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.ecosystem-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.ecosystem-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.ecosystem-card h4 {
+  color: var(--rich-gold);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.ecosystem-card p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
