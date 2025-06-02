@@ -104,6 +104,7 @@ function App() {
     { id: 'services', label: 'Services', icon: '🌿' },
     { id: 'products', label: 'Products', icon: '🔮' },
     { id: 'community', label: 'Community', icon: '💫' },
+    { id: 'gallery', label: 'Gallery', icon: '🎨' },
     { id: 'contact', label: 'Contact', icon: '✨' }
   ]
 
@@ -882,6 +883,161 @@ function App() {
     </div>
   )
 
+  const galleryImages = [
+    {
+      src: '/images/gallery/southern-gothic-1.jpeg',
+      title: 'Southern Gothic Elegance',
+      category: 'Southern Gothic',
+      description: 'Mystical evening atmosphere with magnolia blooms and vintage charm'
+    },
+    {
+      src: '/images/gallery/southern-gothic-2.jpeg', 
+      title: 'Midnight Garden',
+      category: 'Southern Gothic',
+      description: 'Moonlit garden scene capturing the essence of transformation'
+    },
+    {
+      src: '/images/gallery/southern-gothic-mansion-night.png',
+      title: 'Gothic Mansion at Night',
+      category: 'Southern Gothic', 
+      description: 'Haunting architectural beauty under the southern stars'
+    },
+    {
+      src: '/images/gallery/gothic-digital-planner.png',
+      title: 'Digital Grimoire Planner',
+      category: 'Digital Art',
+      description: 'ADHD-friendly digital planning tools with mystical design'
+    },
+    {
+      src: '/images/gallery/black-candle-gold-label.png',
+      title: 'Sacred Ritual Candle',
+      category: 'Brand Elements',
+      description: 'Luxury candle design with gold accents and magnolia motifs'
+    },
+    {
+      src: '/images/gallery/tarot-symbol.png',
+      title: 'Tarot Mystical Symbol', 
+      category: 'Mystical',
+      description: 'Sacred geometry and divination symbolism'
+    }
+  ]
+
+  const blogPosts = [
+    {
+      id: 'adhd-diagnosis-after-40',
+      title: 'Finding My ADHD Voice After 40',
+      date: 'May 15, 2024',
+      category: 'Personal Journey',
+      excerpt: 'The relief, the grief, and the transformation that comes with late-diagnosis ADHD. How I built systems that finally work with my brain, not against it.',
+      image: '/images/gallery/gothic-digital-planner.png',
+      readTime: '8 min read'
+    },
+    {
+      id: 'southern-activist-chronicles',
+      title: 'Organizing in Small Southern Towns',
+      date: 'April 28, 2024', 
+      category: 'Activism',
+      excerpt: 'Building inclusive spaces in traditional communities. Lessons learned from grassroots organizing and the power of persistent, gentle revolution.',
+      image: '/images/gallery/southern-gothic-mansion-night.png',
+      readTime: '12 min read'
+    },
+    {
+      id: 'digital-sanctuary-design',
+      title: 'Creating Digital Sanctuaries',
+      date: 'April 10, 2024',
+      category: 'Technology',
+      excerpt: 'How to design websites and digital spaces that feel like coming home. Accessibility, healing-centered design, and Southern Gothic aesthetics.',
+      image: '/images/gallery/southern-gothic-1.jpeg',
+      readTime: '10 min read'
+    },
+    {
+      id: 'magnolia-symbolism',
+      title: 'The Sacred Symbolism of Magnolias',
+      date: 'March 22, 2024',
+      category: 'Spirituality',
+      excerpt: 'Why magnolias represent resilience, dignity, and the endurance of Black women. Exploring botanical wisdom and ancestral connections.',
+      image: '/images/gallery/southern-gothic-2.jpeg',
+      readTime: '6 min read'
+    }
+  ]
+
+  const renderGallery = () => (
+    <div className="gallery-section">
+      <section className="gallery-hero">
+        <h2 className="section-title">🎨 Art & Words Gallery</h2>
+        <p className="gallery-intro">
+          A curated collection of visual storytelling and written reflections exploring 
+          Southern Gothic aesthetics, healing-centered technology, and the journey of 
+          late-diagnosis ADHD entrepreneurship.
+        </p>
+      </section>
+
+      <section className="blog-section">
+        <h3 className="gallery-subtitle">📝 Recent Journal Entries</h3>
+        <div className="blog-grid">
+          {blogPosts.map((post) => (
+            <article key={post.id} className="blog-card">
+              <div className="blog-image">
+                <img src={post.image} alt={post.title} />
+                <div className="blog-category">{post.category}</div>
+              </div>
+              <div className="blog-content">
+                <h4 className="blog-title">{post.title}</h4>
+                <div className="blog-meta">
+                  <span className="blog-date">{post.date}</span>
+                  <span className="blog-read-time">{post.readTime}</span>
+                </div>
+                <p className="blog-excerpt">{post.excerpt}</p>
+                <button className="gentle-cta">Read More →</button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="art-gallery">
+        <h3 className="gallery-subtitle">🖼️ Visual Storytelling</h3>
+        <div className="gallery-grid">
+          {galleryImages.map((image, index) => (
+            <div key={index} className="gallery-item">
+              <div className="gallery-image-container">
+                <img src={image.src} alt={image.title} />
+                <div className="gallery-overlay">
+                  <h4 className="gallery-title">{image.title}</h4>
+                  <p className="gallery-category">{image.category}</p>
+                  <p className="gallery-description">{image.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="memoir-teaser">
+        <h3 className="gallery-subtitle">📖 Upcoming Memoir</h3>
+        <div className="memoir-preview-expanded">
+          <h4>"Magnolias Also Bloom at Night"</h4>
+          <p className="memoir-tagline">A Journey Through Black Southern Identity, Late-Diagnosis Disability, and Entrepreneurship as Resistance</p>
+          <div className="memoir-chapters">
+            <div className="chapter-preview">
+              <h5>Chapter 1: Midnight Beginnings</h5>
+              <p>From Extension Agent to healing-centered technologist—the transformation that sparked a business revolution.</p>
+            </div>
+            <div className="chapter-preview">
+              <h5>Chapter 2: The ADHD Revelation</h5>
+              <p>Finding my diagnosis at 42 and rebuilding my entire understanding of success, failure, and neurodivergent excellence.</p>
+            </div>
+            <div className="chapter-preview">
+              <h5>Chapter 3: Southern Gothic Digital</h5>
+              <p>Creating technology that honors ancestral wisdom while serving modern healing—a new model for conscious entrepreneurship.</p>
+            </div>
+          </div>
+          <p className="memoir-status">Expected publication: Fall 2025</p>
+        </div>
+      </section>
+    </div>
+  )
+
   const renderContact = () => (
     <div className="contact-section">
       <section className="contact-sanctuary">
@@ -960,6 +1116,8 @@ function App() {
         return renderProducts()
       case 'community':
         return renderCommunity()
+      case 'gallery':
+        return renderGallery()
       case 'contact':
         return renderContact()
       default:
