@@ -1038,6 +1038,115 @@ function App() {
     </div>
   )
 
+  const renderTarotDeck = () => (
+    <div className="tarot-section">
+      <section className="tarot-hero">
+        <h2 className="section-title">🔮 Southern Oracle Tarot Deck</h2>
+        <p className="tarot-intro">
+          A healing-centered tarot deck featuring historical Black figures as card personas. 
+          Each card honors ancestral wisdom while offering modern affirmations and journal 
+          prompts for transformation and growth.
+        </p>
+      </section>
+
+      <section className="deck-preview">
+        <h3 className="tarot-subtitle">✨ Featured Cards</h3>
+        <div className="featured-cards">
+          <div className="tarot-card-preview">
+            <div className="card-image">
+              <img src="/images/gallery/tarot-symbol.png" alt="The High Priestess Card" />
+            </div>
+            <div className="card-details">
+              <h4>The High Priestess</h4>
+              <p className="card-persona">Persona: Audre Lorde</p>
+              <p className="card-affirmation">"I honor my intuition as the voice of ancestral wisdom."</p>
+              <p className="card-prompt">What secrets is your intuition whispering that your logical mind is ignoring?</p>
+            </div>
+          </div>
+
+          <div className="tarot-card-preview">
+            <div className="card-image">
+              <img src="/images/gallery/stars-glyph.png" alt="The Star Card" />
+            </div>
+            <div className="card-details">
+              <h4>The Star</h4>
+              <p className="card-persona">Persona: Nina Simone</p>
+              <p className="card-affirmation">"My light shines as a beacon of hope and inspiration."</p>
+              <p className="card-prompt">How can you become a guiding star for others while staying true to your own path?</p>
+            </div>
+          </div>
+
+          <div className="tarot-card-preview">
+            <div className="card-image">
+              <img src="/images/gallery/magnolia-flower.png" alt="The World Card" />
+            </div>
+            <div className="card-details">
+              <h4>The World</h4>
+              <p className="card-persona">Persona: Maya Angelou</p>
+              <p className="card-affirmation">"I am complete, fulfilled, and connected to all creation."</p>
+              <p className="card-prompt">What cycle of growth are you completing, and what new journey calls to you?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="deck-philosophy">
+        <h3 className="tarot-subtitle">🌙 Deck Philosophy</h3>
+        <div className="philosophy-content">
+          <div className="philosophy-card">
+            <h4>🌿 Healing-Centered Interpretations</h4>
+            <p>Each card focuses on growth, healing, and transformation rather than fear-based predictions. 
+            Readings become opportunities for self-reflection and empowerment.</p>
+          </div>
+          <div className="philosophy-card">
+            <h4>🏛️ Historical Black Figures</h4>
+            <p>Every card features a remarkable Black historical figure as its persona, honoring their 
+            wisdom and contributions while connecting modern seekers to ancestral knowledge.</p>
+          </div>
+          <div className="philosophy-card">
+            <h4>🌸 Southern Gothic Aesthetic</h4>
+            <p>Visual design incorporates magnolia motifs, crescent moons, and mystical symbols that 
+            honor both traditional tarot imagery and Southern cultural elements.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="deck-status">
+        <h3 className="tarot-subtitle">📚 Development Progress</h3>
+        <div className="progress-overview">
+          <div className="progress-stat">
+            <h4>Major Arcana</h4>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: '25%'}}></div>
+            </div>
+            <p>5 of 22 cards completed</p>
+          </div>
+          <div className="progress-stat">
+            <h4>Minor Arcana</h4>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: '5%'}}></div>
+            </div>
+            <p>3 of 56 cards in development</p>
+          </div>
+        </div>
+        <p className="deck-release">Expected completion: Late 2025 | Available as digital download and print-on-demand</p>
+      </section>
+
+      <section className="deck-cta">
+        <h3 className="tarot-subtitle">🌙 Stay Connected</h3>
+        <p>Join our membership community to receive exclusive previews, affirmation cards, and early access to the complete deck.</p>
+        <div className="cta-buttons">
+          <button className="gentle-cta" onClick={() => handleNavigation('membership')}>
+            Join Membership →
+          </button>
+          <button className="gentle-cta secondary" onClick={() => handleNavigation('contact')}>
+            Custom Reading Request →
+          </button>
+        </div>
+      </section>
+    </div>
+  )
+
   const renderContact = () => (
     <div className="contact-section">
       <section className="contact-sanctuary">
