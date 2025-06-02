@@ -2420,3 +2420,198 @@ body {
     padding: 1rem \!important;
   }
 }
+
+/* Tarot Deck Styles */
+.tarot-section {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.tarot-intro {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.tarot-subtitle {
+  color: var(--rich-gold);
+  font-size: 1.8rem;
+  margin: 3rem 0 2rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.featured-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.tarot-card-preview {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  text-align: center;
+}
+
+.tarot-card-preview:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-image {
+  margin-bottom: 1.5rem;
+}
+
+.card-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
+}
+
+.card-details h4 {
+  color: var(--rich-gold);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.card-persona {
+  color: var(--sage-green);
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.card-affirmation {
+  background: rgba(212, 175, 55, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 3px solid var(--rich-gold);
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.card-prompt {
+  background: rgba(163, 177, 138, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 3px solid var(--sage-green);
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.philosophy-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.philosophy-card {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  border-radius: 15px;
+  border-left: 4px solid var(--rich-gold);
+  transition: all 0.3s ease;
+}
+
+.philosophy-card:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-3px);
+}
+
+.philosophy-card h4 {
+  color: var(--rich-gold);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.philosophy-card p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.progress-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.progress-stat {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.progress-stat h4 {
+  color: var(--rich-gold);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.deck-release {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--sage-green);
+  font-style: italic;
+  margin-top: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.deck-cta {
+  text-align: center;
+  margin: 4rem 0;
+  padding: 3rem;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 25px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.gentle-cta.secondary {
+  background: transparent;
+  border: 2px solid var(--sage-green);
+  color: var(--magnolia-white);
+}
+
+.gentle-cta.secondary:hover {
+  background: var(--sage-green);
+  color: var(--midnight-blue);
+}
