@@ -1,0 +1,11 @@
+[providers]
+node = "18"
+
+[start]
+cmd = "npm run preview -- --host 0.0.0.0 --port $PORT"
+
+[phases.build]
+cmds = ["npm run build"]
+
+[variables]
+NODE_ENV = "production"
