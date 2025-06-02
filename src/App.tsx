@@ -130,13 +130,10 @@ function App() {
       <section className="hero-sanctuary">
         <div className="hero-content">
           <h1 className="sanctuary-title">
-            🌸 Midnight Magnolia
+            Midnight Magnolia
           </h1>
           <p className="sanctuary-subtitle">
-            A Southern Gothic Digital Sanctuary for Healing, Automation, and Liberation
-          </p>
-          <p className="sanctuary-tagline">
-            Code meets ceremony. Designed with rest, ritual, and neurodivergent brilliance in mind.
+            Rooted in Mystery. Blooming in Truth.
           </p>
           <div className="hero-actions">
             <button 
@@ -1257,6 +1254,7 @@ function App() {
                 src="/images/logos/goldenFinal22_MM_25.png" 
                 alt="Midnight Magnolia Logo" 
                 className="brand-logo"
+                style={{ border: 'none' }}
               />
               <span className="brand-text">Midnight Magnolia</span>
             </button>
