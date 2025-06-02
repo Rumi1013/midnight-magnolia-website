@@ -180,22 +180,33 @@ function App() {
           <div className="about-story">
             <h3>From Extension Agent to Healing-Centered Technologist</h3>
             <p>
-              My journey began in the rich soil of community service as an Extension Agent, 
-              where I learned that true change happens when we center the voices and needs 
-              of the people we serve. This foundation in community care and education became 
-              the bedrock of my approach to technology and digital strategy.
+              Midnight Magnolia was born from the ashes of burnout, the trauma of activism, 
+              and the journey of self-discovery that follows when you finally choose yourself. 
+              My path to creating this brand was neither straightforward nor gentle—but it was necessary.
             </p>
             <p>
-              Through my work with organizations like the Black Liberation Fund, I discovered 
-              how technology could amplify justice work and create pathways for liberation. 
-              I witnessed firsthand how the right digital tools, implemented with intention 
-              and care, could transform not just workflows but entire movements.
+              For years, I poured myself into the movement for Black liberation. I showed up in 
+              the streets, in the meetings, in the unspoken spaces where freedom was born. I helped 
+              free countless individuals, reunite families, and challenge systems of oppression. 
+              This work was sacred, and I remain deeply, soulfully grateful to have been part of it.
             </p>
             <p>
-              Today, I bring together my Extension background, my commitment to community 
-              care, and my technical expertise to create digital solutions that honor both 
-              ancestral wisdom and cutting-edge innovation. Every project is an opportunity 
-              to plant seeds of healing in our digital landscape.
+              But inside the movement, I found more harm. I experienced exploitation while preaching 
+              liberation. I gave everything I had—my time, my mind, my heart—and still, I was used, 
+              plotted against, worn down. My literal job was to free Black people. But I had to ask 
+              myself: who was freeing me?
+            </p>
+            <div className="manifesto-quote">
+              <p>
+                "From the ashes of burnout, the trauma of activism, and the misdiagnosis of my 
+                being—I birthed Midnight Magnolia. Not just a business. A sanctuary. A soft rebellion."
+              </p>
+            </div>
+            <p>
+              At 42, I received an ADHD diagnosis that finally provided context for what I had 
+              experienced as failure. I wasn't broken—I was wired differently in a world that 
+              never learned to listen. Today, Midnight Magnolia stands as a testament to what's 
+              possible when you transform pain into purpose.
             </p>
           </div>
           
@@ -244,18 +255,34 @@ function App() {
       </section>
 
       <section className="philosophy-section">
-        <h3>🌺 My Philosophy</h3>
+        <h3>🌺 The Meaning Behind the Name</h3>
         <div className="philosophy-content">
+          <div className="name-meaning">
+            <div className="meaning-part">
+              <h4>Midnight</h4>
+              <p>
+                Represents the threshold between endings and beginnings, symbolizing transformation, 
+                deep introspection, and the power of unseen potential. Midnight is the hour of change, 
+                where clarity emerges from darkness, aligning with my transition to a new career and lifestyle.
+              </p>
+            </div>
+            <div className="meaning-part">
+              <h4>Magnolia</h4>
+              <p>
+                Signifies perseverance, dignity, and beauty in resilience. Magnolias bloom through adversity, 
+                symbolizing the endurance of Black women in challenging environments. The magnolia tree is strong, 
+                deeply rooted, and able to withstand storms—just as this brand is built to thrive through change.
+              </p>
+            </div>
+          </div>
           <blockquote>
-            "Technology is not neutral. Every line of code, every design choice, 
-            every automation we create either perpetuates harm or plants seeds 
-            of healing. I choose healing, every time."
+            "I am not who I was. But every part of her lives in me. Honored. Released. Transformed."
           </blockquote>
           <p>
-            My approach to digital work is grounded in the understanding that 
-            technology should serve liberation, not oppression. This means 
-            building with accessibility in mind, centering marginalized voices, 
-            and creating systems that support rather than exploit.
+            Midnight Magnolia isn't just a creative brand—it's a referendum on how business should work. 
+            It's a space for neurodivergent, chronically pained, brilliant Black women like me to rest, 
+            to create, to heal, to thrive. It's a model of sustainability that doesn't demand exhaustion 
+            as the price of success.
           </p>
         </div>
       </section>
@@ -554,7 +581,12 @@ function App() {
               className="brand-button"
               onClick={() => handleNavigation('home')}
             >
-              🌸 Midnight Magnolia
+              <img 
+                src="/images/logos/goldenFinal22_MM_25.png" 
+                alt="Midnight Magnolia Logo" 
+                className="brand-logo"
+              />
+              <span className="brand-text">Midnight Magnolia</span>
             </button>
           </div>
           

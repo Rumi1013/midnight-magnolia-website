@@ -1,17 +1,19 @@
 :root {
-  /* Midnight Magnolia Brand Colors - Core Palette */
-  --midnight: #1a1a2e;           /* Primary dark - deep night sky */
-  --deep-purple: #16213e;        /* Secondary dark - twilight depth */
-  --soft-pink: #e94560;          /* Magnolia bloom - passion & care */
-  --gentle-cream: #f3f3f3;       /* Light text - gentle radiance */
-  --healing-green: #6a9c89;      /* Growth & wisdom - sage medicine */
-  --warm-gold: #ffd700;          /* Illumination - Southern warmth */
+  /* Midnight Magnolia Brand Colors - Official Palette from Manifesto */
+  --midnight-blue: #0A192F;      /* Primary brand dark - deep midnight */
+  --midnight-teal: #0A3B4D;      /* Secondary dark - mystical depth */
+  --magnolia-white: #FAF3E0;     /* Pure magnolia petal - warm cream */
+  --rich-gold: #D4AF37;          /* Illumination - refined gold */
+  --sage-green: #A3B18A;         /* Growth & wisdom - sage medicine */
+  --dark-navy: #051224;           /* Deepest sanctuary shadow */
   
-  /* Extended Brand Palette */
-  --magnolia-white: #faf8f5;     /* Pure magnolia petal */
-  --earth-brown: #8b4513;        /* Grounding energy */
-  --moon-silver: #c0c0c0;        /* Lunar guidance */
-  --shadow-deep: #0d1117;        /* Deepest sanctuary */
+  /* Legacy support aliases */
+  --midnight: var(--midnight-blue);
+  --deep-purple: var(--midnight-teal);
+  --soft-pink: #e94560;          /* Accent color for highlights */
+  --gentle-cream: var(--magnolia-white);
+  --healing-green: var(--sage-green);
+  --warm-gold: var(--rich-gold);
   
   /* Print-friendly alternatives */
   --print-dark: #2c2c2c;         /* High contrast dark for print */
@@ -26,11 +28,11 @@
 }
 
 body {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-purple) 100%);
-  color: var(--gentle-cream);
+  font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+  background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--midnight-teal) 50%, var(--dark-navy) 100%);
+  color: var(--magnolia-white);
   min-height: 100vh;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 .sanctuary {
@@ -644,16 +646,29 @@ body {
 .brand-button {
   background: none;
   border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.brand-logo {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.brand-text {
   font-size: 1.8rem;
   font-weight: 300;
-  background: linear-gradient(45deg, var(--soft-pink), var(--warm-gold));
+  background: linear-gradient(45deg, var(--rich-gold), var(--sage-green));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  cursor: pointer;
-  font-family: 'Georgia', 'Playfair Display', serif;
+  font-family: 'Playfair Display', 'Georgia', serif;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
 }
 
 .brand-button:hover {
@@ -858,6 +873,23 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.manifesto-quote {
+  border-left: 4px solid var(--rich-gold);
+  padding: 2rem;
+  margin: 2rem 0;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 0 15px 15px 0;
+  font-style: italic;
+}
+
+.manifesto-quote p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--magnolia-white);
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
 .credentials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -930,6 +962,32 @@ body {
 .philosophy-content p {
   font-size: 1.1rem;
   line-height: 1.7;
+}
+
+.name-meaning {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.meaning-part {
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.meaning-part h4 {
+  color: var(--rich-gold);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.meaning-part p {
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* Experience Section Styles */
