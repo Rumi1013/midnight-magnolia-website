@@ -123,10 +123,10 @@ function App() {
             🌸 Midnight Magnolia
           </h1>
           <p className="sanctuary-subtitle">
-            Where Southern wisdom meets digital craft
+            A Southern Gothic Digital Sanctuary for Healing, Automation, and Liberation
           </p>
           <p className="sanctuary-tagline">
-            Healing-centered technology for community builders, creatives, and change-makers
+            Code meets ceremony. Designed with rest, ritual, and neurodivergent brilliance in mind.
           </p>
           <div className="hero-actions">
             <button 
@@ -147,7 +147,7 @@ function App() {
 
       <section className="intro-section">
         <p className="gentle-text">
-          From Extension Agent to healing-centered technologist, I weave together 
+          Rooted in mystery, blooming through code, ritual, and resilience. I weave together 
           community care principles with digital mastery. Each service is a doorway 
           to transformation, each project a chance to center healing in our digital spaces.
         </p>
@@ -180,7 +180,7 @@ function App() {
         <h2 className="section-title">🌙 About Latisha</h2>
         <div className="about-content">
           <div className="about-story">
-            <h3>From Extension Agent to Healing-Centered Technologist</h3>
+            <h3>Rooted in Mystery, Blooming Through Code & Resilience</h3>
             <p>
               Midnight Magnolia was born from the ashes of burnout, the trauma of activism, 
               and the journey of self-discovery that follows when you finally choose yourself. 

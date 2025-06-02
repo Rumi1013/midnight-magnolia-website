@@ -2328,3 +2328,96 @@ body {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+/* Enhanced Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .sanctuary-title {
+    font-size: 2.5rem \!important;
+    padding: 0.8rem 1.5rem \!important;
+  }
+
+  .section-title,
+  .services-title,
+  .gallery-subtitle,
+  .analytics-title {
+    font-size: 1.8rem \!important;
+    padding: 0.8rem \!important;
+  }
+
+  .features-grid,
+  .service-grid,
+  .product-categories-grid,
+  .tiers-grid,
+  .initiatives-grid,
+  .blog-grid,
+  .gallery-grid,
+  .revenue-streams,
+  .growth-metrics,
+  .ecosystem-grid {
+    grid-template-columns: 1fr \!important;
+    gap: 1.5rem \!important;
+  }
+
+  .service-offering,
+  .product-category,
+  .tier-card,
+  .initiative-card,
+  .blog-card,
+  .gallery-item,
+  .revenue-card,
+  .metric-card,
+  .ecosystem-card {
+    padding: 1.5rem \!important;
+  }
+
+  .contact-options,
+  .hero-actions,
+  .memoir-chapters {
+    flex-direction: column \!important;
+    align-items: center \!important;
+    gap: 1rem \!important;
+  }
+
+  .pricing-philosophy,
+  .wisdom-waters,
+  .contact-sanctuary,
+  .business-ecosystem,
+  .revenue-analytics,
+  .memoir-teaser,
+  .tarot-dashboard-preview {
+    padding: 1.5rem \!important;
+    margin: 2rem 0 \!important;
+  }
+
+  .dashboard-features {
+    grid-template-columns: 1fr \!important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sanctuary-title {
+    font-size: 2rem \!important;
+    padding: 0.6rem 1rem \!important;
+  }
+
+  .section-title {
+    font-size: 1.6rem \!important;
+    padding: 0.6rem 1rem \!important;
+  }
+
+  .sanctuary {
+    padding: 0.5rem \!important;
+  }
+
+  .hero-sanctuary,
+  .about-hero,
+  .gallery-hero {
+    padding: 2rem 1rem \!important;
+  }
+
+  .service-offering,
+  .blog-card,
+  .revenue-card {
+    padding: 1rem \!important;
+  }
+}
+EOF < /dev/null
