@@ -510,33 +510,58 @@ function App() {
         <h3 className="dashboard-title">🌙 Tarot Creation Dashboard</h3>
         <p className="dashboard-intro">
           Your sacred digital altar where each card, quote, and healing intention lives. 
-          Track all 78 cards, personas, and the complete deck development process.
+          Track all 78 cards, personas, and the complete deck development process with integrated 
+          affirmations, journal prompts, and healing-centered interpretations.
         </p>
         
         <div className="dashboard-features">
           <div className="dashboard-feature">
-            <h4>🔮 Deck Overview</h4>
-            <p>Track all 78 cards, their personas, progress, and associations.</p>
+            <h4>🔮 Card Database & Progress Tracking</h4>
+            <p>
+              Complete card library featuring historical Black figures as personas. Currently includes 
+              The High Priestess (Audre Lorde), The Star (Nina Simone), The Moon (Erykah Badu), 
+              The Sun (Cicely Tyson), and The World (Maya Angelou) with customized affirmations and prompts.
+            </p>
           </div>
           <div className="dashboard-feature">
-            <h4>🌿 Card Builder</h4>
-            <p>In-depth reflection template for every card with astrology, meanings, and symbolism.</p>
+            <h4>🌿 Card Creation Workflow</h4>
+            <p>
+              4-phase development process: Research Phase (historical figure selection), Content Development 
+              (meanings and affirmations), Design Elements (visual symbolism and brand integration), 
+              and Product Connections (marketing and tier access strategy).
+            </p>
           </div>
           <div className="dashboard-feature">
-            <h4>📚 Persona Library</h4>
-            <p>Running log of all figures used in the deck with bios and contributions.</p>
+            <h4>📚 Persona & Historical Research</h4>
+            <p>
+              Curated library of historical figures with verified quotes, key wisdom themes, 
+              and biographical context. Each persona connects to specific life lessons and 
+              transformational messages for modern seekers.
+            </p>
           </div>
           <div className="dashboard-feature">
-            <h4>🎨 Design Vault</h4>
-            <p>Visual inspiration by card with moodboards and palette references.</p>
+            <h4>🎨 Visual Design System</h4>
+            <p>
+              Consistent Southern Gothic aesthetic with silhouette concepts, mood boards, 
+              and brand palette integration. Design elements include magnolia motifs, 
+              crescent moons, and ancestral symbolism.
+            </p>
           </div>
           <div className="dashboard-feature">
-            <h4>💬 Affirmation Archive</h4>
-            <p>Browse affirmations filtered by theme: Inner Child, Courage, Rest, Release, Joy.</p>
+            <h4>💬 Healing-Centered Content</h4>
+            <p>
+              Custom affirmations and journal prompts for each card that honor ancestral wisdom 
+              while addressing modern healing needs. Content filtered by themes: Inner Child, 
+              Courage, Rest, Release, and Joy.
+            </p>
           </div>
           <div className="dashboard-feature">
-            <h4>🧭 Arcana Navigator</h4>
-            <p>Major and Minor Arcana organization with elemental and astrological references.</p>
+            <h4>🧭 Integration & Product Mapping</h4>
+            <p>
+              Strategic connections between tarot cards and existing product ecosystem. 
+              Maps cards to Digital Entrepreneur's Kit, Brand Identity Workbook, and 
+              Patreon tier content for comprehensive business integration.
+            </p>
           </div>
         </div>
         
@@ -552,6 +577,75 @@ function App() {
         </div>
         
         <p className="tarot-motto">*Rooted in Mystery. Blooming in Truth.*</p>
+      </section>
+
+      <section className="revenue-analytics">
+        <h3 className="analytics-title">📊 Business Growth & Analytics</h3>
+        <p className="analytics-intro">
+          Transparent insights into our multi-stream approach to sustainable creative business. 
+          Building towards $4,000 monthly recurring revenue through diversified offerings.
+        </p>
+        
+        <div className="revenue-streams">
+          <div className="revenue-card">
+            <h4>🔮 Digital Products</h4>
+            <div className="revenue-amount">$900 / $1,500</div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: '60%'}}></div>
+            </div>
+            <p>Active products generating consistent sales with high customer ratings</p>
+          </div>
+          
+          <div className="revenue-card">
+            <h4>💫 Patreon Community</h4>
+            <div className="revenue-amount">$350 / $500</div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: '70%'}}></div>
+            </div>
+            <p>Growing membership base across all tiers with high engagement</p>
+          </div>
+          
+          <div className="revenue-card">
+            <h4>💻 Consulting Services</h4>
+            <div className="revenue-amount">$1,200 / $1,500</div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: '80%'}}></div>
+            </div>
+            <p>Healing-centered technology consulting with sliding scale pricing</p>
+          </div>
+          
+          <div className="revenue-card">
+            <h4>📚 Publishing & Affiliates</h4>
+            <div className="revenue-amount">$250 / $500</div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{width: '50%'}}></div>
+            </div>
+            <p>KDP books, Etsy shop, and ethical affiliate partnerships</p>
+          </div>
+        </div>
+        
+        <div className="growth-metrics">
+          <div className="metric-card">
+            <h5>📧 Email Subscribers</h5>
+            <div className="metric-number">1,025</div>
+            <div className="metric-growth">+175 this month</div>
+          </div>
+          <div className="metric-card">
+            <h5>📱 Social Following</h5>
+            <div className="metric-number">2,650</div>
+            <div className="metric-growth">+350 this month</div>
+          </div>
+          <div className="metric-card">
+            <h5>🌐 Website Visitors</h5>
+            <div className="metric-number">4,100</div>
+            <div className="metric-growth">+900 this month</div>
+          </div>
+          <div className="metric-card">
+            <h5>💰 Conversion Rate</h5>
+            <div className="metric-number">2.7%</div>
+            <div className="metric-growth">+0.6% this month</div>
+          </div>
+        </div>
       </section>
     </div>
   )

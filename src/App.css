@@ -1801,3 +1801,132 @@ body {
   line-height: 1.6;
   opacity: 0.9;
 }
+
+/* Revenue Analytics Styles */
+.revenue-analytics {
+  margin: 4rem 0;
+  padding: 3rem;
+  background: rgba(163, 177, 138, 0.08);
+  border: 1px solid rgba(163, 177, 138, 0.2);
+  border-radius: 25px;
+}
+
+.analytics-title {
+  color: var(--rich-gold);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.analytics-intro {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+}
+
+.revenue-streams {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.revenue-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.revenue-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+  border-color: rgba(163, 177, 138, 0.3);
+}
+
+.revenue-card h4 {
+  color: var(--sage-green);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.revenue-amount {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--rich-gold);
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage-green), var(--rich-gold));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.revenue-card p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.growth-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.metric-card {
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-2px);
+}
+
+.metric-card h5 {
+  color: var(--rich-gold);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.metric-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--magnolia-white);
+  margin-bottom: 0.3rem;
+}
+
+.metric-growth {
+  font-size: 0.8rem;
+  color: var(--sage-green);
+  font-weight: 500;
+}
