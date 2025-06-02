@@ -1110,14 +1110,14 @@ function App() {
         return renderHome()
       case 'about':
         return renderAbout()
-      case 'services':
-        return renderServices()
-      case 'products':
-        return renderProducts()
-      case 'community':
-        return renderCommunity()
-      case 'gallery':
-        return renderGallery()
+      case 'shop':
+        return renderProducts() // Rename products to shop
+      case 'journal':
+        return renderGallery() // Rename gallery to journal (blog content)
+      case 'tarot':
+        return renderTarotDeck() // New tarot-focused section
+      case 'membership':
+        return renderCommunity() // Rename community to membership
       case 'contact':
         return renderContact()
       default:
