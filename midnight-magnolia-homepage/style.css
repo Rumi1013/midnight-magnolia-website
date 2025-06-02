@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: 'Lora', serif;
+  background-color: #FAF3E0;
+  color: #4A4A4A;
+}
+
+.hero-sanctuary {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('images/gallery/southern-gothic-mansion-night.png') center/cover no-repeat;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  max-width: 90%;
+}
+
+.sanctuary-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  color: #D4B99F;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.sanctuary-subtitle {
+  font-size: 1.5rem;
+  color: #DDE3DA;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gentle-button {
+  padding: 0.75rem 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.primary {
+  background-color: #D4B99F;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #C4A98F;
+}
+
+.secondary {
+  background-color: #DDE3DA;
+  color: #4A4A4A;
+}
+
+.secondary:hover {
+  background-color: #C5D0C3;
+}
