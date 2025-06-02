@@ -3,10 +3,9 @@ node = "18"
 
 [phases.setup]
 nixPkgs = ["nodejs-18_x", "npm"]
-aptPkgs = []
 
 [phases.install]
-cmd = "npm ci"
+cmd = "npm install"
 
 [phases.build]
 cmd = "npm run build"

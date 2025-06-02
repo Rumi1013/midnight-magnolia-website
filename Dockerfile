@@ -1,4 +1,4 @@
-# Use Node.js 18 Alpine for smaller image size
+# Use Node.js 18 Alpine image
 FROM node:18-alpine
 
 # Set working directory
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -16,8 +16,9 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Expose the port
+# Expose port
 EXPOSE $PORT
 
 # Start the application
 CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "$PORT"]
+EOF < /dev/null
