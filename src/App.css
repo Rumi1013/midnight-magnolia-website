@@ -1336,3 +1336,408 @@ body {
 .service-offering:hover .icon-vessel::after {
   opacity: 1;
 }
+
+/* Products Section Styles */
+.products-section {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.products-intro {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.product-category {
+  background: rgba(255, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  text-align: center;
+}
+
+.product-category:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.product-icon {
+  margin-bottom: 1.5rem;
+}
+
+.category-emoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.product-category-title {
+  color: var(--rich-gold);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.product-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.product-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.product-tag {
+  background: linear-gradient(45deg, var(--sage-green), var(--rich-gold));
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Tarot Dashboard Preview Styles */
+.tarot-dashboard-preview {
+  margin: 4rem 0;
+  padding: 3rem;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 25px;
+}
+
+.dashboard-title {
+  color: var(--rich-gold);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.dashboard-intro {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.dashboard-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.dashboard-feature {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.dashboard-feature:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+}
+
+.dashboard-feature h4 {
+  color: var(--rich-gold);
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.dashboard-feature p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.tarot-themes {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.tarot-themes h4 {
+  color: var(--rich-gold);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.theme-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.theme-tag {
+  background: linear-gradient(45deg, var(--midnight-blue), var(--midnight-teal));
+  color: var(--magnolia-white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.tarot-motto {
+  font-style: italic;
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--rich-gold);
+  margin-top: 2rem;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Community Section Styles */
+.community-section {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.community-intro {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.community-subtitle {
+  color: var(--rich-gold);
+  font-size: 1.8rem;
+  margin: 3rem 0 2rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Patreon Tiers Styles */
+.patreon-tiers {
+  margin: 4rem 0;
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.tier-card {
+  background: rgba(255, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  text-align: center;
+}
+
+.tier-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(163, 177, 138, 0.3);
+}
+
+.tier-header {
+  margin-bottom: 1.5rem;
+}
+
+.tier-name {
+  color: var(--rich-gold);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.tier-price {
+  background: linear-gradient(45deg, var(--sage-green), var(--rich-gold));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tier-description {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.tier-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.tier-benefits li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.5;
+}
+
+.tier-benefits li::before {
+  content: '✨';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+}
+
+.tier-cta {
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* Initiatives Styles */
+.initiatives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.initiative-card {
+  background: rgba(163, 177, 138, 0.1);
+  border: 1px solid rgba(163, 177, 138, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.initiative-card:hover {
+  background: rgba(163, 177, 138, 0.15);
+  transform: translateY(-5px);
+}
+
+.initiative-card h4 {
+  color: var(--rich-gold);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.initiative-card p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.initiative-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.initiative-card li {
+  padding: 0.3rem 0;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.initiative-card li::before {
+  content: '🌱';
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+}
+
+/* Blog Preview Styles */
+.blog-preview {
+  margin: 4rem 0;
+  padding: 3rem;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 25px;
+}
+
+.blog-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.blog-series {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.series-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.series-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+}
+
+.series-card h4 {
+  color: var(--rich-gold);
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.series-card p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.memoir-preview {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(163, 177, 138, 0.1);
+  border: 1px solid rgba(163, 177, 138, 0.2);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.memoir-preview h4 {
+  color: var(--rich-gold);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.memoir-preview p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}

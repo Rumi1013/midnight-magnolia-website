@@ -102,7 +102,8 @@ function App() {
     { id: 'home', label: 'Home', icon: '🌸' },
     { id: 'about', label: 'About', icon: '🌙' },
     { id: 'services', label: 'Services', icon: '🌿' },
-    { id: 'experience', label: 'Experience', icon: '💫' },
+    { id: 'products', label: 'Products', icon: '🔮' },
+    { id: 'community', label: 'Community', icon: '💫' },
     { id: 'contact', label: 'Contact', icon: '✨' }
   ]
 
@@ -357,6 +358,259 @@ function App() {
     </div>
   )
 
+  const productCategories = [
+    {
+      name: "🌙 Southern Oracle Tarot",
+      items: ["Magnolia Wisdom deck", "Southern Gothic deck", "Ancestral Guidance cards", "Beginner's reading kit"],
+      description: "Tarot and oracle decks featuring southern imagery, Black cultural elements, and traditional symbolism"
+    },
+    {
+      name: "📓 Journals & Stationery",
+      items: ["ADHD-friendly planners", "Moon phase journals", "Luxury correspondence sets", "Affirmation cards"],
+      description: "Premium paper goods designed for executive function support, mindfulness, and southern elegance"
+    },
+    {
+      name: "🏠 Home Textiles",
+      items: ["Table linens", "Decorative pillows", "Bed linens", "Hand towels"],
+      description: "Elegant fabric goods featuring magnolia motifs and our signature color palette"
+    },
+    {
+      name: "🎨 Historical & Fan Art Prints",
+      items: ["Black history portraits", "Cultural celebration art", "Literary inspirations", "Contemporary fan art"],
+      description: "Museum-quality prints celebrating history, heritage, and popular culture with a southern perspective"
+    },
+    {
+      name: "📚 Open Source Publishing",
+      items: ["eBooks", "Educational resources", "Community cookbooks", "Digital templates"],
+      description: "Accessible digital content supporting education, creativity, and community knowledge-sharing"
+    },
+    {
+      name: "🌿 Digital Wellness Tools",
+      items: ["Moon phase apps", "Astrology guides", "Heritage healing resources", "Wellness trackers"],
+      description: "Digital platforms connecting ancestral wisdom with modern wellness practices"
+    }
+  ]
+
+  const patreonTiers = [
+    {
+      name: "🌱 Seedling",
+      price: "$5/month",
+      benefits: [
+        "Monthly moon phase journal prompts",
+        "Early access to digital content",
+        "Community Discord access",
+        "10% discount on all products"
+      ],
+      description: "Perfect for those beginning their healing journey"
+    },
+    {
+      name: "🌸 Bloom",
+      price: "$15/month",
+      benefits: [
+        "Everything in Seedling",
+        "Monthly virtual office hours with Latisha",
+        "Exclusive tarot card previews",
+        "20% discount on all products",
+        "Priority support for questions"
+      ],
+      description: "For committed community members seeking deeper connection"
+    },
+    {
+      name: "🌳 Grove",
+      price: "$50/month",
+      benefits: [
+        "Everything in Bloom",
+        "Monthly 1:1 consultation call",
+        "Custom affirmation cards",
+        "30% discount on all products",
+        "First access to new product launches"
+      ],
+      description: "Premium support for entrepreneurs and creators"
+    }
+  ]
+
+  const renderProducts = () => (
+    <div className="products-section">
+      <section className="products-hero">
+        <h2 className="section-title">🔮 Sacred Creations</h2>
+        <p className="products-intro">
+          Each product is crafted with intention, infusing healing energy and ancestral wisdom 
+          into tools for modern mystics, entrepreneurs, and community builders.
+        </p>
+      </section>
+
+      <div className="product-categories-grid">
+        {productCategories.map((category, index) => (
+          <article key={index} className="product-category">
+            <div className="product-icon">
+              <span className="category-emoji">{category.name.split(' ')[0]}</span>
+            </div>
+            <h3 className="product-category-title">
+              {category.name.replace(/^🌙\s*|^📓\s*|^🏠\s*|^🎨\s*|^📚\s*|^🌿\s*/, '')}
+            </h3>
+            <p className="product-description">{category.description}</p>
+            <div className="product-items">
+              {category.items.map((item, i) => (
+                <span key={i} className="product-tag">{item}</span>
+              ))}
+            </div>
+            <button className="gentle-cta" onClick={() => handleNavigation('contact')}>
+              Learn More →
+            </button>
+          </article>
+        ))}
+      </div>
+
+      <section className="tarot-dashboard-preview">
+        <h3 className="dashboard-title">🌙 Tarot Creation Dashboard</h3>
+        <p className="dashboard-intro">
+          Your sacred digital altar where each card, quote, and healing intention lives. 
+          Track all 78 cards, personas, and the complete deck development process.
+        </p>
+        
+        <div className="dashboard-features">
+          <div className="dashboard-feature">
+            <h4>🔮 Deck Overview</h4>
+            <p>Track all 78 cards, their personas, progress, and associations.</p>
+          </div>
+          <div className="dashboard-feature">
+            <h4>🌿 Card Builder</h4>
+            <p>In-depth reflection template for every card with astrology, meanings, and symbolism.</p>
+          </div>
+          <div className="dashboard-feature">
+            <h4>📚 Persona Library</h4>
+            <p>Running log of all figures used in the deck with bios and contributions.</p>
+          </div>
+          <div className="dashboard-feature">
+            <h4>🎨 Design Vault</h4>
+            <p>Visual inspiration by card with moodboards and palette references.</p>
+          </div>
+          <div className="dashboard-feature">
+            <h4>💬 Affirmation Archive</h4>
+            <p>Browse affirmations filtered by theme: Inner Child, Courage, Rest, Release, Joy.</p>
+          </div>
+          <div className="dashboard-feature">
+            <h4>🧭 Arcana Navigator</h4>
+            <p>Major and Minor Arcana organization with elemental and astrological references.</p>
+          </div>
+        </div>
+        
+        <div className="tarot-themes">
+          <h4>🌘 Recurring Themes & Symbols</h4>
+          <div className="theme-tags">
+            <span className="theme-tag">Crescent moons</span>
+            <span className="theme-tag">Magnolia trees</span>
+            <span className="theme-tag">Candles & mirrors</span>
+            <span className="theme-tag">Hoodoo elements</span>
+            <span className="theme-tag">Southern Gothic imagery</span>
+          </div>
+        </div>
+        
+        <p className="tarot-motto">*Rooted in Mystery. Blooming in Truth.*</p>
+      </section>
+    </div>
+  )
+
+  const renderCommunity = () => (
+    <div className="community-section">
+      <section className="community-hero">
+        <h2 className="section-title">💫 Sacred Community</h2>
+        <p className="community-intro">
+          Join a healing-centered community where Southern wisdom meets modern innovation. 
+          Support each other's growth while accessing exclusive resources and connections.
+        </p>
+      </section>
+
+      <section className="patreon-tiers">
+        <h3 className="community-subtitle">🌿 Community Membership Tiers</h3>
+        <div className="tiers-grid">
+          {patreonTiers.map((tier, index) => (
+            <div key={index} className="tier-card">
+              <div className="tier-header">
+                <h4 className="tier-name">{tier.name}</h4>
+                <span className="tier-price">{tier.price}</span>
+              </div>
+              <p className="tier-description">{tier.description}</p>
+              <ul className="tier-benefits">
+                {tier.benefits.map((benefit, i) => (
+                  <li key={i}>{benefit}</li>
+                ))}
+              </ul>
+              <button className="tier-cta gentle-cta">Join {tier.name.split(' ')[1]} →</button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="initiatives-overview">
+        <h3 className="community-subtitle">🌱 Community Initiatives</h3>
+        
+        <div className="initiatives-grid">
+          <div className="initiative-card">
+            <h4>🤖 AI for Black Women Entrepreneurs</h4>
+            <p>Making AI tools accessible for business growth through workshops and mentorship.</p>
+            <ul>
+              <li>Monthly AI workshops</li>
+              <li>Personalized tool setup assistance</li>
+              <li>Prompt engineering masterclass</li>
+            </ul>
+          </div>
+          
+          <div className="initiative-card">
+            <h4>💪 Survivor Support Network</h4>
+            <p>Data-driven support programs for sexual abuse survivors in Southern communities.</p>
+            <ul>
+              <li>Support group facilitation</li>
+              <li>Resource connecting</li>
+              <li>Trauma-informed workplace training</li>
+            </ul>
+          </div>
+          
+          <div className="initiative-card">
+            <h4>🌾 Southern Tech Accelerator</h4>
+            <p>Building tech skills and remote work opportunities for rural Black women.</p>
+            <ul>
+              <li>Remote work readiness training</li>
+              <li>Digital marketing certification</li>
+              <li>Tech mentorship matching</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="blog-preview">
+        <h3 className="community-subtitle">📝 Southern Roots, Modern Blooms</h3>
+        <p className="blog-description">
+          Personal narrative and community storytelling exploring disability advocacy, 
+          Black Southern experience, and the ADHD journey.
+        </p>
+        
+        <div className="blog-series">
+          <div className="series-card">
+            <h4>Diagnosis After 40</h4>
+            <p>Finding ADHD voice, executive dysfunction solutions, and building systems that work.</p>
+          </div>
+          <div className="series-card">
+            <h4>Southern Activist Chronicles</h4>
+            <p>Community organizing in small towns and building inclusive spaces in traditional communities.</p>
+          </div>
+          <div className="series-card">
+            <h4>Living with Invisible Disabilities</h4>
+            <p>Navigating social spaces, entrepreneurship, and teaching others about invisible disabilities.</p>
+          </div>
+        </div>
+        
+        <div className="memoir-preview">
+          <h4>📖 Upcoming Memoir: "Magnolias Also Bloom at Night"</h4>
+          <p>
+            A journey exploring Black southern identity, late-diagnosis disability, community activism, 
+            and entrepreneurship as resistance. Focusing on the transformative decade from 2015-2025.
+          </p>
+        </div>
+      </section>
+    </div>
+  )
+
   const renderExperience = () => (
     <div className="experience-section">
       <h2 className="section-title">💫 Professional Journey</h2>
@@ -563,8 +817,10 @@ function App() {
         return renderAbout()
       case 'services':
         return renderServices()
-      case 'experience':
-        return renderExperience()
+      case 'products':
+        return renderProducts()
+      case 'community':
+        return renderCommunity()
       case 'contact':
         return renderContact()
       default:
