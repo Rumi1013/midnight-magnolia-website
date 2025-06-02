@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
+import { validateEnvironment, initializeAnalytics } from './lib/integrations'
 
 function App() {
   const [activeService, setActiveService] = useState<string | null>(null)
@@ -114,6 +115,15 @@ function App() {
     setCurrentSection(section)
     setIsMenuOpen(false)
   }
+
+  // Initialize integrations on app load
+  useEffect(() => {
+    // Validate environment variables
+    validateEnvironment()
+    
+    // Initialize analytics
+    initializeAnalytics()
+  }, [])
 
   const renderHome = () => (
     <div className="home-section">

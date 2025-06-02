@@ -1,0 +1,169 @@
+// Midnight Magnolia - External Integrations
+// Environment variable configuration for Shopify, Patreon, and other services
+
+// ==============================================
+// SHOPIFY CONFIGURATION
+// ==============================================
+export const shopifyConfig = {
+  domain: import.meta.env.VITE_SHOPIFY_DOMAIN,
+  storefrontAccessToken: import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+  // Admin token should only be used server-side
+  adminAccessToken: import.meta.env.SHOPIFY_ADMIN_ACCESS_TOKEN,
+  apiVersion: '2024-01'
+}
+
+// Basic Shopify Storefront API client
+export const createShopifyClient = () => {
+  if (!shopifyConfig.domain || !shopifyConfig.storefrontAccessToken) {
+    console.warn('Shopify configuration missing. Check your .env file.')
+    return null
+  }
+
+  return {
+    endpoint: `https://${shopifyConfig.domain}/api/${shopifyConfig.apiVersion}/graphql.json`,
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': shopifyConfig.storefrontAccessToken
+    }
+  }
+}
+
+// ==============================================
+// PATREON CONFIGURATION
+// ==============================================
+export const patreonConfig = {
+  clientId: import.meta.env.PATREON_CLIENT_ID,
+  clientSecret: import.meta.env.PATREON_CLIENT_SECRET,
+  accessToken: import.meta.env.PATREON_ACCESS_TOKEN,
+  campaignId: import.meta.env.PATREON_CAMPAIGN_ID,
+  redirectUri: `${import.meta.env.VITE_SITE_URL}/auth/patreon/callback`
+}
+
+// Patreon OAuth URL generator
+export const getPatreonAuthUrl = () => {
+  if (!patreonConfig.clientId) {
+    console.warn('Patreon configuration missing. Check your .env file.')
+    return '#'
+  }
+
+  const scopes = 'identity pledges-to-me my-campaign'
+  return `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${patreonConfig.clientId}&redirect_uri=${encodeURIComponent(patreonConfig.redirectUri)}&scope=${encodeURIComponent(scopes)}`
+}
+
+// ==============================================
+// STRIPE CONFIGURATION
+// ==============================================
+export const stripeConfig = {
+  publicKey: import.meta.env.VITE_STRIPE_PUBLIC_KEY,
+  // Secret key should only be used server-side
+  secretKey: import.meta.env.STRIPE_SECRET_KEY
+}
+
+// ==============================================
+// EMAIL & MARKETING
+// ==============================================
+export const emailConfig = {
+  mailchimp: {
+    apiKey: import.meta.env.MAILCHIMP_API_KEY,
+    listId: import.meta.env.MAILCHIMP_LIST_ID
+  },
+  sendgrid: {
+    apiKey: import.meta.env.SENDGRID_API_KEY
+  }
+}
+
+// ==============================================
+// ANALYTICS
+// ==============================================
+export const analyticsConfig = {
+  googleAnalytics: import.meta.env.VITE_GA_MEASUREMENT_ID,
+  facebookPixel: import.meta.env.VITE_FACEBOOK_PIXEL_ID
+}
+
+// ==============================================
+// AUTOMATION WEBHOOKS
+// ==============================================
+export const webhookConfig = {
+  make: {
+    orderWebhook: import.meta.env.MAKE_ORDER_WEBHOOK_URL,
+    subscriberWebhook: import.meta.env.MAKE_SUBSCRIBER_WEBHOOK_URL,
+    contactWebhook: import.meta.env.MAKE_CONTACT_WEBHOOK_URL
+  }
+}
+
+// ==============================================
+// HELPER FUNCTIONS
+// ==============================================
+
+// Check if all required environment variables are set
+export const validateEnvironment = () => {
+  const required = [
+    'VITE_SHOPIFY_DOMAIN',
+    'VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN',
+    'PATREON_CLIENT_ID',
+    'VITE_STRIPE_PUBLIC_KEY'
+  ]
+
+  const missing = required.filter(key => !import.meta.env[key])
+  
+  if (missing.length > 0) {
+    console.warn('Missing required environment variables:', missing)
+    console.warn('Copy .env.example to .env and fill in your credentials')
+    return false
+  }
+  
+  return true
+}
+
+// Send webhook to Make.com
+export const sendToMake = async (webhookUrl: string, data: any) => {
+  if (!webhookUrl) {
+    console.warn('Webhook URL not configured')
+    return false
+  }
+
+  try {
+    const response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    
+    return response.ok
+  } catch (error) {
+    console.error('Webhook failed:', error)
+    return false
+  }
+}
+
+// Initialize analytics if configured
+export const initializeAnalytics = () => {
+  // Google Analytics
+  if (analyticsConfig.googleAnalytics) {
+    // GA4 initialization would go here
+    console.log('Google Analytics initialized:', analyticsConfig.googleAnalytics)
+  }
+
+  // Facebook Pixel
+  if (analyticsConfig.facebookPixel) {
+    // Facebook Pixel initialization would go here
+    console.log('Facebook Pixel initialized:', analyticsConfig.facebookPixel)
+  }
+}
+
+// ==============================================
+// DEVELOPMENT HELPERS
+// ==============================================
+export const isDevelopment = import.meta.env.NODE_ENV === 'development'
+export const isProduction = import.meta.env.NODE_ENV === 'production'
+
+// Log configuration status in development
+if (isDevelopment) {
+  console.log('🌙 Midnight Magnolia - Integration Status:')
+  console.log('Shopify:', shopifyConfig.domain ? '✅ Configured' : '❌ Missing')
+  console.log('Patreon:', patreonConfig.clientId ? '✅ Configured' : '❌ Missing')
+  console.log('Stripe:', stripeConfig.publicKey ? '✅ Configured' : '❌ Missing')
+  console.log('Analytics:', analyticsConfig.googleAnalytics ? '✅ Configured' : '❌ Missing')
+}
