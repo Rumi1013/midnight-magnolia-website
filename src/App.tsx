@@ -100,22 +100,70 @@ function App() {
   ]
 
   const navigation = [
-    { id: 'home', label: 'Home', icon: '🌸' },
-    { id: 'about', label: 'About', icon: '🌙' },
-    { id: 'shop', label: 'Shop', icon: '🛍️' },
-    { id: 'blog', label: 'Blog', icon: '📖' },
-    { id: 'gallery', label: 'Art Gallery', icon: '🎨' },
-    { id: 'journal', label: 'Journal', icon: '📝' },
-    { id: 'tarot', label: 'Tarot Deck', icon: '🔮' },
-    { id: 'membership', label: 'Membership', icon: '💫' },
-    { id: 'contact', label: 'Contact', icon: '✨' }
+    { 
+      id: 'home', 
+      label: 'Home', 
+      icon: '🌸',
+      type: 'single'
+    },
+    { 
+      id: 'about', 
+      label: 'About', 
+      icon: '🌙',
+      type: 'single'
+    },
+    {
+      id: 'services',
+      label: 'Services',
+      icon: '✨',
+      type: 'dropdown',
+      submenu: [
+        { id: 'shop', label: 'Digital Products', icon: '🛍️' },
+        { id: 'services', label: 'Consulting', icon: '💻' },
+        { id: 'membership', label: 'Community', icon: '💫' }
+      ]
+    },
+    {
+      id: 'creative',
+      label: 'Creative',
+      icon: '🎨',
+      type: 'dropdown',
+      submenu: [
+        { id: 'blog', label: 'Blog', icon: '📖' },
+        { id: 'gallery', label: 'Art Gallery', icon: '🖼️' },
+        { id: 'journal', label: 'Journal', icon: '📝' }
+      ]
+    },
+    {
+      id: 'mystical',
+      label: 'Mystical',
+      icon: '🔮',
+      type: 'dropdown',
+      submenu: [
+        { id: 'tarot', label: 'Tarot Deck', icon: '🔮' },
+        { id: 'rituals', label: 'Digital Rituals', icon: '🕯️' },
+        { id: 'wisdom', label: 'Ancestral Wisdom', icon: '📿' }
+      ]
+    },
+    { 
+      id: 'contact', 
+      label: 'Contact', 
+      icon: '✉️',
+      type: 'single'
+    }
   ]
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
   const handleNavigation = (section: string) => {
     setCurrentSection(section)
     setIsMenuOpen(false)
+    setActiveDropdown(null)
+  }
+
+  const handleDropdownToggle = (navId: string) => {
+    setActiveDropdown(activeDropdown === navId ? null : navId)
   }
 
   // Initialize integrations on app load
