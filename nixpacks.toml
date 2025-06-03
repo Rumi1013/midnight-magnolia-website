@@ -8,10 +8,13 @@ nixPkgs = ["nodejs-18_x", "npm"]
 cmd = "npm install"
 
 [phases.build]
-cmd = "npm run build"
+cmds = [
+  "npm ci",
+  "npm run build"
+]
 
-[start]
-cmd = "npm run preview -- --host 0.0.0.0 --port $PORT"
+[phases.start]
+cmd = "npm run preview"
 
 [variables]
 NODE_ENV = "production"
