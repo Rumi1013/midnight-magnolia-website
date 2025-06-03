@@ -57,7 +57,17 @@ body {
   background-image: 
     radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(143, 188, 143, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(220, 208, 255, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 40% 80%, rgba(220, 208, 255, 0.05) 0%, transparent 50%),
+    url('/images/gallery/stars-glyph.png');
+  background-size: 
+    auto, auto, auto, 
+    300px 300px;
+  background-repeat: 
+    no-repeat, no-repeat, no-repeat, 
+    repeat;
+  background-position: 
+    20% 50%, 80% 20%, 40% 80%, 
+    0 0;
   position: relative;
 }
 
@@ -326,7 +336,9 @@ body {
   justify-content: center;
   text-align: center;
   position: relative;
-  background-image: url('/images/gallery/southern-gothic-mansion-night.png');
+  background-image: 
+    linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)),
+    url('/images/gallery/southern-gothic-mansion-night.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -549,6 +561,12 @@ body {
 .featured-gallery {
   margin: 4rem 0;
   padding: 2rem;
+  background-image: 
+    radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.05) 0%, transparent 70%),
+    url('/images/gallery/magnolia-flower.png');
+  background-size: auto, 100px 100px;
+  background-repeat: no-repeat, repeat;
+  background-position: 30% 40%, 0 0;
 }
 
 .gallery-preview {
@@ -595,6 +613,50 @@ body {
 .gallery-cta {
   text-align: center;
   margin-top: 2rem;
+}
+
+/* Featured Services */
+.featured-services {
+  background-image: 
+    radial-gradient(circle at 70% 60%, rgba(143, 188, 143, 0.08) 0%, transparent 60%),
+    url('/images/gallery/tarot-symbol.png');
+  background-size: auto, 80px 80px;
+  background-repeat: no-repeat, repeat;
+  background-position: 70% 60%, 0 0;
+  padding: 2rem;
+}
+
+/* About Section */
+.about-section {
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(220, 208, 255, 0.05) 0%, transparent 80%),
+    url('/images/gallery/magnolia-flower.png');
+  background-size: auto, 150px 150px;
+  background-repeat: no-repeat, repeat;
+  background-position: 50% 20%, 0 0;
+  padding: 2rem;
+}
+
+/* Services Section */
+.services-section {
+  background-image: 
+    radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 70%),
+    url('/images/gallery/stars-glyph.png');
+  background-size: auto, 200px 200px;
+  background-repeat: no-repeat, repeat;
+  background-position: 80% 80%, 0 0;
+  padding: 2rem;
+}
+
+/* Blog Section */
+.blog-section {
+  background-image: 
+    radial-gradient(circle at 20% 70%, rgba(143, 188, 143, 0.06) 0%, transparent 60%),
+    url('/images/gallery/tarot-symbol.png');
+  background-size: auto, 120px 120px;
+  background-repeat: no-repeat, repeat;
+  background-position: 20% 70%, 0 0;
+  padding: 2rem;
 }
 
 /* Mobile Responsive */
