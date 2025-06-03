@@ -179,24 +179,22 @@ function App() {
     <div className="home-section">
       <section className="hero-sanctuary">
         <div className="hero-content">
-          <h1 className="sanctuary-title">
-            Midnight Magnolia
-          </h1>
+          <h1 className="sanctuary-title">Midnight Magnolia</h1>
           <p className="sanctuary-subtitle">
-            Rooted in Mystery. Blooming in Truth.
+            Where Southern Gothic meets digital mysticism. A sanctuary for community care, healing tech, and transformative rituals.
           </p>
           <div className="hero-actions">
             <button 
-              className="gentle-button primary"
+              className="gentle-button"
               onClick={() => handleNavigation('services')}
             >
-              Explore Services
+              Explore Services 🌙
             </button>
             <button 
-              className="gentle-button secondary"
+              className="gentle-cta"
               onClick={() => handleNavigation('about')}
             >
-              My Story
+              My Story →
             </button>
           </div>
         </div>
@@ -208,6 +206,35 @@ function App() {
           community care principles with digital mastery. Each service is a doorway 
           to transformation, each project a chance to center healing in our digital spaces.
         </p>
+      </section>
+
+      <section className="featured-gallery">
+        <h2 className="section-title">🎨 Featured Artwork</h2>
+        <div className="gallery-preview">
+          <div className="gallery-item">
+            <img src="/images/gallery/southern-gothic-1.jpeg" alt="Southern Gothic Mansion" />
+            <h3>Southern Gothic Heritage</h3>
+            <p>Mystical architecture that embodies the soul of the South</p>
+          </div>
+          <div className="gallery-item">
+            <img src="/images/gallery/black-candle-gold-label.png" alt="Ritual Candle Design" />
+            <h3>Sacred Ritual Elements</h3>
+            <p>Digital art pieces for transformation and meditation</p>
+          </div>
+          <div className="gallery-item">
+            <img src="/images/gallery/gothic-digital-planner.png" alt="Digital Planner" />
+            <h3>Mystical Planning Tools</h3>
+            <p>Spiritual organization meets practical productivity</p>
+          </div>
+        </div>
+        <div className="gallery-cta">
+          <button 
+            className="gentle-cta"
+            onClick={() => handleNavigation('gallery')}
+          >
+            View Full Gallery →
+          </button>
+        </div>
       </section>
 
       <section className="featured-services">
