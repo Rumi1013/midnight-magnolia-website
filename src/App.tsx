@@ -1395,17 +1395,23 @@ function App() {
       case 'about':
         return renderAbout()
       case 'shop':
-        return renderProducts() // Rename products to shop
-      case 'blog':
-        return renderBlog() // New blog section
-      case 'gallery':
-        return renderArtGallery() // New art gallery section
-      case 'journal':
-        return renderBlog() // Journal shows blog content
-      case 'tarot':
-        return renderTarotDeck() // New tarot-focused section
+        return renderProducts()
+      case 'services':
+        return renderServices()
       case 'membership':
-        return renderCommunity() // Rename community to membership
+        return renderCommunity()
+      case 'blog':
+        return renderBlog()
+      case 'gallery':
+        return renderArtGallery()
+      case 'journal':
+        return renderBlog()
+      case 'tarot':
+        return renderTarotDeck()
+      case 'rituals':
+        return renderServices()
+      case 'wisdom':
+        return renderAbout()
       case 'contact':
         return renderContact()
       default:
@@ -1443,14 +1449,48 @@ function App() {
             
             <ul className={`nav-menu ${isMenuOpen ? 'nav-menu-open' : ''}`}>
               {navigation.map((item) => (
-                <li key={item.id}>
-                  <button
-                    className={`nav-link ${currentSection === item.id ? 'nav-link-active' : ''}`}
-                    onClick={() => handleNavigation(item.id)}
-                  >
-                    <span className="nav-icon">{item.icon}</span>
-                    {item.label}
-                  </button>
+                <li key={item.id} className="nav-item">
+                  {item.type === 'single' ? (
+                    <button
+                      className={`nav-link ${currentSection === item.id ? 'nav-link-active' : ''}`}
+                      onClick={() => handleNavigation(item.id)}
+                    >
+                      <span className="nav-icon">{item.icon}</span>
+                      {item.label}
+                    </button>
+                  ) : (
+                    <div className="nav-dropdown">
+                      <button
+                        className={`nav-link nav-link-dropdown ${
+                          item.submenu?.some(sub => currentSection === sub.id) ? 'nav-link-active' : ''
+                        }`}
+                        onClick={() => handleDropdownToggle(item.id)}
+                        onMouseEnter={() => setActiveDropdown(item.id)}
+                      >
+                        <span className="nav-icon">{item.icon}</span>
+                        {item.label}
+                        <span className={`dropdown-arrow ${activeDropdown === item.id ? 'dropdown-arrow-open' : ''}`}>
+                          ▼
+                        </span>
+                      </button>
+                      
+                      <div 
+                        className={`dropdown-menu ${activeDropdown === item.id ? 'dropdown-menu-open' : ''}`}
+                        onMouseLeave={() => setActiveDropdown(null)}
+                      >
+                        {item.submenu?.map((subItem) => (
+                          <button
+                            key={subItem.id}
+                            className={`dropdown-item ${currentSection === subItem.id ? 'dropdown-item-active' : ''}`}
+                            onClick={() => handleNavigation(subItem.id)}
+                          >
+                            <span className="nav-icon">{subItem.icon}</span>
+                            {subItem.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
