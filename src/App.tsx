@@ -103,6 +103,8 @@ function App() {
     { id: 'home', label: 'Home', icon: '🌸' },
     { id: 'about', label: 'About', icon: '🌙' },
     { id: 'shop', label: 'Shop', icon: '🛍️' },
+    { id: 'blog', label: 'Blog', icon: '📖' },
+    { id: 'gallery', label: 'Art Gallery', icon: '🎨' },
     { id: 'journal', label: 'Journal', icon: '📝' },
     { id: 'tarot', label: 'Tarot Deck', icon: '🔮' },
     { id: 'membership', label: 'Membership', icon: '💫' },
@@ -968,7 +970,7 @@ function App() {
     }
   ]
 
-  const renderGallery = () => (
+  const renderArtGallery = () => (
     <div className="gallery-section">
       <section className="gallery-hero">
         <h2 className="section-title">🎨 Art & Words Gallery</h2>
@@ -1154,6 +1156,124 @@ function App() {
     </div>
   )
 
+  const renderBlog = () => (
+    <div className="blog-section">
+      <section className="blog-hero">
+        <h2 className="section-title">📖 Magnolia Musings</h2>
+        <p className="blog-intro">
+          Reflections on healing, technology, justice, and the sacred intersections where they meet. 
+          A space for processing, sharing wisdom, and growing together.
+        </p>
+      </section>
+
+      <section className="blog-categories">
+        <div className="category-filters">
+          <button className="filter-btn active">All Posts</button>
+          <button className="filter-btn">Tech & Healing</button>
+          <button className="filter-btn">Community Care</button>
+          <button className="filter-btn">Digital Justice</button>
+          <button className="filter-btn">Rituals & Practice</button>
+        </div>
+      </section>
+
+      <section className="blog-posts">
+        <div className="blog-grid">
+          <article className="blog-post">
+            <div className="post-header">
+              <span className="post-category">Tech & Healing</span>
+              <time className="post-date">December 2024</time>
+            </div>
+            <h3 className="post-title">Building Technology That Breathes</h3>
+            <p className="post-excerpt">
+              What does it mean to create digital tools that honor our nervous systems? 
+              Exploring automation workflows that support rather than overwhelm, 
+              especially for folks with ADHD and trauma histories.
+            </p>
+            <button className="read-more-btn">Read More →</button>
+          </article>
+
+          <article className="blog-post">
+            <div className="post-header">
+              <span className="post-category">Community Care</span>
+              <time className="post-date">November 2024</time>
+            </div>
+            <h3 className="post-title">The Sacred Art of Sustainable Activism</h3>
+            <p className="post-excerpt">
+              Lessons from burnout: How I learned to center healing in justice work 
+              and why our movements need technology that supports longevity, 
+              not just urgency.
+            </p>
+            <button className="read-more-btn">Read More →</button>
+          </article>
+
+          <article className="blog-post">
+            <div className="post-header">
+              <span className="post-category">Digital Justice</span>
+              <time className="post-date">October 2024</time>
+            </div>
+            <h3 className="post-title">Decolonizing Our Digital Spaces</h3>
+            <p className="post-excerpt">
+              From algorithms to accessibility: how we can build online communities 
+              that honor Indigenous wisdom, center Black joy, and create genuine 
+              belonging for marginalized voices.
+            </p>
+            <button className="read-more-btn">Read More →</button>
+          </article>
+
+          <article className="blog-post">
+            <div className="post-header">
+              <span className="post-category">Rituals & Practice</span>
+              <time className="post-date">September 2024</time>
+            </div>
+            <h3 className="post-title">Morning Rituals for Digital Healers</h3>
+            <p className="post-excerpt">
+              How I start each day with intention: grounding practices, 
+              ancestor acknowledgment, and setting energetic boundaries 
+              before opening my laptop.
+            </p>
+            <button className="read-more-btn">Read More →</button>
+          </article>
+
+          <article className="blog-post">
+            <div className="post-header">
+              <span className="post-category">Tech & Healing</span>
+              <time className="post-date">August 2024</time>
+            </div>
+            <h3 className="post-title">Notion as Sacred Container</h3>
+            <p className="post-excerpt">
+              Beyond productivity: using Notion to create digital altars, 
+              track lunar cycles, journal with prompts, and build databases 
+              that honor the fullness of our lives.
+            </p>
+            <button className="read-more-btn">Read More →</button>
+          </article>
+
+          <article className="blog-post">
+            <div className="post-header">
+              <span className="post-category">Community Care</span>
+              <time className="post-date">July 2024</time>
+            </div>
+            <h3 className="post-title">Pricing With Purpose and Compassion</h3>
+            <p className="post-excerpt">
+              Why I offer sliding scale pricing, how to value your work 
+              while making it accessible, and creating abundance that 
+              includes everyone in the circle.
+            </p>
+            <button className="read-more-btn">Read More →</button>
+          </article>
+        </div>
+
+        <div className="blog-cta">
+          <h3>Stay Connected to the Conversation</h3>
+          <p>Join our membership community to receive new posts, engage in discussion, and access exclusive content.</p>
+          <button className="gentle-cta" onClick={() => handleNavigation('membership')}>
+            Join Our Community →
+          </button>
+        </div>
+      </section>
+    </div>
+  )
+
   const renderContact = () => (
     <div className="contact-section">
       <section className="contact-sanctuary">
@@ -1228,8 +1348,12 @@ function App() {
         return renderAbout()
       case 'shop':
         return renderProducts() // Rename products to shop
+      case 'blog':
+        return renderBlog() // New blog section
+      case 'gallery':
+        return renderArtGallery() // New art gallery section
       case 'journal':
-        return renderGallery() // Rename gallery to journal (blog content)
+        return renderBlog() // Journal shows blog content
       case 'tarot':
         return renderTarotDeck() // New tarot-focused section
       case 'membership':
