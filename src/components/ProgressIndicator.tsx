@@ -48,8 +48,8 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
     };
   }, [lastScrollY]);
 
-  // Format percentage as string for aria attributes
-  const percentageValue = Math.round(scrollPercentage).toString();
+  // Format percentage as string
+  const percentageValue = Math.round(scrollPercentage);
 
   return (
     <div className={`progress-indicator ${isVisible ? 'visible' : ''} ${scrollDirection === 'up' ? 'emphasized' : ''}`}>
@@ -60,22 +60,18 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
           height: `${thickness}px`,
           backgroundColor: color
         }}
-      >
-        <span 
-          className="visually-hidden"
-          role="progressbar" 
-          aria-valuenow={Math.round(scrollPercentage)} 
-          aria-valuemin={0} 
-          aria-valuemax={100}
-        >
-          {percentageValue}% scrolled
-        </span>
-      </div>
+      />
       {showPercentage && (
-        <div className="progress-percentage" aria-hidden="true">
-          {percentageValue}%
+        <div className="progress-percentage">
+          <span>{percentageValue}%</span>
+          <span className="visually-hidden">of page scrolled</span>
         </div>
       )}
+      
+      {/* Hidden description for screen readers */}
+      <div className="visually-hidden">
+        You are {percentageValue}% through the page
+      </div>
     </div>
   );
 };

@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { validateEnvironment, initializeAnalytics } from './lib/integrations'
+import FloatingPetals from './components/FloatingPetals'
+import FireflyEffect from './components/FireflyEffect'
+import ProgressIndicator from './components/ProgressIndicator'
+import PauseMoment from './components/PauseMoment'
+import SkipNavigation from './components/SkipNavigation'
 
 function App() {
   const [activeService, setActiveService] = useState<string | null>(null)
@@ -1448,6 +1453,14 @@ function App() {
 
   return (
     <div className="sanctuary">
+      {/* Accessibility and ADHD-friendly navigation components */}
+      <ProgressIndicator />
+      <PauseMoment position="bottom-right" />
+      
+      {/* Ambient animation components */}
+      <FloatingPetals />
+      <FireflyEffect />
+      
       <header className="main-header">
         <div className="header-content">
           <div className="brand-section">
