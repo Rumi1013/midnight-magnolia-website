@@ -24,8 +24,25 @@ const FireflyEffect: React.FC = () => {
     threshold: 0.1,
     triggerOnce: false,
   });
+  
+  // Get performance context
+  const { allowAnimations, isReducedMotion, isLowPowerMode, isMobile } = usePerformance();
+  
+  // Determine if we should render the effect
+  const shouldRender = allowAnimations && !isReducedMotion;
+  
+  // Calculate appropriate firefly count based on device performance
+  const fireflyCount = useMemo(() => {
+    if (!shouldRender) return 0;
+    if (isLowPowerMode) return Math.min(5, Math.floor(window.innerWidth / 200));
+    if (isMobile) return Math.min(8, Math.floor(window.innerWidth / 150));
+    return Math.min(15, Math.floor(window.innerWidth / 100));
+  }, [shouldRender, isLowPowerMode, isMobile]);
 
   useEffect(() => {
+    // Skip effect completely if animations are disabled
+    if (!shouldRender) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -41,13 +58,23 @@ const FireflyEffect: React.FC = () => {
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    // Initialize fireflies
-    const fireflyCount = Math.min(15, Math.floor(window.innerWidth / 100));
+    // Initialize fireflies with count based on performance context
     firefliesRef.current = Array.from({ length: fireflyCount }, () => createFirefly());
 
-    // Animation function
+    // Calculate frame rate based on device capabilities
+    const frameInterval = isLowPowerMode ? 2 : isMobile ? 1 : 0; // Skip frames for lower power devices
+    let frameCount = 0;
+
+    // Animation function with performance optimizations
     const animate = () => {
-      if (!ctx || !canvas) return;
+      if (!ctx || !canvas || !shouldRender) return;
+      
+      // Skip frames based on device capability
+      frameCount = (frameCount + 1) % (frameInterval + 1);
+      if (frameInterval > 0 && frameCount !== 0) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
@@ -62,8 +89,10 @@ const FireflyEffect: React.FC = () => {
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Start animation
-    animate();
+    // Start animation only if we should render
+    if (shouldRender) {
+      animate();
+    }
 
     // Cleanup
     return () => {
@@ -72,7 +101,7 @@ const FireflyEffect: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [inView]);
+  }, [inView, shouldRender, isLowPowerMode, isMobile, fireflyCount]);
 
   const createFirefly = (): Firefly => {
     const canvas = canvasRef.current;
@@ -159,9 +188,18 @@ const FireflyEffect: React.FC = () => {
     ctx.fill();
   };
 
+  // Don't render anything if animations should be disabled
+  if (!shouldRender) {
+    return null;
+  }
+
   return (
     <div className="firefly-container" ref={inViewRef}>
-      <canvas ref={canvasRef} className="firefly-canvas" />
+      <canvas
+        ref={canvasRef}
+        className="firefly-canvas"
+        aria-hidden="true" // Hide from screen readers as this is decorative
+      />
     </div>
   );
 };
