@@ -1,0 +1,75 @@
+.petals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.petals-container.animate-petals {
+  opacity: 1;
+}
+
+.petal {
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  background-image: url('/images/gallery/magnolia-flower.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+}
+
+.petal-1 {
+  top: -20px;
+  left: 20%;
+  animation: floatDown 15s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.petal-2 {
+  top: -20px;
+  left: 50%;
+  animation: floatDown 18s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.petal-3 {
+  top: -20px;
+  left: 80%;
+  animation: floatDown 12s ease-in-out infinite;
+  animation-delay: 5s;
+}
+
+.petal-4 {
+  top: -20px;
+  left: 35%;
+  animation: floatDown 20s ease-in-out infinite;
+  animation-delay: 7s;
+}
+
+.petal-5 {
+  top: -20px;
+  left: 65%;
+  animation: floatDown 16s ease-in-out infinite;
+  animation-delay: 9s;
+}
+
+@keyframes floatDown {
+  0% {
+    transform: translateY(-20px) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(1000px) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
