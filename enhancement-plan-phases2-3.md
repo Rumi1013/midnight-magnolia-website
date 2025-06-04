@@ -1394,3 +1394,1170 @@ const ResourceLibrary: React.FC = () => {
     }
     
     // Proceed with download
+    window.open(resource.downloadUrl, '_blank');
+  };
+  
+  return (
+    <div className="resource-library">
+      <h2 className="section-title">📚 Resource Library</h2>
+      <p className="resource-intro">
+        A collection of tools, templates, and guides to support your creative and 
+        healing journey. Some resources are exclusive to community members.
+      </p>
+      
+      <div className="resource-filters">
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search resources..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="resource-search"
+          />
+        </div>
+        
+        <div className="filter-container">
+          <div className="filter-group">
+            <label>Category:</label>
+            <div className="filter-options">
+              {allCategories.map(category => (
+                <button
+                  key={category}
+                  className={`filter-button ${activeCategory === category ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          <div className="filter-group">
+            <label>Type:</label>
+            <div className="filter-options">
+              {allTypes.map(type => (
+                <button
+                  key={type}
+                  className={`filter-button ${activeType === type ? 'active' : ''}`}
+                  onClick={() => setActiveType(type)}
+                >
+                  {type === 'all' ? 'All' : type.charAt(0).toUpperCase() + type.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {isLoading ? (
+        <div className="loading-container">
+          <div className="loader"></div>
+          <p>Loading resources...</p>
+        </div>
+      ) : filteredResources.length === 0 ? (
+        <div className="no-results">
+          <p>No resources found matching your criteria. Try adjusting your filters.</p>
+        </div>
+      ) : (
+        <div className="resources-grid">
+          {filteredResources.map(resource => (
+            <div key={resource.id} className="resource-card">
+              <div className="resource-thumbnail">
+                <img src={resource.thumbnailUrl} alt={resource.title} />
+                {resource.memberOnly && (
+                  <div className="member-badge">Member Only</div>
+                )}
+                <div className="resource-type">{resource.type.toUpperCase()}</div>
+              </div>
+              
+              <div className="resource-details">
+                <h3>{resource.title}</h3>
+                <p>{resource.description}</p>
+                
+                <div className="resource-tags">
+                  {resource.tags.map(tag => (
+                    <span key={tag} className="resource-tag">{tag}</span>
+                  ))}
+                </div>
+                
+                <button 
+                  className={`download-button ${resource.memberOnly ? 'member-only' : ''}`}
+                  onClick={() => handleDownload(resource)}
+                >
+                  {resource.memberOnly ? 'Join to Download' : 'Download'}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ResourceLibrary;
+```
+
+**Implementation Steps:**
+1. Create ResourceLibrary component with filtering
+2. Implement member-only content protection
+3. Add download tracking functionality
+4. Style to match Midnight Magnolia aesthetic
+
+#### Resource Creation & Management
+
+**Implementation Approach:**
+- Create an admin interface for resource management
+- Implement upload and metadata editing
+- Add analytics for download tracking
+
+**Code Example:**
+```jsx
+// This would be part of an admin section not accessible to regular users
+// Create a new component: src/admin/ResourceManager.tsx
+import React, { useState, useEffect } from 'react';
+import './ResourceManager.css';
+
+interface ResourceData {
+  id?: string;
+  title: string;
+  description: string;
+  type: 'pdf' | 'audio' | 'video' | 'template';
+  categories: string[];
+  tags: string[];
+  downloadUrl: string;
+  thumbnailUrl: string;
+  dateAdded?: string;
+  memberOnly: boolean;
+}
+
+const ResourceManager: React.FC = () => {
+  const [resources, setResources] = useState<ResourceData[]>([]);
+  const [currentResource, setCurrentResource] = useState<ResourceData>({
+    title: '',
+    description: '',
+    type: 'pdf',
+    categories: [],
+    tags: [],
+    downloadUrl: '',
+    thumbnailUrl: '',
+    memberOnly: false
+  });
+  const [isEditing, setIsEditing] = useState(false);
+  const [newCategory, setNewCategory] = useState('');
+  const [newTag, setNewTag] = useState('');
+  
+  // Fetch existing resources
+  useEffect(() => {
+    // Replace with actual API call
+    const fetchResources = async () => {
+      try {
+        // Mock data
+        const data = [
+          // Resources data
+        ];
+        setResources(data);
+      } catch (error) {
+        console.error('Error fetching resources:', error);
+      }
+    };
+    
+    fetchResources();
+  }, []);
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setCurrentResource({
+      ...currentResource,
+      [name]: value
+    });
+  };
+  
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setCurrentResource({
+      ...currentResource,
+      [name]: checked
+    });
+  };
+  
+  const addCategory = () => {
+    if (newCategory && !currentResource.categories.includes(newCategory)) {
+      setCurrentResource({
+        ...currentResource,
+        categories: [...currentResource.categories, newCategory]
+      });
+      setNewCategory('');
+    }
+  };
+  
+  const removeCategory = (category: string) => {
+    setCurrentResource({
+      ...currentResource,
+      categories: currentResource.categories.filter(c => c !== category)
+    });
+  };
+  
+  const addTag = () => {
+    if (newTag && !currentResource.tags.includes(newTag)) {
+      setCurrentResource({
+        ...currentResource,
+        tags: [...currentResource.tags, newTag]
+      });
+      setNewTag('');
+    }
+  };
+  
+  const removeTag = (tag: string) => {
+    setCurrentResource({
+      ...currentResource,
+      tags: currentResource.tags.filter(t => t !== tag)
+    });
+  };
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      // Replace with actual API call
+      if (isEditing && currentResource.id) {
+        // Update existing resource
+        console.log('Updating resource:', currentResource);
+      } else {
+        // Create new resource
+        const newResource = {
+          ...currentResource,
+          id: `resource-${Date.now()}`,
+          dateAdded: new Date().toISOString().split('T')[0]
+        };
+        console.log('Creating resource:', newResource);
+        setResources([...resources, newResource]);
+      }
+      
+      // Reset form
+      setCurrentResource({
+        title: '',
+        description: '',
+        type: 'pdf',
+        categories: [],
+        tags: [],
+        downloadUrl: '',
+        thumbnailUrl: '',
+        memberOnly: false
+      });
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error saving resource:', error);
+    }
+  };
+  
+  const editResource = (resource: ResourceData) => {
+    setCurrentResource(resource);
+    setIsEditing(true);
+  };
+  
+  const deleteResource = async (id: string) => {
+    try {
+      // Replace with actual API call
+      console.log('Deleting resource:', id);
+      setResources(resources.filter(resource => resource.id !== id));
+    } catch (error) {
+      console.error('Error deleting resource:', error);
+    }
+  };
+  
+  return (
+    <div className="resource-manager">
+      <h2>{isEditing ? 'Edit Resource' : 'Add New Resource'}</h2>
+      
+      <form onSubmit={handleSubmit} className="resource-form">
+        <div className="form-group">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={currentResource.title}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            value={currentResource.description}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="type">Type</label>
+          <select
+            id="type"
+            name="type"
+            value={currentResource.type}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="pdf">PDF</option>
+            <option value="audio">Audio</option>
+            <option value="video">Video</option>
+            <option value="template">Template</option>
+          </select>
+        </div>
+        
+        <div className="form-group">
+          <label>Categories</label>
+          <div className="tag-input-container">
+            <input
+              type="text"
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}
+              placeholder="Add a category"
+            />
+            <button type="button" onClick={addCategory}>Add</button>
+          </div>
+          <div className="tags-container">
+            {currentResource.categories.map(category => (
+              <span key={category} className="tag">
+                {category}
+                <button type="button" onClick={() => removeCategory(category)}>×</button>
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        <div className="form-group">
+          <label>Tags</label>
+          <div className="tag-input-container">
+            <input
+              type="text"
+              value={newTag}
+              onChange={(e) => setNewTag(e.target.value)}
+              placeholder="Add a tag"
+            />
+            <button type="button" onClick={addTag}>Add</button>
+          </div>
+          <div className="tags-container">
+            {currentResource.tags.map(tag => (
+              <span key={tag} className="tag">
+                {tag}
+                <button type="button" onClick={() => removeTag(tag)}>×</button>
+              </span>
+            ))}
+          </div>
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="downloadUrl">Download URL</label>
+          <input
+            type="text"
+            id="downloadUrl"
+            name="downloadUrl"
+            value={currentResource.downloadUrl}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="thumbnailUrl">Thumbnail URL</label>
+          <input
+            type="text"
+            id="thumbnailUrl"
+            name="thumbnailUrl"
+            value={currentResource.thumbnailUrl}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group checkbox">
+          <input
+            type="checkbox"
+            id="memberOnly"
+            name="memberOnly"
+            checked={currentResource.memberOnly}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor="memberOnly">Member Only</label>
+        </div>
+        
+        <div className="form-actions">
+          <button type="submit" className="gentle-button">
+            {isEditing ? 'Update Resource' : 'Add Resource'}
+          </button>
+          {isEditing && (
+            <button
+              type="button"
+              className="gentle-cta"
+              onClick={() => {
+                setCurrentResource({
+                  title: '',
+                  description: '',
+                  type: 'pdf',
+                  categories: [],
+                  tags: [],
+                  downloadUrl: '',
+                  thumbnailUrl: '',
+                  memberOnly: false
+                });
+                setIsEditing(false);
+              }}
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+      </form>
+      
+      <h2>Existing Resources</h2>
+      <div className="resources-list">
+        {resources.length === 0 ? (
+          <p>No resources yet.</p>
+        ) : (
+          <table className="resources-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Member Only</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resources.map(resource => (
+                <tr key={resource.id}>
+                  <td>{resource.title}</td>
+                  <td>{resource.type.toUpperCase()}</td>
+                  <td>{resource.memberOnly ? 'Yes' : 'No'}</td>
+                  <td>{resource.dateAdded}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="edit-button"
+                      onClick={() => editResource(resource)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      className="delete-button"
+                      onClick={() => {
+                        if (window.confirm('Are you sure you want to delete this resource?')) {
+                          deleteResource(resource.id as string);
+                        }
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ResourceManager;
+```
+
+**Implementation Steps:**
+1. Create ResourceManager component for admin use
+2. Implement CRUD operations for resources
+3. Add file upload functionality with cloud storage
+4. Implement access control for admin area
+
+### 3. Community Engagement
+
+#### Testimonial Showcase
+
+**Implementation Approach:**
+- Create a rotating testimonial component
+- Implement submission and approval system
+- Add social proof with client profiles
+
+**Code Example:**
+```jsx
+// Create a new component: src/components/TestimonialShowcase.tsx
+import React, { useState, useEffect } from 'react';
+import './TestimonialShowcase.css';
+
+interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  organization?: string;
+  quote: string;
+  avatar?: string;
+  projectType: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+  featured: boolean;
+}
+
+const TestimonialShowcase: React.FC = () => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+  
+  // Mock API call - replace with actual data fetching
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        // Replace with actual API call
+        const data = [
+          {
+            id: 'testimonial-1',
+            name: 'Maya Johnson',
+            role: 'Founder',
+            organization: 'Healing Roots Collective',
+            quote: 'Latisha brought both technical excellence and ancestral knowing to our project. The automation she built doesn't just work—it breathes with our organization's rhythm.',
+            avatar: '/path/to/avatar1.jpg',
+            projectType: 'Automation',
+            rating: 5,
+            featured: true
+          },
+          // More testimonials...
+        ] as Testimonial[];
+        
+        setTestimonials(data);
+      } catch (error) {
+        console.error('Error fetching testimonials:', error);
+      }
+    };
+    
+    fetchTestimonials();
+  }, []);
+  
+  // Auto-rotate testimonials
+  useEffect(() => {
+    if (!autoplay || testimonials.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setActiveIndex(prevIndex => 
+        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 7000);
+    
+    return () => clearInterval(interval);
+  }, [autoplay, testimonials.length]);
+  
+  const goToTestimonial = (index: number) => {
+    setActiveIndex(index);
+    setAutoplay(false); // Pause autoplay when user interacts
+  };
+  
+  // Filter for featured testimonials
+  const featuredTestimonials = testimonials.filter(t => t.featured);
+  
+  if (featuredTestimonials.length === 0) {
+    return null;
+  }
+  
+  return (
+    <div className="testimonial-showcase">
+      <h2 className="section-title">✨ Client Reflections</h2>
+      
+      <div className="testimonial-carousel">
+        <div 
+          className="testimonial-slider"
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        >
+          {featuredTestimonials.map(testimonial => (
+            <div key={testimonial.id} className="testimonial-slide">
+              <div className="testimonial-content">
+                <div className="quote-mark">"</div>
+                <blockquote className="testimonial-quote">
+                  {testimonial.quote}
+                </blockquote>
+                <div className="testimonial-rating">
+                  {[...Array(5)].map((_, i) => (
+                    <span 
+                      key={i} 
+                      className={`star ${i < testimonial.rating ? 'filled' : 'empty'}`}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+                <div className="testimonial-author">
+                  {testimonial.avatar ? (
+                    <img 
+                      src={testimonial.avatar} 
+                      alt={testimonial.name} 
+                      className="author-avatar"
+                    />
+                  ) : (
+                    <div className="author-avatar-placeholder">
+                      {testimonial.name.charAt(0)}
+                    </div>
+                  )}
+                  <div className="author-info">
+                    <div className="author-name">{testimonial.name}</div>
+                    <div className="author-role">
+                      {testimonial.role}
+                      {testimonial.organization && (
+                        <>, {testimonial.organization}</>
+                      )}
+                    </div>
+                    <div className="project-type">{testimonial.projectType} Project</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="carousel-controls">
+          <button 
+            className="prev-button"
+            onClick={() => goToTestimonial(
+              activeIndex === 0 ? featuredTestimonials.length - 1 : activeIndex - 1
+            )}
+            aria-label="Previous testimonial"
+          >
+            ←
+          </button>
+          
+          <div className="carousel-indicators">
+            {featuredTestimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`indicator ${activeIndex === index ? 'active' : ''}`}
+                onClick={() => goToTestimonial(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+          
+          <button 
+            className="next-button"
+            onClick={() => goToTestimonial(
+              activeIndex === featuredTestimonials.length - 1 ? 0 : activeIndex + 1
+            )}
+            aria-label="Next testimonial"
+          >
+            →
+          </button>
+        </div>
+      </div>
+      
+      <div className="testimonial-cta">
+        <p>Ready to create your own digital transformation story?</p>
+        <button className="gentle-button">Start Your Journey</button>
+      </div>
+    </div>
+  );
+};
+
+export default TestimonialShowcase;
+```
+
+**Implementation Steps:**
+1. Create TestimonialShowcase component with carousel
+2. Implement autoplay and manual navigation
+3. Add testimonial submission form for clients
+4. Create admin approval interface
+
+#### Social Sharing Integration
+
+**Implementation Approach:**
+- Implement social sharing buttons for content
+- Create sharable card previews for blogs and resources
+- Add easy sharing for tarot readings
+
+**Code Example:**
+```jsx
+// Create a new component: src/components/SocialShare.tsx
+import React from 'react';
+import './SocialShare.css';
+
+interface SocialShareProps {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  tags?: string[];
+}
+
+const SocialShare: React.FC<SocialShareProps> = ({ 
+  title, 
+  description, 
+  url, 
+  image,
+  tags
+}) => {
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title);
+  const encodedDescription = encodeURIComponent(description);
+  const encodedImage = image ? encodeURIComponent(image) : '';
+  const encodedTags = tags ? encodeURIComponent(tags.join(',')) : '';
+  
+  const shareLinks = {
+    twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}&hashtags=${encodedTags}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    pinterest: image ? `https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${encodedImage}&description=${encodedTitle}` : null,
+    email: `mailto:?subject=${encodedTitle}&body=${encodedDescription}%0A%0A${encodedUrl}`
+  };
+  
+  const handleShare = (platform: string, link: string) => {
+    window.open(link, `share-${platform}`, 'width=600,height=400,resizable=yes');
+    
+    // Track share event
+    console.log(`Shared on ${platform}`);
+  };
+  
+  return (
+    <div className="social-share">
+      <div className="share-label">Share this:</div>
+      <div className="share-buttons">
+        <button 
+          className="share-button twitter"
+          onClick={() => handleShare('twitter', shareLinks.twitter)}
+          aria-label="Share on Twitter"
+        >
+          <span className="share-icon">𝕏</span>
+        </button>
+        
+        <button 
+          className="share-button facebook"
+          onClick={() => handleShare('facebook', shareLinks.facebook)}
+          aria-label="Share on Facebook"
+        >
+          <span className="share-icon">f</span>
+        </button>
+        
+        <button 
+          className="share-button linkedin"
+          onClick={() => handleShare('linkedin', shareLinks.linkedin)}
+          aria-label="Share on LinkedIn"
+        >
+          <span className="share-icon">in</span>
+        </button>
+        
+        {shareLinks.pinterest && (
+          <button 
+            className="share-button pinterest"
+            onClick={() => handleShare('pinterest', shareLinks.pinterest as string)}
+            aria-label="Share on Pinterest"
+          >
+            <span className="share-icon">P</span>
+          </button>
+        )}
+        
+        <button 
+          className="share-button email"
+          onClick={() => window.location.href = shareLinks.email}
+          aria-label="Share via Email"
+        >
+          <span className="share-icon">✉</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default SocialShare;
+```
+
+**Implementation Steps:**
+1. Create SocialShare component with platform integrations
+2. Add Open Graph meta tags for better sharing previews
+3. Implement share tracking and analytics
+4. Create custom share images for different content types
+
+#### Event Registration System
+
+**Implementation Approach:**
+- Create event registration and management
+- Implement calendar integration
+- Add reminder and notification system
+
+**Code Example:**
+```jsx
+// Create a new component: src/components/EventRegistration.tsx
+import React, { useState, useEffect } from 'react';
+import './EventRegistration.css';
+
+interface Event {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  duration: string;
+  location: 'online' | 'in-person';
+  locationDetails?: string;
+  capacity: number;
+  registered: number;
+  price: number | 'free';
+  image?: string;
+  tags: string[];
+}
+
+const EventRegistration: React.FC = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [registrationData, setRegistrationData] = useState({
+    name: '',
+    email: '',
+    questions: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [registrationComplete, setRegistrationComplete] = useState(false);
+  
+  // Mock API call - replace with actual data fetching
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        // Replace with actual API call
+        const data = [
+          {
+            id: 'event-1',
+            title: 'Digital Sanctuary Workshop',
+            description: 'Learn how to create healing-centered digital spaces in this interactive workshop.',
+            date: '2024-07-15',
+            time: '18:00',
+            duration: '90 minutes',
+            location: 'online',
+            locationDetails: 'Zoom link will be sent upon registration',
+            capacity: 30,
+            registered: 12,
+            price: 25,
+            image: '/images/gallery/gothic-digital-planner.png',
+            tags: ['workshop', 'digital', 'healing']
+          },
+          // More events...
+        ] as Event[];
+        
+        setEvents(data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+    
+    fetchEvents();
+  }, []);
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setRegistrationData({
+      ...registrationData,
+      [name]: value
+    });
+  };
+  
+  const handleRegistration = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!selectedEvent) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Replace with actual API call
+      console.log('Registering for event:', selectedEvent.id, registrationData);
+      
+      // Mock successful registration
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setRegistrationComplete(true);
+        
+        // Update event registration count
+        setEvents(events.map(event => 
+          event.id === selectedEvent.id 
+            ? { ...event, registered: event.registered + 1 } 
+            : event
+        ));
+      }, 1500);
+    } catch (error) {
+      console.error('Error registering for event:', error);
+      setIsSubmitting(false);
+    }
+  };
+  
+  const resetRegistration = () => {
+    setSelectedEvent(null);
+    setRegistrationData({
+      name: '',
+      email: '',
+      questions: '',
+    });
+    setRegistrationComplete(false);
+  };
+  
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+  
+  return (
+    <div className="event-registration">
+      <h2 className="section-title">🌙 Upcoming Events</h2>
+      
+      {selectedEvent ? (
+        <div className="registration-flow">
+          {registrationComplete ? (
+            <div className="registration-success">
+              <div className="success-icon">✨</div>
+              <h3>You're registered!</h3>
+              <p>
+                Thank you for registering for <strong>{selectedEvent.title}</strong>.
+                A confirmation email has been sent to <strong>{registrationData.email}</strong>.
+              </p>
+              
+              <div className="event-details">
+                <div className="detail-item">
+                  <span className="detail-label">Date:</span>
+                  <span className="detail-value">{formatDate(selectedEvent.date)}</span>
+                </div>
+                <div className="detail-item">
+                  <span className="detail-label">Time:</span>
+                  <span className="detail-value">{selectedEvent.time} ({selectedEvent.duration})</span>
+                </div>
+                <div className="detail-item">
+                  <span className="detail-label">Location:</span>
+                  <span className="detail-value">
+                    {selectedEvent.location === 'online' ? 'Online' : 'In Person'} - {selectedEvent.locationDetails}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="calendar-links">
+                <p>Add to your calendar:</p>
+                <div className="calendar-buttons">
+                  <button className="calendar-button">Google Calendar</button>
+                  <button className="calendar-button">Apple Calendar</button>
+                  <button className="calendar-button">Outlook</button>
+                </div>
+              </div>
+              
+              <button className="gentle-cta" onClick={resetRegistration}>
+                Return to Events
+              </button>
+            </div>
+          ) : (
+            <div className="registration-form-container">
+              <div className="selected-event-details">
+                <h3>{selectedEvent.title}</h3>
+                <div className="event-details">
+                  <div className="detail-item">
+                    <span className="detail-label">Date:</span>
+                    <span className="detail-value">{formatDate(selectedEvent.date)}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Time:</span>
+                    <span className="detail-value">{selectedEvent.time} ({selectedEvent.duration})</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Location:</span>
+                    <span className="detail-value">
+                      {selectedEvent.location === 'online' ? 'Online' : 'In Person'} - {selectedEvent.locationDetails}
+                    </span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Price:</span>
+                    <span className="detail-value">
+                      {selectedEvent.price === 'free' ? 'Free' : `$${selectedEvent.price}`}
+                    </span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Availability:</span>
+                    <span className="detail-value">
+                      {selectedEvent.capacity - selectedEvent.registered} spaces remaining
+                    </span>
+                  </div>
+                </div>
+                <button 
+                  className="back-button gentle-cta secondary"
+                  onClick={resetRegistration}
+                >
+                  Back to Events
+                </button>
+              </div>
+              
+              <form onSubmit={handleRegistration} className="registration-form">
+                <h3>Register for this Event</h3>
+                
+                <div className="form-group">
+                  <label htmlFor="name">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={registrationData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={registrationData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="questions">Questions or Special Requests</label>
+                  <textarea
+                    id="questions"
+                    name="questions"
+                    value={registrationData.questions}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                
+                <button 
+                  type="submit" 
+                  className="gentle-button register-button"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Registering...' : 'Complete Registration'}
+                </button>
+                
+                <p className="registration-note">
+                  By registering, you agree to receive emails related to this event. 
+                  We respect your privacy and will never share your information.
+                </p>
+              </form>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="events-list">
+          {events.length === 0 ? (
+            <p className="no-events">No upcoming events at this time. Check back soon!</p>
+          ) : (
+            <div className="events-grid">
+              {events.map(event => (
+                <div key={event.id} className="event-card">
+                  {event.image && (
+                    <div className="event-image">
+                      <img src={event.image} alt={event.title} />
+                    </div>
+                  )}
+                  
+                  <div className="event-info">
+                    <div className="event-date-badge">
+                      <div className="event-month">
+                        {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
+                      </div>
+                      <div className="event-day">
+                        {new Date(event.date).getDate()}
+                      </div>
+                    </div>
+                    
+                    <h3 className="event-title">{event.title}</h3>
+                    
+                    <div className="event-meta">
+                      <div className="event-time">
+                        <span className="meta-icon">🕒</span>
+                        {event.time} • {event.duration}
+                      </div>
+                      <div className="event-location">
+                        <span className="meta-icon">
+                          {event.location === 'online' ? '💻' : '📍'}
+                        </span>
+                        {event.location === 'online' ? 'Online' : event.locationDetails}
+                      </div>
+                    </div>
+                    
+                    <p className="event-description">{event.description}</p>
+                    
+                    <div className="event-footer">
+                      <div className="event-price">
+                        {event.price === 'free' ? 'Free' : `$${event.price}`}
+                      </div>
+                      
+                      <div className="event-capacity">
+                        <div className="capacity-bar">
+                          <div 
+                            className="capacity-fill"
+                            style={{ width: `${(event.registered / event.capacity) * 100}%` }}
+                          ></div>
+                        </div>
+                        <div className="capacity-text">
+                          {event.capacity - event.registered} spaces left
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <button 
+                      className="gentle-button register-button"
+                      onClick={() => setSelectedEvent(event)}
+                      disabled={event.registered >= event.capacity}
+                    >
+                      {event.registered >= event.capacity ? 'Sold Out' : 'Register Now'}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          <div className="events-cta">
+            <h3>Host an Event with Midnight Magnolia</h3>
+            <p>
+              Interested in hosting a workshop or collaboration? 
+              Let's create a healing-centered digital experience together.
+            </p>
+            <button className="gentle-cta">Contact for Collaboration</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default EventRegistration;
+```
+
+**Implementation Steps:**
+1. Create EventRegistration component with event listing
+2. Implement registration form and confirmation
+3. Add calendar integration for event reminders
+4. Create admin interface for event management
+
+## Implementation Timeline
+
+### Phase 2: Technical Enhancements (Weeks 4-7)
+- Week 4: Performance Optimization
+- Week 5: Image Optimization & Code Splitting
+- Week 6: Shopify & Patreon Integration
+- Week 7: Mobile Experience Refinement
+
+### Phase 3: Content & Community Features (Weeks 8-12)
+- Week 8-9: Interactive Tarot Experience
+- Week 10: Resource Library
+- Week 11-12: Community Engagement Features
+
+## Next Steps
+
+After completing this detailed plan, we should:
+
+1. Review and prioritize components
+2. Establish the development environment
+3. Set up CI/CD pipeline for testing
+4. Begin implementation with Phase 1 components
+
+Each implementation phase should be aligned with your health needs, with built-in rest periods and a focus on sustainable development pacing.
