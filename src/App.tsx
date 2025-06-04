@@ -6,6 +6,7 @@ import FireflyEffect from './components/FireflyEffect'
 import ProgressIndicator from './components/ProgressIndicator'
 import PauseMoment from './components/PauseMoment'
 import SkipNavigation from './components/SkipNavigation'
+import { PerformanceProvider } from './context/PerformanceContext'
 
 function App() {
   const [activeService, setActiveService] = useState<string | null>(null)
@@ -1452,8 +1453,10 @@ function App() {
   }
 
   return (
-    <div className="sanctuary">
+    <PerformanceProvider>
+      <div className="sanctuary">
       {/* Accessibility and ADHD-friendly navigation components */}
+      <SkipNavigation mainContentId="main-content" />
       <ProgressIndicator />
       <PauseMoment position="bottom-right" />
       
@@ -1538,7 +1541,7 @@ function App() {
         </div>
       </header>
       
-      <main className="sanctuary-content">
+      <main id="main-content" className="sanctuary-content">
         {renderCurrentSection()}
       </main>
       
@@ -1546,7 +1549,8 @@ function App() {
         <p>Made with 💚 for healing, growth, and liberation</p>
         <p className="footer-note">🌸 Midnight Magnolia Portfolio • Where community care meets code</p>
       </footer>
-    </div>
+      </div>
+    </PerformanceProvider>
   )
 }
 

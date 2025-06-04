@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import './FireflyEffect.css';
+import { usePerformance } from '../context/PerformanceContext';
 
 interface Firefly {
   x: number;
