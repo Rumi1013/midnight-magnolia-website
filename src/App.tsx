@@ -18,6 +18,7 @@ import BlogSection from './components/BlogSection'
 import TraumaInformedAI from './components/TraumaInformedAI'
 import JusticeResources from './components/JusticeResources'
 import LogoShowcase from './components/LogoShowcase'
+import ArchiveSection from './components/ArchiveSection'
 import { PerformanceProvider } from './context/PerformanceContext'
 
 function App() {
@@ -140,6 +141,8 @@ function App() {
         return <div data-section="brand"><LogoShowcase /></div>
       case 'contact':
         return <div data-section="contact">{renderContact()}</div>
+      case 'archive':
+        return <div data-section="archive"><ArchiveSection /></div>
       default:
         return <div data-section="home"><Hero onNavigate={handleNavigation} /></div>
     }

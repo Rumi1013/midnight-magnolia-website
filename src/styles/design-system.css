@@ -301,76 +301,108 @@
   border-radius: var(--radius-xl);
 }
 
-/* === Button System - Improved Contrast === */
+/* === Button Components === */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid transparent;
   border-radius: var(--radius-md);
+  font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition-normal);
-  border: 2px solid transparent;
+  background: transparent;
+  color: inherit;
+  text-align: center;
+  justify-content: center;
   font-family: inherit;
-  font-size: var(--text-base);
   line-height: 1.2;
 }
 
-/* Primary - Warm Gold */
+/* Primary: Antique Cream with Gold Accent */
 .btn-primary {
-  background: linear-gradient(135deg, var(--warm-gold), #b8860b);
-  color: var(--deep-night);
-  border-color: var(--warm-gold);
-  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, #F5F5DC 0%, #F0E68C 100%);
+  color: #2F2F2F;
+  border-color: #D4AF37;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #f4d03f, var(--warm-gold));
+  background: linear-gradient(135deg, #F0E68C 0%, #E6D85C 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  border-color: #B8860B;
 }
 
-/* Secondary - Muted Lavender */
+/* Secondary: Soft Cream */
 .btn-secondary {
-  background: linear-gradient(135deg, #8b7b9b, #6a5a7a);
-  color: var(--gentle-cream);
-  border-color: #8b7b9b;
-  box-shadow: 0 2px 8px rgba(139, 123, 155, 0.3);
+  background: linear-gradient(135deg, #FAF0E6 0%, #F5F5DC 100%);
+  color: #4A4A4A;
+  border-color: rgba(212, 175, 55, 0.4);
 }
 
 .btn-secondary:hover {
-  background: linear-gradient(135deg, #9d8daf, #8b7b9b);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(139, 123, 155, 0.4);
+  background: linear-gradient(135deg, #F5F5DC 0%, #F0E68C 100%);
+  border-color: #D4AF37;
+  transform: translateY(-1px);
 }
 
-/* Ghost - Subtle Border */
+/* Ghost: Transparent with Cream Border */
 .btn-ghost {
   background: transparent;
-  color: var(--gentle-cream);
-  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--text-primary);
+  border-color: rgba(245, 245, 220, 0.3);
 }
 
 .btn-ghost:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: var(--warm-gold);
-  color: var(--warm-gold);
+  background: rgba(245, 245, 220, 0.1);
+  border-color: #D4AF37;
+  color: var(--accent-primary);
 }
 
-/* Accent - Deep Burgundy for Special Actions */
+/* Accent: Deep Gold */
 .btn-accent {
-  background: linear-gradient(135deg, #722f37, #5a252a);
-  color: var(--gentle-cream);
-  border-color: #722f37;
-  box-shadow: 0 2px 8px rgba(114, 47, 55, 0.3);
+  background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+  color: #2F2F2F;
+  border-color: #B8860B;
 }
 
 .btn-accent:hover {
-  background: linear-gradient(135deg, #8b3a42, #722f37);
+  background: linear-gradient(135deg, #B8860B 0%, #9A7209 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(114, 47, 55, 0.4);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+}
+
+/* Large Button Variant */
+.btn-large {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+
+/* Remove all the inconsistent color variants */
+.btn-fiesta,
+.btn-celebration,
+.btn-spirit,
+.btn-marigold {
+  /* All redirect to primary styling */
+  background: linear-gradient(135deg, #F5F5DC 0%, #F0E68C 100%);
+  color: #2F2F2F;
+  border-color: #D4AF37;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
+}
+
+.btn-fiesta:hover,
+.btn-celebration:hover,
+.btn-spirit:hover,
+.btn-marigold:hover {
+  background: linear-gradient(135deg, #F0E68C 0%, #E6D85C 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  border-color: #B8860B;
 }
 
 /* === Section Styling === */

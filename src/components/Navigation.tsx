@@ -34,6 +34,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
       ]
     },
     { id: 'portfolio', label: 'Portfolio', icon: '📚', type: 'single' },
+    { id: 'archive', label: 'Archive', icon: '🗂️', type: 'single' },
     { id: 'blog', label: 'Stories', icon: '📝', type: 'single' },
     { id: 'shop', label: 'Shop', icon: '🛒', type: 'single' },
     { id: 'membership', label: 'Community', icon: '💚', type: 'single' },
@@ -41,23 +42,9 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
     { id: 'contact', label: 'Contact', icon: '✉️', type: 'single' }
   ]
 
-  // Smart logo selection based on current section
-  const getContextualLogo = () => {
-    switch (currentSection) {
-      case 'blog':
-      case 'portfolio':
-        return '/images/logos/paperFinal26_MM_25.png' // Textured for storytelling
-      case 'trauma-ai':
-      case 'justice-resources':
-        return '/images/gallery/mystical-logo.png' // Mystical for spiritual/justice work
-      case 'shop':
-      case 'membership':
-        return '/images/logos/goldenFinal22_MM_25.png' // Golden for premium services
-      case 'brand':
-        return '/images/logos/ClearFinal7_MM_25.jpeg' // Clear for brand showcase
-      default:
-        return '/images/logos/color-logo.png' // Default color logo
-    }
+  // Use one consistent beautiful logo instead of complex switching
+  const getLogo = () => {
+    return '/images/logos/midnight-magnolia-main.png' // Your beautiful new logo
   }
 
   useEffect(() => {
@@ -75,6 +62,29 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
     } else {
       setActiveDropdown(null)
       setIsMenuOpen(false)
+      
+      // Fix navigation scroll offset
+      if (item.id === 'home') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      } else {
+        setTimeout(() => {
+          const headerHeight = 100 // Increased for proper clearance
+          const targetElement = document.querySelector(`[data-section="${item.id}"]`)
+          if (targetElement) {
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset
+            const offsetPosition = elementPosition - headerHeight
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            })
+          }
+        }, 100)
+      }
+      
       onNavigate(item.id)
     }
   }
@@ -86,7 +96,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
     // Add scroll offset for sticky header
     if (itemId !== 'home') {
       setTimeout(() => {
-        const headerHeight = 80
+        const headerHeight = 100 // Increased for proper clearance
         const targetElement = document.querySelector(`[data-section="${itemId}"]`)
         if (targetElement) {
           const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset
@@ -98,6 +108,11 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
           })
         }
       }, 100)
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
     
     onNavigate(itemId)
@@ -113,7 +128,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
             onClick={() => handleMenuItemClick(navigationItems[0])}
           >
             <img 
-              src={getContextualLogo()} 
+              src={getLogo()} 
               alt="Midnight Magnolia Logo"
               className="brand-logo"
               style={{
