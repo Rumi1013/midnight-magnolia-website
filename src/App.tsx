@@ -35,14 +35,14 @@ function App() {
           behavior: 'smooth'
         })
       } else {
-        // Scroll to top of main content with header offset
-        const headerHeight = 80 // Header height in pixels
+        // Scroll to top of main content with proper header offset
+        const headerHeight = 120 // Increased for better clearance
         const yOffset = -headerHeight
         const element = document.getElementById('main-content')
         if (element) {
           const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
           window.scrollTo({
-            top: y,
+            top: Math.max(0, y), // Ensure we don't scroll to negative position
             behavior: 'smooth'
           })
         }

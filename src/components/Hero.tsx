@@ -10,490 +10,316 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     <section className="hero-section">
       <div className="container">
         <div className="hero-content">
-          {/* Multiple Background Images for Visual Richness */}
-          <div className="hero-visual-bg">
-            <img 
-              src="/images/gallery/southern-gothic-mansion-night.png" 
-              alt="Southern Gothic mansion with mystical atmosphere"
-              className="hero-bg-image hero-bg-primary"
-            />
-            <img 
-              src="/images/gallery/southern-gothic-1.jpeg" 
-              alt="Gothic architecture detail"
-              className="hero-bg-image hero-bg-secondary"
-            />
-            <div className="hero-overlay"></div>
-          </div>
-
-          {/* Decorative Background Elements */}
-          <div className="floating-element" style={{
-            position: 'absolute',
-            top: '10%',
-            left: '5%',
-            opacity: 0.1,
-            zIndex: 1
-          }}>
-            <img src="/images/logos/goldenFinal22_MM_25.png" alt="" style={{ width: '120px', height: '120px' }} />
-          </div>
-          
-          <div className="floating-element" style={{
-            position: 'absolute',
-            bottom: '15%',
-            right: '8%',
-            opacity: 0.08,
-            zIndex: 1
-          }}>
-            <img src="/images/logos/ClearFinal7_MM_25.jpeg" alt="" style={{ width: '100px', height: '100px' }} />
-          </div>
-
-          {/* Main Content */}
-          <div className="hero-content animate-fade-in" style={{ 
-            position: 'relative', 
-            zIndex: 3,
-            textAlign: 'center',
-            maxWidth: '900px',
-            margin: '0 auto'
-          }}>
-            {/* Hero Header with Premium Logo */}
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              gap: 'var(--space-md)',
-              marginBottom: 'var(--space-lg)'
-            }}>
-              <img 
-                src="/images/logos/goldenFinal22_MM_25.png" 
-                alt="Midnight Magnolia Premium"
-                style={{ 
-                  width: '60px', 
-                  height: '60px',
-                  filter: 'drop-shadow(0 0 12px var(--accent-primary))'
-                }}
-              />
-              <h1 className="hero-title text-h1">
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
-                  Midnight Magnolia
-                  <img 
-                    src="/images/logos/ClearFinal7_MM_25.jpeg" 
-                    alt="Magnolia Bloom"
-                    style={{ 
-                      width: '45px', 
-                      height: '45px',
-                      opacity: 0.9,
-                      filter: 'brightness(1.2)'
-                    }}
-                  />
-                </div>
-              </h1>
-              <img 
-                src="/images/logos/goldenFinal22_MM_25.png" 
-                alt="Midnight Magnolia Premium"
-                style={{ 
-                  width: '60px', 
-                  height: '60px',
-                  filter: 'drop-shadow(0 0 12px var(--accent-primary))'
-                }}
-              />
-            </div>
-
-            <p className="text-body-lg hero-subtitle">
-              Where Southern Gothic meets digital mysticism. A sanctuary for community care, 
-              healing technology, and transformative digital experiences.
-            </p>
+          {/* Clean, focused hero content */}
+          <div className="hero-main animate-fade-in">
             
-            <div className="hero-description">
-              <p className="text-body">
-                Rooted in mystery, blooming through code, ritual, and resilience. 
-                We create technology services that center healing in digital spaces.
+            {/* Hero Header - Clean and Compelling */}
+            <div className="hero-header">
+              <h1 className="hero-title text-display" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-sm)' }}>
+                <img 
+                  src="/images/logos/midnight-magnolia-hero.svg" 
+                  alt="Midnight Magnolia"
+                  style={{ 
+                    width: '60px', 
+                    height: '60px',
+                    filter: 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3))'
+                  }}
+                />
+                Midnight Magnolia
+              </h1>
+              <p className="hero-tagline text-h2">
+                A Southern Gothic Digital Sanctuary
+              </p>
+              <p className="hero-subtitle text-body-lg">
+                Where trauma-informed AI meets community justice work. 
+                Creating healing-centered technology for liberation.
               </p>
             </div>
-            
-            <div className="hero-actions animate-slide-up">
-              <button 
-                className="btn btn-accent"
-                onClick={() => onNavigate('justice-resources')}
-                aria-label="Explore Justice Resources"
-              >
-                <span>Justice Resources</span>
-                <span>⚖️</span>
-              </button>
-              <button 
-                className="btn btn-primary"
-                onClick={() => onNavigate('shop')}
-                aria-label="Shop Digital Products"
-              >
-                <span>Shop</span>
-                <span>🛍️</span>
-              </button>
-              <button 
-                className="btn btn-secondary"
-                onClick={() => onNavigate('about')}
-                aria-label="Our Story"
-              >
-                <span>Our Story</span>
-                <span>✨</span>
-              </button>
+
+            {/* Featured Products Grid - Visual Showcase */}
+            <div className="featured-products">
+              <h2 className="text-h2" style={{ textAlign: 'center', marginBottom: 'var(--space-lg)', color: 'var(--accent-primary)' }}>
+                ✨ Digital Products & Services
+              </h2>
+              
+              <div className="products-grid grid grid-3 gap-lg">
+                {/* Justice Resources */}
+                <div className="product-showcase card" onClick={() => onNavigate('justice-resources')}>
+                  <div className="product-visual">
+                    <div className="product-icon">⚖️</div>
+                    <div className="product-badge">FREE</div>
+                  </div>
+                  <h3 className="text-h3">Justice Resources</h3>
+                  <p className="text-body">Soros Fellowship legacy: parole packages, arrest guides, expungement tools</p>
+                  <button className="btn btn-primary">Explore Resources</button>
+                </div>
+
+                {/* AI Document Generator */}
+                <div className="product-showcase card" onClick={() => onNavigate('trauma-ai')}>
+                  <div className="product-visual">
+                    <div className="product-icon">🤖</div>
+                    <div className="product-badge">NEW</div>
+                  </div>
+                  <h3 className="text-h3">AI Civil Doc Generator</h3>
+                  <p className="text-body">Trauma-informed AI that helps create legal documents with dignity</p>
+                  <button className="btn btn-primary">Try Generator</button>
+                </div>
+
+                {/* Digital Archive */}
+                <div className="product-showcase card" onClick={() => onNavigate('archive')}>
+                  <div className="product-visual">
+                    <div className="product-icon">📚</div>
+                    <div className="product-badge">GROWING</div>
+                  </div>
+                  <h3 className="text-h3">Ancestral Archive</h3>
+                  <p className="text-body">693 items documenting Southern Black heritage and spiritual journeys</p>
+                  <button className="btn btn-primary">Explore Archive</button>
+                </div>
+              </div>
             </div>
 
-            {/* Revenue Streams - Prominent Display */}
-            <div className="revenue-streams animate-slide-up">
-              <p className="revenue-intro text-body">Support our work & get digital goodies:</p>
-              <div className="revenue-buttons">
+            {/* Revenue Streams - Prominent */}
+            <div className="revenue-showcase">
+              <div className="revenue-header">
+                <h2 className="text-h2">🛍️ Support Our Mission</h2>
+                <p className="text-body">Get beautiful digital products while supporting community justice work</p>
+              </div>
+              
+              <div className="revenue-grid grid grid-3 gap-md">
                 <a 
                   href="https://midnightmagnolia.myshopify.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="btn btn-primary revenue-btn"
+                  className="revenue-card card"
                 >
-                  <span>🛒</span>
-                  <span>Shopify Store</span>
+                  <div className="revenue-icon">🛒</div>
+                  <h3 className="text-h3">Shopify Store</h3>
+                  <p className="text-caption">Tarot decks, journals, healing tools</p>
                 </a>
+                
                 <a 
                   href="https://www.etsy.com/shop/MidnightMagnoliaShop" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="btn btn-secondary revenue-btn"
+                  className="revenue-card card"
                 >
-                  <span>🎨</span>
-                  <span>Etsy Shop</span>
+                  <div className="revenue-icon">🎨</div>
+                  <h3 className="text-h3">Etsy Shop</h3>
+                  <p className="text-caption">Printable art, vintage archives</p>
                 </a>
+                
                 <a 
                   href="https://www.patreon.com/midnightmagnolia" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="btn btn-accent revenue-btn"
+                  className="revenue-card card"
                 >
-                  <span>💚</span>
-                  <span>Patreon</span>
+                  <div className="revenue-icon">💚</div>
+                  <h3 className="text-h3">Patreon</h3>
+                  <p className="text-caption">Monthly healing content & early access</p>
                 </a>
               </div>
             </div>
-          </div>
 
-          {/* Enhanced Feature Cards with Visual Elements */}
-          <div className="hero-features">
-            <div className="feature-grid grid grid-3 gap-lg">
-              <div className="feature-card card card-marigold" onClick={() => onNavigate('justice-resources')}>
-                <div className="feature-image">
-                  <img src="/images/gallery/mystical-logo.png" alt="Justice resources" className="feature-bg" />
+            {/* Social Proof & CTA */}
+            <div className="hero-cta">
+              <div className="stats-row">
+                <div className="stat">
+                  <span className="stat-number text-h2">693</span>
+                  <span className="stat-label text-caption">Archive Items</span>
                 </div>
-                <div className="feature-content">
-                  <div className="feature-icon">⚖️</div>
-                  <h3 className="text-h3">Justice Resources</h3>
-                  <p className="text-caption">Soros Fellowship legacy - free legal aid tools</p>
+                <div className="stat">
+                  <span className="stat-number text-h2">5</span>
+                  <span className="stat-label text-caption">Justice Tools</span>
                 </div>
-              </div>
-              
-              <div className="feature-card card card-spirit" onClick={() => onNavigate('services')}>
-                <div className="feature-image">
-                  <img src="/images/gallery/gothic-digital-planner.png" alt="Digital services" className="feature-bg" />
-                </div>
-                <div className="feature-content">
-                  <div className="feature-icon">🕸️</div>
-                  <h3 className="text-h3">Web Sanctuaries</h3>
-                  <p className="text-caption">Digital spaces that feel like coming home</p>
+                <div className="stat">
+                  <span className="stat-number text-h2">∞</span>
+                  <span className="stat-label text-caption">Healing Possibilities</span>
                 </div>
               </div>
               
-              <div className="feature-card card" onClick={() => onNavigate('trauma-ai')}>
-                <div className="feature-image">
-                  <img src="/images/gallery/personal-photo-2.jpg" alt="Trauma-informed design" className="feature-bg" />
-                </div>
-                <div className="feature-content">
-                  <div className="feature-icon">🧠</div>
-                  <h3 className="text-h3">Trauma-Informed AI</h3>
-                  <p className="text-caption">Intelligence systems that prioritize healing</p>
-                </div>
+              <div className="cta-buttons">
+                <button 
+                  className="btn btn-accent btn-large"
+                  onClick={() => onNavigate('services')}
+                >
+                  Start Your Digital Sanctuary 🌙
+                </button>
+                <button 
+                  className="btn btn-secondary"
+                  onClick={() => onNavigate('about')}
+                >
+                  Our Story ✨
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <style jsx>{`
         .hero-section {
           min-height: 100vh;
-          background: var(--bg-fiesta);
-          background-image: 
-            radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.12) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(106, 76, 147, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 40% 80%, rgba(255, 107, 157, 0.06) 0%, transparent 50%),
-            radial-gradient(circle at 70% 60%, rgba(67, 97, 238, 0.05) 0%, transparent 50%);
           display: flex;
           align-items: center;
+          padding: var(--space-3xl) 0;
           position: relative;
-          overflow: hidden;
-        }
-        
-        .hero-visual-bg {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: -2;
+          background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         }
 
-        .hero-bg-image {
-          position: absolute;
+        .hero-main {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .hero-bg-primary {
-          opacity: 0.15;
-          filter: sepia(20%) hue-rotate(35deg) saturate(1.2);
-          z-index: -2;
-        }
-
-        .hero-bg-secondary {
-          opacity: 0.08;
-          filter: sepia(40%) hue-rotate(45deg) saturate(1.5);
-          z-index: -3;
-          transform: scale(1.1);
-        }
-
-        .hero-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            135deg,
-            rgba(26, 35, 50, 0.85) 0%,
-            rgba(10, 25, 41, 0.9) 50%,
-            rgba(30, 40, 52, 0.85) 100%
-          );
-          z-index: -1;
-        }
-        
-        .hero-content {
-          position: relative;
-          z-index: 1;
-          text-align: center;
-          max-width: 1000px;
+          max-width: 1200px;
           margin: 0 auto;
         }
-        
-        .hero-title {
-          margin-bottom: var(--space-lg);
-          color: var(--text-primary);
-          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-subtitle {
-          margin-bottom: var(--space-md);
-          color: var(--text-secondary);
-          max-width: 700px;
-          margin-left: auto;
-          margin-right: auto;
-          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-        }
 
-        .hero-description {
-          margin-bottom: var(--space-2xl);
-          color: var(--text-muted);
-          max-width: 500px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        
-        .hero-actions {
-          margin-bottom: var(--space-xl);
-          display: flex;
-          gap: var(--space-md);
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-        
-        .hero-features {
-          margin-top: var(--space-3xl);
-        }
-
-        .feature-grid {
-          position: relative;
-          z-index: 2;
-        }
-        
-        .feature-card {
+        .hero-header {
           text-align: center;
-          transition: all var(--transition-normal);
-          cursor: pointer;
-          position: relative;
-          overflow: hidden;
-          background: rgba(42, 52, 65, 0.8);
-          backdrop-filter: blur(10px);
-          border: 2px solid rgba(244, 208, 63, 0.2);
-          min-height: 200px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+          margin-bottom: var(--space-3xl);
         }
-        
-        .feature-card:hover {
+
+        .hero-title {
+          margin-bottom: var(--space-md);
+          color: var(--accent-primary);
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-tagline {
+          margin-bottom: var(--space-lg);
+          color: var(--text-secondary);
+          font-style: italic;
+        }
+
+        .hero-subtitle {
+          max-width: 800px;
+          margin: 0 auto var(--space-2xl);
+          color: var(--text-primary);
+          line-height: 1.6;
+        }
+
+        .featured-products {
+          margin-bottom: var(--space-3xl);
+        }
+
+        .products-grid {
+          margin-bottom: var(--space-2xl);
+        }
+
+        .product-showcase {
+          text-align: center;
+          padding: var(--space-xl);
+          cursor: pointer;
+          transition: all var(--transition-normal);
+          border: 2px solid var(--border-primary);
+        }
+
+        .product-showcase:hover {
           transform: translateY(-8px);
-          box-shadow: var(--shadow-glow);
+          box-shadow: var(--shadow-strong);
           border-color: var(--accent-primary);
         }
 
-        .feature-image {
-          position: absolute;
-          top: -20px;
-          right: -20px;
-          opacity: 0.1;
-          transition: all var(--transition-normal);
-          width: 80px;
-          height: 80px;
-          overflow: hidden;
-          border-radius: var(--radius-md);
-        }
-
-        .feature-bg {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          filter: brightness(0) invert(1);
-        }
-
-        .feature-card:hover .feature-image {
-          opacity: 0.2;
-          transform: scale(1.1);
-        }
-
-        .feature-content {
+        .product-visual {
           position: relative;
-          z-index: 2;
-          padding: var(--space-md);
+          margin-bottom: var(--space-lg);
         }
-        
-        .feature-icon {
-          font-size: var(--text-3xl);
+
+        .product-icon {
+          font-size: 3rem;
           margin-bottom: var(--space-sm);
-          display: block;
-        }
-        
-        .feature-card h3 {
-          margin-bottom: var(--space-xs);
-          color: var(--accent-primary);
-        }
-        
-        .feature-card p {
-          color: var(--text-muted);
         }
 
-        .hero-decorative {
+        .product-badge {
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          pointer-events: none;
-          z-index: 0;
+          top: -10px;
+          right: -10px;
+          background: var(--accent-primary);
+          color: var(--bg-primary);
+          padding: var(--space-xs) var(--space-sm);
+          border-radius: var(--radius-sm);
+          font-size: var(--text-xs);
+          font-weight: var(--weight-bold);
         }
 
-        .floating-elements {
-          position: relative;
-          width: 100%;
-          height: 100%;
-        }
-
-        .floating-element {
-          position: absolute;
-          width: 60px;
-          height: 60px;
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          opacity: 0.3;
-          animation: float 8s ease-in-out infinite;
-          filter: brightness(0) invert(1) sepia(1) hue-rotate(35deg) saturate(2);
-        }
-
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px) rotate(0deg);
-            opacity: 0.3;
-          }
-          50% {
-            transform: translateY(-30px) rotate(180deg);
-            opacity: 0.6;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .hero-section {
-            padding: var(--space-2xl) 0;
-            min-height: 80vh;
-          }
-          
-          .hero-actions {
-            flex-direction: column;
-            align-items: center;
-          }
-          
-          .feature-grid {
-            grid-template-columns: 1fr;
-            gap: var(--space-md);
-          }
-
-          .floating-element {
-            width: 40px;
-            height: 40px;
-          }
-
-          .hero-bg-image {
-            opacity: 0.1;
-          }
-
-          .feature-image {
-            width: 60px;
-            height: 60px;
-          }
-        }
-
-        .revenue-streams {
+        .revenue-showcase {
           margin-bottom: var(--space-3xl);
           text-align: center;
         }
 
-        .revenue-intro {
-          margin-bottom: var(--space-md);
-          color: var(--text-secondary);
-          font-weight: var(--weight-medium);
+        .revenue-header {
+          margin-bottom: var(--space-xl);
         }
 
-        .revenue-buttons {
+        .revenue-card {
+          padding: var(--space-lg);
+          text-decoration: none;
+          color: inherit;
+          transition: all var(--transition-normal);
+          border: 2px solid var(--border-primary);
+        }
+
+        .revenue-card:hover {
+          transform: translateY(-4px);
+          border-color: var(--accent-primary);
+          box-shadow: var(--shadow-md);
+        }
+
+        .revenue-icon {
+          font-size: 2.5rem;
+          margin-bottom: var(--space-md);
+        }
+
+        .hero-cta {
+          text-align: center;
+        }
+
+        .stats-row {
+          display: flex;
+          justify-content: center;
+          gap: var(--space-xl);
+          margin-bottom: var(--space-xl);
+        }
+
+        .stat {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .stat-number {
+          color: var(--accent-primary);
+          font-weight: var(--weight-bold);
+        }
+
+        .stat-label {
+          color: var(--text-muted);
+        }
+
+        .cta-buttons {
           display: flex;
           gap: var(--space-md);
           justify-content: center;
           flex-wrap: wrap;
         }
 
-        .revenue-btn {
-          min-width: 160px;
-          font-weight: var(--weight-bold);
-          transition: all var(--transition-normal);
-          text-decoration: none;
-        }
-
-        .revenue-btn:hover {
-          transform: translateY(-3px) scale(1.05);
-        }
-
-        .btn-accent {
-          background: linear-gradient(135deg, var(--marigold-orange), var(--cempasuchil-gold));
-          color: var(--pure-white);
-          border: 2px solid var(--marigold-orange);
-          box-shadow: var(--shadow-marigold);
-        }
-
-        .btn-accent:hover {
-          background: linear-gradient(135deg, var(--cempasuchil-gold), var(--altar-candle));
-          box-shadow: var(--shadow-candle);
-          border-color: var(--cempasuchil-gold);
+        @media (max-width: 768px) {
+          .hero-section {
+            padding: var(--space-xl) 0;
+          }
+          
+          .products-grid,
+          .revenue-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .stats-row {
+            gap: var(--space-md);
+          }
+          
+          .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+          }
         }
       `}</style>
     </section>
