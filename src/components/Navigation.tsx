@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/design-system.css'
 
 interface NavigationItem {
@@ -17,6 +17,7 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const navigationItems: NavigationItem[] = [
     { 
@@ -75,14 +76,47 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
     }
   ]
 
-  const handleNavigation = (section: string) => {
-    onNavigate(section)
-    setIsMenuOpen(false)
-    setActiveDropdown(null)
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleMenuItemClick = (item: NavigationItem) => {
+    if (item.type === 'dropdown') {
+      setActiveDropdown(activeDropdown === item.id ? null : item.id)
+    } else {
+      setActiveDropdown(null)
+      setIsMenuOpen(false)
+      onNavigate(item.id)
+    }
   }
 
-  const toggleDropdown = (navId: string) => {
-    setActiveDropdown(activeDropdown === navId ? null : navId)
+  const handleSubmenuClick = (itemId: string) => {
+    setActiveDropdown(null)
+    setIsMenuOpen(false)
+    
+    // Add scroll offset for sticky header
+    if (itemId !== 'home') {
+      setTimeout(() => {
+        const headerHeight = 80
+        const targetElement = document.querySelector(`[data-section="${itemId}"]`)
+        if (targetElement) {
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset
+          const offsetPosition = elementPosition - headerHeight
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }, 100)
+    }
+    
+    onNavigate(itemId)
   }
 
   return (
@@ -92,7 +126,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
           {/* Brand */}
           <button 
             className="brand-button"
-            onClick={() => handleNavigation('home')}
+            onClick={() => handleMenuItemClick(navigationItems[0])}
           >
             <img 
               src="/images/logos/goldenFinal22_MM_25.png" 
@@ -128,7 +162,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                 {item.type === 'single' ? (
                   <button
                     className={`nav-link btn btn-ghost ${currentSection === item.id ? 'nav-link-active' : ''}`}
-                    onClick={() => handleNavigation(item.id)}
+                    onClick={() => handleMenuItemClick(item)}
                   >
                     <span className="nav-icon">{item.icon}</span>
                     <span>{item.label}</span>
@@ -139,7 +173,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                       className={`nav-link nav-link-dropdown btn btn-ghost ${
                         item.submenu?.some(sub => sub.id === currentSection) ? 'nav-link-active' : ''
                       }`}
-                      onClick={() => toggleDropdown(item.id)}
+                      onClick={() => handleMenuItemClick(item)}
                     >
                       <span className="nav-icon">{item.icon}</span>
                       <span>{item.label}</span>
@@ -152,7 +186,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                         <button
                           key={subItem.id}
                           className={`dropdown-item btn btn-ghost ${currentSection === subItem.id ? 'dropdown-item-active' : ''}`}
-                          onClick={() => handleNavigation(subItem.id)}
+                          onClick={() => handleSubmenuClick(subItem.id)}
                         >
                           <span className="nav-icon">{subItem.icon}</span>
                           <span>{subItem.label}</span>

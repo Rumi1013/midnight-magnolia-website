@@ -118,27 +118,27 @@ function App() {
   const renderCurrentSection = () => {
     switch (currentSection) {
       case 'home':
-        return <Hero onNavigate={handleNavigation} />
+        return <div data-section="home"><Hero onNavigate={handleNavigation} /></div>
       case 'about':
-        return <AboutSection />
+        return <div data-section="about"><AboutSection /></div>
       case 'services':
-        return <ServicesSection />
+        return <div data-section="services"><ServicesSection /></div>
       case 'shop':
-        return <ShopSection />
+        return <div data-section="shop"><ShopSection /></div>
       case 'membership':
-        return <CommunitySection />
+        return <div data-section="membership"><CommunitySection /></div>
       case 'portfolio':
-        return <PortfolioSection />
+        return <div data-section="portfolio"><PortfolioSection /></div>
       case 'blog':
-        return <BlogSection />
+        return <div data-section="blog"><BlogSection /></div>
       case 'trauma-ai':
-        return <TraumaInformedAI />
+        return <div data-section="trauma-ai"><TraumaInformedAI /></div>
       case 'justice-resources':
-        return <JusticeResources />
+        return <div data-section="justice-resources"><JusticeResources /></div>
       case 'contact':
-        return renderContact()
+        return <div data-section="contact">{renderContact()}</div>
       default:
-        return <Hero onNavigate={handleNavigation} />
+        return <div data-section="home"><Hero onNavigate={handleNavigation} /></div>
     }
   }
 

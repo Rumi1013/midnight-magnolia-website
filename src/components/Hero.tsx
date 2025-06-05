@@ -13,8 +13,8 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           {/* Background Images */}
           <div className="hero-visual-bg">
             <img 
-              src="/images/gallery/personal-photo-1.jpg" 
-              alt="Southern Gothic mansion at night"
+              src="/images/gallery/southern-gothic-mansion-night.png" 
+              alt="Southern Gothic mansion with mystical atmosphere"
               className="hero-bg-image"
             />
             <div className="hero-overlay"></div>
@@ -28,95 +28,43 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               Where Southern Gothic meets digital mysticism. A sanctuary for community care, 
               healing technology, and transformative digital experiences.
             </p>
-            <div className="hero-description">
-              <p className="text-body">
-                Rooted in mystery, blooming through code, ritual, and resilience. 
-                We create technology services that center healing in digital spaces.
-              </p>
-            </div>
-          </div>
-          
-          <div className="hero-actions animate-slide-up">
-            <button 
-              className="btn btn-fiesta"
-              onClick={() => onNavigate('justice-resources')}
-            >
-              <span>Justice Resources</span>
-              <span>⚖️</span>
-            </button>
-            <button 
-              className="btn btn-primary"
-              onClick={() => onNavigate('services')}
-            >
-              <span>Explore Services</span>
-              <span>🌙</span>
-            </button>
-            <button 
-              className="btn btn-secondary"
-              onClick={() => onNavigate('about')}
-            >
-              <span>Our Story</span>
-              <span>✨</span>
-            </button>
-          </div>
-          
-          {/* Enhanced Feature Cards with Visual Elements */}
-          <div className="hero-features">
-            <div className="feature-grid grid grid-3 gap-lg">
-              <div className="feature-card card card-marigold" onClick={() => onNavigate('justice-resources')}>
-                <div className="feature-image">
-                  <img src="/images/gallery/mystical-logo.png" alt="Justice resources" className="feature-bg" />
-                </div>
-                <div className="feature-content">
-                  <div className="feature-icon">⚖️</div>
-                  <h3 className="text-h3">Justice Resources</h3>
-                  <p className="text-caption">Soros Fellowship legacy - free legal aid tools</p>
-                </div>
-              </div>
-              <div className="feature-card card card-spirit" onClick={() => onNavigate('services')}>
-                <div className="feature-image">
-                  <img src="/images/gallery/gothic-digital-planner.png" alt="Digital services" className="feature-bg" />
-                </div>
-                <div className="feature-content">
-                  <div className="feature-icon">🕸️</div>
-                  <h3 className="text-h3">Web Sanctuaries</h3>
-                  <p className="text-caption">Digital spaces that feel like coming home</p>
-                </div>
-              </div>
-              <div className="feature-card card" onClick={() => onNavigate('trauma-ai')}>
-                <div className="feature-image">
-                  <img src="/images/gallery/personal-photo-2.jpg" alt="Trauma-informed design" className="feature-bg" />
-                </div>
-                <div className="feature-content">
-                  <div className="feature-icon">🧠</div>
-                  <h3 className="text-h3">Trauma-Informed AI</h3>
-                  <p className="text-caption">Intelligence systems that prioritize healing</p>
-                </div>
-              </div>
+            
+            <div className="hero-actions">
+              <button 
+                className="btn btn-celebration btn-large"
+                onClick={() => onNavigate('justice-resources')}
+                aria-label="Explore Justice Resources"
+              >
+                ⚖️ Justice Resources
+              </button>
+              <button 
+                className="btn btn-spirit btn-large"
+                onClick={() => onNavigate('portfolio')}
+                aria-label="View portfolio"
+              >
+                ✨ View Work
+              </button>
             </div>
           </div>
 
-          {/* Additional Visual Elements */}
-          <div className="hero-decorative">
-            <div className="floating-elements">
-              <div className="floating-element" style={{ 
-                backgroundImage: 'url(/images/gallery/black-candle-gold-label.png)',
-                left: '10%', 
-                top: '20%',
-                animationDelay: '0s'
-              }}></div>
-              <div className="floating-element" style={{ 
-                backgroundImage: 'url(/images/gallery/stars-glyph.png)',
-                right: '15%', 
-                top: '30%',
-                animationDelay: '2s'
-              }}></div>
-              <div className="floating-element" style={{ 
-                backgroundImage: 'url(/images/gallery/magnolia-flower.png)',
-                left: '20%', 
-                bottom: '25%',
-                animationDelay: '4s'
-              }}></div>
+          {/* Feature Cards */}
+          <div className="hero-features">
+            <div className="feature-card card-marigold animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              <div className="feature-icon">🌿</div>
+              <h3>Trauma-Informed AI</h3>
+              <p>Technology that recognizes and responds to healing needs</p>
+            </div>
+            
+            <div className="feature-card card-spirit animate-slide-up" style={{ animationDelay: '0.4s' }}>
+              <div className="feature-icon">⚖️</div>
+              <h3>Justice Resources</h3>
+              <p>Soros Fellowship legacy project supporting community legal access</p>
+            </div>
+            
+            <div className="feature-card card-memory animate-slide-up" style={{ animationDelay: '0.6s' }}>
+              <div className="feature-icon">🔮</div>
+              <h3>Digital Mysticism</h3>
+              <p>Ancestral wisdom meets modern technology</p>
             </div>
           </div>
         </div>
@@ -190,14 +138,6 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           margin-left: auto;
           margin-right: auto;
           text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-description {
-          margin-bottom: var(--space-2xl);
-          color: var(--text-muted);
-          max-width: 500px;
-          margin-left: auto;
-          margin-right: auto;
         }
         
         .hero-actions {

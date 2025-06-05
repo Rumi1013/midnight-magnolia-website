@@ -2,98 +2,92 @@
 
 /* === Design Tokens === */
 :root {
-  /* Colors - Enhanced Contrast Palette */
-  --night-primary: #0a1929;
-  --night-secondary: #1a2332;
-  --midnight-mist: #2a3441;
-  --deep-charcoal: #1e2834;
-  --magnolia-cream: #fef9f3;
-  --warm-white: #faf7f0;
+  /* Colors - Enhanced Accessibility Palette */
+  --night-primary: #1a2332;
+  --night-secondary: #2a3441;
+  --midnight-mist: #3a4451;
+  --deep-charcoal: #2e3944;
+  --magnolia-cream: #fefbf7;
+  --warm-white: #fcf9f4;
   --pure-white: #ffffff;
-  --golden-accent: #d4af37;
-  --sage-green: #7ba05b;
-  --lavender-mist: #c8b5db;
-  --soft-rose: #d4a5a5;
-  --muted-gold: #b8941f;
-  --contrast-gold: #f4d03f;
+  --golden-accent: #e6c547;
+  --sage-green: #8bb068;
+  --lavender-mist: #d2c5e1;
+  --soft-rose: #deb5b5;
+  --muted-gold: #c9a532;
+  --contrast-gold: #f7d850;
   
-  /* Complementary Colors for Enhanced Contrast */
-  --deep-purple: #4a2c5a;
-  --mystic-teal: #2d5a6b;
-  --burnt-orange: #b8541f;
-  --forest-green: #3d5a2c;
-  --dusty-rose: #a55b6b;
-  --copper-bronze: #8b4513;
-  --midnight-blue: #1a2456;
-  --amethyst: #6b4c9a;
+  /* Softer Complementary Colors */
+  --deep-purple: #5a3c6a;
+  --mystic-teal: #3d6a7b;
+  --burnt-orange: #c8642f;
+  --forest-green: #4d6a3c;
+  --dusty-rose: #b56b7b;
+  --copper-bronze: #9b5523;
+  --midnight-blue: #2a3466;
+  --amethyst: #7b5caa;
   
-  /* Sunset/Sunrise Palette - Your Favorites */
-  --sunset-orange: #ff7b42;
-  --sunrise-coral: #ff6b7d;
-  --twilight-purple: #7b68ee;
-  --dawn-pink: #ff8fa3;
-  --dusk-blue: #4a6fa5;
-  --golden-hour: #ffb347;
-  --lavender-dream: #c59bff;
-  --rose-quartz: #f7a4a4;
-  --periwinkle: #a2a8ff;
-  --peach-glow: #ffab91;
-  --violet-mist: #9b59b6;
-  --sky-blush: #ffc0cb;
+  /* Softer Sunset/Sunrise Palette */
+  --sunset-orange: #ff8b52;
+  --sunrise-coral: #ff7b8d;
+  --twilight-purple: #8b78ee;
+  --dawn-pink: #ff9fb3;
+  --dusk-blue: #5a7fb5;
+  --golden-hour: #ffc357;
+  --lavender-dream: #d5abff;
+  --rose-quartz: #f7b4b4;
+  --periwinkle: #b2b8ff;
+  --peach-glow: #ffbba1;
+  --violet-mist: #ab69c6;
+  --sky-blush: #ffd0db;
   
-  /* Coco Wedding-Inspired Palette */
-  --marigold-orange: #ff8c00;
-  --cempasuchil-gold: #ffa500;
-  --spirit-purple: #6a4c93;
-  --papel-picado-blue: #4361ee;
-  --fiesta-coral: #f72585;
-  --altar-candle: #ffba08;
-  --copal-smoke: #a663cc;
-  --guitar-warm: #d4823e;
-  --familia-pink: #ff6b9d;
-  --celebration-teal: #277da1;
-  --memory-lavender: #b19cd9;
-  --bridge-gold: #ffb627;
+  /* Softer Coco Wedding-Inspired Palette */
+  --marigold-orange: #ff9c20;
+  --cempasuchil-gold: #ffb520;
+  --spirit-purple: #7a5ca3;
+  --papel-picado-blue: #5371ee;
+  --fiesta-coral: #f73595;
+  --altar-candle: #ffca18;
+  --copal-smoke: #b673dc;
+  --guitar-warm: #e4924e;
+  --familia-pink: #ff7bad;
+  --celebration-teal: #378db1;
+  --memory-lavender: #c1ace9;
+  --bridge-gold: #ffcb37;
   
-  /* Semantic Colors - Improved Contrast */
-  --text-primary: var(--pure-white);
-  --text-secondary: rgba(255, 255, 255, 0.85);
-  --text-muted: rgba(255, 255, 255, 0.65);
-  --text-on-light: var(--night-primary);
+  /* Improved Semantic Colors for Accessibility */
+  --text-primary: #f8f9fa;
+  --text-secondary: rgba(248, 249, 250, 0.9);
+  --text-muted: rgba(248, 249, 250, 0.75);
+  --text-on-light: #1a2332;
   --accent-primary: var(--bridge-gold);
   --accent-secondary: var(--marigold-orange);
   --accent-tertiary: var(--familia-pink);
   --accent-quaternary: var(--spirit-purple);
-  --accent-sunset: var(--cempasuchil-gold);
-  --accent-sunrise: var(--fiesta-coral);
-  --accent-celebration: var(--papel-picado-blue);
   
-  /* Background Colors - Better Separation */
-  --bg-primary: var(--night-primary);
-  --bg-secondary: var(--night-secondary);
-  --bg-tertiary: var(--deep-charcoal);
-  --bg-card: rgba(42, 52, 65, 0.6);
-  --bg-card-hover: rgba(42, 52, 65, 0.8);
-  --bg-glass: rgba(255, 255, 255, 0.08);
-  --bg-glass-hover: rgba(255, 255, 255, 0.12);
-  --bg-highlight: rgba(255, 182, 39, 0.15);
-  --bg-complement: linear-gradient(135deg, var(--spirit-purple) 0%, var(--papel-picado-blue) 100%);
-  --bg-accent: linear-gradient(135deg, var(--marigold-orange) 0%, var(--familia-pink) 100%);
-  --bg-sunrise: linear-gradient(135deg, var(--altar-candle) 0%, var(--fiesta-coral) 50%, var(--spirit-purple) 100%);
-  --bg-sunset: linear-gradient(135deg, var(--cempasuchil-gold) 0%, var(--copal-smoke) 50%, var(--celebration-teal) 100%);
-  --bg-fiesta: linear-gradient(135deg, var(--bridge-gold) 0%, var(--marigold-orange) 30%, var(--familia-pink) 70%, var(--spirit-purple) 100%);
-  --bg-memoria: linear-gradient(135deg, var(--memory-lavender) 0%, var(--papel-picado-blue) 50%, var(--guitar-warm) 100%);
+  /* Lighter Background Colors for Visual Accessibility */
+  --bg-primary: #2a3441;
+  --bg-secondary: #3a4451;
+  --bg-tertiary: #4a5461;
+  --bg-card: rgba(52, 62, 75, 0.7);
+  --bg-card-hover: rgba(52, 62, 75, 0.9);
+  --bg-glass: rgba(255, 255, 255, 0.12);
+  --bg-glass-hover: rgba(255, 255, 255, 0.18);
+  --bg-highlight: rgba(255, 203, 55, 0.2);
   
-  /* Border Colors - Enhanced Visibility */
-  --border-primary: rgba(244, 208, 63, 0.3);
-  --border-secondary: rgba(255, 255, 255, 0.15);
+  /* Enhanced Border Colors for Better Visibility */
+  --border-primary: rgba(247, 216, 80, 0.4);
+  --border-secondary: rgba(255, 255, 255, 0.2);
   --border-accent: var(--contrast-gold);
-  --border-muted: rgba(255, 255, 255, 0.08);
-  --border-complement: rgba(139, 69, 19, 0.4);
-  --border-mystic: rgba(45, 90, 107, 0.4);
-  --border-sunset: rgba(255, 123, 66, 0.4);
-  --border-sunrise: rgba(255, 107, 125, 0.4);
-  --border-twilight: rgba(123, 104, 238, 0.4);
+  --border-muted: rgba(255, 255, 255, 0.12);
+  
+  /* Softer Shadows for Better Contrast */
+  --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 24px 48px -8px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 32px rgba(255, 203, 55, 0.4);
+  --shadow-strong: 0 12px 48px rgba(0, 0, 0, 0.4);
   
   /* Spacing Scale */
   --space-xs: 0.5rem;
@@ -654,4 +648,199 @@
     transform: translateY(-15px) rotate(7deg);
     filter: hue-rotate(90deg);
   }
+}
+
+/* === Navigation Accessibility & Z-Index Fixes === */
+.navigation {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgba(26, 35, 50, 0.95);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-primary);
+  transition: all 0.3s ease;
+}
+
+.navigation.scrolled {
+  background: rgba(26, 35, 50, 0.98);
+  box-shadow: var(--shadow-lg);
+}
+
+.dropdown-menu {
+  z-index: 10000;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  min-width: 200px;
+}
+
+/* === Enhanced Accessibility === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --bg-primary: #000000;
+    --bg-secondary: #1a1a1a;
+    --border-primary: #ffffff;
+    --accent-primary: #ffff00;
+  }
+}
+
+/* === Justice Resources Styling === */
+.justice-resources {
+  padding: var(--space-3xl) var(--space-lg);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  min-height: 100vh;
+}
+
+.resource-category-nav {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.resource-category-btn {
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid var(--border-primary);
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.resource-category-btn:hover,
+.resource-category-btn.active {
+  background: var(--accent-primary);
+  color: var(--text-on-light);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+.resource-item {
+  background: var(--bg-card);
+  border: 2px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all 0.3s ease;
+}
+
+.resource-item:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.legal-disclaimer {
+  background: linear-gradient(135deg, var(--spirit-purple), var(--papel-picado-blue));
+  color: var(--text-primary);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--bridge-gold);
+  margin: var(--space-2xl) 0;
+}
+
+.legal-disclaimer h3 {
+  color: var(--bridge-gold);
+  margin-bottom: var(--space-md);
+}
+
+/* === Enhanced Feature Cards === */
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+  padding: 0 var(--space-lg);
+}
+
+.feature-card {
+  background: var(--bg-glass);
+  border: 2px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  text-align: center;
+  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-xl);
+}
+
+.feature-card .feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.feature-card h3 {
+  color: var(--accent-primary);
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-h3-size);
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: var(--text-body-size);
+}
+
+/* Card variants for different themes */
+.card-marigold {
+  border-color: var(--marigold-orange);
+  background: linear-gradient(135deg, rgba(255, 156, 32, 0.1), rgba(255, 181, 32, 0.05));
+}
+
+.card-marigold:hover {
+  border-color: var(--marigold-orange);
+  box-shadow: 0 8px 32px rgba(255, 156, 32, 0.3);
+}
+
+.card-spirit {
+  border-color: var(--spirit-purple);
+  background: linear-gradient(135deg, rgba(122, 92, 163, 0.1), rgba(182, 115, 220, 0.05));
+}
+
+.card-spirit:hover {
+  border-color: var(--spirit-purple);
+  box-shadow: 0 8px 32px rgba(122, 92, 163, 0.3);
+}
+
+.card-memory {
+  border-color: var(--memory-lavender);
+  background: linear-gradient(135deg, rgba(193, 172, 233, 0.1), rgba(171, 105, 198, 0.05));
+}
+
+.card-memory:hover {
+  border-color: var(--memory-lavender);
+  box-shadow: 0 8px 32px rgba(193, 172, 233, 0.3);
 } 
