@@ -41,17 +41,32 @@
   --violet-mist: #9b59b6;
   --sky-blush: #ffc0cb;
   
+  /* Coco Wedding-Inspired Palette */
+  --marigold-orange: #ff8c00;
+  --cempasuchil-gold: #ffa500;
+  --spirit-purple: #6a4c93;
+  --papel-picado-blue: #4361ee;
+  --fiesta-coral: #f72585;
+  --altar-candle: #ffba08;
+  --copal-smoke: #a663cc;
+  --guitar-warm: #d4823e;
+  --familia-pink: #ff6b9d;
+  --celebration-teal: #277da1;
+  --memory-lavender: #b19cd9;
+  --bridge-gold: #ffb627;
+  
   /* Semantic Colors - Improved Contrast */
   --text-primary: var(--pure-white);
   --text-secondary: rgba(255, 255, 255, 0.85);
   --text-muted: rgba(255, 255, 255, 0.65);
   --text-on-light: var(--night-primary);
-  --accent-primary: var(--contrast-gold);
-  --accent-secondary: var(--sage-green);
-  --accent-tertiary: var(--dawn-pink);
-  --accent-quaternary: var(--twilight-purple);
-  --accent-sunset: var(--sunset-orange);
-  --accent-sunrise: var(--sunrise-coral);
+  --accent-primary: var(--bridge-gold);
+  --accent-secondary: var(--marigold-orange);
+  --accent-tertiary: var(--familia-pink);
+  --accent-quaternary: var(--spirit-purple);
+  --accent-sunset: var(--cempasuchil-gold);
+  --accent-sunrise: var(--fiesta-coral);
+  --accent-celebration: var(--papel-picado-blue);
   
   /* Background Colors - Better Separation */
   --bg-primary: var(--night-primary);
@@ -61,11 +76,13 @@
   --bg-card-hover: rgba(42, 52, 65, 0.8);
   --bg-glass: rgba(255, 255, 255, 0.08);
   --bg-glass-hover: rgba(255, 255, 255, 0.12);
-  --bg-highlight: rgba(244, 208, 63, 0.1);
-  --bg-complement: linear-gradient(135deg, var(--twilight-purple) 0%, var(--dusk-blue) 100%);
-  --bg-accent: linear-gradient(135deg, var(--sunset-orange) 0%, var(--dawn-pink) 100%);
-  --bg-sunrise: linear-gradient(135deg, var(--golden-hour) 0%, var(--sunrise-coral) 50%, var(--twilight-purple) 100%);
-  --bg-sunset: linear-gradient(135deg, var(--sunset-orange) 0%, var(--violet-mist) 50%, var(--dusk-blue) 100%);
+  --bg-highlight: rgba(255, 182, 39, 0.15);
+  --bg-complement: linear-gradient(135deg, var(--spirit-purple) 0%, var(--papel-picado-blue) 100%);
+  --bg-accent: linear-gradient(135deg, var(--marigold-orange) 0%, var(--familia-pink) 100%);
+  --bg-sunrise: linear-gradient(135deg, var(--altar-candle) 0%, var(--fiesta-coral) 50%, var(--spirit-purple) 100%);
+  --bg-sunset: linear-gradient(135deg, var(--cempasuchil-gold) 0%, var(--copal-smoke) 50%, var(--celebration-teal) 100%);
+  --bg-fiesta: linear-gradient(135deg, var(--bridge-gold) 0%, var(--marigold-orange) 30%, var(--familia-pink) 70%, var(--spirit-purple) 100%);
+  --bg-memoria: linear-gradient(135deg, var(--memory-lavender) 0%, var(--papel-picado-blue) 50%, var(--guitar-warm) 100%);
   
   /* Border Colors - Enhanced Visibility */
   --border-primary: rgba(244, 208, 63, 0.3);
@@ -117,7 +134,7 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(244, 208, 63, 0.4);
+  --shadow-glow: 0 0 20px rgba(255, 182, 39, 0.5);
   --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.6);
   --shadow-purple: 0 0 25px rgba(74, 44, 90, 0.3);
   --shadow-teal: 0 0 25px rgba(45, 90, 107, 0.3);
@@ -127,6 +144,11 @@
   --shadow-twilight: 0 0 30px rgba(123, 104, 238, 0.4);
   --shadow-dawn: 0 0 25px rgba(255, 143, 163, 0.4);
   --shadow-golden: 0 0 25px rgba(255, 179, 71, 0.4);
+  --shadow-marigold: 0 0 30px rgba(255, 140, 0, 0.5);
+  --shadow-spirit: 0 0 35px rgba(106, 76, 147, 0.4);
+  --shadow-fiesta: 0 0 25px rgba(247, 37, 133, 0.4);
+  --shadow-candle: 0 0 20px rgba(255, 186, 8, 0.6);
+  --shadow-celebration: 0 0 25px rgba(67, 97, 238, 0.4);
   
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -544,4 +566,92 @@
   font-size: var(--text-xs);
   font-weight: var(--weight-medium);
   border: 1px solid var(--border-primary);
+}
+
+/* === Coco Wedding-Themed Components === */
+.card-marigold {
+  background: var(--bg-accent);
+  border: 2px solid var(--border-sunset);
+  box-shadow: var(--shadow-marigold);
+}
+
+.card-marigold:hover {
+  box-shadow: var(--shadow-candle);
+  transform: translateY(-5px);
+}
+
+.card-spirit {
+  background: var(--bg-complement);
+  border: 2px solid var(--border-twilight);
+  box-shadow: var(--shadow-spirit);
+}
+
+.card-spirit:hover {
+  box-shadow: var(--shadow-celebration);
+  transform: translateY(-5px);
+}
+
+.btn-fiesta {
+  background: var(--bg-accent);
+  color: var(--pure-white);
+  border: 2px solid var(--accent-secondary);
+  box-shadow: var(--shadow-marigold);
+}
+
+.btn-fiesta:hover {
+  background: var(--bg-sunrise);
+  box-shadow: var(--shadow-candle);
+  transform: translateY(-2px);
+}
+
+.btn-celebration {
+  background: var(--bg-complement);
+  color: var(--pure-white);
+  border: 2px solid var(--accent-celebration);
+  box-shadow: var(--shadow-spirit);
+}
+
+.btn-celebration:hover {
+  background: var(--bg-memoria);
+  box-shadow: var(--shadow-celebration);
+  transform: translateY(-2px);
+}
+
+.section-coco {
+  background: var(--bg-memoria);
+  border-top: 3px solid var(--accent-secondary);
+  border-bottom: 3px solid var(--accent-quaternary);
+}
+
+.text-marigold {
+  color: var(--accent-secondary);
+  text-shadow: 0 2px 4px rgba(255, 140, 0, 0.3);
+}
+
+.text-spirit {
+  color: var(--accent-quaternary);
+  text-shadow: 0 2px 4px rgba(106, 76, 147, 0.3);
+}
+
+.animate-papel-picado {
+  animation: papelPicado 3s ease-in-out infinite;
+}
+
+@keyframes papelPicado {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+    filter: hue-rotate(30deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-3deg);
+    filter: hue-rotate(60deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(7deg);
+    filter: hue-rotate(90deg);
+  }
 } 
