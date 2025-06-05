@@ -112,16 +112,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       <style jsx>{`
         .hero-section {
           min-height: 100vh;
-          background: linear-gradient(
-            135deg,
-            var(--bg-primary) 0%,
-            var(--bg-secondary) 50%,
-            var(--midnight-mist) 100%
-          );
+          background: var(--bg-fiesta);
           background-image: 
-            radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(123, 160, 91, 0.06) 0%, transparent 50%),
-            radial-gradient(circle at 40% 80%, rgba(200, 181, 219, 0.04) 0%, transparent 50%);
+            radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(106, 76, 147, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(255, 107, 157, 0.06) 0%, transparent 50%),
+            radial-gradient(circle at 70% 60%, rgba(67, 97, 238, 0.05) 0%, transparent 50%);
           display: flex;
           align-items: center;
           position: relative;

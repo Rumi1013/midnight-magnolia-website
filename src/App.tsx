@@ -16,6 +16,7 @@ import CommunitySection from './components/CommunitySection'
 import PortfolioSection from './components/PortfolioSection'
 import BlogSection from './components/BlogSection'
 import TraumaInformedAI from './components/TraumaInformedAI'
+import JusticeResources from './components/JusticeResources'
 import { PerformanceProvider } from './context/PerformanceContext'
 
 function App() {
@@ -23,6 +24,20 @@ function App() {
 
   const handleNavigation = (section: string) => {
     setCurrentSection(section)
+    
+    // Add smooth scroll with offset for sticky header
+    setTimeout(() => {
+      const element = document.getElementById('main-content')
+      if (element) {
+        const headerHeight = 120 // Approximate header height + padding
+        const elementPosition = element.offsetTop - headerHeight
+        
+        window.scrollTo({
+          top: section === 'home' ? 0 : elementPosition,
+          behavior: 'smooth'
+        })
+      }
+    }, 100)
   }
 
   // Initialize integrations on app load
@@ -110,6 +125,8 @@ function App() {
         return <BlogSection />
       case 'trauma-ai':
         return <TraumaInformedAI />
+      case 'justice-resources':
+        return <JusticeResources />
       case 'contact':
         return renderContact()
       default:

@@ -15,6 +15,23 @@ const ServicesSection: React.FC = () => {
 
   const services: Service[] = [
     {
+      id: 'civil-docs',
+      icon: '⚖️',
+      title: 'Justice Resource Ecosystem',
+      subtitle: 'Soros Justice Fellowship Legacy Project',
+      description: 'Comprehensive legal resource platform born from fellowship research and community organizing with Black Liberation Fund.',
+      offerings: [
+        'Parole Package Development Guidelines',
+        'Know Your Rights: Arrest Resource Guide',
+        'Project Exodus: Expungement & Pardon Initiative',
+        'Partnership resources with SC Legal Services',
+        'Root & Rebound collaboration tools',
+        'Inspire 60 community connections',
+        'Sliding scale access with donation support',
+        'Black Liberation Fund legacy preservation'
+      ]
+    },
+    {
       id: 'documents',
       icon: '📜',
       title: 'Document Alchemy',
