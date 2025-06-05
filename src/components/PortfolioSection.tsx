@@ -25,6 +25,92 @@ const PortfolioSection: React.FC = () => {
 
   const portfolioItems: PortfolioItem[] = [
     {
+      id: 'ancestral-research-documentation',
+      title: 'Ancestral Research & Cultural Documentation',
+      client: 'Personal Research Project',
+      category: 'community-justice',
+      description: 'Ongoing genealogy research and spiritual journey documentation, exploring family history and African diasporic traditions through travel, archives, and sacred sites.',
+      challenge: 'Preserving family stories scattered across generations while respectfully learning about hoodoo and Yoruba traditions, requiring careful research methodology and cultural sensitivity.',
+      solution: 'Developed systematic approach to genealogy research using digital tools, combined with immersive cultural learning through visits to sacred sites and historical locations.',
+      results: [
+        'Digital family archive with photos and documents from Google Drive',
+        'Cultural learning journeys to Oyotunji, Savannah, New Orleans, and EJI',
+        'Documentation of spiritual practices and ancestral connections',
+        'Research methodology for African diasporic genealogy',
+        'Integration of family history with broader historical context'
+      ],
+      technologies: ['Google Drive', 'Digital Archives', 'Genealogy Software', 'Cultural Documentation'],
+      image: '/images/portfolio/ancestral-research.png',
+      year: '2022-2024',
+      testimonial: {
+        quote: 'This research has helped me understand not just where I come from, but how my ancestors\' wisdom lives in my work today.',
+        author: 'Personal Reflection',
+        role: 'Ancestral Journey'
+      }
+    },
+    {
+      id: 'justice-weekend-2023',
+      title: 'Justice Weekend 2023 - Event Coordination',
+      client: 'Community Coalition',
+      category: 'community-justice',
+      description: 'Planned and coordinated multi-day community justice event featuring expungement clinics, bail fund education, and liberation strategy workshops.',
+      challenge: 'Coordinating complex event with legal services, community education, and activist training while ensuring accessibility and safety for all participants.',
+      solution: 'Developed comprehensive event management system with volunteer coordination, legal clinic logistics, and community safety protocols.',
+      results: [
+        'Successfully coordinated 3-day weekend event',
+        'Facilitated expungement clinics serving 40+ community members',
+        'Organized bail fund education and rapid response training',
+        'Created digital organizing toolkit for future events',
+        'Established ongoing volunteer network and resource sharing'
+      ],
+      technologies: ['Event Management Tools', 'Signal', 'Google Workspace', 'Canva'],
+      image: '/images/portfolio/justice-weekend.png',
+      year: '2023',
+      testimonial: {
+        quote: 'The coordination and accessibility planning made this event possible for our entire community. Every detail was thoughtfully planned with justice and care in mind.',
+        author: 'Community Organizer',
+        role: 'Local Justice Coalition'
+      }
+    },
+    {
+      id: 'expungement-event-series',
+      title: 'Monthly Expungement Clinic Coordination',
+      client: 'Legal Aid Partnership',
+      category: 'community-justice',
+      description: 'Organized recurring expungement clinics connecting community members with volunteer attorneys for record clearing assistance.',
+      challenge: 'Creating sustainable, accessible legal aid events that serve rural communities with limited transportation and varying work schedules.',
+      solution: 'Established mobile clinic model with multiple locations, flexible scheduling, and comprehensive intake and follow-up systems.',
+      results: [
+        'Launched monthly clinic serving 3 rural counties',
+        'Connected 100+ individuals with expungement services',
+        'Developed multilingual intake and resource materials',
+        'Created volunteer attorney training and support system',
+        'Established partnerships with local libraries and community centers'
+      ],
+      technologies: ['Scheduling Software', 'Google Forms', 'Translation Tools', 'Database Management'],
+      image: '/images/portfolio/expungement-clinics.png',
+      year: '2023-2024'
+    },
+    {
+      id: 'bail-fund-organizing',
+      title: 'Community Bail Fund & Rapid Response Network',
+      client: 'Mutual Aid Collective',
+      category: 'community-justice',
+      description: 'Developed digital infrastructure and organizing systems for community bail fund and rapid response to arrests and court support.',
+      challenge: 'Creating secure, responsive system for bail assistance while protecting community member privacy and maintaining rapid response capability.',
+      solution: 'Built secure communication networks, emergency contact systems, and resource coordination platform using encrypted tools and community care principles.',
+      results: [
+        'Established 24/7 rapid response communication network',
+        'Coordinated bail assistance for 25+ community members',
+        'Created court support and accompaniment program',
+        'Developed digital security training for activists',
+        'Built sustainable fundraising and resource sharing system'
+      ],
+      technologies: ['Signal', 'Encrypted Communication', 'Secure Fundraising Platforms', 'Database Security'],
+      image: '/images/portfolio/bail-fund.png',
+      year: '2022-2024'
+    },
+    {
       id: 'midnight-magnolia-website',
       title: 'Midnight Magnolia Website Redesign',
       client: 'Personal Project',
@@ -136,11 +222,31 @@ const PortfolioSection: React.FC = () => {
       technologies: ['Google Workspace', 'Canva', 'Video Creation Tools'],
       image: '/images/portfolio/tech-curriculum.png',
       year: '2023'
+    },
+    {
+      id: 'liberation-resource-hub',
+      title: 'Black Liberation Digital Resource Hub',
+      client: 'Community Partnership',
+      category: 'community-justice',
+      description: 'Curated and organized comprehensive digital resource collection for Black liberation organizing, including legal resources, mutual aid networks, and educational materials.',
+      challenge: 'Information scattered across platforms with varying accessibility and security concerns for activist communities.',
+      solution: 'Created centralized, secure resource hub with mobile-friendly access, offline capabilities, and regular community input for updates.',
+      results: [
+        'Compiled 200+ vetted resources across 15 categories',
+        'Implemented secure sharing protocols for sensitive materials',
+        'Created mobile-optimized interface for field organizing',
+        'Established community review and update process',
+        'Integrated with existing mutual aid networks'
+      ],
+      technologies: ['Secure Web Platforms', 'Offline Sync', 'Community Content Management', 'Encrypted Storage'],
+      image: '/images/portfolio/liberation-hub.png',
+      year: '2022-2024'
     }
   ]
 
   const categories = [
     { id: 'all', label: 'All Work', icon: '🌟' },
+    { id: 'community-justice', label: 'Community Justice', icon: '✊🏾' },
     { id: 'web-development', label: 'Web Development', icon: '🕸️' },
     { id: 'brand-automation', label: 'Brand & Automation', icon: '🤖' },
     { id: 'event-planning', label: 'Event Planning', icon: '🎨' },
@@ -198,6 +304,7 @@ const PortfolioSection: React.FC = () => {
                 fontSize: 'var(--text-4xl)',
                 position: 'relative'
               }}>
+                {item.category === 'community-justice' && '✊🏾'}
                 {item.category === 'web-development' && '🕸️'}
                 {item.category === 'brand-automation' && '🤖'}
                 {item.category === 'event-planning' && '🎨'}

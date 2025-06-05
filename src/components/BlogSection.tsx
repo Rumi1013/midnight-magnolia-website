@@ -18,6 +18,176 @@ const BlogSection: React.FC = () => {
 
   const blogPosts: BlogPost[] = [
     {
+      id: 'oyotunji-pilgrimage',
+      title: 'Sacred Journeys: Learning from Oyotunji Village',
+      series: 'roots-and-routes',
+      excerpt: 'My pilgrimage to Oyotunji African Village in South Carolina opened doorways to understanding Yoruba traditions and connecting with ancestral wisdom in ways I never imagined.',
+      content: `The red clay road leading to Oyotunji African Village felt like crossing into sacred time. As the first authentic African village in North America, Oyotunji represents something profound: a return to ancestral ways in the heart of the American South.
+
+My visit wasn't just cultural tourism—it was spiritual archaeology, digging through layers of disconnection to find the wisdom my ancestors carried across the Middle Passage.
+
+**Approaching Sacred Space**
+
+I came to Oyotunji with questions burning in my heart: How do I honor traditions I'm learning about rather than inheriting? How do I distinguish between appropriation and authentic spiritual seeking? How do I approach Yoruba traditions as someone reconnecting rather than someone who grew up in community?
+
+The village elder I spoke with offered wisdom that guides my spiritual practice today: "Your ancestors know you're seeking. They're calling you home. Listen with humility and learn with respect."
+
+**Learning Through Experience**
+
+At Oyotunji, spiritual practice isn't academic—it's lived. I participated in ceremonies that awakened something deep in my cellular memory. The drum rhythms felt familiar in ways my mind couldn't explain but my body recognized.
+
+I learned about the Orishas not through books but through observation, participation, and patient teaching from community elders. Each conversation added layers to my understanding of how African spiritual traditions survived, adapted, and thrived in the diaspora.
+
+**Genealogy Meets Spirituality**
+
+My genealogy research took on new dimensions after Oyotunji. Family stories that seemed like folklore began connecting to broader spiritual and cultural patterns. Names in my family tree resonated with Yoruba traditions. Practices my grandmother did "just because" revealed connections to ancestral wisdom.
+
+The village helped me understand that genealogy isn't just about names and dates—it's about tracking the transmission of wisdom, resilience, and spiritual knowledge across generations.
+
+**Integration and Respect**
+
+Returning home from Oyotunji, I carried new responsibility. I had been entrusted with knowledge that required careful stewardship. I began building daily practices that honored what I learned while remaining humble about my position as a seeker rather than a traditional practitioner.
+
+This balance—honoring tradition while acknowledging my own learning journey—shapes how I approach all aspects of my spiritual and cultural exploration.
+
+**Technology Meets Tradition**
+
+My visit to Oyotunji also influenced my technology work. I began thinking about how digital tools could support rather than replace traditional ways of learning and connecting. How could I create online spaces that honored the depth and community-centeredness of traditional spiritual education?
+
+This question guides my work with community organizations and spiritual practitioners who want to use technology without losing the essence of their practices.
+
+**Continuing the Journey**
+
+Oyotunji was a beginning, not a destination. It opened pathways for deeper learning and connected me with elders and practitioners who continue to guide my spiritual development. It taught me that coming home to ancestral wisdom is a lifelong journey of learning, service, and deepening connection.
+
+**For Fellow Seekers**
+
+If you're called to explore African diasporic spiritual traditions, approach with humility, patience, and genuine respect. Find community. Learn from elders. Understand that this is not quick work—it's soul work that unfolds over years of dedicated learning and service.
+
+Your ancestors are calling you home. The question is: are you ready to listen?`,
+      publishDate: '2024-03-10',
+      readTime: '11 min read',
+      tags: ['Spirituality', 'Yoruba', 'Ancestral Wisdom', 'African Diaspora'],
+      featured: true
+    },
+    {
+      id: 'savannah-spiritual-cartography',
+      title: 'Mapping Sacred Sites: Spiritual Cartography in Savannah',
+      series: 'roots-and-routes',
+      excerpt: 'Walking through Savannah\'s historic squares and hidden corners, I discovered layers of spiritual history that maps don\'t show—stories of resistance, ritual, and resilience.',
+      content: `Savannah doesn't just have history—it has layers of spiritual geography that most tourists never see. Beneath the celebrated architecture and ghost tours lies a deeper map of sacred sites, ritual spaces, and centers of spiritual resistance.
+
+My spiritual cartography of Savannah began with genealogy research and evolved into understanding how enslaved ancestors maintained and adapted African spiritual traditions in the coastal South.
+
+**Following Ancestral Footsteps**
+
+My great-great-grandmother lived in the Sea Islands before migrating north. Family stories spoke of her knowledge of "root work" and her reputation as someone who could "see things others couldn't." Walking through Savannah, I felt called to understand the spiritual landscape she would have known.
+
+The Gullah Geechee Cultural Heritage Corridor provided context, but the real education came from conversations with elders, visits to historic Black churches, and quiet moments in squares where spiritual work has been happening for centuries.
+
+**Hidden Histories in Plain Sight**
+
+Savannah's famous squares hold spiritual significance that guidebooks rarely mention. African Americans created sacred spaces within the constraints of enslavement and segregation. Some squares became gathering places for spiritual communities. Others held significance in hoodoo practice and folk healing traditions.
+
+Walking these spaces with spiritual awareness opened my perception to layers of meaning invisible to casual observation. The placement of certain churches, the location of historic healing practices, the routes of Underground Railroad activity—all connected to create a spiritual map of resistance and survival.
+
+**Bonaventure Cemetery: Conversations with Ancestors**
+
+Bonaventure Cemetery became a place of profound communion for me. Beyond its stunning beauty lies a sacred space where conversations with ancestors feel possible in ways they don't elsewhere.
+
+I found graves of people who lived during my great-great-grandmother's time, whose stories helped me understand the spiritual landscape she navigated. I learned about burial traditions that blend Christian symbolism with African spiritual practices, creating syncretic expressions of faith and resistance.
+
+**Learning from Local Practitioners**
+
+The most valuable education came from contemporary practitioners of hoodoo and rootwork who carry forward traditions that connect to historical spiritual communities. These conversations, offered with generosity and discernment, helped me understand how ancestral spiritual practices adapt and survive across generations.
+
+I learned about plants that grow in Savannah's climate and their traditional uses. I discovered how spiritual work adapts to urban environments while maintaining connection to natural cycles and ancestral wisdom.
+
+**Documenting Sacred Geography**
+
+My exploration of Savannah's spiritual landscape became part of my larger ancestral research. I began creating maps—both digital and physical—that track spiritual sites, family connections, and historical contexts that illuminate my ancestors' experiences.
+
+This documentation serves my own learning while contributing to broader efforts to preserve and honor Gullah Geechee cultural heritage and African diasporic spiritual traditions.
+
+**Integration and Practice**
+
+Savannah taught me that spiritual practice isn't separate from place—it's deeply rooted in specific landscapes, plant communities, and cultural histories. My spiritual development requires understanding not just traditions but the places where those traditions were lived and preserved.
+
+**Continuing Research**
+
+Each visit to Savannah reveals new layers of spiritual geography. I continue mapping sacred sites, documenting family connections, and learning from elders who carry forward traditions that connect me to ancestral wisdom.
+
+This work serves both personal spiritual development and broader cultural preservation efforts that honor the profound spiritual heritage of the coastal South.`,
+      publishDate: '2024-03-25',
+      readTime: '10 min read',
+      tags: ['Hoodoo', 'Gullah Geechee', 'Savannah', 'Ancestral Research'],
+      featured: true
+    },
+    {
+      id: 'family-photos-digital-archaeology',
+      title: 'Digital Archaeology: Mining Family Photos for Ancestral Stories',
+      series: 'roots-and-routes',
+      excerpt: 'The family photos scattered across Google Drive aren\'t just memories—they\'re spiritual and historical documents that reveal patterns, connections, and wisdom transmitted across generations.',
+      content: `The Google Drive folder labeled "Family Pictures" contains more than photographs—it holds archaeological evidence of survival, love, and wisdom transmission across generations of my family.
+
+What started as simple genealogy research evolved into digital archaeology, carefully examining each image for clues about spiritual practices, cultural traditions, and family patterns that shaped who I am today.
+
+**Seeing Beyond the Surface**
+
+Initially, I sorted photos chronologically, trying to build timeline of family history. But deeper examination revealed layers of meaning hidden in plain sight: spiritual objects in background corners, hand positions that suggested ritual knowledge, gathering patterns that spoke to community practices.
+
+My grandmother's kitchen photos, for instance, showed herb gardens visible through windows, specific arrangements of household objects, and subtle indicators of spiritual practices that she never explicitly named but clearly maintained.
+
+**Patterns Across Generations**
+
+Analyzing photos across decades revealed fascinating patterns. Certain poses, expressions, and gathering configurations appeared repeatedly, suggesting unconscious transmission of cultural memory. Women in my family consistently appeared in roles that suggested healing knowledge and spiritual authority.
+
+These patterns helped me understand that what I thought were personal quirks or family coincidences actually connected to broader traditions of resistance, spiritual practice, and cultural preservation.
+
+**The Technology of Memory**
+
+Using digital tools to organize, enhance, and analyze family photos transformed scattered memories into coherent narratives. I created timelines, location maps, and relationship charts that revealed connections invisible when photos existed in isolation.
+
+Advanced photo analysis helped me identify locations, time periods, and even cultural contexts that family stories had obscured or forgotten. Sometimes a building in the background or a detail of clothing provided crucial clues about where and when spiritual learning happened.
+
+**Sacred Objects in Ordinary Spaces**
+
+The most revelatory discoveries came from examining household objects visible in family photos. Arrangements that seemed purely decorative revealed spiritual significance when I understood their cultural context. Plants, mirrors, religious objects, and even furniture placement often reflected spiritual practices and protective traditions.
+
+These discoveries helped me understand that spiritual practice in my family wasn't confined to church or special occasions—it was woven into daily life in ways that required cultural literacy to recognize.
+
+**Conversations Across Time**
+
+Examining family photos became a form of conversation with ancestors. Their choices about what to document, how to pose, and what to include in frames spoke to values, priorities, and knowledge they wanted to preserve.
+
+Some photos felt like deliberate spiritual documentation—ancestors ensuring that future generations would have visual access to practices and traditions they might not be able to transmit through direct teaching.
+
+**Connecting Photos to Genealogy Research**
+
+Combining photo analysis with traditional genealogy research created a more complete picture of family history. Photos provided evidence for family stories, revealed relationships that records didn't capture, and offered cultural context that names and dates couldn't convey.
+
+Most importantly, photos helped me understand how spiritual and cultural traditions traveled through my family line, adapting to different circumstances while maintaining essential wisdom.
+
+**Building Digital Altars**
+
+The photos became foundation for digital altar spaces where I could honor ancestors and maintain connection with family wisdom. Carefully curated collections of images, combined with genealogy research and cultural learning, created sacred digital spaces for ancestral connection.
+
+**Implications for Family Research**
+
+This approach to family photo analysis suggests new methodologies for genealogy research that center cultural and spiritual heritage rather than just bloodlines and dates. Photos become spiritual documents that reveal how wisdom travels across generations.
+
+**Sharing Ancestral Knowledge**
+
+The insights gained from family photo archaeology inform my current work with other families exploring their spiritual and cultural heritage. Digital tools can help recover and preserve ancestral wisdom that might otherwise be lost.
+
+**Continuing Discovery**
+
+Each examination of family photos reveals new layers of meaning. This ongoing digital archaeology continues to inform my spiritual practice, my understanding of family patterns, and my connection to ancestral wisdom that guides my current work and life choices.`,
+      publishDate: '2024-04-08',
+      readTime: '9 min read',
+      tags: ['Genealogy', 'Digital Archives', 'Family History', 'Ancestral Wisdom']
+    },
+    {
       id: 'adhd-diagnosis-liberation',
       title: 'Finding Liberation in Late Diagnosis: My ADHD Story at 42',
       series: 'diagnosis-after-40',
@@ -219,6 +389,12 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
 
   const blogSeries = [
     { id: 'all', label: 'All Posts', icon: '📚', description: 'Every story, every lesson' },
+    { 
+      id: 'roots-and-routes', 
+      label: 'Roots & Routes', 
+      icon: '🌿',
+      description: 'Ancestral research, spiritual journeys, and exploring cultural heritage through genealogy and sacred travel'
+    },
     { 
       id: 'diagnosis-after-40', 
       label: 'Diagnosis After 40', 

@@ -324,14 +324,14 @@ const CommunitySection: React.FC = () => {
             color: 'var(--accent-primary)', 
             marginBottom: 'var(--space-lg)' 
           }}>
-            📊 Community Growth & Impact
+            📊 Building Sustainable Community
           </h3>
           <p className="text-body text-center" style={{ 
             marginBottom: 'var(--space-2xl)',
             color: 'var(--text-secondary)'
           }}>
-            Transparent insights into our multi-stream approach to sustainable creative business. 
-            Building towards $4,000 monthly recurring revenue through diversified offerings.
+            Transparent insights into building a healing-centered technology practice. 
+            Growing slowly and sustainably, prioritizing community care over rapid scaling.
           </p>
           
           <div className="revenue-streams grid grid-2 gap-lg">
@@ -342,29 +342,17 @@ const CommunitySection: React.FC = () => {
               border: '1px solid rgba(212, 175, 55, 0.2)'
             }}>
               <h4 className="text-h3" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-sm)' }}>
-                💫 Patreon Community
+                💫 Community Building
               </h4>
               <div className="revenue-amount text-h1" style={{ 
                 color: 'var(--accent-primary)',
                 marginBottom: 'var(--space-sm)'
               }}>
-                $350 / $500
+                Early Stage
               </div>
-              <div className="progress-bar" style={{
-                width: '100%',
-                height: '8px',
-                background: 'var(--bg-secondary)',
-                borderRadius: 'var(--radius-sm)',
-                marginBottom: 'var(--space-sm)'
-              }}>
-                <div className="progress-fill" style={{
-                  width: '70%',
-                  height: '100%',
-                  background: 'linear-gradient(90deg, var(--accent-primary), var(--muted-gold))',
-                  borderRadius: 'var(--radius-sm)'
-                }}></div>
-              </div>
-              <p className="text-body">Growing membership base across all tiers with high engagement</p>
+              <p className="text-body">
+                Focusing on authentic connections and sustainable growth rather than vanity metrics
+              </p>
             </div>
             
             <div className="revenue-card" style={{
@@ -374,52 +362,56 @@ const CommunitySection: React.FC = () => {
               border: '1px solid rgba(212, 175, 55, 0.2)'
             }}>
               <h4 className="text-h3" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-sm)' }}>
-                🔮 Digital Products
+                🔮 Services & Products
               </h4>
               <div className="revenue-amount text-h1" style={{ 
                 color: 'var(--accent-primary)',
                 marginBottom: 'var(--space-sm)'
               }}>
-                $900 / $1,500
+                Growing
               </div>
-              <div className="progress-bar" style={{
-                width: '100%',
-                height: '8px',
-                background: 'var(--bg-secondary)',
-                borderRadius: 'var(--radius-sm)',
-                marginBottom: 'var(--space-sm)'
-              }}>
-                <div className="progress-fill" style={{
-                  width: '60%',
-                  height: '100%',
-                  background: 'linear-gradient(90deg, var(--accent-primary), var(--muted-gold))',
-                  borderRadius: 'var(--radius-sm)'
-                }}></div>
-              </div>
-              <p className="text-body">Active products generating consistent sales with high customer ratings</p>
+              <p className="text-body">
+                Building portfolio and refining offerings based on community needs and feedback
+              </p>
             </div>
           </div>
           
-          <div className="growth-metrics grid grid-4 gap-lg" style={{ marginTop: 'var(--space-2xl)' }}>
-            <div className="metric-card text-center">
-              <div className="metric-number text-h1" style={{ color: 'var(--accent-primary)' }}>1,025</div>
-              <h5 className="text-body" style={{ color: 'var(--text-secondary)' }}>Email Subscribers</h5>
-              <div className="metric-growth text-caption" style={{ color: 'var(--sage-green)' }}>+175 this month</div>
-            </div>
-            <div className="metric-card text-center">
-              <div className="metric-number text-h1" style={{ color: 'var(--accent-primary)' }}>2,650</div>
-              <h5 className="text-body" style={{ color: 'var(--text-secondary)' }}>Social Following</h5>
-              <div className="metric-growth text-caption" style={{ color: 'var(--sage-green)' }}>+350 this month</div>
-            </div>
-            <div className="metric-card text-center">
-              <div className="metric-number text-h1" style={{ color: 'var(--accent-primary)' }}>4,100</div>
-              <h5 className="text-body" style={{ color: 'var(--text-secondary)' }}>Website Visitors</h5>
-              <div className="metric-growth text-caption" style={{ color: 'var(--sage-green)' }}>+900 this month</div>
-            </div>
-            <div className="metric-card text-center">
-              <div className="metric-number text-h1" style={{ color: 'var(--accent-primary)' }}>2.7%</div>
-              <h5 className="text-body" style={{ color: 'var(--text-secondary)' }}>Conversion Rate</h5>
-              <div className="metric-growth text-caption" style={{ color: 'var(--sage-green)' }}>+0.6% this month</div>
+          <div className="growth-principles" style={{ marginTop: 'var(--space-2xl)' }}>
+            <h4 className="text-h3 text-center" style={{ 
+              color: 'var(--accent-primary)', 
+              marginBottom: 'var(--space-lg)' 
+            }}>
+              🌱 Our Growth Principles
+            </h4>
+            <div className="principles-grid grid grid-2 gap-lg">
+              <div className="principle-card text-center">
+                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🌿</div>
+                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Sustainable Pace</h5>
+                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                  Growing at a pace that honors capacity and prevents burnout
+                </p>
+              </div>
+              <div className="principle-card text-center">
+                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>💚</div>
+                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Community First</h5>
+                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                  Prioritizing authentic relationships over rapid customer acquisition
+                </p>
+              </div>
+              <div className="principle-card text-center">
+                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🔄</div>
+                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Iterative Learning</h5>
+                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                  Continuously refining based on community feedback and needs
+                </p>
+              </div>
+              <div className="principle-card text-center">
+                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>⚖️</div>
+                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Accessible Pricing</h5>
+                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                  Sliding scale and payment plans to serve diverse economic situations
+                </p>
+              </div>
             </div>
           </div>
         </div>
