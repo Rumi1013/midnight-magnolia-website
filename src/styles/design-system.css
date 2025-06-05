@@ -337,4 +337,66 @@
 .card:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
+}
+
+/* === App Layout === */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 50%,
+    var(--midnight-mist) 100%
+  );
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(123, 160, 91, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(200, 181, 219, 0.02) 0%, transparent 50%);
+  color: var(--text-primary);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.6;
+}
+
+.main-content {
+  min-height: 100vh;
+}
+
+.app-footer {
+  padding: var(--space-2xl) 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  margin-top: var(--space-3xl);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* === Component-Specific Styles === */
+
+/* Services Section */
+.services-grid .service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.services-grid .service-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Shop Section */
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary);
+}
+
+/* Community Section */
+.tier-card:hover {
+  transform: translateY(-4px);
+}
+
+.initiative-card:hover {
+  border-color: var(--accent-primary);
+}
+
+.series-card:hover {
+  background: var(--bg-card-hover);
 } 
