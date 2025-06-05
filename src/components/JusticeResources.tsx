@@ -129,13 +129,42 @@ const JusticeResources: React.FC = () => {
   return (
     <section className="section">
       <div className="container">
-        {/* Header */}
         <div className="section-header">
-          <h1 className="text-h1 animate-fade-in">⚖️ Justice Resource Ecosystem</h1>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            gap: 'var(--space-md)',
+            marginBottom: 'var(--space-lg)'
+          }}>
+            <img 
+              src="/images/logos/clearFinal4_MM_25.jpeg" 
+              alt="Justice Work"
+              style={{ 
+                width: '38px', 
+                height: '38px',
+                opacity: 0.8
+              }}
+            />
+            <h2 className="text-h1 animate-fade-in">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                <img 
+                  src="/images/logos/clearFinal4_MM_25.jpeg" 
+                  alt="Justice Work"
+                  style={{ 
+                    width: '38px', 
+                    height: '38px',
+                    opacity: 0.8
+                  }}
+                />
+                Justice Resources
+              </div>
+            </h2>
+          </div>
           <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            Born from my Soros Justice Fellowship research and developed through community organizing 
-            with Black Liberation Fund. These resources are offered at no cost, with donations to 
-            Black Liberation Fund encouraged to sustain this work.
+            Born from my Soros Justice Fellowship work, these resources help people navigate 
+            the legal system with dignity and access. Educational materials to demystify complex 
+            processes and support community liberation.
           </p>
         </div>
 
@@ -233,7 +262,7 @@ const JusticeResources: React.FC = () => {
             {resourceCategories.map((category) => (
               <button
                 key={category.id}
-                className={`btn ${activeCategory === category.id ? 'btn-fiesta' : 'btn-secondary'}`}
+                className={`btn ${activeCategory === category.id ? 'btn-primary' : 'btn-secondary'}`}
                 onClick={() => setActiveCategory(category.id)}
               >
                 <span>{category.icon}</span>
@@ -304,7 +333,7 @@ const JusticeResources: React.FC = () => {
               justice system. This work is sustained through donations to Black Liberation Fund 
               and community mutual aid.
             </p>
-            <button className="btn btn-celebration">
+            <button className="btn btn-primary">
               Support Black Liberation Fund
             </button>
           </div>

@@ -264,10 +264,31 @@ const PortfolioSection: React.FC = () => {
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <h2 className="text-h1 animate-fade-in">💼 Portfolio of Sacred Work</h2>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            gap: 'var(--space-md)',
+            marginBottom: 'var(--space-lg)'
+          }}>
+            <img 
+              src="/images/logos/clearFinal6_MM_25.jpeg" 
+              alt="Sacred Tech"
+              style={{ 
+                width: '40px', 
+                height: '40px',
+                opacity: 0.8
+              }}
+            />
+            <h2 className="text-h1 animate-fade-in">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                Sacred Tech Portfolio
+              </div>
+            </h2>
+          </div>
           <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            Real projects, real impact. Each piece of work represents a partnership rooted in justice, 
-            accessibility, and community care. These are the digital spaces where healing happens.
+            Technology projects rooted in community care, justice organizing, and healing-centered design. 
+            Each project tells a story of how code can serve liberation.
           </p>
         </div>
 

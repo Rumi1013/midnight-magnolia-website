@@ -10,61 +10,202 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     <section className="hero-section">
       <div className="container">
         <div className="hero-content">
-          {/* Background Images */}
+          {/* Multiple Background Images for Visual Richness */}
           <div className="hero-visual-bg">
             <img 
               src="/images/gallery/southern-gothic-mansion-night.png" 
               alt="Southern Gothic mansion with mystical atmosphere"
-              className="hero-bg-image"
+              className="hero-bg-image hero-bg-primary"
+            />
+            <img 
+              src="/images/gallery/southern-gothic-1.jpeg" 
+              alt="Gothic architecture detail"
+              className="hero-bg-image hero-bg-secondary"
             />
             <div className="hero-overlay"></div>
           </div>
 
-          <div className="hero-text animate-fade-in">
-            <h1 className="text-display hero-title">
-              <span className="animate-glow">🌸</span> Midnight Magnolia
-            </h1>
+          {/* Decorative Background Elements */}
+          <div className="floating-element" style={{
+            position: 'absolute',
+            top: '10%',
+            left: '5%',
+            opacity: 0.1,
+            zIndex: 1
+          }}>
+            <img src="/images/logos/goldenFinal22_MM_25.png" alt="" style={{ width: '120px', height: '120px' }} />
+          </div>
+          
+          <div className="floating-element" style={{
+            position: 'absolute',
+            bottom: '15%',
+            right: '8%',
+            opacity: 0.08,
+            zIndex: 1
+          }}>
+            <img src="/images/logos/ClearFinal7_MM_25.jpeg" alt="" style={{ width: '100px', height: '100px' }} />
+          </div>
+
+          {/* Main Content */}
+          <div className="hero-content animate-fade-in" style={{ 
+            position: 'relative', 
+            zIndex: 3,
+            textAlign: 'center',
+            maxWidth: '900px',
+            margin: '0 auto'
+          }}>
+            {/* Hero Header with Premium Logo */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              gap: 'var(--space-md)',
+              marginBottom: 'var(--space-lg)'
+            }}>
+              <img 
+                src="/images/logos/goldenFinal22_MM_25.png" 
+                alt="Midnight Magnolia Premium"
+                style={{ 
+                  width: '60px', 
+                  height: '60px',
+                  filter: 'drop-shadow(0 0 12px var(--accent-primary))'
+                }}
+              />
+              <h1 className="hero-title text-h1">
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                  Midnight Magnolia
+                  <img 
+                    src="/images/logos/ClearFinal7_MM_25.jpeg" 
+                    alt="Magnolia Bloom"
+                    style={{ 
+                      width: '45px', 
+                      height: '45px',
+                      opacity: 0.9,
+                      filter: 'brightness(1.2)'
+                    }}
+                  />
+                </div>
+              </h1>
+              <img 
+                src="/images/logos/goldenFinal22_MM_25.png" 
+                alt="Midnight Magnolia Premium"
+                style={{ 
+                  width: '60px', 
+                  height: '60px',
+                  filter: 'drop-shadow(0 0 12px var(--accent-primary))'
+                }}
+              />
+            </div>
+
             <p className="text-body-lg hero-subtitle">
               Where Southern Gothic meets digital mysticism. A sanctuary for community care, 
               healing technology, and transformative digital experiences.
             </p>
             
-            <div className="hero-actions">
+            <div className="hero-description">
+              <p className="text-body">
+                Rooted in mystery, blooming through code, ritual, and resilience. 
+                We create technology services that center healing in digital spaces.
+              </p>
+            </div>
+            
+            <div className="hero-actions animate-slide-up">
               <button 
-                className="btn btn-celebration btn-large"
+                className="btn btn-accent"
                 onClick={() => onNavigate('justice-resources')}
                 aria-label="Explore Justice Resources"
               >
-                ⚖️ Justice Resources
+                <span>Justice Resources</span>
+                <span>⚖️</span>
               </button>
               <button 
-                className="btn btn-spirit btn-large"
-                onClick={() => onNavigate('portfolio')}
-                aria-label="View portfolio"
+                className="btn btn-primary"
+                onClick={() => onNavigate('shop')}
+                aria-label="Shop Digital Products"
               >
-                ✨ View Work
+                <span>Shop</span>
+                <span>🛍️</span>
               </button>
+              <button 
+                className="btn btn-secondary"
+                onClick={() => onNavigate('about')}
+                aria-label="Our Story"
+              >
+                <span>Our Story</span>
+                <span>✨</span>
+              </button>
+            </div>
+
+            {/* Revenue Streams - Prominent Display */}
+            <div className="revenue-streams animate-slide-up">
+              <p className="revenue-intro text-body">Support our work & get digital goodies:</p>
+              <div className="revenue-buttons">
+                <a 
+                  href="https://midnightmagnolia.myshopify.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-primary revenue-btn"
+                >
+                  <span>🛒</span>
+                  <span>Shopify Store</span>
+                </a>
+                <a 
+                  href="https://www.etsy.com/shop/MidnightMagnoliaShop" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary revenue-btn"
+                >
+                  <span>🎨</span>
+                  <span>Etsy Shop</span>
+                </a>
+                <a 
+                  href="https://www.patreon.com/midnightmagnolia" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn btn-accent revenue-btn"
+                >
+                  <span>💚</span>
+                  <span>Patreon</span>
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Feature Cards */}
+          {/* Enhanced Feature Cards with Visual Elements */}
           <div className="hero-features">
-            <div className="feature-card card-marigold animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <div className="feature-icon">🌿</div>
-              <h3>Trauma-Informed AI</h3>
-              <p>Technology that recognizes and responds to healing needs</p>
-            </div>
-            
-            <div className="feature-card card-spirit animate-slide-up" style={{ animationDelay: '0.4s' }}>
-              <div className="feature-icon">⚖️</div>
-              <h3>Justice Resources</h3>
-              <p>Soros Fellowship legacy project supporting community legal access</p>
-            </div>
-            
-            <div className="feature-card card-memory animate-slide-up" style={{ animationDelay: '0.6s' }}>
-              <div className="feature-icon">🔮</div>
-              <h3>Digital Mysticism</h3>
-              <p>Ancestral wisdom meets modern technology</p>
+            <div className="feature-grid grid grid-3 gap-lg">
+              <div className="feature-card card card-marigold" onClick={() => onNavigate('justice-resources')}>
+                <div className="feature-image">
+                  <img src="/images/gallery/mystical-logo.png" alt="Justice resources" className="feature-bg" />
+                </div>
+                <div className="feature-content">
+                  <div className="feature-icon">⚖️</div>
+                  <h3 className="text-h3">Justice Resources</h3>
+                  <p className="text-caption">Soros Fellowship legacy - free legal aid tools</p>
+                </div>
+              </div>
+              
+              <div className="feature-card card card-spirit" onClick={() => onNavigate('services')}>
+                <div className="feature-image">
+                  <img src="/images/gallery/gothic-digital-planner.png" alt="Digital services" className="feature-bg" />
+                </div>
+                <div className="feature-content">
+                  <div className="feature-icon">🕸️</div>
+                  <h3 className="text-h3">Web Sanctuaries</h3>
+                  <p className="text-caption">Digital spaces that feel like coming home</p>
+                </div>
+              </div>
+              
+              <div className="feature-card card" onClick={() => onNavigate('trauma-ai')}>
+                <div className="feature-image">
+                  <img src="/images/gallery/personal-photo-2.jpg" alt="Trauma-informed design" className="feature-bg" />
+                </div>
+                <div className="feature-content">
+                  <div className="feature-icon">🧠</div>
+                  <h3 className="text-h3">Trauma-Informed AI</h3>
+                  <p className="text-caption">Intelligence systems that prioritize healing</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -95,11 +236,23 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         }
 
         .hero-bg-image {
+          position: absolute;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 0.1;
+        }
+
+        .hero-bg-primary {
+          opacity: 0.15;
           filter: sepia(20%) hue-rotate(35deg) saturate(1.2);
+          z-index: -2;
+        }
+
+        .hero-bg-secondary {
+          opacity: 0.08;
+          filter: sepia(40%) hue-rotate(45deg) saturate(1.5);
+          z-index: -3;
+          transform: scale(1.1);
         }
 
         .hero-overlay {
@@ -110,9 +263,9 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           bottom: 0;
           background: linear-gradient(
             135deg,
-            rgba(26, 35, 50, 0.9) 0%,
-            rgba(10, 25, 41, 0.95) 50%,
-            rgba(30, 40, 52, 0.9) 100%
+            rgba(26, 35, 50, 0.85) 0%,
+            rgba(10, 25, 41, 0.9) 50%,
+            rgba(30, 40, 52, 0.85) 100%
           );
           z-index: -1;
         }
@@ -121,7 +274,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           position: relative;
           z-index: 1;
           text-align: center;
-          max-width: 800px;
+          max-width: 1000px;
           margin: 0 auto;
         }
         
@@ -134,14 +287,22 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         .hero-subtitle {
           margin-bottom: var(--space-md);
           color: var(--text-secondary);
-          max-width: 600px;
+          max-width: 700px;
           margin-left: auto;
           margin-right: auto;
           text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         }
+
+        .hero-description {
+          margin-bottom: var(--space-2xl);
+          color: var(--text-muted);
+          max-width: 500px;
+          margin-left: auto;
+          margin-right: auto;
+        }
         
         .hero-actions {
-          margin-bottom: var(--space-3xl);
+          margin-bottom: var(--space-xl);
           display: flex;
           gap: var(--space-md);
           justify-content: center;
@@ -150,6 +311,11 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         
         .hero-features {
           margin-top: var(--space-3xl);
+        }
+
+        .feature-grid {
+          position: relative;
+          z-index: 2;
         }
         
         .feature-card {
@@ -161,6 +327,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           background: rgba(42, 52, 65, 0.8);
           backdrop-filter: blur(10px);
           border: 2px solid rgba(244, 208, 63, 0.2);
+          min-height: 200px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
         
         .feature-card:hover {
@@ -175,11 +345,16 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           right: -20px;
           opacity: 0.1;
           transition: all var(--transition-normal);
+          width: 80px;
+          height: 80px;
+          overflow: hidden;
+          border-radius: var(--radius-md);
         }
 
-        .feature-symbol {
-          width: 60px;
-          height: 60px;
+        .feature-bg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
           filter: brightness(0) invert(1);
         }
 
@@ -187,26 +362,26 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           opacity: 0.2;
           transform: scale(1.1);
         }
+
+        .feature-content {
+          position: relative;
+          z-index: 2;
+          padding: var(--space-md);
+        }
         
         .feature-icon {
           font-size: var(--text-3xl);
           margin-bottom: var(--space-sm);
           display: block;
-          position: relative;
-          z-index: 2;
         }
         
         .feature-card h3 {
           margin-bottom: var(--space-xs);
           color: var(--accent-primary);
-          position: relative;
-          z-index: 2;
         }
         
         .feature-card p {
           color: var(--text-muted);
-          position: relative;
-          z-index: 2;
         }
 
         .hero-decorative {
@@ -227,13 +402,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
         .floating-element {
           position: absolute;
-          width: 40px;
-          height: 40px;
+          width: 60px;
+          height: 60px;
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
           opacity: 0.3;
-          animation: float 6s ease-in-out infinite;
+          animation: float 8s ease-in-out infinite;
           filter: brightness(0) invert(1) sepia(1) hue-rotate(35deg) saturate(2);
         }
 
@@ -243,7 +418,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             opacity: 0.3;
           }
           50% {
-            transform: translateY(-20px) rotate(180deg);
+            transform: translateY(-30px) rotate(180deg);
             opacity: 0.6;
           }
         }
@@ -265,12 +440,60 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           }
 
           .floating-element {
-            display: none;
+            width: 40px;
+            height: 40px;
           }
 
           .hero-bg-image {
             opacity: 0.1;
           }
+
+          .feature-image {
+            width: 60px;
+            height: 60px;
+          }
+        }
+
+        .revenue-streams {
+          margin-bottom: var(--space-3xl);
+          text-align: center;
+        }
+
+        .revenue-intro {
+          margin-bottom: var(--space-md);
+          color: var(--text-secondary);
+          font-weight: var(--weight-medium);
+        }
+
+        .revenue-buttons {
+          display: flex;
+          gap: var(--space-md);
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .revenue-btn {
+          min-width: 160px;
+          font-weight: var(--weight-bold);
+          transition: all var(--transition-normal);
+          text-decoration: none;
+        }
+
+        .revenue-btn:hover {
+          transform: translateY(-3px) scale(1.05);
+        }
+
+        .btn-accent {
+          background: linear-gradient(135deg, var(--marigold-orange), var(--cempasuchil-gold));
+          color: var(--pure-white);
+          border: 2px solid var(--marigold-orange);
+          box-shadow: var(--shadow-marigold);
+        }
+
+        .btn-accent:hover {
+          background: linear-gradient(135deg, var(--cempasuchil-gold), var(--altar-candle));
+          box-shadow: var(--shadow-candle);
+          border-color: var(--cempasuchil-gold);
         }
       `}</style>
     </section>

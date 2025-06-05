@@ -188,6 +188,77 @@ Each examination of family photos reveals new layers of meaning. This ongoing di
       tags: ['Genealogy', 'Digital Archives', 'Family History', 'Ancestral Wisdom']
     },
     {
+      id: 'southern-homesteads-memorial-carousel',
+      title: 'Preserving Sacred Spaces: The Southern Homestead Memorial Project',
+      series: 'roots-and-routes',
+      excerpt: 'Using AI-generated imagery and family narratives to create digital memorials for ancestral homesteads lost to time, development, and deliberate erasure.',
+      content: `Family land tells stories that traditional archives often miss. The southern homesteads where our ancestors built lives, raised families, and maintained spiritual traditions exist now mainly in memory and scattered photographs.
+
+My Southern Homestead Memorial Project uses AI-generated imagery, family narratives, and historical research to create digital memorials for these sacred spaces—preserving their essence for future generations.
+
+**The Inspiration: Great-Grandmother's Land**
+
+The project began with my great-grandmother's homestead in rural South Carolina. Family stories painted vivid pictures: the wide front porch where healing work happened, the kitchen garden filled with medicinal plants, the oak tree that served as a community gathering place.
+
+But the physical homestead was sold decades ago, subdivided for development. The land that held generations of family memories became strip malls and suburban housing.
+
+**AI as Archaeological Tool**
+
+Using AI image generation, I began reconstructing visual representations of ancestral homesteads based on family descriptions, historical research, and period-appropriate architectural details. These aren't exact reproductions—they're spiritual archaeology, creating images that honor the essence and memory of spaces that no longer exist.
+
+The process involves combining family narratives with historical documentation about rural southern architecture, landscape design, and agricultural practices of specific time periods. Each generated image becomes a form of digital memorial.
+
+**The Eulogy Carousel Concept**
+
+The memorial project evolved into an interactive "eulogy carousel"—a digital space where family members could explore generated homestead images while hearing family stories, reading historical context, and understanding the spiritual and cultural significance of these ancestral spaces.
+
+Each homestead image connects to layers of information: family genealogy, oral history recordings, historical documentation, and connections to broader patterns of African American land ownership and loss in the South.
+
+**Technology Meets Oral Tradition**
+
+The carousel design honors the oral tradition of family storytelling while using digital tools to preserve and share these narratives. AI-generated homestead images serve as visual anchors for family stories that might otherwise be lost.
+
+Interactive elements allow family members to add their own memories, stories, and historical research, creating collaborative memorials that grow over time.
+
+**Addressing Land Loss and Displacement**
+
+The project acknowledges the broader context of African American land loss in the South—through discriminatory policies, economic pressure, and sometimes violent displacement. Many families lost ancestral homesteads not through choice but through systemic injustice.
+
+By creating digital memorials, we preserve the spiritual and cultural significance of these spaces even when the physical land is no longer accessible to families.
+
+**Healing Through Digital Memorialization**
+
+For many family members, engaging with AI-generated homestead images provides a form of healing connection to ancestral spaces. The images create opportunities for conversations about family history, spiritual traditions, and cultural heritage that might not happen otherwise.
+
+**Community Connections**
+
+The project connects individual family homesteads to broader community narratives about rural southern Black communities, their spiritual traditions, agricultural practices, and resilience in the face of displacement and discrimination.
+
+**Preserving Spiritual Geography**
+
+Beyond documenting physical structures, the memorial carousel preserves information about spiritual geography: where ritual work happened, how families maintained African diasporic traditions, and how land-based spiritual practices adapted to southern environments.
+
+**Technical Implementation**
+
+The carousel uses responsive web design to create immersive experiences accessible across devices. AI-generated homestead images are carefully curated and culturally contextualized to ensure respectful representation of family heritage.
+
+**Expanding the Project**
+
+What began as personal family research has grown into a resource for other families exploring their own ancestral homestead stories. The methodology provides a template for using digital tools to preserve family land narratives and cultural heritage.
+
+**Future Development**
+
+Planned expansions include virtual reality experiences, integration with genealogy databases, and partnerships with historical societies focused on African American land ownership and community development in the rural South.
+
+**Invitation to Collaboration**
+
+Families interested in creating their own homestead memorials can access templates, AI prompting guidelines, and storytelling frameworks that make this technology accessible for cultural preservation and family heritage work.`,
+      publishDate: '2024-04-22',
+      readTime: '12 min read',
+      tags: ['AI Art', 'Memorial Projects', 'Southern Heritage', 'Land History', 'Digital Preservation'],
+      featured: true
+    },
+    {
       id: 'adhd-diagnosis-liberation',
       title: 'Finding Liberation in Late Diagnosis: My ADHD Story at 42',
       series: 'diagnosis-after-40',
@@ -426,7 +497,38 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <h2 className="text-h1 animate-fade-in">📝 Southern Roots, Modern Blooms</h2>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            gap: 'var(--space-md)',
+            marginBottom: 'var(--space-lg)'
+          }}>
+            <img 
+              src="/images/logos/paperFinal26_MM_25.png" 
+              alt="Midnight Magnolia Stories"
+              style={{ 
+                width: '50px', 
+                height: '50px',
+                opacity: 0.8,
+                filter: 'sepia(0.3)'
+              }}
+            />
+            <h2 className="text-h1 animate-fade-in">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                <img 
+                  src="/images/logos/clearFinal1_MM_25.jpeg" 
+                  alt="Southern Roots"
+                  style={{ 
+                    width: '40px', 
+                    height: '40px',
+                    opacity: 0.7
+                  }}
+                />
+                Southern Roots, Modern Blooms
+              </div>
+            </h2>
+          </div>
           <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
             Personal narrative and community storytelling exploring disability advocacy, 
             Black Southern experience, and the ADHD journey. These are the stories that shaped 

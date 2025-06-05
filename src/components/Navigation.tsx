@@ -20,61 +20,45 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
   const [isScrolled, setIsScrolled] = useState(false)
 
   const navigationItems: NavigationItem[] = [
+    { id: 'home', label: 'Home', icon: '🌙', type: 'single' },
+    { id: 'about', label: 'About', icon: '🌿', type: 'single' },
     { 
-      id: 'home', 
-      label: 'Home', 
-      icon: '🌸',
-      type: 'single'
-    },
-    { 
-      id: 'about', 
-      label: 'About', 
-      icon: '🌙',
-      type: 'single'
-    },
-    {
-      id: 'services',
-      label: 'Services',
-      icon: '✨',
+      id: 'services', 
+      label: 'Services', 
+      icon: '✨', 
       type: 'dropdown',
       submenu: [
-        { id: 'shop', label: 'Digital Products', icon: '🛍️' },
-        { id: 'services', label: 'Consulting', icon: '💻' },
-        { id: 'justice-resources', label: 'Justice Resources', icon: '⚖️' },
+        { id: 'services', label: 'All Services', icon: '🔮' },
         { id: 'trauma-ai', label: 'Trauma-Informed AI', icon: '🧠' },
-        { id: 'membership', label: 'Community', icon: '👥' }
+        { id: 'justice-resources', label: 'Justice Resources', icon: '⚖️' }
       ]
     },
-    {
-      id: 'creative',
-      label: 'Creative',
-      icon: '🎨',
-      type: 'dropdown',
-      submenu: [
-        { id: 'portfolio', label: 'Portfolio', icon: '💼' },
-        { id: 'blog', label: 'Blog', icon: '📖' },
-        { id: 'gallery', label: 'Art Gallery', icon: '🖼️' },
-        { id: 'journal', label: 'Journal', icon: '📝' }
-      ]
-    },
-    {
-      id: 'mystical',
-      label: 'Mystical',
-      icon: '🔮',
-      type: 'dropdown',
-      submenu: [
-        { id: 'tarot', label: 'Tarot Deck', icon: '🔮' },
-        { id: 'rituals', label: 'Digital Rituals', icon: '🕯️' },
-        { id: 'wisdom', label: 'Ancestral Wisdom', icon: '📿' }
-      ]
-    },
-    { 
-      id: 'contact', 
-      label: 'Contact', 
-      icon: '✉️',
-      type: 'single'
-    }
+    { id: 'portfolio', label: 'Portfolio', icon: '📚', type: 'single' },
+    { id: 'blog', label: 'Stories', icon: '📝', type: 'single' },
+    { id: 'shop', label: 'Shop', icon: '🛒', type: 'single' },
+    { id: 'membership', label: 'Community', icon: '💚', type: 'single' },
+    { id: 'brand', label: 'Brand', icon: '🎨', type: 'single' },
+    { id: 'contact', label: 'Contact', icon: '✉️', type: 'single' }
   ]
+
+  // Smart logo selection based on current section
+  const getContextualLogo = () => {
+    switch (currentSection) {
+      case 'blog':
+      case 'portfolio':
+        return '/images/logos/paperFinal26_MM_25.png' // Textured for storytelling
+      case 'trauma-ai':
+      case 'justice-resources':
+        return '/images/gallery/mystical-logo.png' // Mystical for spiritual/justice work
+      case 'shop':
+      case 'membership':
+        return '/images/logos/goldenFinal22_MM_25.png' // Golden for premium services
+      case 'brand':
+        return '/images/logos/ClearFinal7_MM_25.jpeg' // Clear for brand showcase
+      default:
+        return '/images/logos/color-logo.png' // Default color logo
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -129,13 +113,19 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
             onClick={() => handleMenuItemClick(navigationItems[0])}
           >
             <img 
-              src="/images/logos/goldenFinal22_MM_25.png" 
-              alt="Midnight Magnolia"
+              src={getContextualLogo()} 
+              alt="Midnight Magnolia Logo"
               className="brand-logo"
+              style={{
+                transition: 'all var(--transition-smooth)',
+                filter: currentSection === 'justice-resources' || currentSection === 'trauma-ai' 
+                  ? 'drop-shadow(0 0 8px var(--accent-primary))' 
+                  : 'none'
+              }}
             />
             <div className="brand-text">
               <span className="brand-name text-h3">Midnight Magnolia</span>
-              <span className="brand-tagline text-caption">Healing Sanctuary</span>
+              <span className="brand-tagline text-caption">Digital Sanctuary</span>
             </div>
           </button>
 

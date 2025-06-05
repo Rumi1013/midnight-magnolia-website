@@ -17,6 +17,7 @@ import PortfolioSection from './components/PortfolioSection'
 import BlogSection from './components/BlogSection'
 import TraumaInformedAI from './components/TraumaInformedAI'
 import JusticeResources from './components/JusticeResources'
+import LogoShowcase from './components/LogoShowcase'
 import { PerformanceProvider } from './context/PerformanceContext'
 
 function App() {
@@ -135,6 +136,8 @@ function App() {
         return <div data-section="trauma-ai"><TraumaInformedAI /></div>
       case 'justice-resources':
         return <div data-section="justice-resources"><JusticeResources /></div>
+      case 'brand':
+        return <div data-section="brand"><LogoShowcase /></div>
       case 'contact':
         return <div data-section="contact">{renderContact()}</div>
       default:

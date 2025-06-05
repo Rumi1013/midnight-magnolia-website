@@ -7,10 +7,40 @@ const TraumaInformedAI: React.FC = () => {
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <h1 className="text-h1 animate-fade-in">🧠 Trauma-Informed AI Development</h1>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            gap: 'var(--space-md)',
+            marginBottom: 'var(--space-lg)'
+          }}>
+            <img 
+              src="/images/logos/clearFinal23_MM_25.jpeg" 
+              alt="Trauma-Informed Technology"
+              style={{ 
+                width: '42px', 
+                height: '42px',
+                opacity: 0.8
+              }}
+            />
+            <h1 className="text-h1 animate-fade-in">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                <img 
+                  src="/images/logos/clearFinal23_MM_25.jpeg" 
+                  alt="Trauma-Informed Technology"
+                  style={{ 
+                    width: '42px', 
+                    height: '42px',
+                    opacity: 0.8
+                  }}
+                />
+                Trauma-Informed AI Development
+              </div>
+            </h1>
+          </div>
           <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            Building artificial intelligence systems that recognize trauma responses, prioritize safety, 
-            and create healing-centered digital experiences for all users.
+            Creating technology that honors nervous system responses, trauma histories, and the 
+            full spectrum of human experience. AI that serves healing, not harm.
           </p>
         </div>
 

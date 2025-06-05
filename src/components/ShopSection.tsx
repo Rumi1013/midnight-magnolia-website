@@ -136,12 +136,41 @@ const ShopSection: React.FC = () => {
     <section className="section">
       <div className="container">
         {/* Header */}
-        <div className="text-center" style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h2 className="text-h1 animate-fade-in">🛍️ Digital Sanctuary Shop</h2>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '700px', margin: '0 auto' }}>
-            Thoughtfully crafted digital tools and resources to support your healing journey, 
-            creative practice, and business growth. Each product is designed with neurodivergent 
-            entrepreneurs and community builders in mind.
+        <div className="section-header">
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            gap: 'var(--space-md)',
+            marginBottom: 'var(--space-lg)'
+          }}>
+            <img 
+              src="/images/logos/goldenFinal22_MM_25.png" 
+              alt="Midnight Magnolia Premium"
+              style={{ 
+                width: '50px', 
+                height: '50px',
+                filter: 'drop-shadow(0 0 8px #d4af37)'
+              }}
+            />
+            <h2 className="text-h1 animate-fade-in">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+                <img 
+                  src="/images/logos/clearFinal2_MM_25.jpeg" 
+                  alt="Digital Sanctuary"
+                  style={{ 
+                    width: '42px', 
+                    height: '42px',
+                    opacity: 0.8
+                  }}
+                />
+                Digital Sanctuary Shop
+              </div>
+            </h2>
+          </div>
+          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+            Healing-centered digital tools, spiritual resources, and community care materials. 
+            Each purchase supports ongoing justice work and community organizing efforts.
           </p>
         </div>
 

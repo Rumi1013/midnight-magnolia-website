@@ -305,57 +305,72 @@
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-medium);
   text-decoration: none;
-  border: none;
   cursor: pointer;
   transition: all var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+  font-family: inherit;
+  font-size: var(--text-base);
+  line-height: 1.2;
 }
 
+/* Primary - Warm Gold */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-primary), var(--muted-gold));
-  color: var(--night-primary);
-  border: 2px solid var(--accent-primary);
+  background: linear-gradient(135deg, var(--warm-gold), #b8860b);
+  color: var(--deep-night);
+  border-color: var(--warm-gold);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
 .btn-primary:hover {
+  background: linear-gradient(135deg, #f4d03f, var(--warm-gold));
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  background: linear-gradient(135deg, var(--contrast-gold), var(--accent-primary));
-  border-color: var(--contrast-gold);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
 }
 
+/* Secondary - Muted Lavender */
 .btn-secondary {
-  background: transparent;
-  color: var(--accent-primary);
-  border: 2px solid var(--accent-primary);
+  background: linear-gradient(135deg, #8b7b9b, #6a5a7a);
+  color: var(--gentle-cream);
+  border-color: #8b7b9b;
+  box-shadow: 0 2px 8px rgba(139, 123, 155, 0.3);
 }
 
 .btn-secondary:hover {
-  background: var(--accent-primary);
-  color: var(--night-primary);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #9d8daf, #8b7b9b);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139, 123, 155, 0.4);
 }
 
+/* Ghost - Subtle Border */
 .btn-ghost {
   background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--border-secondary);
+  color: var(--gentle-cream);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .btn-ghost:hover {
-  background: var(--bg-glass-hover);
-  border-color: var(--border-primary);
-  transform: translateY(-1px);
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--warm-gold);
+  color: var(--warm-gold);
+}
+
+/* Accent - Deep Burgundy for Special Actions */
+.btn-accent {
+  background: linear-gradient(135deg, #722f37, #5a252a);
+  color: var(--gentle-cream);
+  border-color: #722f37;
+  box-shadow: 0 2px 8px rgba(114, 47, 55, 0.3);
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #8b3a42, #722f37);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(114, 47, 55, 0.4);
 }
 
 /* === Section Styling === */
@@ -564,9 +579,8 @@
 
 /* === Coco Wedding-Themed Components === */
 .card-marigold {
-  background: var(--bg-accent);
-  border: 2px solid var(--border-sunset);
-  box-shadow: var(--shadow-marigold);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 134, 11, 0.05));
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .card-marigold:hover {
@@ -575,9 +589,8 @@
 }
 
 .card-spirit {
-  background: var(--bg-complement);
-  border: 2px solid var(--border-twilight);
-  box-shadow: var(--shadow-spirit);
+  background: linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(90, 37, 42, 0.05));
+  border-color: rgba(114, 47, 55, 0.3);
 }
 
 .card-spirit:hover {
@@ -586,23 +599,24 @@
 }
 
 .btn-fiesta {
-  background: var(--bg-accent);
-  color: var(--pure-white);
-  border: 2px solid var(--accent-secondary);
-  box-shadow: var(--shadow-marigold);
+  background: linear-gradient(135deg, var(--warm-gold), #b8860b);
+  color: var(--deep-night);
+  border-color: var(--warm-gold);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
 .btn-fiesta:hover {
-  background: var(--bg-sunrise);
+  background: linear-gradient(135deg, var(--cempasuchil-gold), var(--familia-pink));
   box-shadow: var(--shadow-candle);
   transform: translateY(-2px);
+  border-color: var(--cempasuchil-gold);
 }
 
 .btn-celebration {
-  background: var(--bg-complement);
-  color: var(--pure-white);
-  border: 2px solid var(--accent-celebration);
-  box-shadow: var(--shadow-spirit);
+  background: linear-gradient(135deg, #8b7b9b, #6a5a7a);
+  color: var(--gentle-cream);
+  border-color: #8b7b9b;
+  box-shadow: 0 2px 8px rgba(139, 123, 155, 0.3);
 }
 
 .btn-celebration:hover {
@@ -843,4 +857,55 @@
 .card-memory:hover {
   border-color: var(--memory-lavender);
   box-shadow: 0 8px 32px rgba(193, 172, 233, 0.3);
+}
+
+/* === Enhanced Button Variants === */
+.btn-large {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--text-lg);
+  border-radius: var(--radius-lg);
+}
+
+.btn-fiesta {
+  background: linear-gradient(135deg, var(--marigold-orange), var(--fiesta-coral));
+  color: var(--pure-white);
+  border: 2px solid var(--marigold-orange);
+  box-shadow: var(--shadow-marigold);
+}
+
+.btn-fiesta:hover {
+  background: linear-gradient(135deg, var(--cempasuchil-gold), var(--familia-pink));
+  box-shadow: var(--shadow-candle);
+  transform: translateY(-2px);
+  border-color: var(--cempasuchil-gold);
+}
+
+.btn-spirit {
+  background: linear-gradient(135deg, var(--spirit-purple), var(--papel-picado-blue));
+  color: var(--pure-white);
+  border: 2px solid var(--spirit-purple);
+  box-shadow: var(--shadow-spirit);
+}
+
+.btn-spirit:hover {
+  background: linear-gradient(135deg, var(--copal-smoke), var(--celebration-teal));
+  box-shadow: var(--shadow-celebration);
+  transform: translateY(-2px);
+  border-color: var(--copal-smoke);
+}
+
+/* === Hero-Specific Styling === */
+.hero-section .btn {
+  min-width: 180px;
+  font-weight: var(--weight-bold);
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.hero-section .btn span:first-child {
+  margin-right: var(--space-xs);
+}
+
+.hero-section .btn span:last-child {
+  font-size: var(--text-lg);
 } 
