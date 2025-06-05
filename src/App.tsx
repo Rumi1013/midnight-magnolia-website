@@ -15,6 +15,7 @@ import ShopSection from './components/ShopSection'
 import CommunitySection from './components/CommunitySection'
 import PortfolioSection from './components/PortfolioSection'
 import BlogSection from './components/BlogSection'
+import TraumaInformedAI from './components/TraumaInformedAI'
 import { PerformanceProvider } from './context/PerformanceContext'
 
 function App() {
@@ -107,6 +108,8 @@ function App() {
         return <PortfolioSection />
       case 'blog':
         return <BlogSection />
+      case 'trauma-ai':
+        return <TraumaInformedAI />
       case 'contact':
         return renderContact()
       default:
