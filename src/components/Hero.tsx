@@ -134,14 +134,14 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           left: 0;
           right: 0;
           bottom: 0;
-          z-index: 0;
+          z-index: -2;
         }
 
         .hero-bg-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 0.15;
+          opacity: 0.1;
           filter: sepia(20%) hue-rotate(35deg) saturate(1.2);
         }
 
@@ -153,10 +153,11 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           bottom: 0;
           background: linear-gradient(
             135deg,
-            rgba(26, 35, 50, 0.8) 0%,
-            rgba(10, 25, 41, 0.9) 50%,
-            rgba(30, 40, 52, 0.7) 100%
+            rgba(26, 35, 50, 0.9) 0%,
+            rgba(10, 25, 41, 0.95) 50%,
+            rgba(30, 40, 52, 0.9) 100%
           );
+          z-index: -1;
         }
         
         .hero-content {

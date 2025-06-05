@@ -17,6 +17,30 @@
   --muted-gold: #b8941f;
   --contrast-gold: #f4d03f;
   
+  /* Complementary Colors for Enhanced Contrast */
+  --deep-purple: #4a2c5a;
+  --mystic-teal: #2d5a6b;
+  --burnt-orange: #b8541f;
+  --forest-green: #3d5a2c;
+  --dusty-rose: #a55b6b;
+  --copper-bronze: #8b4513;
+  --midnight-blue: #1a2456;
+  --amethyst: #6b4c9a;
+  
+  /* Sunset/Sunrise Palette - Your Favorites */
+  --sunset-orange: #ff7b42;
+  --sunrise-coral: #ff6b7d;
+  --twilight-purple: #7b68ee;
+  --dawn-pink: #ff8fa3;
+  --dusk-blue: #4a6fa5;
+  --golden-hour: #ffb347;
+  --lavender-dream: #c59bff;
+  --rose-quartz: #f7a4a4;
+  --periwinkle: #a2a8ff;
+  --peach-glow: #ffab91;
+  --violet-mist: #9b59b6;
+  --sky-blush: #ffc0cb;
+  
   /* Semantic Colors - Improved Contrast */
   --text-primary: var(--pure-white);
   --text-secondary: rgba(255, 255, 255, 0.85);
@@ -24,6 +48,10 @@
   --text-on-light: var(--night-primary);
   --accent-primary: var(--contrast-gold);
   --accent-secondary: var(--sage-green);
+  --accent-tertiary: var(--dawn-pink);
+  --accent-quaternary: var(--twilight-purple);
+  --accent-sunset: var(--sunset-orange);
+  --accent-sunrise: var(--sunrise-coral);
   
   /* Background Colors - Better Separation */
   --bg-primary: var(--night-primary);
@@ -34,12 +62,21 @@
   --bg-glass: rgba(255, 255, 255, 0.08);
   --bg-glass-hover: rgba(255, 255, 255, 0.12);
   --bg-highlight: rgba(244, 208, 63, 0.1);
+  --bg-complement: linear-gradient(135deg, var(--twilight-purple) 0%, var(--dusk-blue) 100%);
+  --bg-accent: linear-gradient(135deg, var(--sunset-orange) 0%, var(--dawn-pink) 100%);
+  --bg-sunrise: linear-gradient(135deg, var(--golden-hour) 0%, var(--sunrise-coral) 50%, var(--twilight-purple) 100%);
+  --bg-sunset: linear-gradient(135deg, var(--sunset-orange) 0%, var(--violet-mist) 50%, var(--dusk-blue) 100%);
   
   /* Border Colors - Enhanced Visibility */
   --border-primary: rgba(244, 208, 63, 0.3);
   --border-secondary: rgba(255, 255, 255, 0.15);
   --border-accent: var(--contrast-gold);
   --border-muted: rgba(255, 255, 255, 0.08);
+  --border-complement: rgba(139, 69, 19, 0.4);
+  --border-mystic: rgba(45, 90, 107, 0.4);
+  --border-sunset: rgba(255, 123, 66, 0.4);
+  --border-sunrise: rgba(255, 107, 125, 0.4);
+  --border-twilight: rgba(123, 104, 238, 0.4);
   
   /* Spacing Scale */
   --space-xs: 0.5rem;
@@ -82,6 +119,14 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 20px rgba(244, 208, 63, 0.4);
   --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-purple: 0 0 25px rgba(74, 44, 90, 0.3);
+  --shadow-teal: 0 0 25px rgba(45, 90, 107, 0.3);
+  --shadow-rose: 0 0 25px rgba(165, 91, 107, 0.3);
+  --shadow-sunset: 0 0 30px rgba(255, 123, 66, 0.4);
+  --shadow-sunrise: 0 0 30px rgba(255, 107, 125, 0.4);
+  --shadow-twilight: 0 0 30px rgba(123, 104, 238, 0.4);
+  --shadow-dawn: 0 0 25px rgba(255, 143, 163, 0.4);
+  --shadow-golden: 0 0 25px rgba(255, 179, 71, 0.4);
   
   /* Transitions */
   --transition-fast: 150ms ease;

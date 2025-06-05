@@ -313,7 +313,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
           visibility: hidden;
           transform: translateY(-10px);
           transition: all var(--transition-normal);
-          z-index: var(--z-fixed);
+          z-index: 9999;
           padding: var(--space-xs);
         }
 
