@@ -27,15 +27,23 @@ function App() {
     
     // Add smooth scroll with offset for sticky header
     setTimeout(() => {
-      const element = document.getElementById('main-content')
-      if (element) {
-        const headerHeight = 120 // Approximate header height + padding
-        const elementPosition = element.offsetTop - headerHeight
-        
+      if (section === 'home') {
         window.scrollTo({
-          top: section === 'home' ? 0 : elementPosition,
+          top: 0,
           behavior: 'smooth'
         })
+      } else {
+        // Scroll to top of main content with header offset
+        const headerHeight = 80 // Header height in pixels
+        const yOffset = -headerHeight
+        const element = document.getElementById('main-content')
+        if (element) {
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+          window.scrollTo({
+            top: y,
+            behavior: 'smooth'
+          })
+        }
       }
     }, 100)
   }

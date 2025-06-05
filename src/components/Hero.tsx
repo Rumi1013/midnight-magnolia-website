@@ -13,7 +13,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           {/* Background Images */}
           <div className="hero-visual-bg">
             <img 
-              src="/images/gallery/southern-gothic-mansion-night.png" 
+              src="/images/gallery/personal-photo-1.jpg" 
               alt="Southern Gothic mansion at night"
               className="hero-bg-image"
             />
@@ -38,6 +38,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           
           <div className="hero-actions animate-slide-up">
             <button 
+              className="btn btn-fiesta"
+              onClick={() => onNavigate('justice-resources')}
+            >
+              <span>Justice Resources</span>
+              <span>⚖️</span>
+            </button>
+            <button 
               className="btn btn-primary"
               onClick={() => onNavigate('services')}
             >
@@ -56,29 +63,35 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           {/* Enhanced Feature Cards with Visual Elements */}
           <div className="hero-features">
             <div className="feature-grid grid grid-3 gap-lg">
-              <div className="feature-card card" onClick={() => onNavigate('services')}>
-                <div className="feature-icon">🕸️</div>
-                <div className="feature-visual">
-                  <img src="/images/gallery/stars-glyph.png" alt="Stars symbol" className="feature-symbol" />
+              <div className="feature-card card card-marigold" onClick={() => onNavigate('justice-resources')}>
+                <div className="feature-image">
+                  <img src="/images/gallery/mystical-logo.png" alt="Justice resources" className="feature-bg" />
                 </div>
-                <h3 className="text-h3">Web Sanctuaries</h3>
-                <p className="text-caption">Digital spaces that feel like coming home</p>
+                <div className="feature-content">
+                  <div className="feature-icon">⚖️</div>
+                  <h3 className="text-h3">Justice Resources</h3>
+                  <p className="text-caption">Soros Fellowship legacy - free legal aid tools</p>
+                </div>
+              </div>
+              <div className="feature-card card card-spirit" onClick={() => onNavigate('services')}>
+                <div className="feature-image">
+                  <img src="/images/gallery/gothic-digital-planner.png" alt="Digital services" className="feature-bg" />
+                </div>
+                <div className="feature-content">
+                  <div className="feature-icon">🕸️</div>
+                  <h3 className="text-h3">Web Sanctuaries</h3>
+                  <p className="text-caption">Digital spaces that feel like coming home</p>
+                </div>
               </div>
               <div className="feature-card card" onClick={() => onNavigate('trauma-ai')}>
-                <div className="feature-icon">🧠</div>
-                <div className="feature-visual">
-                  <img src="/images/gallery/tarot-symbol.png" alt="Tarot symbol" className="feature-symbol" />
+                <div className="feature-image">
+                  <img src="/images/gallery/personal-photo-2.jpg" alt="Trauma-informed design" className="feature-bg" />
                 </div>
-                <h3 className="text-h3">Trauma-Informed AI</h3>
-                <p className="text-caption">Intelligence systems that prioritize healing</p>
-              </div>
-              <div className="feature-card card" onClick={() => onNavigate('gallery')}>
-                <div className="feature-icon">🎨</div>
-                <div className="feature-visual">
-                  <img src="/images/gallery/magnolia-flower.png" alt="Magnolia flower" className="feature-symbol" />
+                <div className="feature-content">
+                  <div className="feature-icon">🧠</div>
+                  <h3 className="text-h3">Trauma-Informed AI</h3>
+                  <p className="text-caption">Intelligence systems that prioritize healing</p>
                 </div>
-                <h3 className="text-h3">Sacred Design</h3>
-                <p className="text-caption">Visuals that carry meaning and intention</p>
               </div>
             </div>
           </div>
@@ -216,7 +229,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           border-color: var(--accent-primary);
         }
 
-        .feature-visual {
+        .feature-image {
           position: absolute;
           top: -20px;
           right: -20px;
@@ -230,7 +243,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           filter: brightness(0) invert(1);
         }
 
-        .feature-card:hover .feature-visual {
+        .feature-card:hover .feature-image {
           opacity: 0.2;
           transform: scale(1.1);
         }

@@ -24,7 +24,7 @@ const JusticeResources: React.FC = () => {
       id: 'parole',
       title: 'Parole Package Guidelines',
       icon: '📋',
-      description: 'Comprehensive guides to help incarcerated individuals and their families develop effective parole packages that tell their story and demonstrate readiness for release.',
+      description: 'Comprehensive guides to help incarcerated individuals and their families develop effective parole packages that tell their story and demonstrate readiness for release. Proper preparation can significantly reduce legal consultation costs and improve hearing outcomes.',
       resources: [
         {
           title: 'Parole Package Development Workbook',
@@ -56,7 +56,7 @@ const JusticeResources: React.FC = () => {
       id: 'arrest',
       title: 'Know Your Rights: Arrest Resources',
       icon: '🛡️',
-      description: 'Essential information for anyone facing arrest, including immediate steps, legal rights, and community support resources.',
+      description: 'Essential information for anyone facing arrest, including immediate steps, legal rights, and community support resources. Understanding your rights and proper procedures can help avoid costly mistakes and ensure better legal representation when needed.',
       resources: [
         {
           title: 'Immediate Response Checklist',
@@ -88,7 +88,7 @@ const JusticeResources: React.FC = () => {
       id: 'exodus',
       title: 'Project Exodus: Expungement & Pardons',
       icon: '🗝️',
-      description: 'Initiative developed with Black Liberation Fund, SC Legal Services, Root & Rebound, and Inspire 60 to make record clearing accessible to our communities.',
+      description: 'Initiative developed with Black Liberation Fund, SC Legal Services, Root & Rebound, and Inspire 60 to make record clearing accessible to our communities. These partnerships help navigate South Carolina\'s complex legal landscape while controlling the typically steep costs of expungement and pardon processes.',
       resources: [
         {
           title: 'Expungement Eligibility Assessment',
@@ -137,6 +137,43 @@ const JusticeResources: React.FC = () => {
             with Black Liberation Fund. These resources are offered at no cost, with donations to 
             Black Liberation Fund encouraged to sustain this work.
           </p>
+        </div>
+
+        {/* Legal Disclaimer */}
+        <div className="card" style={{ 
+          marginBottom: 'var(--space-3xl)', 
+          border: '2px solid var(--accent-secondary)',
+          background: 'var(--bg-highlight)'
+        }}>
+          <h2 className="text-h2 text-center" style={{ 
+            color: 'var(--accent-primary)', 
+            marginBottom: 'var(--space-lg)' 
+          }}>
+            ⚖️ Legal Notice & Educational Purpose
+          </h2>
+          <div className="text-center">
+            <p className="text-body" style={{ 
+              marginBottom: 'var(--space-md)',
+              fontWeight: 'var(--weight-medium)'
+            }}>
+              <strong>Educational Resources Only:</strong> All information provided here is for 
+              educational purposes only and does not substitute the advice of an attorney, which 
+              is recommended for the best outcome in any legal matter.
+            </p>
+            <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+              However, these resources are designed to help you understand the legal process, 
+              prepare necessary documentation, and navigate the system more effectively - 
+              <strong>helping you control the steep legal expenses in South Carolina</strong> by 
+              being better prepared for attorney consultations and court proceedings.
+            </p>
+            <p className="text-body" style={{ 
+              fontStyle: 'italic',
+              color: 'var(--text-secondary)'
+            }}>
+              Knowledge is power, and preparation reduces costs. These tools help you make the 
+              most of professional legal assistance when you can access it.
+            </p>
+          </div>
         </div>
 
         {/* Fellowship Context */}
@@ -284,6 +321,44 @@ const JusticeResources: React.FC = () => {
             <button className="btn btn-ghost">
               Learn About Our Approach
             </button>
+          </div>
+        </div>
+
+        {/* South Carolina Specific Challenges */}
+        <div className="card card-spirit" style={{ marginBottom: 'var(--space-3xl)' }}>
+          <h3 className="text-h2 text-center" style={{ 
+            color: 'var(--accent-primary)', 
+            marginBottom: 'var(--space-lg)' 
+          }}>
+            🏛️ Addressing South Carolina's Legal Challenges
+          </h3>
+          <div className="grid grid-3 gap-lg">
+            <div className="text-center">
+              <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>💰</div>
+              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Cost Control</h4>
+              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                Legal fees in SC can be overwhelming. Our resources help you prepare thoroughly, 
+                reducing attorney consultation time and improving case outcomes.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>📋</div>
+              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Complex Procedures</h4>
+              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                SC's legal processes can be confusing. Step-by-step guides break down complex 
+                procedures into manageable steps with clear timelines.
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🤝</div>
+              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Community Support</h4>
+              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                Partnership network provides local expertise and peer support specific to 
+                South Carolina's legal landscape and community resources.
+              </p>
+            </div>
           </div>
         </div>
 

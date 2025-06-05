@@ -39,8 +39,9 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
       submenu: [
         { id: 'shop', label: 'Digital Products', icon: '🛍️' },
         { id: 'services', label: 'Consulting', icon: '💻' },
+        { id: 'justice-resources', label: 'Justice Resources', icon: '⚖️' },
         { id: 'trauma-ai', label: 'Trauma-Informed AI', icon: '🧠' },
-        { id: 'membership', label: 'Community', icon: '��' }
+        { id: 'membership', label: 'Community', icon: '👥' }
       ]
     },
     {
