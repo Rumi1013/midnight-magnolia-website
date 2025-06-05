@@ -13,6 +13,8 @@ import AboutSection from './components/AboutSection'
 import ServicesSection from './components/ServicesSection'
 import ShopSection from './components/ShopSection'
 import CommunitySection from './components/CommunitySection'
+import PortfolioSection from './components/PortfolioSection'
+import BlogSection from './components/BlogSection'
 import { PerformanceProvider } from './context/PerformanceContext'
 
 function App() {
@@ -101,6 +103,10 @@ function App() {
         return <ShopSection />
       case 'membership':
         return <CommunitySection />
+      case 'portfolio':
+        return <PortfolioSection />
+      case 'blog':
+        return <BlogSection />
       case 'contact':
         return renderContact()
       default:

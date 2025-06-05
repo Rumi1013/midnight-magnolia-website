@@ -48,6 +48,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
       icon: '🎨',
       type: 'dropdown',
       submenu: [
+        { id: 'portfolio', label: 'Portfolio', icon: '💼' },
         { id: 'blog', label: 'Blog', icon: '📖' },
         { id: 'gallery', label: 'Art Gallery', icon: '🖼️' },
         { id: 'journal', label: 'Journal', icon: '📝' }
