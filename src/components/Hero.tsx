@@ -46,8 +46,15 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 {/* Justice Resources */}
                 <div className="product-showcase card" onClick={() => onNavigate('justice-resources')}>
                   <div className="product-visual">
-                    <div className="product-icon">⚖️</div>
-                    <div className="product-badge">FREE</div>
+                    <img 
+                      src="/images/gallery/justice-resources-visual.svg" 
+                      alt="Justice Resources"
+                      className="product-background-image"
+                    />
+                    <div className="product-overlay">
+                      <div className="product-icon">⚖️</div>
+                      <div className="product-badge">FREE</div>
+                    </div>
                   </div>
                   <h3 className="text-h3">Justice Resources</h3>
                   <p className="text-body">Soros Fellowship legacy: parole packages, arrest guides, expungement tools</p>
@@ -57,8 +64,15 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 {/* AI Document Generator */}
                 <div className="product-showcase card" onClick={() => onNavigate('trauma-ai')}>
                   <div className="product-visual">
-                    <div className="product-icon">🤖</div>
-                    <div className="product-badge">NEW</div>
+                    <img 
+                      src="/images/gallery/ai-generator-visual.svg" 
+                      alt="AI Document Generator"
+                      className="product-background-image"
+                    />
+                    <div className="product-overlay">
+                      <div className="product-icon">🤖</div>
+                      <div className="product-badge">NEW</div>
+                    </div>
                   </div>
                   <h3 className="text-h3">AI Civil Doc Generator</h3>
                   <p className="text-body">Trauma-informed AI that helps create legal documents with dignity</p>
@@ -68,8 +82,15 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 {/* Digital Archive */}
                 <div className="product-showcase card" onClick={() => onNavigate('archive')}>
                   <div className="product-visual">
-                    <div className="product-icon">📚</div>
-                    <div className="product-badge">GROWING</div>
+                    <img 
+                      src="/images/gallery/archive-visual.svg" 
+                      alt="Digital Archive"
+                      className="product-background-image"
+                    />
+                    <div className="product-overlay">
+                      <div className="product-icon">📚</div>
+                      <div className="product-badge">GROWING</div>
+                    </div>
                   </div>
                   <h3 className="text-h3">Ancestral Archive</h3>
                   <p className="text-body">693 items documenting Southern Black heritage and spiritual journeys</p>
@@ -222,23 +243,52 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         .product-visual {
           position: relative;
           margin-bottom: var(--space-lg);
+          height: 120px;
+          border-radius: var(--radius-md);
+          overflow: hidden;
+        }
+
+        .product-background-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: var(--radius-md);
+        }
+
+        .product-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(42, 52, 65, 0.3);
+          transition: all var(--transition-normal);
+        }
+
+        .product-showcase:hover .product-overlay {
+          background: rgba(42, 52, 65, 0.1);
         }
 
         .product-icon {
           font-size: 3rem;
           margin-bottom: var(--space-sm);
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .product-badge {
           position: absolute;
-          top: -10px;
-          right: -10px;
+          top: 10px;
+          right: 10px;
           background: var(--accent-primary);
           color: var(--bg-primary);
           padding: var(--space-xs) var(--space-sm);
           border-radius: var(--radius-sm);
           font-size: var(--text-xs);
           font-weight: var(--weight-bold);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .revenue-showcase {
