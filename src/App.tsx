@@ -27,27 +27,19 @@ function App() {
   const handleNavigation = (section: string) => {
     setCurrentSection(section)
     
-    // Add smooth scroll with offset for sticky header
-    setTimeout(() => {
-      if (section === 'home') {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        })
-      } else {
-        // Scroll to top of main content with proper header offset
-        const headerHeight = 120 // Increased for better clearance
-        const yOffset = -headerHeight
-        const element = document.getElementById('main-content')
-        if (element) {
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
-          window.scrollTo({
-            top: Math.max(0, y), // Ensure we don't scroll to negative position
-            behavior: 'smooth'
-          })
-        }
-      }
-    }, 100)
+    // Simple scroll to top for home, let natural padding handle other sections
+    if (section === 'home') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    } else {
+      // Just scroll to top of main content naturally - padding will handle the rest
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
   }
 
   // Initialize integrations on app load
@@ -167,9 +159,127 @@ function App() {
         </main>
         
         <footer className="app-footer">
-          <div className="container text-center">
-            <p className="text-body">Made with 💚 for healing, growth, and liberation</p>
-            <p className="text-caption">🌸 Midnight Magnolia • Where community care meets code</p>
+          <div className="container">
+            <div className="footer-content">
+              
+              {/* Footer Brand Section */}
+              <div className="footer-brand">
+                <div className="footer-logo">
+                  <img 
+                    src="/images/logos/midnight-magnolia-hero.svg" 
+                    alt="Midnight Magnolia Logo"
+                    style={{ width: '40px', height: '40px' }}
+                  />
+                  <h3 className="footer-brand-name">Midnight Magnolia</h3>
+                </div>
+                <p className="footer-tagline">A Southern Gothic Digital Sanctuary</p>
+                <p className="footer-description">
+                  Where trauma-informed AI meets community justice work. 
+                  Creating healing-centered technology for liberation.
+                </p>
+              </div>
+
+              {/* Footer Navigation */}
+              <div className="footer-nav">
+                <h4 className="footer-section-title">Explore</h4>
+                <div className="footer-links">
+                  <button className="footer-link" onClick={() => handleNavigation('services')}>Services</button>
+                  <button className="footer-link" onClick={() => handleNavigation('justice-resources')}>Justice Resources</button>
+                  <button className="footer-link" onClick={() => handleNavigation('archive')}>Digital Archive</button>
+                  <button className="footer-link" onClick={() => handleNavigation('blog')}>Stories</button>
+                  <button className="footer-link" onClick={() => handleNavigation('about')}>About</button>
+                  <button className="footer-link" onClick={() => handleNavigation('contact')}>Contact</button>
+                </div>
+              </div>
+
+              {/* Social Media & Shop Links */}
+              <div className="footer-social">
+                <h4 className="footer-section-title">Connect & Support</h4>
+                <div className="social-links">
+                  <a 
+                    href="https://www.instagram.com/midnightmagnolia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    aria-label="Follow on Instagram"
+                  >
+                    📷 Instagram
+                  </a>
+                  <a 
+                    href="https://www.tiktok.com/@midnightmagnolia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    aria-label="Follow on TikTok"
+                  >
+                    🎵 TikTok
+                  </a>
+                  <a 
+                    href="https://www.linkedin.com/in/midnightmagnolia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    aria-label="Connect on LinkedIn"
+                  >
+                    💼 LinkedIn
+                  </a>
+                  <a 
+                    href="https://github.com/midnightmagnolia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    aria-label="View on GitHub"
+                  >
+                    🔧 GitHub
+                  </a>
+                </div>
+                
+                <div className="shop-links">
+                  <a 
+                    href="https://midnightmagnolia.myshopify.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="shop-link btn btn-secondary"
+                  >
+                    🛒 Shopify Store
+                  </a>
+                  <a 
+                    href="https://www.etsy.com/shop/MidnightMagnoliaShop" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="shop-link btn btn-secondary"
+                  >
+                    🎨 Etsy Shop
+                  </a>
+                  <a 
+                    href="https://www.patreon.com/midnightmagnolia" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="shop-link btn btn-accent"
+                  >
+                    💚 Support on Patreon
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Bottom */}
+            <div className="footer-bottom">
+              <div className="footer-legal">
+                <p className="text-caption">
+                  © 2024 Midnight Magnolia. Made with 💚 for healing, growth, and liberation.
+                </p>
+                <p className="text-caption">
+                  🌸 Where community care meets code • 🌙 Trauma-informed technology for justice
+                </p>
+              </div>
+              <div className="footer-disclaimer">
+                <p className="text-caption">
+                  <strong>Legal Disclaimer:</strong> Justice resources are for educational purposes only. 
+                  Always consult with qualified legal professionals for advice specific to your situation.
+                </p>
+              </div>
+            </div>
           </div>
         </footer>
       </div>

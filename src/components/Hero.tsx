@@ -180,10 +180,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
       <style jsx>{`
         .hero-section {
-          min-height: 100vh;
+          min-height: auto; /* Remove height constraint to prevent cutoff */
           display: flex;
-          align-items: center;
-          padding: var(--space-3xl) 0;
+          align-items: flex-start; /* Align to start instead of center */
+          padding: var(--space-2xl) 0 var(--space-3xl) 0; /* Extra bottom padding */
           position: relative;
           background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
         }
