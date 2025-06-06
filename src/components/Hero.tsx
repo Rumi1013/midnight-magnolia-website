@@ -42,7 +42,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 ✨ Digital Products & Services
               </h2>
               
-              <div className="products-grid grid grid-3 gap-lg">
+              <div className="products-grid">
                 {/* Justice Resources */}
                 <div className="product-showcase card" onClick={() => onNavigate('justice-resources')}>
                   <div className="product-visual">
@@ -192,6 +192,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           width: 100%;
           max-width: 1200px;
           margin: 0 auto;
+          padding: 0 var(--space-lg); /* Add horizontal padding */
         }
 
         .hero-header {
@@ -224,6 +225,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
         .products-grid {
           margin-bottom: var(--space-2xl);
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: var(--space-lg);
+          width: 100%;
         }
 
         .product-showcase {
@@ -232,6 +237,8 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           cursor: pointer;
           transition: all var(--transition-normal);
           border: 2px solid var(--border-primary);
+          width: 100%;
+          max-width: none;
         }
 
         .product-showcase:hover {
@@ -354,12 +361,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
         @media (max-width: 768px) {
           .hero-section {
-            padding: var(--space-xl) 0;
+            padding: var(--space-lg) 0 var(--space-2xl) 0;
           }
           
-          .products-grid,
-          .revenue-grid {
+          .products-grid {
             grid-template-columns: 1fr;
+            gap: var(--space-md);
           }
           
           .stats-row {
@@ -369,6 +376,27 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           .cta-buttons {
             flex-direction: column;
             align-items: center;
+          }
+
+          .hero-main {
+            padding: 0 var(--space-md);
+          }
+
+          .revenue-grid {
+            grid-template-columns: 1fr;
+            gap: var(--space-sm);
+          }
+        }
+
+        @media (max-width: 1200px) and (min-width: 769px) {
+          .products-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          
+          .product-showcase:nth-child(3) {
+            grid-column: 1 / -1;
+            max-width: 400px;
+            margin: 0 auto;
           }
         }
       `}</style>
