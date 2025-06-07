@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/design-system.css'
+import './LogoShowcase.css'
 
 interface LogoVariation {
   id: string
@@ -92,96 +93,65 @@ const LogoShowcase: React.FC = () => {
   const filteredLogos = logoVariations.filter(logo => logo.category === selectedCategory)
 
   return (
-    <section className="section">
+    <section className="section logo-showcase">
       <div className="container">
         <div className="section-header">
           <h2 className="text-h1 animate-fade-in">🎨 Midnight Magnolia Brand Assets</h2>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up">
             A collection of our brand variations, each designed for different contexts and purposes. 
             From mystical Victorian elegance to southern gothic texture, each logo tells part of our story.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="category-filter" style={{ 
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 'var(--space-md)',
-          marginBottom: 'var(--space-3xl)',
-          flexWrap: 'wrap'
-        }}>
+        <div className="logo-category-filter">
           {categories.map((category) => (
             <button
               key={category.id}
-              className={`btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'}`}
+              className={`btn logo-category-btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'}`}
               onClick={() => setSelectedCategory(category.id)}
-              style={{ 
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 'var(--space-xs)',
-                minWidth: '120px'
-              }}
             >
-              <span style={{ fontSize: 'var(--text-lg)' }}>{category.icon}</span>
+              <span className="logo-category-icon">{category.icon}</span>
               <span>{category.label}</span>
             </button>
           ))}
         </div>
 
         {/* Selected Category Description */}
-        <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-          <h3 className="text-h3" style={{ color: 'var(--accent-primary)' }}>
+        <div className="text-center logo-category-description">
+          <h3 className="text-h3 logo-category-title">
             {categories.find(c => c.id === selectedCategory)?.icon} {categories.find(c => c.id === selectedCategory)?.label}
           </h3>
-          <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-body logo-category-text">
             {categories.find(c => c.id === selectedCategory)?.description}
           </p>
         </div>
 
         {/* Logo Grid */}
-        <div className="grid grid-3 gap-lg" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="grid grid-3 gap-lg logo-grid">
           {filteredLogos.map((logo) => (
             <div 
               key={logo.id} 
-              className="card card-hover animate-slide-up"
+              className="card card-hover animate-slide-up logo-card"
               onClick={() => setSelectedLogo(logo)}
-              style={{ cursor: 'pointer' }}
             >
-              <div style={{ 
-                background: 'var(--bg-tertiary)',
-                borderRadius: 'var(--radius-md)',
-                padding: 'var(--space-lg)',
-                marginBottom: 'var(--space-md)',
-                minHeight: '200px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
+              <div className="logo-card-image-container">
                 <img 
                   src={logo.path} 
                   alt={logo.name}
-                  style={{ 
-                    maxWidth: '100%',
-                    maxHeight: '150px',
-                    objectFit: 'contain'
-                  }}
+                  className="logo-card-image"
                 />
               </div>
               
-              <h4 className="text-h4" style={{ marginBottom: 'var(--space-sm)' }}>
+              <h4 className="text-h4 logo-card-title">
                 {logo.name}
               </h4>
               
-              <p className="text-body" style={{ 
-                color: 'var(--text-secondary)',
-                marginBottom: 'var(--space-sm)',
-                fontSize: 'var(--text-sm)'
-              }}>
+              <p className="text-body logo-card-description">
                 {logo.description}
               </p>
               
-              <div className="portfolio-tag" style={{ fontSize: 'var(--text-xs)' }}>
+              <div className="portfolio-tag logo-card-usage">
                 {logo.usage}
               </div>
             </div>
@@ -191,82 +161,37 @@ const LogoShowcase: React.FC = () => {
         {/* Logo Detail Modal */}
         {selectedLogo && (
           <div 
-            className="modal-overlay"
+            className="logo-modal-overlay"
             onClick={() => setSelectedLogo(null)}
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'rgba(0, 0, 0, 0.8)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 1000,
-              padding: 'var(--space-lg)'
-            }}
           >
             <div 
-              className="modal-content card"
+              className="modal-content card logo-modal-content"
               onClick={(e) => e.stopPropagation()}
-              style={{
-                maxWidth: '600px',
-                width: '100%',
-                maxHeight: '80vh',
-                overflow: 'auto'
-              }}
             >
-              <div style={{ 
-                background: 'var(--bg-tertiary)',
-                borderRadius: 'var(--radius-md)',
-                padding: 'var(--space-2xl)',
-                marginBottom: 'var(--space-lg)',
-                textAlign: 'center'
-              }}>
+              <div className="logo-modal-image-container">
                 <img 
                   src={selectedLogo.path} 
                   alt={selectedLogo.name}
-                  style={{ 
-                    maxWidth: '100%',
-                    maxHeight: '300px',
-                    objectFit: 'contain'
-                  }}
+                  className="logo-modal-image"
                 />
               </div>
               
-              <h3 className="text-h2" style={{ 
-                color: 'var(--accent-primary)',
-                marginBottom: 'var(--space-md)'
-              }}>
+              <h3 className="text-h2 logo-modal-title">
                 {selectedLogo.name}
               </h3>
               
-              <p className="text-body-lg" style={{ 
-                marginBottom: 'var(--space-lg)',
-                color: 'var(--text-secondary)'
-              }}>
+              <p className="text-body-lg logo-modal-description">
                 {selectedLogo.description}
               </p>
               
-              <div style={{ 
-                background: 'var(--bg-glass)',
-                padding: 'var(--space-md)',
-                borderRadius: 'var(--radius-md)',
-                marginBottom: 'var(--space-lg)'
-              }}>
-                <h4 className="text-h4" style={{ marginBottom: 'var(--space-sm)' }}>
+              <div className="logo-modal-usage-section">
+                <h4 className="text-h4 logo-modal-usage-title">
                   Usage Guidelines
                 </h4>
                 <p className="text-body">{selectedLogo.usage}</p>
               </div>
               
-              <div style={{ 
-                display: 'flex',
-                gap: 'var(--space-md)',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap'
-              }}>
+              <div className="logo-modal-actions">
                 <button 
                   className="btn btn-secondary"
                   onClick={() => window.open(selectedLogo.path, '_blank')}
@@ -289,50 +214,36 @@ const LogoShowcase: React.FC = () => {
         {/* Brand Guidelines */}
         <div className="grid grid-2 gap-lg">
           <div className="card">
-            <h3 className="text-h3" style={{ 
-              color: 'var(--accent-primary)',
-              marginBottom: 'var(--space-lg)'
-            }}>
+            <h3 className="text-h3 brand-philosophy-title">
               💮 Brand Philosophy
             </h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+            <p className="text-body collaboration-section">
               Each logo variation represents a different aspect of our healing-centered technology practice:
             </p>
-            <ul style={{ 
-              listStyle: 'none',
-              padding: 0,
-              color: 'var(--text-secondary)'
-            }}>
-              <li style={{ marginBottom: 'var(--space-sm)' }}>
+            <ul className="brand-philosophy-list">
+              <li className="brand-philosophy-item">
                 🌸 <strong>Main logos:</strong> Professional technology services
               </li>
-              <li style={{ marginBottom: 'var(--space-sm)' }}>
+              <li className="brand-philosophy-item">
                 ✨ <strong>Golden versions:</strong> Premium offerings and sacred work
               </li>
-              <li style={{ marginBottom: 'var(--space-sm)' }}>
+              <li className="brand-philosophy-item">
                 🔮 <strong>Mystical elements:</strong> Spiritual and ancestral services
               </li>
-              <li style={{ marginBottom: 'var(--space-sm)' }}>
+              <li className="brand-philosophy-item">
                 📜 <strong>Textured designs:</strong> Southern gothic storytelling
               </li>
             </ul>
           </div>
           
           <div className="card">
-            <h3 className="text-h3" style={{ 
-              color: 'var(--accent-primary)',
-              marginBottom: 'var(--space-lg)'
-            }}>
+            <h3 className="text-h3 brand-philosophy-title">
               🤝 Collaboration Assets
             </h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-lg)' }}>
+            <p className="text-body collaboration-section">
               Working with us on a project? These brand assets are available for:
             </p>
-            <div style={{ 
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-md)'
-            }}>
+            <div className="collaboration-actions">
               <button className="btn btn-secondary">
                 Download Brand Pack 📦
               </button>
@@ -340,10 +251,7 @@ const LogoShowcase: React.FC = () => {
                 Request Custom Logo 🎨
               </button>
             </div>
-            <p className="text-caption" style={{ 
-              color: 'var(--text-muted)',
-              marginTop: 'var(--space-md)'
-            }}>
+            <p className="text-caption collaboration-note">
               Please maintain brand integrity and reach out for usage guidelines.
             </p>
           </div>

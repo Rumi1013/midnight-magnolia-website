@@ -48,19 +48,24 @@ const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
     };
   }, [lastScrollY]);
 
+  // Update CSS custom properties
+  useEffect(() => {
+    const indicator = document.querySelector('.progress-indicator') as HTMLElement;
+    if (indicator) {
+      indicator.style.setProperty('--progress-width', `${scrollPercentage}%`);
+      indicator.style.setProperty('--progress-height', `${thickness}px`);
+      indicator.style.setProperty('--progress-color', color);
+    }
+  }, [scrollPercentage, thickness, color]);
+
   // Format percentage as string
   const percentageValue = Math.round(scrollPercentage);
 
   return (
-    <div className={`progress-indicator ${isVisible ? 'visible' : ''} ${scrollDirection === 'up' ? 'emphasized' : ''}`}>
-      <div 
-        className="progress-bar"
-        style={{ 
-          width: `${scrollPercentage}%`,
-          height: `${thickness}px`,
-          backgroundColor: color
-        }}
-      />
+    <div 
+      className={`progress-indicator ${isVisible ? 'visible' : ''} ${scrollDirection === 'up' ? 'emphasized' : ''}`}
+    >
+      <div className="progress-bar" />
       {showPercentage && (
         <div className="progress-percentage">
           <span>{percentageValue}%</span>

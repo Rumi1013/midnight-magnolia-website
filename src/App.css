@@ -161,8 +161,8 @@ body {
   top: 0;
   z-index: 100;
   background: rgba(42, 57, 82, 0.95);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border-bottom: 3px solid var(--warm-gold);
   padding: 1.5rem 0;
   box-shadow: var(--shadow-lg);
@@ -222,8 +222,8 @@ body {
 .mobile-menu-toggle {
   display: none;
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: var(--glass-border);
   color: var(--gentle-cream);
   font-size: 1.3rem;
@@ -311,8 +311,8 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(10px) scale(0.95);
   background: rgba(10, 25, 47, 0.95);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: var(--glass-border);
   border-radius: var(--border-radius-lg);
   min-width: 200px;
@@ -437,16 +437,16 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(10, 25, 47, 0.7);
-  backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   padding: 4rem;
   border-radius: var(--border-radius-xl);
   border: var(--glass-border);
@@ -540,8 +540,8 @@ body {
 
 .gentle-cta {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: var(--glass-border);
   color: var(--gentle-cream);
   padding: 1rem 2rem;
@@ -575,8 +575,8 @@ body {
 /* Card components */
 .service-offering, .service-preview, .contact-method, .product-category {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: var(--glass-border);
   border-radius: var(--border-radius-lg);
   padding: 3rem;
@@ -597,8 +597,8 @@ body {
 /* Text containers */
 .gentle-text, .intro-section p, .contact-intro, .products-intro, .community-intro, .gallery-intro, .tarot-intro, .blog-intro {
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   padding: 2rem;
   border-radius: var(--border-radius-lg);
   border: var(--glass-border);
@@ -617,8 +617,8 @@ body {
 
 .blog-post, .gallery-item {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   border: var(--glass-border);
   border-radius: var(--border-radius-lg);
   padding: 2.5rem;
@@ -858,8 +858,8 @@ p {
     left: 0;
     right: 0;
     background: rgba(10, 25, 47, 0.98);
-    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-top: 2px solid rgba(212, 175, 55, 0.4);
     box-shadow: var(--shadow-xl);
     flex-direction: column;
@@ -1028,6 +1028,12 @@ p {
   font-size: 0.9rem;
 }
 
+/* Contact section styles */
+.contact-intro-text {
+  max-width: 600px;
+  margin: 0 auto var(--space-2xl);
+}
+
 /* Print styles */
 @media print {
   .main-header {
@@ -1051,4 +1057,25 @@ p {
     background: none;
     color: #000;
   }
-} 
+}
+
+/* === Contact Section Styles === */
+.contact-icon {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-md);
+}
+
+.contact-text {
+  margin-bottom: var(--space-lg);
+}
+
+.contact-card-centered {
+  margin-top: var(--space-2xl);
+  text-align: center;
+}
+
+/* === Footer Styles === */
+.footer-logo-image {
+  width: 40px;
+  height: 40px;
+}

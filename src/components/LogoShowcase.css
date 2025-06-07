@@ -1,0 +1,171 @@
+/* LogoShowcase Component Styles */
+
+.logo-showcase {
+  /* Base section styles inherited from design-system.css */
+}
+
+.logo-category-filter {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-3xl);
+  flex-wrap: wrap;
+}
+
+.logo-category-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 120px;
+}
+
+.logo-category-icon {
+  font-size: var(--text-lg);
+}
+
+.logo-category-description {
+  margin-bottom: var(--space-2xl);
+}
+
+.logo-category-title {
+  color: var(--accent-primary);
+}
+
+.logo-category-text {
+  color: var(--text-secondary);
+}
+
+.logo-grid {
+  margin-bottom: var(--space-3xl);
+}
+
+.logo-card {
+  cursor: pointer;
+}
+
+.logo-card-image-container {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-card-image {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.logo-card-title {
+  margin-bottom: var(--space-sm);
+}
+
+.logo-card-description {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-sm);
+}
+
+.logo-card-usage {
+  font-size: var(--text-xs);
+}
+
+/* Modal Styles */
+.logo-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-lg);
+}
+
+.logo-modal-content {
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.logo-modal-image-container {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.logo-modal-image {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.logo-modal-title {
+  color: var(--accent-primary);
+  margin-bottom: var(--space-md);
+}
+
+.logo-modal-description {
+  margin-bottom: var(--space-lg);
+  color: var(--text-secondary);
+}
+
+.logo-modal-usage-section {
+  background: var(--bg-glass);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+}
+
+.logo-modal-usage-title {
+  margin-bottom: var(--space-sm);
+}
+
+.logo-modal-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Brand Guidelines Styles */
+.brand-philosophy-list {
+  list-style: none;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.brand-philosophy-item {
+  margin-bottom: var(--space-sm);
+}
+
+.brand-philosophy-title {
+  color: var(--accent-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.collaboration-section {
+  margin-bottom: var(--space-lg);
+}
+
+.collaboration-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.collaboration-note {
+  color: var(--text-muted);
+  margin-top: var(--space-md);
+} 

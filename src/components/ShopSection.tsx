@@ -137,57 +137,37 @@ const ShopSection: React.FC = () => {
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            gap: 'var(--space-md)',
-            marginBottom: 'var(--space-lg)'
-          }}>
+          <div className="shop-header">
             <img 
               src="/images/logos/goldenFinal22_MM_25.png" 
               alt="Midnight Magnolia Premium"
-              style={{ 
-                width: '50px', 
-                height: '50px',
-                filter: 'drop-shadow(0 0 8px #d4af37)'
-              }}
+              className="shop-header-logo-main"
             />
             <h2 className="text-h1 animate-fade-in">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <div className="shop-header-title">
                 <img 
                   src="/images/logos/clearFinal2_MM_25.jpeg" 
                   alt="Digital Sanctuary"
-                  style={{ 
-                    width: '42px', 
-                    height: '42px',
-                    opacity: 0.8
-                  }}
+                  className="shop-header-logo-secondary"
                 />
                 Digital Sanctuary Shop
               </div>
             </h2>
           </div>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up shop-description">
             Healing-centered digital tools, spiritual resources, and community care materials. 
             Each purchase supports ongoing justice work and community organizing efforts.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="category-filter" style={{ 
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 'var(--space-sm)',
-          marginBottom: 'var(--space-3xl)',
-          flexWrap: 'wrap'
-        }}>
+        <div className="category-filter shop-category-filter">
           {categories.map((category) => (
             <button
               key={category.id}
-              className={`btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'}`}
+              type="button"
+              className={`btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'} shop-category-button`}
               onClick={() => setSelectedCategory(category.id)}
-              style={{ fontSize: 'var(--text-sm)' }}
             >
               {category.icon} {category.label}
             </button>
@@ -195,42 +175,16 @@ const ShopSection: React.FC = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="products-grid grid grid-3 gap-lg" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="products-grid grid grid-3 gap-lg shop-products-grid">
           {filteredProducts.map((product) => (
-            <article key={product.id} className="product-card card animate-slide-up" style={{ 
-              position: 'relative',
-              minHeight: '500px'
-            }}>
+            <article key={product.id} className="product-card card animate-slide-up shop-product-card">
               {product.bestseller && (
-                <div style={{
-                  position: 'absolute',
-                  top: 'var(--space-sm)',
-                  right: 'var(--space-sm)',
-                  background: 'var(--accent-primary)',
-                  color: 'var(--night-primary)',
-                  padding: 'var(--space-xs) var(--space-sm)',
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: 'var(--text-xs)',
-                  fontWeight: 'var(--weight-bold)',
-                  zIndex: 2
-                }}>
+                <div className="shop-bestseller-badge">
                   ✨ BESTSELLER
                 </div>
               )}
 
-              <div className="product-image" style={{
-                width: '100%',
-                height: '200px',
-                background: 'var(--bg-glass)',
-                borderRadius: 'var(--radius-md)',
-                marginBottom: 'var(--space-md)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 'var(--text-4xl)',
-                color: 'var(--accent-primary)',
-                border: '1px solid rgba(212, 175, 55, 0.2)'
-              }}>
+              <div className="product-image shop-product-image">
                 {product.category === 'business' && '💼'}
                 {product.category === 'design' && '🎨'}
                 {product.category === 'automation' && '🤖'}
@@ -238,86 +192,56 @@ const ShopSection: React.FC = () => {
                 {product.category === 'planning' && '📝'}
               </div>
 
-              <div className="product-header" style={{ marginBottom: 'var(--space-md)' }}>
-                <h3 className="text-h3" style={{ marginBottom: 'var(--space-xs)' }}>
+              <div className="product-header shop-product-header">
+                <h3 className="text-h3 shop-product-title">
                   {product.title}
                 </h3>
-                <div className="product-pricing" style={{ marginBottom: 'var(--space-sm)' }}>
-                  <span className="current-price text-h2" style={{ 
-                    color: 'var(--accent-primary)',
-                    fontWeight: 'var(--weight-bold)'
-                  }}>
+                <div className="product-pricing shop-product-pricing">
+                  <span className="current-price text-h2 shop-current-price">
                     {product.price}
                   </span>
                   {product.originalPrice && (
-                    <span className="original-price text-body" style={{ 
-                      textDecoration: 'line-through',
-                      color: 'var(--text-muted)',
-                      marginLeft: 'var(--space-sm)'
-                    }}>
+                    <span className="original-price text-body shop-original-price">
                       {product.originalPrice}
                     </span>
                   )}
                 </div>
-                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-body shop-product-description">
                   {product.description}
                 </p>
               </div>
 
-              <div className="product-features" style={{ marginBottom: 'var(--space-lg)' }}>
-                <h4 className="text-h3" style={{ 
-                  marginBottom: 'var(--space-sm)',
-                  color: 'var(--accent-primary)',
-                  fontSize: 'var(--text-lg)'
-                }}>
+              <div className="product-features shop-product-features">
+                <h4 className="text-h3 shop-features-title">
                   What's Included:
                 </h4>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
+                <ul className="shop-features-list">
                   {product.features.slice(0, 4).map((feature, index) => (
                     <li 
                       key={index}
-                      className="text-body"
-                      style={{ 
-                        marginBottom: 'var(--space-xs)',
-                        paddingLeft: 'var(--space-sm)',
-                        position: 'relative',
-                        fontSize: 'var(--text-sm)'
-                      }}
+                      className="text-body shop-feature-item"
                     >
-                      <span style={{ 
-                        position: 'absolute',
-                        left: 0,
-                        color: 'var(--accent-primary)'
-                      }}>
+                      <span className="shop-feature-icon">
                         ✨
                       </span>
                       {feature}
                     </li>
                   ))}
                   {product.features.length > 4 && (
-                    <li className="text-caption" style={{ 
-                      fontStyle: 'italic',
-                      color: 'var(--text-muted)',
-                      paddingLeft: 'var(--space-sm)'
-                    }}>
+                    <li className="text-caption shop-additional-features">
                       + {product.features.length - 4} more features
                     </li>
                   )}
                 </ul>
               </div>
 
-              <div style={{ 
-                position: 'absolute',
-                bottom: 'var(--space-lg)',
-                left: 'var(--space-lg)',
-                right: 'var(--space-lg)'
-              }}>
+              <div className="shop-product-cta">
                 {product.comingSoon ? (
-                  <button className="btn btn-ghost" style={{ width: '100%' }} disabled>
+                  <button type="button" className="btn btn-ghost shop-cta-button" disabled>
                     🌱 Sprouting Soon
                   </button>
                 ) : (
-                  <button className="btn btn-primary" style={{ width: '100%' }}>
+                  <button type="button" className="btn btn-primary shop-cta-button">
                     Add to Cart 🛒
                   </button>
                 )}
@@ -327,10 +251,10 @@ const ShopSection: React.FC = () => {
         </div>
 
         {/* Shop Features */}
-        <div className="shop-features grid grid-3 gap-lg" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="shop-features grid grid-3 gap-lg shop-features-section">
           <div className="feature-card card text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-md)' }}>💝</div>
-            <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Instant Access</h3>
+            <div className="shop-feature-icon-large">💝</div>
+            <h3 className="text-h3 shop-feature-title">Instant Access</h3>
             <p className="text-body">
               Download immediately after purchase. All products include lifetime updates 
               and access to our private community.
@@ -338,8 +262,8 @@ const ShopSection: React.FC = () => {
           </div>
           
           <div className="feature-card card text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-md)' }}>🌙</div>
-            <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>ADHD-Friendly</h3>
+            <div className="shop-feature-icon-large">🌙</div>
+            <h3 className="text-h3 shop-feature-title">ADHD-Friendly</h3>
             <p className="text-body">
               Every resource is designed with neurodivergent entrepreneurs in mind—
               clear, accessible, and gentle on your nervous system.
@@ -347,8 +271,8 @@ const ShopSection: React.FC = () => {
           </div>
           
           <div className="feature-card card text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-md)' }}>💚</div>
-            <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>30-Day Guarantee</h3>
+            <div className="shop-feature-icon-large">💚</div>
+            <h3 className="text-h3 shop-feature-title">30-Day Guarantee</h3>
             <p className="text-body">
               If our products don't serve your healing journey, we'll refund your investment
               with no questions asked.
@@ -358,34 +282,29 @@ const ShopSection: React.FC = () => {
 
         {/* Community Support */}
         <div className="card text-center">
-          <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-lg)' }}>
+          <h3 className="text-h2 shop-community-title">
             🌸 Join Our Creative Community
           </h3>
-          <p className="text-body-lg" style={{ marginBottom: 'var(--space-lg)' }}>
+          <p className="text-body-lg shop-community-description">
             Every purchase includes access to our private Discord community where you can 
             connect with other healing-centered entrepreneurs, get implementation support, 
             and share your journey.
           </p>
-          <div className="community-stats" style={{ 
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 'var(--space-xl)',
-            marginBottom: 'var(--space-lg)'
-          }}>
+          <div className="community-stats shop-community-stats">
             <div className="stat">
-              <div className="text-h2" style={{ color: 'var(--accent-primary)' }}>500+</div>
+              <div className="text-h2 shop-stat-number">500+</div>
               <div className="text-caption">Community Members</div>
             </div>
             <div className="stat">
-              <div className="text-h2" style={{ color: 'var(--accent-primary)' }}>4.9/5</div>
+              <div className="text-h2 shop-stat-number">4.9/5</div>
               <div className="text-caption">Average Rating</div>
             </div>
             <div className="stat">
-              <div className="text-h2" style={{ color: 'var(--accent-primary)' }}>98%</div>
+              <div className="text-h2 shop-stat-number">98%</div>
               <div className="text-caption">Satisfaction Rate</div>
             </div>
           </div>
-          <button className="btn btn-secondary">
+          <button type="button" className="btn btn-secondary">
             Learn More About Community
           </button>
         </div>

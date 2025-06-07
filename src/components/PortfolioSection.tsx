@@ -264,48 +264,32 @@ const PortfolioSection: React.FC = () => {
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            gap: 'var(--space-md)',
-            marginBottom: 'var(--space-lg)'
-          }}>
+          <div className="portfolio-header">
             <img 
               src="/images/logos/clearFinal6_MM_25.jpeg" 
               alt="Sacred Tech"
-              style={{ 
-                width: '40px', 
-                height: '40px',
-                opacity: 0.8
-              }}
+              className="portfolio-header-logo"
             />
             <h2 className="text-h1 animate-fade-in">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <div className="portfolio-header-title">
                 Sacred Tech Portfolio
               </div>
             </h2>
           </div>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up portfolio-description">
             Technology projects rooted in community care, justice organizing, and healing-centered design. 
             Each project tells a story of how code can serve liberation.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="category-filter" style={{ 
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 'var(--space-sm)',
-          marginBottom: 'var(--space-3xl)',
-          flexWrap: 'wrap'
-        }}>
+        <div className="category-filter portfolio-category-filter">
           {categories.map((category) => (
             <button
               key={category.id}
-              className={`btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'}`}
+              type="button"
+              className={`btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'} portfolio-category-button`}
               onClick={() => setSelectedCategory(category.id)}
-              style={{ fontSize: 'var(--text-sm)' }}
             >
               {category.icon} {category.label}
             </button>
@@ -316,15 +300,7 @@ const PortfolioSection: React.FC = () => {
         <div className="portfolio-grid">
           {filteredItems.map((item) => (
             <article key={item.id} className="portfolio-item animate-slide-up">
-              <div className="portfolio-image" style={{
-                background: 'var(--bg-tertiary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-primary)',
-                fontSize: 'var(--text-4xl)',
-                position: 'relative'
-              }}>
+              <div className="portfolio-image portfolio-image-container">
                 {item.category === 'community-justice' && '✊🏾'}
                 {item.category === 'web-development' && '🕸️'}
                 {item.category === 'brand-automation' && '🤖'}
@@ -333,18 +309,7 @@ const PortfolioSection: React.FC = () => {
                 {item.category === 'education' && '📚'}
                 {item.category === 'community-platform' && '💫'}
                 
-                <div style={{
-                  position: 'absolute',
-                  top: 'var(--space-md)',
-                  right: 'var(--space-md)',
-                  background: 'var(--bg-highlight)',
-                  color: 'var(--accent-primary)',
-                  padding: 'var(--space-xs) var(--space-sm)',
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: 'var(--text-sm)',
-                  fontWeight: 'var(--weight-semibold)',
-                  border: '1px solid var(--border-primary)'
-                }}>
+                <div className="portfolio-year-badge">
                   {item.year}
                 </div>
               </div>
@@ -363,50 +328,29 @@ const PortfolioSection: React.FC = () => {
                   )}
                 </div>
 
-                <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+                <h3 className="text-h3 portfolio-item-title">
                   {item.title}
                 </h3>
                 
-                <p className="text-caption" style={{ 
-                  color: 'var(--accent-primary)',
-                  marginBottom: 'var(--space-md)',
-                  fontWeight: 'var(--weight-medium)'
-                }}>
+                <p className="text-caption portfolio-client">
                   {item.client}
                 </p>
 
-                <p className="text-body" style={{ 
-                  marginBottom: 'var(--space-lg)',
-                  color: 'var(--text-secondary)'
-                }}>
+                <p className="text-body portfolio-item-description">
                   {item.description}
                 </p>
 
-                <div className="project-details" style={{ marginBottom: 'var(--space-lg)' }}>
-                  <h4 className="text-h3" style={{ 
-                    fontSize: 'var(--text-lg)',
-                    marginBottom: 'var(--space-sm)',
-                    color: 'var(--accent-primary)'
-                  }}>
+                <div className="project-details portfolio-project-details">
+                  <h4 className="text-h3 portfolio-results-title">
                     Key Results:
                   </h4>
-                  <ul style={{ listStyle: 'none', padding: 0 }}>
+                  <ul className="portfolio-results-list">
                     {item.results.map((result, index) => (
                       <li 
                         key={index}
-                        className="text-body"
-                        style={{ 
-                          marginBottom: 'var(--space-xs)',
-                          paddingLeft: 'var(--space-sm)',
-                          position: 'relative',
-                          fontSize: 'var(--text-sm)'
-                        }}
+                        className="text-body portfolio-result-item"
                       >
-                        <span style={{ 
-                          position: 'absolute',
-                          left: 0,
-                          color: 'var(--accent-primary)'
-                        }}>
+                        <span className="portfolio-result-icon">
                           ✨
                         </span>
                         {result}
@@ -416,35 +360,22 @@ const PortfolioSection: React.FC = () => {
                 </div>
 
                 {item.testimonial && (
-                  <div className="testimonial" style={{
-                    background: 'var(--bg-highlight)',
-                    padding: 'var(--space-md)',
-                    borderRadius: 'var(--radius-md)',
-                    border: '1px solid var(--border-primary)',
-                    marginBottom: 'var(--space-lg)'
-                  }}>
-                    <p className="text-body" style={{ 
-                      fontStyle: 'italic',
-                      marginBottom: 'var(--space-sm)',
-                      color: 'var(--text-secondary)'
-                    }}>
+                  <div className="testimonial portfolio-testimonial">
+                    <p className="text-body portfolio-testimonial-quote">
                       "{item.testimonial.quote}"
                     </p>
                     <div className="testimonial-author">
-                      <p className="text-caption" style={{ 
-                        color: 'var(--accent-primary)',
-                        fontWeight: 'var(--weight-semibold)'
-                      }}>
+                      <p className="text-caption portfolio-testimonial-author">
                         — {item.testimonial.author}
                       </p>
-                      <p className="text-caption" style={{ color: 'var(--text-muted)' }}>
+                      <p className="text-caption portfolio-testimonial-role">
                         {item.testimonial.role}
                       </p>
                     </div>
                   </div>
                 )}
 
-                <button className="btn btn-secondary" style={{ width: '100%' }}>
+                <button type="button" className="btn btn-secondary portfolio-case-study-button">
                   View Case Study →
                 </button>
               </div>
@@ -456,30 +387,18 @@ const PortfolioSection: React.FC = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <h3 className="text-h2" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+          <h3 className="text-h2 portfolio-cta-title">
             🌱 Ready to Create Something Sacred Together?
           </h3>
-          <p className="text-body-lg" style={{ 
-            marginBottom: 'var(--space-lg)',
-            maxWidth: '600px',
-            margin: '0 auto var(--space-lg)'
-          }}>
+          <p className="text-body-lg portfolio-cta-description">
             Every project begins with listening. Let's have a conversation about your vision, 
             your community's needs, and how technology can serve your mission.
           </p>
-          <div style={{ 
-            display: 'flex', 
-            gap: 'var(--space-md)', 
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-          }}>
-            <button className="btn btn-primary">
+          <div className="portfolio-cta-buttons">
+            <button type="button" className="btn btn-primary">
               Schedule Sacred Pause Call 📅
             </button>
-            <button className="btn btn-secondary">
+            <button type="button" className="btn btn-secondary">
               View Services 🌿
             </button>
           </div>

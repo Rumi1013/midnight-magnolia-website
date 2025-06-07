@@ -130,38 +130,24 @@ const JusticeResources: React.FC = () => {
     <section className="section">
       <div className="container">
         <div className="section-header">
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            gap: 'var(--space-md)',
-            marginBottom: 'var(--space-lg)'
-          }}>
+          <div className="justice-header">
             <img 
               src="/images/logos/clearFinal4_MM_25.jpeg" 
               alt="Justice Work"
-              style={{ 
-                width: '38px', 
-                height: '38px',
-                opacity: 0.8
-              }}
+              className="justice-header-logo"
             />
             <h2 className="text-h1 animate-fade-in">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <div className="justice-header-title">
                 <img 
                   src="/images/logos/clearFinal4_MM_25.jpeg" 
                   alt="Justice Work"
-                  style={{ 
-                    width: '38px', 
-                    height: '38px',
-                    opacity: 0.8
-                  }}
+                  className="justice-header-logo"
                 />
                 Justice Resources
               </div>
             </h2>
           </div>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up justice-description">
             Born from my Soros Justice Fellowship work, these resources help people navigate 
             the legal system with dignity and access. Educational materials to demystify complex 
             processes and support community liberation.
@@ -169,36 +155,23 @@ const JusticeResources: React.FC = () => {
         </div>
 
         {/* Legal Disclaimer */}
-        <div className="card" style={{ 
-          marginBottom: 'var(--space-3xl)', 
-          border: '2px solid var(--accent-secondary)',
-          background: 'var(--bg-highlight)'
-        }}>
-          <h2 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+        <div className="card justice-legal-disclaimer">
+          <h2 className="text-h2 text-center justice-disclaimer-title">
             ⚖️ Legal Notice & Educational Purpose
           </h2>
           <div className="text-center">
-            <p className="text-body" style={{ 
-              marginBottom: 'var(--space-md)',
-              fontWeight: 'var(--weight-medium)'
-            }}>
+            <p className="text-body justice-disclaimer-text">
               <strong>Educational Resources Only:</strong> All information provided here is for 
               educational purposes only and does not substitute the advice of an attorney, which 
               is recommended for the best outcome in any legal matter.
             </p>
-            <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+            <p className="text-body justice-disclaimer-body">
               However, these resources are designed to help you understand the legal process, 
               prepare necessary documentation, and navigate the system more effectively - 
               <strong>helping you control the steep legal expenses in South Carolina</strong> by 
               being better prepared for attorney consultations and court proceedings.
             </p>
-            <p className="text-body" style={{ 
-              fontStyle: 'italic',
-              color: 'var(--text-secondary)'
-            }}>
+            <p className="text-body justice-disclaimer-italic">
               Knowledge is power, and preparation reduces costs. These tools help you make the 
               most of professional legal assistance when you can access it.
             </p>
@@ -206,16 +179,13 @@ const JusticeResources: React.FC = () => {
         </div>
 
         {/* Fellowship Context */}
-        <div className="card card-marigold" style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h2 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+        <div className="card card-marigold justice-fellowship-section">
+          <h2 className="text-h2 text-center justice-fellowship-title">
             🏛️ Soros Justice Fellowship Legacy
           </h2>
           <div className="grid grid-2 gap-lg">
             <div>
-              <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+              <p className="text-body justice-fellowship-description">
                 This ecosystem emerged from my Soros Justice Fellowship research into barriers 
                 facing formerly incarcerated individuals seeking reintegration. The fellowship 
                 revealed systematic gaps in accessible legal resources and community support.
@@ -227,17 +197,17 @@ const JusticeResources: React.FC = () => {
               </p>
             </div>
             <div>
-              <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)', color: 'var(--accent-primary)' }}>
+              <h3 className="text-h3 justice-partnerships-title">
                 🤝 Community Partnerships
               </h3>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li className="text-body" style={{ marginBottom: 'var(--space-xs)' }}>
+              <ul className="justice-partnerships-list">
+                <li className="text-body justice-partnership-item">
                   • <strong>Black Liberation Fund</strong> - Community organizing and mutual aid
                 </li>
-                <li className="text-body" style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="text-body justice-partnership-item">
                   • <strong>SC Legal Services</strong> - Legal aid and advocacy
                 </li>
-                <li className="text-body" style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="text-body justice-partnership-item">
                   • <strong>Root & Rebound</strong> - National reentry expertise
                 </li>
                 <li className="text-body">
@@ -249,19 +219,17 @@ const JusticeResources: React.FC = () => {
         </div>
 
         {/* Resource Categories */}
-        <div style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h2 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-2xl)' 
-          }}>
+        <div className="justice-categories-section">
+          <h2 className="text-h2 text-center justice-categories-title">
             📚 Resource Categories
           </h2>
           
           {/* Category Navigation */}
-          <div className="flex gap-sm justify-center" style={{ marginBottom: 'var(--space-2xl)', flexWrap: 'wrap' }}>
+          <div className="flex gap-sm justify-center justice-category-nav">
             {resourceCategories.map((category) => (
               <button
                 key={category.id}
+                type="button"
                 className={`btn ${activeCategory === category.id ? 'btn-primary' : 'btn-secondary'}`}
                 onClick={() => setActiveCategory(category.id)}
               >
@@ -274,14 +242,14 @@ const JusticeResources: React.FC = () => {
           {/* Active Category Details */}
           {activeResources && (
             <div className="card card-spirit">
-              <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                <div style={{ fontSize: 'var(--text-4xl)', marginBottom: 'var(--space-md)' }}>
+              <div className="text-center justice-category-content">
+                <div className="justice-category-icon">
                   {activeResources.icon}
                 </div>
-                <h3 className="text-h2" style={{ marginBottom: 'var(--space-sm)' }}>
+                <h3 className="text-h2 justice-category-title">
                   {activeResources.title}
                 </h3>
-                <p className="text-body-lg" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-body-lg justice-category-description">
                   {activeResources.description}
                 </p>
               </div>
@@ -289,9 +257,9 @@ const JusticeResources: React.FC = () => {
               {/* Resources Grid */}
               <div className="grid grid-2 gap-lg">
                 {activeResources.resources.map((resource, index) => (
-                  <div key={index} className="card" style={{ background: 'var(--bg-card-hover)' }}>
-                    <div className="flex justify-between items-start" style={{ marginBottom: 'var(--space-sm)' }}>
-                      <h4 className="text-h3" style={{ color: 'var(--accent-primary)' }}>
+                  <div key={index} className="card justice-resource-card">
+                    <div className="flex justify-between items-start justice-resource-header">
+                      <h4 className="text-h3 justice-resource-title">
                         {resource.title}
                       </h4>
                       <span className={`portfolio-tag ${resource.status === 'available' ? 'available' : ''}`}>
@@ -299,10 +267,7 @@ const JusticeResources: React.FC = () => {
                          resource.status === 'in-development' ? '🔨 In Development' : '📅 Planning'}
                       </span>
                     </div>
-                    <p className="text-body" style={{ 
-                      color: 'var(--text-secondary)', 
-                      marginBottom: 'var(--space-md)' 
-                    }}>
+                    <p className="text-body justice-resource-description">
                       {resource.description}
                     </p>
                     <div className="flex justify-between items-center">
@@ -311,7 +276,7 @@ const JusticeResources: React.FC = () => {
                          resource.type === 'template' ? '📝 Template' :
                          resource.type === 'tool' ? '🔧 Tool' : '🤝 Partnership'}
                       </span>
-                      <button className="btn btn-ghost" style={{ fontSize: 'var(--text-sm)' }}>
+                      <button type="button" className="btn btn-ghost justice-resource-button">
                         {resource.status === 'available' ? 'Access Resource' : 'Learn More'}
                       </button>
                     </div>
@@ -323,67 +288,64 @@ const JusticeResources: React.FC = () => {
         </div>
 
         {/* Access & Support */}
-        <div className="grid grid-2 gap-lg" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="grid grid-2 gap-lg justice-support-section">
           <div className="card">
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-md)' }}>
+            <h3 className="text-h2 justice-support-title">
               💚 Free Access, Community Supported
             </h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+            <p className="text-body justice-support-description">
               All resources are provided at no cost to individuals and families navigating the 
               justice system. This work is sustained through donations to Black Liberation Fund 
               and community mutual aid.
             </p>
-            <button className="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               Support Black Liberation Fund
             </button>
           </div>
 
           <div className="card">
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-md)' }}>
+            <h3 className="text-h2 justice-support-title">
               🛡️ Trauma-Informed Approach
             </h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+            <p className="text-body justice-support-description">
               Every resource is designed with understanding of the trauma, stress, and systemic 
               barriers faced by justice-involved individuals and their families. Clear language, 
               step-by-step guidance, and emotional support are built into every tool.
             </p>
-            <button className="btn btn-ghost">
+            <button type="button" className="btn btn-ghost">
               Learn About Our Approach
             </button>
           </div>
         </div>
 
         {/* South Carolina Specific Challenges */}
-        <div className="card card-spirit" style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+        <div className="card card-spirit justice-challenges-section">
+          <h3 className="text-h2 text-center justice-challenges-title">
             🏛️ Addressing South Carolina's Legal Challenges
           </h3>
           <div className="grid grid-3 gap-lg">
             <div className="text-center">
-              <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>💰</div>
-              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Cost Control</h4>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <div className="justice-challenge-icon">💰</div>
+              <h4 className="text-h3 justice-challenge-title">Cost Control</h4>
+              <p className="text-body justice-challenge-description">
                 Legal fees in SC can be overwhelming. Our resources help you prepare thoroughly, 
                 reducing attorney consultation time and improving case outcomes.
               </p>
             </div>
             
             <div className="text-center">
-              <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>📋</div>
-              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Complex Procedures</h4>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <div className="justice-challenge-icon">📋</div>
+              <h4 className="text-h3 justice-challenge-title">Complex Procedures</h4>
+              <p className="text-body justice-challenge-description">
                 SC's legal processes can be confusing. Step-by-step guides break down complex 
                 procedures into manageable steps with clear timelines.
               </p>
             </div>
             
             <div className="text-center">
-              <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🤝</div>
-              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Community Support</h4>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <div className="justice-challenge-icon">🤝</div>
+              <h4 className="text-h3 justice-challenge-title">Community Support</h4>
+              <p className="text-body justice-challenge-description">
                 Partnership network provides local expertise and peer support specific to 
                 South Carolina's legal landscape and community resources.
               </p>
@@ -393,35 +355,20 @@ const JusticeResources: React.FC = () => {
 
         {/* Legacy Statement */}
         <div className="card card-highlight text-center">
-          <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-lg)' }}>
+          <h3 className="text-h2 justice-legacy-title">
             🌱 Preserving Black Liberation Fund Legacy
           </h3>
-          <p className="text-body-lg" style={{ 
-            marginBottom: 'var(--space-lg)',
-            maxWidth: '700px',
-            margin: '0 auto var(--space-lg)'
-          }}>
+          <p className="text-body-lg justice-legacy-description">
             This work honors the vision and organizing efforts of Black Liberation Fund, ensuring 
             that resources developed through fellowship research and community collaboration remain 
             accessible to those who need them most. This platform preserves and extends our 
             collective organizing legacy.
           </p>
-          <p className="text-body" style={{ 
-            fontStyle: 'italic',
-            color: 'var(--text-muted)'
-          }}>
+          <p className="text-body justice-legacy-quote">
             "Justice delayed is justice denied, but justice work sustained is justice multiplied."
           </p>
         </div>
       </div>
-
-      <style jsx>{`
-        .portfolio-tag.available {
-          background: var(--bg-highlight);
-          color: var(--accent-primary);
-          border-color: var(--accent-primary);
-        }
-      `}</style>
     </section>
   )
 }

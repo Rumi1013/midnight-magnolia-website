@@ -127,75 +127,49 @@ const ServicesSection: React.FC = () => {
     <section className="section">
       <div className="container">
         {/* Header */}
-        <div className="text-center" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="text-center services-header">
           <h2 className="text-h1 animate-fade-in">🌿 Service Constellation</h2>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up services-description">
             Each service is a doorway to transformation, a chance to center healing in our digital spaces. 
             Technology that serves rather than extracts, workflows that honor your rhythm.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="services-grid grid grid-3 gap-lg" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="services-grid grid grid-3 gap-lg services-grid-container">
           {services.map((service) => (
             <article 
               key={service.id}
-              className={`service-card card ${activeService === service.id ? 'card-highlight' : ''} animate-slide-up`}
+              className={`service-card card services-card ${activeService === service.id ? 'card-highlight' : ''} animate-slide-up`}
               onMouseEnter={() => setActiveService(service.id)}
               onMouseLeave={() => setActiveService(null)}
-              style={{ 
-                cursor: 'pointer',
-                transition: 'all var(--transition-normal)',
-                position: 'relative',
-                minHeight: '400px'
-              }}
             >
-              <div className="service-header text-center" style={{ marginBottom: 'var(--space-lg)' }}>
-                <div className="service-icon" style={{ 
-                  fontSize: 'var(--text-4xl)', 
-                  marginBottom: 'var(--space-md)',
-                  transition: 'transform var(--transition-normal)'
-                }}>
+              <div className="service-header text-center services-header-section">
+                <div className="service-icon services-icon">
                   {service.icon}
                 </div>
-                <h3 className="text-h2" style={{ marginBottom: 'var(--space-xs)' }}>
+                <h3 className="text-h2 services-title">
                   {service.title}
                 </h3>
-                <p className="text-caption" style={{ 
-                  color: 'var(--accent-primary)',
-                  fontStyle: 'italic',
-                  marginBottom: 'var(--space-sm)'
-                }}>
+                <p className="text-caption services-subtitle">
                   {service.subtitle}
                 </p>
-                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-body services-description-text">
                   {service.description}
                 </p>
               </div>
 
               <div className="service-offerings">
-                <h4 className="text-h3" style={{ 
-                  marginBottom: 'var(--space-md)',
-                  color: 'var(--accent-primary)'
-                }}>
+                <h4 className="text-h3 services-offerings-title">
                   Sacred Offerings:
                 </h4>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
+                <ul className="services-offerings-list">
                   {service.offerings.map((offering, index) => (
                     <li 
                       key={index}
-                      className="text-body"
-                      style={{ 
-                        marginBottom: 'var(--space-xs)',
-                        paddingLeft: 'var(--space-sm)',
-                        position: 'relative'
-                      }}
+                      className="text-body services-offering-item"
                     >
-                      <span style={{ 
-                        position: 'absolute',
-                        left: 0,
-                        color: 'var(--accent-primary)'
-                      }}>
+                      <span className="services-offering-bullet">
                         •
                       </span>
                       {offering}
@@ -204,13 +178,8 @@ const ServicesSection: React.FC = () => {
                 </ul>
               </div>
 
-              <div style={{ 
-                position: 'absolute',
-                bottom: 'var(--space-lg)',
-                left: 'var(--space-lg)',
-                right: 'var(--space-lg)'
-              }}>
-                <button className="btn btn-secondary" style={{ width: '100%' }}>
+              <div className="services-cta-container">
+                <button type="button" className="btn btn-secondary services-cta-button">
                   Plant this seed →
                 </button>
               </div>
@@ -219,16 +188,13 @@ const ServicesSection: React.FC = () => {
         </div>
 
         {/* Pricing Philosophy */}
-        <div className="card" style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+        <div className="card services-pricing-section">
+          <h3 className="text-h2 text-center services-pricing-title">
             🔮 Pricing Philosophy
           </h3>
           <div className="grid grid-2 gap-lg">
             <div>
-              <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+              <p className="text-body services-pricing-description">
                 At Midnight Magnolia, we practice <strong>sliding scale pricing</strong> rooted 
                 in mutual aid principles. Our rates reflect the value of lived experience, 
                 technical mastery, and trauma-informed care.
@@ -239,58 +205,27 @@ const ServicesSection: React.FC = () => {
               </p>
             </div>
             <div className="pricing-ranges">
-              <div className="pricing-category" style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: 'var(--space-sm)',
-                padding: 'var(--space-sm)',
-                background: 'var(--bg-glass)',
-                borderRadius: 'var(--radius-md)'
-              }}>
+              <div className="pricing-category services-pricing-category">
                 <span className="text-body">Document Projects</span>
-                <span className="text-body" style={{ color: 'var(--accent-primary)', fontWeight: 'var(--weight-medium)' }}>
+                <span className="text-body services-pricing-amount">
                   $250 - $1,500
                 </span>
               </div>
-              <div className="pricing-category" style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: 'var(--space-sm)',
-                padding: 'var(--space-sm)',
-                background: 'var(--bg-glass)',
-                borderRadius: 'var(--radius-md)'
-              }}>
+              <div className="pricing-category services-pricing-category">
                 <span className="text-body">Automation Systems</span>
-                <span className="text-body" style={{ color: 'var(--accent-primary)', fontWeight: 'var(--weight-medium)' }}>
+                <span className="text-body services-pricing-amount">
                   $500 - $2,500
                 </span>
               </div>
-              <div className="pricing-category" style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: 'var(--space-sm)',
-                padding: 'var(--space-sm)',
-                background: 'var(--bg-glass)',
-                borderRadius: 'var(--radius-md)'
-              }}>
+              <div className="pricing-category services-pricing-category">
                 <span className="text-body">Website Development</span>
-                <span className="text-body" style={{ color: 'var(--accent-primary)', fontWeight: 'var(--weight-medium)' }}>
+                <span className="text-body services-pricing-amount">
                   $800 - $5,000
                 </span>
               </div>
-              <div className="pricing-category" style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: 'var(--space-sm)',
-                background: 'var(--bg-glass)',
-                borderRadius: 'var(--radius-md)'
-              }}>
+              <div className="pricing-category services-pricing-category">
                 <span className="text-body">Research & Strategy</span>
-                <span className="text-body" style={{ color: 'var(--accent-primary)', fontWeight: 'var(--weight-medium)' }}>
+                <span className="text-body services-pricing-amount">
                   $150/hr
                 </span>
               </div>
@@ -300,13 +235,13 @@ const ServicesSection: React.FC = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <p className="text-body-lg" style={{ marginBottom: 'var(--space-lg)' }}>
+          <p className="text-body-lg services-final-cta-description">
             Ready to begin your transformation journey?
           </p>
-          <button className="btn btn-primary" style={{ marginRight: 'var(--space-md)' }}>
+          <button type="button" className="btn btn-primary services-final-cta-primary">
             Schedule Sacred Pause Call
           </button>
-          <button className="btn btn-secondary">
+          <button type="button" className="btn btn-secondary">
             View Portfolio
           </button>
         </div>

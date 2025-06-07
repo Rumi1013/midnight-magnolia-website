@@ -26,7 +26,7 @@ interface ContentTemplate {
   category: 'affirmation' | 'tarot' | 'journal' | 'listing' | 'social' | 'email';
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
+const Dashboard: React.FC<DashboardProps> = ({ onNavigate: _onNavigate }) => {
   const [currentSection, setCurrentSection] = useState('dashboard');
   const [energyLevel, setEnergyLevel] = useState<'high' | 'medium' | 'low'>('medium');
   const [tasks, setTasks] = useState<Task[]>([
@@ -142,6 +142,13 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     // This would typically connect to a moon phase API
     return "Waxing Crescent";
   };
+
+  useEffect(() => {
+    const progressElement = document.querySelector('.progress') as HTMLElement;
+    if (progressElement) {
+      progressElement.style.width = `${stats.goalProgress}%`;
+    }
+  }, [stats.goalProgress]);
 
   return (
     <div className="dashboard-container">
@@ -260,7 +267,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                 <h3>Goal Progress</h3>
                 <p className="stat-value">${stats.revenue.toLocaleString()}/$10,000</p>
                 <div className="progress-bar">
-                  <div className="progress" style={{ width: `${stats.goalProgress}%` }}></div>
+                  <div className="progress"></div>
                 </div>
               </div>
             </div>

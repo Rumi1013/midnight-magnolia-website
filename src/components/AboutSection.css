@@ -1,0 +1,75 @@
+/* AboutSection Component Styles */
+
+.about-values-card {
+  margin-bottom: var(--space-3xl);
+}
+
+.about-values-title {
+  color: var(--accent-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.about-value-heading {
+  margin-bottom: var(--space-sm);
+}
+
+.about-value-text {
+  margin-bottom: var(--space-md);
+}
+
+.about-value-text-last {
+  margin-bottom: 0;
+}
+
+.about-name-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.about-name-title {
+  color: var(--accent-primary);
+  margin-bottom: var(--space-md);
+}
+
+.about-expertise-card {
+  margin-bottom: var(--space-3xl);
+}
+
+.about-expertise-title {
+  color: var(--accent-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.about-expertise-icon {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-sm);
+}
+
+.about-expertise-heading {
+  margin-bottom: var(--space-sm);
+}
+
+.about-expertise-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.about-expertise-item {
+  margin-bottom: var(--space-xs);
+}
+
+.about-expertise-item:last-child {
+  margin-bottom: 0;
+}
+
+.about-final-quote {
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--accent-primary);
+  margin-bottom: var(--space-md);
+}
+
+.about-final-text {
+  max-width: 600px;
+  margin: 0 auto;
+} 

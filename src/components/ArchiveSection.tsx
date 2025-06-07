@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/design-system.css'
+import './ArchiveSection.css'
 
 interface ArchiveCollection {
   id: string
@@ -105,74 +106,60 @@ const ArchiveSection: React.FC = () => {
     <section className="section">
       <div className="container">
         <div className="section-header">
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            gap: 'var(--space-md)',
-            marginBottom: 'var(--space-lg)'
-          }}>
+          <div className="archive-header-logo-container">
             <img 
               src="/images/logos/clearFinal1_MM_25.jpeg" 
               alt="Digital Archive"
-              style={{ 
-                width: '45px', 
-                height: '45px',
-                opacity: 0.8
-              }}
+              className="archive-header-logo"
             />
             <h2 className="text-h1 animate-fade-in">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <div className="archive-header-title-container">
                 Digital Archive & Ancestral Preservation
               </div>
             </h2>
           </div>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up archive-header-description">
             Building comprehensive digital archives that preserve Southern Black heritage, family histories, 
             and cultural wisdom through Notion databases, digitized documents, and spiritual research.
           </p>
         </div>
 
         {/* Archive Overview Stats */}
-        <div className="grid grid-4 gap-lg" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="grid grid-4 gap-lg archive-stats-grid">
           <div className="card text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>📊</div>
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)' }}>693</h3>
+            <div className="archive-stat-icon">📊</div>
+            <h3 className="text-h2 archive-stat-number">693</h3>
             <p className="text-caption">Total Archived Items</p>
           </div>
           <div className="card text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🗃️</div>
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)' }}>5</h3>
+            <div className="archive-stat-icon">🗃️</div>
+            <h3 className="text-h2 archive-stat-number">5</h3>
             <p className="text-caption">Active Collections</p>
           </div>
           <div className="card text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>📍</div>
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)' }}>8</h3>
+            <div className="archive-stat-icon">📍</div>
+            <h3 className="text-h2 archive-stat-number">8</h3>
             <p className="text-caption">Sacred Sites Documented</p>
           </div>
           <div className="card text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🌍</div>
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)' }}>150+</h3>
+            <div className="archive-stat-icon">🌍</div>
+            <h3 className="text-h2 archive-stat-number">150+</h3>
             <p className="text-caption">Years of History</p>
           </div>
         </div>
 
         {/* Collection Navigation */}
-        <div style={{ marginBottom: 'var(--space-2xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+        <div className="archive-collections-section">
+          <h3 className="text-h2 text-center archive-collections-title">
             Archive Collections
           </h3>
           
-          <div className="flex gap-sm justify-center" style={{ flexWrap: 'wrap' }}>
+          <div className="flex gap-sm justify-center archive-collection-nav">
             {archiveCollections.map((collection) => (
               <button
                 key={collection.id}
-                className={`btn ${selectedCollection === collection.id ? 'btn-primary' : 'btn-ghost'}`}
+                className={`btn archive-collection-btn ${selectedCollection === collection.id ? 'btn-primary' : 'btn-ghost'}`}
                 onClick={() => setSelectedCollection(collection.id)}
-                style={{ fontSize: 'var(--text-sm)' }}
               >
                 <span>{collection.icon}</span>
                 <span>{collection.title.split(' ')[0]}</span>
@@ -183,36 +170,28 @@ const ArchiveSection: React.FC = () => {
 
         {/* Active Collection Details */}
         {activeCollection && (
-          <div className="card-spirit" style={{ marginBottom: 'var(--space-3xl)' }}>
+          <div className="card-spirit archive-collection-details">
             <div className="grid grid-2 gap-lg">
               <div>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: 'var(--space-sm)',
-                  marginBottom: 'var(--space-md)'
-                }}>
-                  <div style={{ fontSize: 'var(--text-3xl)' }}>{activeCollection.icon}</div>
+                <div className="archive-collection-header">
+                  <div className="archive-collection-icon">{activeCollection.icon}</div>
                   <div>
-                    <h3 className="text-h3" style={{ marginBottom: 'var(--space-xs)' }}>
+                    <h3 className="text-h3 archive-collection-title">
                       {activeCollection.title}
                     </h3>
-                    <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
+                    <div className="archive-collection-meta">
                       <span className={`portfolio-tag ${activeCollection.status === 'active' ? 'available' : ''}`}>
                         {activeCollection.status === 'active' ? '✅ Active' : 
                          activeCollection.status === 'growing' ? '🌱 Growing' : '📅 Planning'}
                       </span>
-                      <span className="text-caption" style={{ color: 'var(--text-muted)' }}>
+                      <span className="text-caption archive-collection-count">
                         {activeCollection.itemCount} items
                       </span>
                     </div>
                   </div>
                 </div>
                 
-                <p className="text-body" style={{ 
-                  color: 'var(--text-secondary)',
-                  marginBottom: 'var(--space-lg)'
-                }}>
+                <p className="text-body archive-collection-description">
                   {activeCollection.description}
                 </p>
 
@@ -224,28 +203,16 @@ const ArchiveSection: React.FC = () => {
               </div>
 
               <div>
-                <h4 className="text-h3" style={{ 
-                  marginBottom: 'var(--space-md)',
-                  color: 'var(--accent-primary)'
-                }}>
+                <h4 className="text-h3 archive-features-title">
                   Collection Contents
                 </h4>
-                <ul style={{ listStyle: 'none', padding: 0 }}>
+                <ul className="archive-features-list">
                   {activeCollection.features.map((feature, index) => (
                     <li 
                       key={index}
-                      className="text-body"
-                      style={{ 
-                        marginBottom: 'var(--space-sm)',
-                        paddingLeft: 'var(--space-md)',
-                        position: 'relative'
-                      }}
+                      className="text-body archive-feature-item"
                     >
-                      <span style={{ 
-                        position: 'absolute',
-                        left: 0,
-                        color: 'var(--accent-primary)'
-                      }}>
+                      <span className="archive-feature-bullet">
                         ✨
                       </span>
                       {feature}
@@ -258,76 +225,73 @@ const ArchiveSection: React.FC = () => {
         )}
 
         {/* Notion Integration Features */}
-        <div style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-2xl)' 
-          }}>
+        <div className="archive-notion-section">
+          <h3 className="text-h2 text-center archive-notion-title">
             Notion Archive Infrastructure
           </h3>
           
           <div className="grid grid-3 gap-lg">
             <div className="card">
-              <div style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-md)' }}>🗂️</div>
-              <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+              <div className="archive-notion-icon">🗂️</div>
+              <h3 className="text-h3 archive-notion-heading">
                 Interconnected Databases
               </h3>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-body archive-notion-text">
                 Relational Notion databases linking family members, locations, documents, 
                 and spiritual practices across generations and geography.
               </p>
             </div>
 
             <div className="card">
-              <div style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-md)' }}>🔍</div>
-              <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+              <div className="archive-notion-icon">🔍</div>
+              <h3 className="text-h3 archive-notion-heading">
                 Advanced Search & Tagging
               </h3>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-body archive-notion-text">
                 Sophisticated tagging system for locations, time periods, spiritual practices, 
                 and family connections enabling deep research and discovery.
               </p>
             </div>
 
             <div className="card">
-              <div style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-md)' }}>📱</div>
-              <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+              <div className="archive-notion-icon">📱</div>
+              <h3 className="text-h3 archive-notion-heading">
                 Mobile Research Access
               </h3>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-body archive-notion-text">
                 Mobile-optimized Notion workspace allowing field research, 
                 photo documentation, and real-time archive updates during site visits.
               </p>
             </div>
 
             <div className="card">
-              <div style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-md)' }}>🔗</div>
-              <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+              <div className="archive-notion-icon">🔗</div>
+              <h3 className="text-h3 archive-notion-heading">
                 Cross-Platform Integration
               </h3>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-body archive-notion-text">
                 Notion APIs connecting archive data to website content, 
                 product generation, and automated research workflows.
               </p>
             </div>
 
             <div className="card">
-              <div style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-md)' }}>📊</div>
-              <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+              <div className="archive-notion-icon">📊</div>
+              <h3 className="text-h3 archive-notion-heading">
                 Research Analytics
               </h3>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-body archive-notion-text">
                 Dashboard views tracking research progress, source verification, 
                 and connections discovered across different archive collections.
               </p>
             </div>
 
             <div className="card">
-              <div style={{ fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-md)' }}>🎯</div>
-              <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+              <div className="archive-notion-icon">🎯</div>
+              <h3 className="text-h3 archive-notion-heading">
                 Product Pipeline Integration
               </h3>
-              <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-body archive-notion-text">
                 Archive research directly feeds into digital products, 
                 tarot cards, journals, and educational materials for the shop.
               </p>
@@ -338,28 +302,28 @@ const ArchiveSection: React.FC = () => {
         <div className="section-divider"></div>
 
         {/* Community Access & Collaboration */}
-        <div className="grid grid-2 gap-lg" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="grid grid-2 gap-lg archive-community-section">
           <div className="card">
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-md)' }}>
+            <h3 className="text-h2 archive-community-title">
               🤝 Community Archive Project
             </h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+            <p className="text-body archive-community-text">
               Building collaborative archive spaces where families can contribute their own 
               stories, documents, and cultural knowledge to preserve Southern Black heritage collectively.
             </p>
-            <div style={{ marginBottom: 'var(--space-md)' }}>
-              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>How to Contribute:</h4>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+            <div className="archive-community-text">
+              <h4 className="text-h3 archive-community-heading">How to Contribute:</h4>
+              <ul className="archive-community-list">
+                <li className="archive-community-item">
                   📝 Share family stories and oral histories
                 </li>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="archive-community-item">
                   📷 Submit historical photographs with context
                 </li>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="archive-community-item">
                   📍 Add sacred sites and spiritual locations
                 </li>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="archive-community-item">
                   🍲 Contribute recipes and cultural practices
                 </li>
               </ul>
@@ -370,26 +334,26 @@ const ArchiveSection: React.FC = () => {
           </div>
 
           <div className="card">
-            <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-md)' }}>
+            <h3 className="text-h2 archive-community-title">
               📚 Research Methodology
             </h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+            <p className="text-body archive-community-text">
               Trauma-informed approach to genealogy research that honors both the pain 
               and resilience in our family histories while building healing-centered archives.
             </p>
-            <div style={{ marginBottom: 'var(--space-md)' }}>
-              <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Core Principles:</h4>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+            <div className="archive-community-text">
+              <h4 className="text-h3 archive-community-heading">Core Principles:</h4>
+              <ul className="archive-community-list">
+                <li className="archive-community-item">
                   💚 Center healing and wellness in research
                 </li>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="archive-community-item">
                   🌱 Honor both trauma and triumph equally
                 </li>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="archive-community-item">
                   🔒 Protect sensitive family information
                 </li>
-                <li style={{ marginBottom: 'var(--space-xs)' }}>
+                <li className="archive-community-item">
                   ✨ Create beauty from difficult histories
                 </li>
               </ul>
@@ -402,20 +366,15 @@ const ArchiveSection: React.FC = () => {
 
         {/* Call to Action */}
         <div className="card text-center">
-          <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-lg)' }}>
+          <h3 className="text-h2 archive-cta-title">
             🌱 Growing the Digital Archive
           </h3>
-          <p className="text-body-lg" style={{ marginBottom: 'var(--space-lg)' }}>
+          <p className="text-body-lg archive-cta-text">
             This archive work is ongoing, growing with each new discovery, family connection, 
             and spiritual insight. Join us in preserving and celebrating Southern Black heritage 
             through thoughtful digital curation.
           </p>
-          <div style={{ 
-            display: 'flex', 
-            gap: 'var(--space-md)', 
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-          }}>
+          <div className="archive-cta-buttons">
             <button className="btn btn-primary">
               Explore Full Archive 📖
             </button>
@@ -428,14 +387,6 @@ const ArchiveSection: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .portfolio-tag.available {
-          background: var(--bg-highlight);
-          color: var(--accent-primary);
-          border-color: var(--accent-primary);
-        }
-      `}</style>
     </section>
   )
 }

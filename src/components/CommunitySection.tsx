@@ -123,20 +123,17 @@ const CommunitySection: React.FC = () => {
     <section className="section">
       <div className="container">
         {/* Header */}
-        <div className="text-center" style={{ marginBottom: 'var(--space-3xl)' }}>
+        <div className="text-center community-header">
           <h2 className="text-h1 animate-fade-in">💫 Sacred Community</h2>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up community-description">
             Join a healing-centered community where Southern wisdom meets modern innovation. 
             Support each other's growth while accessing exclusive resources and connections.
           </p>
         </div>
 
         {/* Patreon Tiers */}
-        <div style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-2xl)' 
-          }}>
+        <div className="community-tiers-section">
+          <h3 className="text-h2 text-center community-tiers-section-title">
             🌿 Community Membership Tiers
           </h3>
           
@@ -144,69 +141,37 @@ const CommunitySection: React.FC = () => {
             {patreonTiers.map((tier, index) => (
               <article 
                 key={index} 
-                className={`tier-card card ${tier.popular ? 'card-highlight' : ''} animate-slide-up`}
-                style={{ 
-                  position: 'relative',
-                  minHeight: '400px'
-                }}
+                className={`tier-card card community-tier-card ${tier.popular ? 'card-highlight' : ''} animate-slide-up`}
               >
                 {tier.popular && (
-                  <div style={{
-                    position: 'absolute',
-                    top: 'var(--space-sm)',
-                    right: 'var(--space-sm)',
-                    background: 'var(--accent-primary)',
-                    color: 'var(--night-primary)',
-                    padding: 'var(--space-xs) var(--space-sm)',
-                    borderRadius: 'var(--radius-md)',
-                    fontSize: 'var(--text-xs)',
-                    fontWeight: 'var(--weight-bold)',
-                    zIndex: 2
-                  }}>
+                  <div className="community-tier-popular-badge">
                     ✨ MOST POPULAR
                   </div>
                 )}
 
-                <div className="tier-header text-center" style={{ marginBottom: 'var(--space-lg)' }}>
-                  <h4 className="text-h2" style={{ marginBottom: 'var(--space-xs)' }}>
+                <div className="tier-header text-center community-tier-header">
+                  <h4 className="text-h2 community-tier-title">
                     {tier.name}
                   </h4>
-                  <div className="tier-price text-h1" style={{ 
-                    color: 'var(--accent-primary)',
-                    fontWeight: 'var(--weight-bold)',
-                    marginBottom: 'var(--space-sm)'
-                  }}>
+                  <div className="tier-price text-h1 community-tier-price">
                     {tier.price}
                   </div>
-                  <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="text-body community-tier-description">
                     {tier.description}
                   </p>
                 </div>
 
-                <div className="tier-benefits" style={{ marginBottom: 'var(--space-lg)' }}>
-                  <h5 className="text-h3" style={{ 
-                    marginBottom: 'var(--space-md)',
-                    color: 'var(--accent-primary)',
-                    fontSize: 'var(--text-lg)'
-                  }}>
+                <div className="tier-benefits community-tier-benefits">
+                  <h5 className="text-h3 community-tier-benefits-title">
                     Sacred Offerings:
                   </h5>
-                  <ul style={{ listStyle: 'none', padding: 0 }}>
+                  <ul className="community-tier-benefits-list">
                     {tier.benefits.map((benefit, benefitIndex) => (
                       <li 
                         key={benefitIndex}
-                        className="text-body"
-                        style={{ 
-                          marginBottom: 'var(--space-xs)',
-                          paddingLeft: 'var(--space-sm)',
-                          position: 'relative'
-                        }}
+                        className="text-body community-tier-benefit-item"
                       >
-                        <span style={{ 
-                          position: 'absolute',
-                          left: 0,
-                          color: 'var(--accent-primary)'
-                        }}>
+                        <span className="community-tier-benefit-icon">
                           ✨
                         </span>
                         {benefit}
@@ -215,13 +180,8 @@ const CommunitySection: React.FC = () => {
                   </ul>
                 </div>
 
-                <div style={{ 
-                  position: 'absolute',
-                  bottom: 'var(--space-lg)',
-                  left: 'var(--space-lg)',
-                  right: 'var(--space-lg)'
-                }}>
-                  <button className={`btn ${tier.popular ? 'btn-primary' : 'btn-secondary'}`} style={{ width: '100%' }}>
+                <div className="community-tier-cta">
+                  <button type="button" className={`btn ${tier.popular ? 'btn-primary' : 'btn-secondary'} community-tier-button`}>
                     Join on Patreon 🌸
                   </button>
                 </div>
@@ -231,48 +191,33 @@ const CommunitySection: React.FC = () => {
         </div>
 
         {/* Community Initiatives */}
-        <div style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-2xl)' 
-          }}>
+        <div className="community-initiatives-section">
+          <h3 className="text-h2 text-center community-initiatives-section-title">
             🌱 Community Initiatives
           </h3>
           
           <div className="initiatives-grid grid grid-3 gap-lg">
             {communityInitiatives.map((initiative, index) => (
               <div key={index} className="initiative-card card animate-slide-up">
-                <div className="text-center" style={{ marginBottom: 'var(--space-lg)' }}>
-                  <div style={{ fontSize: 'var(--text-4xl)', marginBottom: 'var(--space-md)' }}>
+                <div className="text-center community-initiative-content">
+                  <div className="community-initiative-icon">
                     {initiative.icon}
                   </div>
-                  <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+                  <h4 className="text-h3 community-initiative-title">
                     {initiative.title}
                   </h4>
-                  <p className="text-body" style={{ 
-                    color: 'var(--text-secondary)',
-                    marginBottom: 'var(--space-md)'
-                  }}>
+                  <p className="text-body community-initiative-description">
                     {initiative.description}
                   </p>
                 </div>
                 
-                <ul style={{ listStyle: 'none', padding: 0 }}>
+                <ul className="community-initiative-features">
                   {initiative.features.map((feature, featureIndex) => (
                     <li 
                       key={featureIndex}
-                      className="text-body"
-                      style={{ 
-                        marginBottom: 'var(--space-xs)',
-                        paddingLeft: 'var(--space-sm)',
-                        position: 'relative'
-                      }}
+                      className="text-body community-initiative-feature"
                     >
-                      <span style={{ 
-                        position: 'absolute',
-                        left: 0,
-                        color: 'var(--accent-primary)'
-                      }}>
+                      <span className="community-initiative-feature-bullet">
                         •
                       </span>
                       {feature}
@@ -285,18 +230,11 @@ const CommunitySection: React.FC = () => {
         </div>
 
         {/* Blog Series Preview */}
-        <div style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+        <div className="community-blog-section">
+          <h3 className="text-h2 text-center community-blog-section-title">
             📝 Southern Roots, Modern Blooms
           </h3>
-          <p className="text-body-lg text-center" style={{ 
-            maxWidth: '600px', 
-            margin: '0 auto var(--space-2xl)',
-            color: 'var(--text-secondary)'
-          }}>
+          <p className="text-body-lg text-center community-blog-description">
             Personal narrative and community storytelling exploring disability advocacy, 
             Black Southern experience, and the ADHD journey.
           </p>
@@ -304,13 +242,13 @@ const CommunitySection: React.FC = () => {
           <div className="blog-series grid grid-3 gap-lg">
             {blogSeries.map((series, index) => (
               <div key={index} className="series-card card animate-slide-up text-center">
-                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-md)' }}>
+                <div className="community-blog-series-icon">
                   {series.icon}
                 </div>
-                <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+                <h4 className="text-h3 community-blog-series-title">
                   {series.title}
                 </h4>
-                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                <p className="text-body community-blog-series-description">
                   {series.description}
                 </p>
               </div>
@@ -319,35 +257,21 @@ const CommunitySection: React.FC = () => {
         </div>
 
         {/* Revenue Analytics */}
-        <div className="card" style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-lg)' 
-          }}>
+        <div className="card community-revenue-section">
+          <h3 className="text-h2 text-center community-revenue-section-title">
             📊 Building Sustainable Community
           </h3>
-          <p className="text-body text-center" style={{ 
-            marginBottom: 'var(--space-2xl)',
-            color: 'var(--text-secondary)'
-          }}>
+          <p className="text-body text-center community-revenue-description">
             Transparent insights into building a healing-centered technology practice. 
             Growing slowly and sustainably, prioritizing community care over rapid scaling.
           </p>
           
           <div className="revenue-streams grid grid-2 gap-lg">
-            <div className="revenue-card" style={{
-              background: 'var(--bg-glass)',
-              padding: 'var(--space-lg)',
-              borderRadius: 'var(--radius-md)',
-              border: '1px solid rgba(212, 175, 55, 0.2)'
-            }}>
-              <h4 className="text-h3" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-sm)' }}>
+            <div className="revenue-card community-revenue-card">
+              <h4 className="text-h3 community-revenue-card-title">
                 💫 Community Building
               </h4>
-              <div className="revenue-amount text-h1" style={{ 
-                color: 'var(--accent-primary)',
-                marginBottom: 'var(--space-sm)'
-              }}>
+              <div className="revenue-amount text-h1 community-revenue-amount">
                 Early Stage
               </div>
               <p className="text-body">
@@ -355,19 +279,11 @@ const CommunitySection: React.FC = () => {
               </p>
             </div>
             
-            <div className="revenue-card" style={{
-              background: 'var(--bg-glass)',
-              padding: 'var(--space-lg)',
-              borderRadius: 'var(--radius-md)',
-              border: '1px solid rgba(212, 175, 55, 0.2)'
-            }}>
-              <h4 className="text-h3" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-sm)' }}>
+            <div className="revenue-card community-revenue-card">
+              <h4 className="text-h3 community-revenue-card-title">
                 🔮 Services & Products
               </h4>
-              <div className="revenue-amount text-h1" style={{ 
-                color: 'var(--accent-primary)',
-                marginBottom: 'var(--space-sm)'
-              }}>
+              <div className="revenue-amount text-h1 community-revenue-amount">
                 Growing
               </div>
               <p className="text-body">
@@ -376,39 +292,36 @@ const CommunitySection: React.FC = () => {
             </div>
           </div>
           
-          <div className="growth-principles" style={{ marginTop: 'var(--space-2xl)' }}>
-            <h4 className="text-h3 text-center" style={{ 
-              color: 'var(--accent-primary)', 
-              marginBottom: 'var(--space-lg)' 
-            }}>
+          <div className="growth-principles community-growth-principles">
+            <h4 className="text-h3 text-center community-growth-title">
               🌱 Our Growth Principles
             </h4>
             <div className="principles-grid grid grid-2 gap-lg">
               <div className="principle-card text-center">
-                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🌿</div>
-                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Sustainable Pace</h5>
-                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                <div className="community-principle-icon">🌿</div>
+                <h5 className="text-h3 community-principle-title">Sustainable Pace</h5>
+                <p className="text-body community-principle-description">
                   Growing at a pace that honors capacity and prevents burnout
                 </p>
               </div>
               <div className="principle-card text-center">
-                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>💚</div>
-                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Community First</h5>
-                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                <div className="community-principle-icon">💚</div>
+                <h5 className="text-h3 community-principle-title">Community First</h5>
+                <p className="text-body community-principle-description">
                   Prioritizing authentic relationships over rapid customer acquisition
                 </p>
               </div>
               <div className="principle-card text-center">
-                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>🔄</div>
-                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Iterative Learning</h5>
-                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                <div className="community-principle-icon">🔄</div>
+                <h5 className="text-h3 community-principle-title">Iterative Learning</h5>
+                <p className="text-body community-principle-description">
                   Continuously refining based on community feedback and needs
                 </p>
               </div>
               <div className="principle-card text-center">
-                <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-sm)' }}>⚖️</div>
-                <h5 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>Accessible Pricing</h5>
-                <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                <div className="community-principle-icon">⚖️</div>
+                <h5 className="text-h3 community-principle-title">Accessible Pricing</h5>
+                <p className="text-body community-principle-description">
                   Sliding scale and payment plans to serve diverse economic situations
                 </p>
               </div>
@@ -418,18 +331,18 @@ const CommunitySection: React.FC = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-lg)' }}>
+          <h3 className="text-h2 community-cta-title">
             🌸 Ready to Join Our Sacred Community?
           </h3>
-          <p className="text-body-lg" style={{ marginBottom: 'var(--space-lg)' }}>
+          <p className="text-body-lg community-cta-description">
             Choose the membership tier that resonates with your journey and join us in creating 
             healing-centered technology and business practices.
           </p>
-          <div style={{ display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary">
+          <div className="community-cta-buttons">
+            <button type="button" className="btn btn-primary">
               Join on Patreon 💫
             </button>
-            <button className="btn btn-secondary">
+            <button type="button" className="btn btn-secondary">
               Explore Free Resources
             </button>
           </div>

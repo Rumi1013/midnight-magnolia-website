@@ -497,39 +497,24 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
       <div className="container">
         {/* Header */}
         <div className="section-header">
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            gap: 'var(--space-md)',
-            marginBottom: 'var(--space-lg)'
-          }}>
+          <div className="blog-header">
             <img 
               src="/images/logos/paperFinal26_MM_25.png" 
               alt="Midnight Magnolia Stories"
-              style={{ 
-                width: '50px', 
-                height: '50px',
-                opacity: 0.8,
-                filter: 'sepia(0.3)'
-              }}
+              className="blog-header-logo"
             />
             <h2 className="text-h1 animate-fade-in">
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+              <div className="blog-header-title">
                 <img 
                   src="/images/logos/clearFinal1_MM_25.jpeg" 
                   alt="Southern Roots"
-                  style={{ 
-                    width: '40px', 
-                    height: '40px',
-                    opacity: 0.7
-                  }}
+                  className="blog-header-title-logo"
                 />
                 Southern Roots, Modern Blooms
               </div>
             </h2>
           </div>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up blog-description">
             Personal narrative and community storytelling exploring disability advocacy, 
             Black Southern experience, and the ADHD journey. These are the stories that shaped 
             how I build technology and serve community.
@@ -537,42 +522,31 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
         </div>
 
         {/* Featured Posts */}
-        <div style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-2xl)' 
-          }}>
+        <div className="blog-featured-section">
+          <h3 className="text-h2 text-center blog-featured-section-title">
             ✨ Featured Stories
           </h3>
           
           <div className="grid grid-3 gap-lg">
             {featuredPosts.map((post) => (
               <article key={post.id} className="card animate-slide-up">
-                <div style={{ marginBottom: 'var(--space-md)' }}>
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center',
-                    marginBottom: 'var(--space-sm)'
-                  }}>
+                <div className="blog-post-tags">
+                  <div className="blog-post-meta">
                     <span className="portfolio-tag">
                       {blogSeries.find(s => s.id === post.series)?.icon} {blogSeries.find(s => s.id === post.series)?.label}
                     </span>
                     <span className="text-caption">{post.readTime}</span>
                   </div>
                   
-                  <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+                  <h3 className="text-h3 blog-post-title">
                     {post.title}
                   </h3>
                   
-                  <p className="text-body" style={{ 
-                    color: 'var(--text-secondary)',
-                    marginBottom: 'var(--space-md)'
-                  }}>
+                  <p className="text-body blog-post-excerpt">
                     {post.excerpt}
                   </p>
                   
-                  <div className="portfolio-tags" style={{ marginBottom: 'var(--space-md)' }}>
+                  <div className="portfolio-tags blog-post-tags">
                     {post.tags.map((tag, index) => (
                       <span key={index} className="portfolio-tag">
                         {tag}
@@ -580,19 +554,15 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
                     ))}
                   </div>
                   
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                  }}>
-                    <span className="text-caption" style={{ color: 'var(--text-muted)' }}>
+                  <div className="blog-post-footer">
+                    <span className="text-caption blog-post-date">
                       {new Date(post.publishDate).toLocaleDateString('en-US', { 
                         year: 'numeric', 
                         month: 'long', 
                         day: 'numeric' 
                       })}
                     </span>
-                    <button className="btn btn-ghost" style={{ fontSize: 'var(--text-sm)' }}>
+                    <button type="button" className="btn btn-ghost blog-btn-small">
                       Read Story →
                     </button>
                   </div>
@@ -605,11 +575,8 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
         <div className="section-divider"></div>
 
         {/* Blog Series Navigation */}
-        <div style={{ marginBottom: 'var(--space-3xl)' }}>
-          <h3 className="text-h2 text-center" style={{ 
-            color: 'var(--accent-primary)', 
-            marginBottom: 'var(--space-2xl)' 
-          }}>
+        <div className="blog-series-section">
+          <h3 className="text-h2 text-center blog-series-section-title">
             📖 Blog Series
           </h3>
           
@@ -617,24 +584,23 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
             {blogSeries.filter(series => series.id !== 'all').map((series) => (
               <div 
                 key={series.id} 
-                className={`card-feature ${selectedSeries === series.id ? 'card-highlight' : ''}`}
+                className={`card-feature blog-series-card ${selectedSeries === series.id ? 'card-highlight' : ''}`}
                 onClick={() => setSelectedSeries(series.id)}
-                style={{ cursor: 'pointer' }}
               >
-                <div className="text-center" style={{ marginBottom: 'var(--space-md)' }}>
-                  <div style={{ fontSize: 'var(--text-4xl)', marginBottom: 'var(--space-md)' }}>
+                <div className="text-center blog-post-tags">
+                  <div className="blog-series-icon">
                     {series.icon}
                   </div>
-                  <h4 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+                  <h4 className="text-h3 blog-series-title">
                     {series.label}
                   </h4>
-                  <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="text-body blog-series-description">
                     {series.description}
                   </p>
                 </div>
                 
                 <div className="text-center">
-                  <span className="text-caption" style={{ color: 'var(--accent-primary)' }}>
+                  <span className="text-caption blog-series-count">
                     {blogPosts.filter(post => post.series === series.id).length} stories
                   </span>
                 </div>
@@ -644,19 +610,13 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
         </div>
 
         {/* Series Filter */}
-        <div className="category-filter" style={{ 
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 'var(--space-sm)',
-          marginBottom: 'var(--space-3xl)',
-          flexWrap: 'wrap'
-        }}>
+        <div className="category-filter blog-filter-section">
           {blogSeries.map((series) => (
             <button
               key={series.id}
-              className={`btn ${selectedSeries === series.id ? 'btn-primary' : 'btn-ghost'}`}
+              type="button"
+              className={`btn ${selectedSeries === series.id ? 'btn-primary' : 'btn-ghost'} blog-btn-small`}
               onClick={() => setSelectedSeries(series.id)}
-              style={{ fontSize: 'var(--text-sm)' }}
             >
               {series.icon} {series.label}
             </button>
@@ -666,33 +626,25 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
         {/* All Posts */}
         <div className="blog-posts-grid">
           {filteredPosts.map((post) => (
-            <article key={post.id} className="card animate-slide-up" style={{ marginBottom: 'var(--space-lg)' }}>
+            <article key={post.id} className="card animate-slide-up blog-post-grid-item">
               <div className="grid grid-2 gap-lg">
                 <div>
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center',
-                    marginBottom: 'var(--space-sm)'
-                  }}>
+                  <div className="blog-post-meta">
                     <span className="portfolio-tag">
                       {blogSeries.find(s => s.id === post.series)?.icon} {blogSeries.find(s => s.id === post.series)?.label}
                     </span>
                     <span className="text-caption">{post.readTime}</span>
                   </div>
                   
-                  <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+                  <h3 className="text-h3 blog-post-title">
                     {post.title}
                   </h3>
                   
-                  <p className="text-body" style={{ 
-                    color: 'var(--text-secondary)',
-                    marginBottom: 'var(--space-md)'
-                  }}>
+                  <p className="text-body blog-post-excerpt">
                     {post.excerpt}
                   </p>
                   
-                  <div className="portfolio-tags" style={{ marginBottom: 'var(--space-md)' }}>
+                  <div className="portfolio-tags blog-post-tags">
                     {post.tags.map((tag, index) => (
                       <span key={index} className="portfolio-tag">
                         {tag}
@@ -701,40 +653,22 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
                   </div>
                 </div>
                 
-                <div style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}>
-                  <div style={{ 
-                    background: 'var(--bg-tertiary)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: 'var(--space-md)',
-                    marginBottom: 'var(--space-md)',
-                    border: '1px solid var(--border-secondary)'
-                  }}>
-                    <p className="text-body" style={{ 
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--text-secondary)',
-                      lineHeight: 1.5
-                    }}>
+                <div className="blog-post-content-column">
+                  <div className="blog-post-content-preview">
+                    <p className="text-body blog-post-preview-text">
                       {post.content.substring(0, 200)}...
                     </p>
                   </div>
                   
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                  }}>
-                    <span className="text-caption" style={{ color: 'var(--text-muted)' }}>
+                  <div className="blog-post-footer">
+                    <span className="text-caption blog-post-date">
                       {new Date(post.publishDate).toLocaleDateString('en-US', { 
                         year: 'numeric', 
                         month: 'long', 
                         day: 'numeric' 
                       })}
                     </span>
-                    <button className="btn btn-secondary">
+                    <button type="button" className="btn btn-secondary">
                       Read Full Story →
                     </button>
                   </div>
@@ -748,28 +682,22 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
 
         {/* Newsletter Signup */}
         <div className="card text-center">
-          <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-lg)' }}>
+          <h3 className="text-h2 blog-newsletter-title">
             🌸 Stay Connected to the Journey
           </h3>
-          <p className="text-body-lg" style={{ marginBottom: 'var(--space-lg)' }}>
+          <p className="text-body-lg blog-newsletter-description">
             Authentic stories about building healing-centered technology, navigating neurodivergence, 
             and creating accessible digital spaces. Delivered when there's something meaningful to share.
           </p>
-          <div style={{ 
-            display: 'flex', 
-            gap: 'var(--space-md)', 
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginBottom: 'var(--space-md)'
-          }}>
-            <button className="btn btn-primary">
+          <div className="blog-newsletter-buttons">
+            <button type="button" className="btn btn-primary">
               Subscribe to Stories 📧
             </button>
-            <button className="btn btn-secondary">
+            <button type="button" className="btn btn-secondary">
               RSS Feed 📡
             </button>
           </div>
-          <p className="text-caption" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-caption blog-newsletter-disclaimer">
             No spam, no sales pitches, no artificial posting schedules. Just real stories when they're ready to be told.
           </p>
         </div>

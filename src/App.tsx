@@ -53,7 +53,7 @@ function App() {
       <div className="container">
         <div className="text-center">
           <h2 className="text-h1 animate-fade-in">🌙 Ready to Begin?</h2>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '600px', margin: '0 auto var(--space-2xl)' }}>
+          <p className="text-body-lg animate-slide-up contact-intro-text">
             Let's tend to your digital garden together. Whether you're dreaming of a new website, 
             need automation support, or want to explore how technology can serve your mission.
           </p>
@@ -61,9 +61,9 @@ function App() {
         
         <div className="grid grid-3 gap-lg">
           <div className="card animate-slide-up text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-md)' }}>✉️</div>
+            <div className="contact-icon">✉️</div>
             <h3 className="text-h3">Send a Message</h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-lg)' }}>
+            <p className="text-body contact-text">
               Share your vision, ask questions, or just say hello.
             </p>
             <a href="mailto:hello@midnightmagnolia.com" className="btn btn-primary">
@@ -72,9 +72,9 @@ function App() {
           </div>
           
           <div className="card animate-slide-up text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-md)' }}>📅</div>
+            <div className="contact-icon">📅</div>
             <h3 className="text-h3">Sacred Pause Call</h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-lg)' }}>
+            <p className="text-body contact-text">
               Let's have a conversation about your needs and dreams.
             </p>
             <button className="btn btn-secondary">
@@ -83,9 +83,9 @@ function App() {
           </div>
           
           <div className="card animate-slide-up text-center">
-            <div style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-md)' }}>💬</div>
+            <div className="contact-icon">💬</div>
             <h3 className="text-h3">Community Connections</h3>
-            <p className="text-body" style={{ marginBottom: 'var(--space-lg)' }}>
+            <p className="text-body contact-text">
               Find me in digital spaces where healing and justice intersect.
             </p>
             <div className="flex gap-sm justify-center">
@@ -95,8 +95,8 @@ function App() {
           </div>
         </div>
         
-        <div className="card" style={{ marginTop: 'var(--space-2xl)', textAlign: 'center' }}>
-          <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+        <div className="card contact-card-centered">
+          <p className="text-body contact-text">
             <strong>Response Time:</strong> I typically respond within 24-48 hours. 
             If you need urgent support, please mention that in your message.
           </p>
@@ -168,7 +168,7 @@ function App() {
                   <img 
                     src="/images/logos/midnight-magnolia-hero.svg" 
                     alt="Midnight Magnolia Logo"
-                    style={{ width: '40px', height: '40px' }}
+                    className="footer-logo-image"
                   />
                   <h3 className="footer-brand-name">Midnight Magnolia</h3>
                 </div>

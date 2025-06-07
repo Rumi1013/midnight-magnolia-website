@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/design-system.css'
+import './ArtGallerySection.css'
 
 interface ArtworkItem {
   id: string
@@ -156,32 +157,35 @@ const ArtGallerySection: React.FC = () => {
     ? artworkItems 
     : artworkItems.filter(item => item.category === selectedCategory)
 
+  useEffect(() => {
+    // Set background images for gallery items
+    filteredArtwork.forEach((artwork) => {
+      const element = document.querySelector(`[data-bg-image="${artwork.image}"]`) as HTMLElement
+      if (element) {
+        element.style.backgroundImage = `url(${artwork.image})`
+      }
+    })
+  }, [filteredArtwork])
+
   return (
     <section className="section">
       <div className="container">
         {/* Header */}
         <div className="section-header">
           <h2 className="text-h1 animate-fade-in">🖼️ Sacred Visual Stories</h2>
-          <p className="text-body-lg animate-slide-up" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <p className="text-body-lg animate-slide-up gallery-header-description">
             Where Southern Gothic meets digital mysticism. Each piece tells a story of transformation, 
             healing, and the sacred beauty found in complexity. Art that honors both shadow and light.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="category-filter" style={{ 
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 'var(--space-sm)',
-          marginBottom: 'var(--space-3xl)',
-          flexWrap: 'wrap'
-        }}>
+        <div className="gallery-category-filter">
           {categories.map((category) => (
             <button
               key={category.id}
-              className={`btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'}`}
+              className={`btn gallery-category-btn ${selectedCategory === category.id ? 'btn-primary' : 'btn-ghost'}`}
               onClick={() => setSelectedCategory(category.id)}
-              style={{ fontSize: 'var(--text-sm)' }}
               title={category.description}
             >
               {category.icon} {category.label}
@@ -194,88 +198,53 @@ const ArtGallerySection: React.FC = () => {
           {filteredArtwork.map((artwork) => (
             <article 
               key={artwork.id} 
-              className="portfolio-item animate-slide-up"
+              className="portfolio-item animate-slide-up gallery-portfolio-item"
               onClick={() => setSelectedArtwork(artwork)}
-              style={{ cursor: 'pointer' }}
             >
-              <div className="portfolio-image" style={{
-                backgroundImage: `url(${artwork.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                position: 'relative'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  top: 'var(--space-md)',
-                  right: 'var(--space-md)',
-                  background: 'var(--bg-highlight)',
-                  color: 'var(--accent-primary)',
-                  padding: 'var(--space-xs) var(--space-sm)',
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: 'var(--text-sm)',
-                  fontWeight: 'var(--weight-semibold)',
-                  border: '1px solid var(--border-primary)'
-                }}>
+              <div 
+                className="portfolio-image gallery-portfolio-image"
+                data-bg-image={artwork.image}
+              >
+                <div className="gallery-year-badge">
                   {artwork.year}
                 </div>
                 
-                <div style={{
-                  position: 'absolute',
-                  bottom: 'var(--space-md)',
-                  left: 'var(--space-md)',
-                  background: 'rgba(0, 0, 0, 0.7)',
-                  color: 'var(--text-primary)',
-                  padding: 'var(--space-xs) var(--space-sm)',
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: 'var(--text-sm)'
-                }}>
+                <div className="gallery-medium-badge">
                   {artwork.medium}
                 </div>
               </div>
 
               <div className="portfolio-content">
-                <div className="portfolio-tags" style={{ marginBottom: 'var(--space-sm)' }}>
+                <div className="portfolio-tags gallery-portfolio-tags">
                   {artwork.techniques.slice(0, 2).map((technique, index) => (
                     <span key={index} className="portfolio-tag">
                       {technique}
                     </span>
                   ))}
                   {artwork.available && (
-                    <span className="portfolio-tag" style={{ 
-                      background: 'var(--sage-green)', 
-                      color: 'var(--night-primary)' 
-                    }}>
+                    <span className="portfolio-tag gallery-available-tag">
                       Available
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-h3" style={{ marginBottom: 'var(--space-sm)' }}>
+                <h3 className="text-h3 gallery-portfolio-title">
                   {artwork.title}
                 </h3>
                 
-                <p className="text-body" style={{ 
-                  marginBottom: 'var(--space-md)',
-                  color: 'var(--text-secondary)'
-                }}>
+                <p className="text-body gallery-portfolio-description">
                   {artwork.description}
                 </p>
 
                 {artwork.price && (
-                  <div style={{ 
-                    padding: 'var(--space-sm)',
-                    background: 'var(--bg-highlight)',
-                    borderRadius: 'var(--radius-md)',
-                    border: '1px solid var(--border-primary)',
-                    marginBottom: 'var(--space-md)'
-                  }}>
-                    <span className="text-caption" style={{ color: 'var(--accent-primary)' }}>
+                  <div className="gallery-price-section">
+                    <span className="text-caption gallery-price-text">
                       💰 {artwork.price}
                     </span>
                   </div>
                 )}
 
-                <button className="btn btn-secondary" style={{ width: '100%' }}>
+                <button className="btn btn-secondary gallery-view-details-btn">
                   View Details →
                 </button>
               </div>
@@ -286,44 +255,16 @@ const ArtGallerySection: React.FC = () => {
         {/* Artwork Detail Modal */}
         {selectedArtwork && (
           <div 
-            className="modal-overlay" 
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              background: 'rgba(0, 0, 0, 0.8)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 1000
-            }}
+            className="gallery-modal-overlay"
             onClick={() => setSelectedArtwork(null)}
           >
             <div 
-              className="modal-content card"
-              style={{ 
-                maxWidth: '800px',
-                maxHeight: '90vh',
-                overflow: 'auto',
-                margin: 'var(--space-lg)',
-                position: 'relative'
-              }}
+              className="modal-content card gallery-modal-content"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={() => setSelectedArtwork(null)}
-                style={{
-                  position: 'absolute',
-                  top: 'var(--space-md)',
-                  right: 'var(--space-md)',
-                  background: 'transparent',
-                  border: 'none',
-                  color: 'var(--text-primary)',
-                  fontSize: 'var(--text-2xl)',
-                  cursor: 'pointer'
-                }}
+                className="gallery-modal-close"
               >
                 ×
               </button>
@@ -333,20 +274,16 @@ const ArtGallerySection: React.FC = () => {
                   <img 
                     src={selectedArtwork.image} 
                     alt={selectedArtwork.title}
-                    style={{ 
-                      width: '100%', 
-                      borderRadius: 'var(--radius-md)',
-                      marginBottom: 'var(--space-md)'
-                    }}
+                    className="gallery-modal-image"
                   />
                 </div>
                 
                 <div>
-                  <h2 className="text-h2" style={{ marginBottom: 'var(--space-sm)' }}>
+                  <h2 className="text-h2 gallery-modal-title">
                     {selectedArtwork.title}
                   </h2>
                   
-                  <div style={{ marginBottom: 'var(--space-md)' }}>
+                  <div className="gallery-modal-meta">
                     <p className="text-body"><strong>Medium:</strong> {selectedArtwork.medium}</p>
                     <p className="text-body"><strong>Year:</strong> {selectedArtwork.year}</p>
                     {selectedArtwork.dimensions && (
@@ -354,32 +291,23 @@ const ArtGallerySection: React.FC = () => {
                     )}
                   </div>
 
-                  <p className="text-body" style={{ 
-                    marginBottom: 'var(--space-lg)',
-                    color: 'var(--text-secondary)'
-                  }}>
+                  <p className="text-body gallery-modal-description">
                     {selectedArtwork.description}
                   </p>
 
                   {selectedArtwork.story && (
-                    <div style={{ marginBottom: 'var(--space-lg)' }}>
-                      <h4 className="text-h3" style={{ 
-                        color: 'var(--accent-primary)',
-                        marginBottom: 'var(--space-sm)'
-                      }}>
+                    <div className="gallery-modal-section">
+                      <h4 className="text-h3 gallery-modal-section-title">
                         The Story Behind
                       </h4>
-                      <p className="text-body" style={{ color: 'var(--text-secondary)' }}>
+                      <p className="text-body gallery-modal-story-text">
                         {selectedArtwork.story}
                       </p>
                     </div>
                   )}
 
-                  <div style={{ marginBottom: 'var(--space-lg)' }}>
-                    <h4 className="text-h3" style={{ 
-                      color: 'var(--accent-primary)',
-                      marginBottom: 'var(--space-sm)'
-                    }}>
+                  <div className="gallery-modal-section">
+                    <h4 className="text-h3 gallery-modal-section-title">
                       Techniques Used
                     </h4>
                     <div className="portfolio-tags">
@@ -392,37 +320,22 @@ const ArtGallerySection: React.FC = () => {
                   </div>
 
                   {selectedArtwork.inspiration && (
-                    <div style={{ marginBottom: 'var(--space-lg)' }}>
-                      <h4 className="text-h3" style={{ 
-                        color: 'var(--accent-primary)',
-                        marginBottom: 'var(--space-sm)'
-                      }}>
+                    <div className="gallery-modal-section">
+                      <h4 className="text-h3 gallery-modal-section-title">
                         Inspiration
                       </h4>
-                      <p className="text-body" style={{ 
-                        fontStyle: 'italic',
-                        color: 'var(--text-secondary)'
-                      }}>
+                      <p className="text-body gallery-modal-inspiration-text">
                         {selectedArtwork.inspiration}
                       </p>
                     </div>
                   )}
 
                   {selectedArtwork.available && selectedArtwork.price && (
-                    <div style={{ 
-                      padding: 'var(--space-lg)',
-                      background: 'var(--bg-highlight)',
-                      borderRadius: 'var(--radius-md)',
-                      border: '1px solid var(--border-primary)',
-                      textAlign: 'center'
-                    }}>
-                      <h4 className="text-h3" style={{ 
-                        color: 'var(--accent-primary)',
-                        marginBottom: 'var(--space-sm)'
-                      }}>
+                    <div className="gallery-modal-acquisition">
+                      <h4 className="text-h3 gallery-modal-section-title">
                         Acquisition Information
                       </h4>
-                      <p className="text-body" style={{ marginBottom: 'var(--space-md)' }}>
+                      <p className="text-body gallery-modal-price">
                         💰 {selectedArtwork.price}
                       </p>
                       <button className="btn btn-primary">
@@ -440,20 +353,14 @@ const ArtGallerySection: React.FC = () => {
 
         {/* Commission Information */}
         <div className="card text-center">
-          <h3 className="text-h2" style={{ color: 'var(--accent-primary)', marginBottom: 'var(--space-lg)' }}>
+          <h3 className="text-h2 gallery-commission-title">
             🎨 Commission Sacred Art
           </h3>
-          <p className="text-body-lg" style={{ marginBottom: 'var(--space-lg)' }}>
+          <p className="text-body-lg gallery-commission-description">
             Looking for custom artwork that honors your story, spiritual practice, or vision? 
             I create commissioned pieces that blend Southern Gothic aesthetics with personal meaning.
           </p>
-          <div style={{ 
-            display: 'flex', 
-            gap: 'var(--space-md)', 
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginBottom: 'var(--space-lg)'
-          }}>
+          <div className="gallery-commission-buttons">
             <button className="btn btn-primary">
               Commission Artwork 🎨
             </button>
@@ -461,7 +368,7 @@ const ArtGallerySection: React.FC = () => {
               View Commission Process
             </button>
           </div>
-          <p className="text-caption" style={{ color: 'var(--text-muted)' }}>
+          <p className="text-caption gallery-commission-note">
             Custom pieces starting at $150. Sliding scale available for community members.
           </p>
         </div>
