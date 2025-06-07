@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/design-system.css'
+import { InteractiveButton, GlowText } from './MagicUI'
 
 interface NavigationItem {
   id: string
@@ -73,75 +74,32 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
   }, [])
 
   const handleMenuItemClick = (item: NavigationItem) => {
-    if (item.type === 'dropdown') {
-      setActiveDropdown(activeDropdown === item.id ? null : item.id)
-    } else {
-      setActiveDropdown(null)
-      setIsMenuOpen(false)
-      
-      // Fix navigation scroll offset
-      if (item.id === 'home') {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        })
-      } else {
-        setTimeout(() => {
-          const headerHeight = 100 // Increased for proper clearance
-          const targetElement = document.querySelector(`[data-section="${item.id}"]`)
-          if (targetElement) {
-            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset
-            const offsetPosition = elementPosition - headerHeight
-            
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            })
-          }
-        }, 100)
-      }
-      
+    if (item.type === 'single') {
       onNavigate(item.id)
+      setIsMenuOpen(false)
+      setActiveDropdown(null)
+    } else {
+      // Toggle dropdown
+      setActiveDropdown(activeDropdown === item.id ? null : item.id)
     }
   }
 
   const handleSubmenuClick = (itemId: string) => {
-    setActiveDropdown(null)
-    setIsMenuOpen(false)
-    
-    // Add scroll offset for sticky header
-    if (itemId !== 'home') {
-      setTimeout(() => {
-        const headerHeight = 100 // Increased for proper clearance
-        const targetElement = document.querySelector(`[data-section="${itemId}"]`)
-        if (targetElement) {
-          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset
-          const offsetPosition = elementPosition - headerHeight
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          })
-        }
-      }, 100)
-    } else {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-    }
-    
     onNavigate(itemId)
+    setIsMenuOpen(false)
+    setActiveDropdown(null)
   }
 
   return (
     <header className="main-header">
       <div className="container">
         <nav className="navigation">
-          {/* Brand */}
-          <button 
-            className="brand-button"
+          {/* Enhanced Brand with Magic Text */}
+          <InteractiveButton
+            variant="ghost"
+            magnetic={true}
             onClick={() => handleMenuItemClick(navigationItems[0])}
+            className="brand-button"
           >
             <img 
               src={getLogo()} 
@@ -153,10 +111,17 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
               }`}
             />
             <div className="brand-text">
-              <span className="brand-name text-h3">Midnight Magnolia</span>
+              <span className="brand-name text-h3">
+                <GlowText 
+                  text="Midnight Magnolia"
+                  variant="gradient"
+                  size="sm"
+                  colors={['var(--accent-primary)', 'var(--lavender-mist)']}
+                />
+              </span>
               <span className="brand-tagline text-caption">Digital Sanctuary</span>
             </div>
-          </button>
+          </InteractiveButton>
 
           {/* Mobile Menu Toggle */}
           <button 
@@ -171,7 +136,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
             </span>
           </button>
 
-          {/* Navigation Menu */}
+          {/* Enhanced Navigation Menu */}
           <div className={`nav-menu ${isMenuOpen ? 'nav-menu-open' : ''}`}>
             {navigationItems.map((item) => (
               <div 
@@ -179,37 +144,42 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                 className={`nav-item ${item.type === 'dropdown' ? 'nav-dropdown' : ''}`}
               >
                 {item.type === 'single' ? (
-                  <button
-                    className={`nav-link btn btn-ghost ${currentSection === item.id ? 'nav-link-active' : ''}`}
+                  <InteractiveButton
+                    variant={currentSection === item.id ? 'primary' : 'ghost'}
+                    magnetic={true}
                     onClick={() => handleMenuItemClick(item)}
+                    className="nav-link"
                   >
                     <span className="nav-icon">{item.icon}</span>
                     <span>{item.label}</span>
-                  </button>
+                  </InteractiveButton>
                 ) : (
                   <>
-                    <button
-                      className={`nav-link nav-link-dropdown btn btn-ghost ${
-                        item.submenu?.some(sub => sub.id === currentSection) ? 'nav-link-active' : ''
-                      }`}
+                    <InteractiveButton
+                      variant={item.submenu?.some(sub => sub.id === currentSection) ? 'primary' : 'ghost'}
+                      magnetic={true}
                       onClick={() => handleMenuItemClick(item)}
+                      className="nav-link nav-link-dropdown"
                     >
                       <span className="nav-icon">{item.icon}</span>
                       <span>{item.label}</span>
                       <span className={`dropdown-arrow ${activeDropdown === item.id ? 'dropdown-arrow-open' : ''}`}>
                         ▼
                       </span>
-                    </button>
+                    </InteractiveButton>
+                    
+                    {/* Enhanced Dropdown Menu */}
                     <div className={`dropdown-menu ${activeDropdown === item.id ? 'dropdown-menu-open' : ''}`}>
                       {item.submenu?.map((subItem) => (
-                        <button
+                        <InteractiveButton
                           key={subItem.id}
-                          className={`dropdown-item btn btn-ghost ${currentSection === subItem.id ? 'dropdown-item-active' : ''}`}
+                          variant={currentSection === subItem.id ? 'primary' : 'ghost'}
                           onClick={() => handleSubmenuClick(subItem.id)}
+                          className="dropdown-item"
                         >
                           <span className="nav-icon">{subItem.icon}</span>
                           <span>{subItem.label}</span>
-                        </button>
+                        </InteractiveButton>
                       ))}
                     </div>
                   </>

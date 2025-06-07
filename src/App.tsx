@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import './styles/design-system.css'
+import './theme-light.css'
 import './App.css'
 import { validateEnvironment, initializeAnalytics } from './lib/integrations'
-import FloatingPetals from './components/FloatingPetals'
-import FireflyEffect from './components/FireflyEffect'
 import ProgressIndicator from './components/ProgressIndicator'
 import PauseMoment from './components/PauseMoment'
 import SkipNavigation from './components/SkipNavigation'
@@ -19,13 +18,17 @@ import TraumaInformedAI from './components/TraumaInformedAI'
 import JusticeResources from './components/JusticeResources'
 import LogoShowcase from './components/LogoShowcase'
 import ArchiveSection from './components/ArchiveSection'
+import Dashboard from './components/Dashboard'
 import { PerformanceProvider } from './context/PerformanceContext'
+import { FloatingElements } from './components/MagicUI'
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home')
+  const [showDashboard, setShowDashboard] = useState(false)
 
-  const handleNavigation = (section: string) => {
+  const handleNavigate = (section: string) => {
     setCurrentSection(section)
+    setShowDashboard(section === 'dashboard')
     
     // Simple scroll to top for home, let natural padding handle other sections
     if (section === 'home') {
@@ -109,10 +112,14 @@ function App() {
     </section>
   )
 
-  const renderCurrentSection = () => {
+  const renderMainContent = () => {
+    if (showDashboard) {
+      return <Dashboard onNavigate={handleNavigate} />
+    }
+
     switch (currentSection) {
       case 'home':
-        return <div data-section="home"><Hero onNavigate={handleNavigation} /></div>
+        return <Hero onNavigate={handleNavigate} />
       case 'about':
         return <div data-section="about"><AboutSection /></div>
       case 'services':
@@ -136,7 +143,7 @@ function App() {
       case 'archive':
         return <div data-section="archive"><ArchiveSection /></div>
       default:
-        return <div data-section="home"><Hero onNavigate={handleNavigation} /></div>
+        return <Hero onNavigate={handleNavigate} />
     }
   }
 
@@ -148,14 +155,16 @@ function App() {
         <ProgressIndicator />
         <PauseMoment position="bottom-right" />
         
-        {/* Ambient animation components */}
-        <FloatingPetals />
-        <FireflyEffect />
+        {/* Subtle ambient Magic UI effects - reduced for accessibility */}
+        <FloatingElements 
+          type="firefly" 
+          count={4} 
+        />
         
-        <Navigation currentSection={currentSection} onNavigate={handleNavigation} />
+        <Navigation currentSection={currentSection} onNavigate={handleNavigate} />
         
         <main id="main-content" className="main-content">
-          {renderCurrentSection()}
+          {renderMainContent()}
         </main>
         
         <footer className="app-footer">
@@ -183,12 +192,12 @@ function App() {
               <div className="footer-nav">
                 <h4 className="footer-section-title">Explore</h4>
                 <div className="footer-links">
-                  <button className="footer-link" onClick={() => handleNavigation('services')}>Services</button>
-                  <button className="footer-link" onClick={() => handleNavigation('justice-resources')}>Justice Resources</button>
-                  <button className="footer-link" onClick={() => handleNavigation('archive')}>Digital Archive</button>
-                  <button className="footer-link" onClick={() => handleNavigation('blog')}>Stories</button>
-                  <button className="footer-link" onClick={() => handleNavigation('about')}>About</button>
-                  <button className="footer-link" onClick={() => handleNavigation('contact')}>Contact</button>
+                  <button className="footer-link" onClick={() => handleNavigate('services')}>Services</button>
+                  <button className="footer-link" onClick={() => handleNavigate('justice-resources')}>Justice Resources</button>
+                  <button className="footer-link" onClick={() => handleNavigate('archive')}>Digital Archive</button>
+                  <button className="footer-link" onClick={() => handleNavigate('blog')}>Stories</button>
+                  <button className="footer-link" onClick={() => handleNavigate('about')}>About</button>
+                  <button className="footer-link" onClick={() => handleNavigate('contact')}>Contact</button>
                 </div>
               </div>
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../styles/design-system.css'
+import { AnimatedCard, InteractiveButton, GlowText } from './MagicUI'
 
 interface BlogPost {
   id: string
@@ -11,11 +12,11 @@ interface BlogPost {
   readTime: string
   tags: string[]
   featured?: boolean
+  imageUrl?: string
+  category: string
 }
 
 const BlogSection: React.FC = () => {
-  const [selectedSeries, setSelectedSeries] = useState('all')
-
   const blogPosts: BlogPost[] = [
     {
       id: 'oyotunji-pilgrimage',
@@ -68,7 +69,9 @@ Your ancestors are calling you home. The question is: are you ready to listen?`,
       publishDate: '2024-03-10',
       readTime: '11 min read',
       tags: ['Spirituality', 'Yoruba', 'Ancestral Wisdom', 'African Diaspora'],
-      featured: true
+      featured: true,
+      imageUrl: '/images/blog/oyotunji-pilgrimage-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'savannah-spiritual-cartography',
@@ -121,7 +124,9 @@ This work serves both personal spiritual development and broader cultural preser
       publishDate: '2024-03-25',
       readTime: '10 min read',
       tags: ['Hoodoo', 'Gullah Geechee', 'Savannah', 'Ancestral Research'],
-      featured: true
+      featured: true,
+      imageUrl: '/images/blog/savannah-spiritual-cartography-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'family-photos-digital-archaeology',
@@ -185,7 +190,9 @@ The insights gained from family photo archaeology inform my current work with ot
 Each examination of family photos reveals new layers of meaning. This ongoing digital archaeology continues to inform my spiritual practice, my understanding of family patterns, and my connection to ancestral wisdom that guides my current work and life choices.`,
       publishDate: '2024-04-08',
       readTime: '9 min read',
-      tags: ['Genealogy', 'Digital Archives', 'Family History', 'Ancestral Wisdom']
+      tags: ['Genealogy', 'Digital Archives', 'Family History', 'Ancestral Wisdom'],
+      imageUrl: '/images/blog/family-photos-digital-archaeology-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'southern-homesteads-memorial-carousel',
@@ -256,7 +263,9 @@ Families interested in creating their own homestead memorials can access templat
       publishDate: '2024-04-22',
       readTime: '12 min read',
       tags: ['AI Art', 'Memorial Projects', 'Southern Heritage', 'Land History', 'Digital Preservation'],
-      featured: true
+      featured: true,
+      imageUrl: '/images/blog/southern-homesteads-memorial-carousel-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'adhd-diagnosis-liberation',
@@ -310,7 +319,9 @@ The systems that failed you weren't designed for minds like ours. But we can bui
       publishDate: '2024-01-15',
       readTime: '8 min read',
       tags: ['ADHD', 'Mental Health', 'Black Women', 'Neurodivergence'],
-      featured: true
+      featured: true,
+      imageUrl: '/images/blog/adhd-diagnosis-liberation-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'automation-executive-function',
@@ -324,7 +335,9 @@ After my ADHD diagnosis, I realized that most productivity advice assumes neurot
 Technology became my external brain. Here's how I built systems that think for me...`,
       publishDate: '2024-02-03',
       readTime: '12 min read',
-      tags: ['ADHD', 'Automation', 'Technology', 'Executive Function']
+      tags: ['ADHD', 'Automation', 'Technology', 'Executive Function'],
+      imageUrl: '/images/blog/automation-executive-function-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'small-town-organizing',
@@ -369,7 +382,9 @@ Small-town organizing taught me patience, humility, and the power of authentic r
       publishDate: '2024-01-28',
       readTime: '10 min read',
       tags: ['Activism', 'Southern Politics', 'Community Organizing', 'Rural Justice'],
-      featured: true
+      featured: true,
+      imageUrl: '/images/blog/small-town-organizing-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'invisible-disabilities-entrepreneurship',
@@ -432,7 +447,9 @@ Universal design in business creates better experiences for everyone.`,
       publishDate: '2024-02-20',
       readTime: '9 min read',
       tags: ['Chronic Illness', 'ADHD', 'Entrepreneurship', 'Accessibility'],
-      featured: true
+      featured: true,
+      imageUrl: '/images/blog/invisible-disabilities-entrepreneurship-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'trauma-informed-technology',
@@ -444,7 +461,9 @@ Universal design in business creates better experiences for everyone.`,
 As both a trauma survivor and technologist, I've learned to build with nervous system responses in mind...`,
       publishDate: '2024-03-05',
       readTime: '11 min read',
-      tags: ['Trauma-Informed Design', 'UX', 'Mental Health', 'Technology']
+      tags: ['Trauma-Informed Design', 'UX', 'Mental Health', 'Technology'],
+      imageUrl: '/images/blog/trauma-informed-technology-hero.svg',
+      category: 'Healing Tech'
     },
     {
       id: 'black-liberation-fund-lessons',
@@ -454,252 +473,313 @@ As both a trauma survivor and technologist, I've learned to build with nervous s
       content: `Building technology for social justice requires different priorities than building for profit. Security, accessibility, and community ownership become paramount...`,
       publishDate: '2024-01-10',
       readTime: '15 min read',
-      tags: ['Social Justice', 'Technology', 'Black Liberation', 'Digital Security']
+      tags: ['Social Justice', 'Technology', 'Black Liberation', 'Digital Security'],
+      imageUrl: '/images/blog/black-liberation-fund-lessons-hero.svg',
+      category: 'Healing Tech'
+    },
+    {
+      id: 'trauma-informed-ai',
+      title: 'Designing AI with Nervous System Awareness',
+      series: 'invisible-disabilities',
+      excerpt: 'How we build technology that honors the wisdom of survival responses and creates space for healing.',
+      content: 'Detailed exploration of trauma-informed AI development principles and practices...',
+      publishDate: '2024-03-15',
+      readTime: '8 min read',
+      tags: ['AI', 'Trauma-Informed Design', 'Technology', 'Healing'],
+      featured: true,
+      imageUrl: '/images/blog/trauma-ai-hero.svg',
+      category: 'Healing Tech'
+    },
+    {
+      id: 'southern-gothic-design',
+      title: 'Sacred Aesthetics: Southern Gothic in Digital Spaces',
+      series: 'roots-and-routes',
+      excerpt: 'Exploring how ancestral visual languages can inform modern interface design with soul.',
+      content: 'Deep dive into Southern Gothic design principles for digital spaces...',
+      publishDate: '2024-03-10',
+      readTime: '6 min read',
+      tags: ['Design', 'Southern Gothic', 'Aesthetics', 'UI/UX'],
+      featured: true,
+      imageUrl: '/images/blog/gothic-design-hero.svg',
+      category: 'Design Philosophy'
+    },
+    {
+      id: 'community-justice-tech',
+      title: 'Technology as Mutual Aid: Lessons from the Soros Fellowship',
+      series: 'southern-activist-chronicles',
+      excerpt: 'Reflections on building justice resources that center community care and collective liberation.',
+      content: 'Lessons learned from the Soros Fellowship about technology and justice work...',
+      publishDate: '2024-03-05',
+      readTime: '12 min read',
+      tags: ['Justice Work', 'Technology', 'Community Care', 'Soros Fellowship'],
+      featured: false,
+      imageUrl: '/images/blog/community-justice-tech-hero.svg',
+      category: 'Justice Work'
+    },
+    {
+      id: 'adhd-workflow-design',
+      title: 'Gentle Automation for Neurodivergent Entrepreneurs',
+      series: 'diagnosis-after-40',
+      excerpt: 'Creating systems that work with our brain patterns rather than against them.',
+      content: 'Detailed guide to building ADHD-friendly automation workflows...',
+      publishDate: '2024-02-28',
+      readTime: '10 min read',
+      tags: ['ADHD', 'Automation', 'Neurodivergent', 'Entrepreneurship'],
+      featured: false,
+      imageUrl: '/images/blog/adhd-workflow-design-hero.svg',
+      category: 'Neurodivergent Tech'
+    },
+    {
+      id: 'digital-ancestor-work',
+      title: 'Archiving as Ancestor Work: Digital Preservation with Intention',
+      series: 'roots-and-routes',
+      excerpt: 'How we honor family legacy through thoughtful documentation and sacred storytelling.',
+      content: 'Exploration of digital preservation as a form of ancestral honoring...',
+      publishDate: '2024-02-20',
+      readTime: '9 min read',
+      tags: ['Digital Archives', 'Ancestry', 'Heritage', 'Preservation'],
+      featured: false,
+      imageUrl: '/images/blog/digital-ancestor-work-hero.svg',
+      category: 'Heritage Tech'
+    },
+    {
+      id: 'community-care-business',
+      title: 'Building Business with Community Care Principles',
+      series: 'invisible-disabilities',
+      excerpt: 'Sustainable entrepreneurship that prioritizes collective wellbeing over extraction.',
+      content: 'Framework for building businesses rooted in community care...',
+      publishDate: '2024-02-15',
+      readTime: '7 min read',
+      tags: ['Community Care', 'Business', 'Sustainability', 'Wellbeing'],
+      featured: false,
+      imageUrl: '/images/blog/community-care-business-hero.svg',
+      category: 'Healing Business'
     }
   ]
-
-  const blogSeries = [
-    { id: 'all', label: 'All Posts', icon: '📚', description: 'Every story, every lesson' },
-    { 
-      id: 'roots-and-routes', 
-      label: 'Roots & Routes', 
-      icon: '🌿',
-      description: 'Ancestral research, spiritual journeys, and exploring cultural heritage through genealogy and sacred travel'
-    },
-    { 
-      id: 'diagnosis-after-40', 
-      label: 'Diagnosis After 40', 
-      icon: '🧠',
-      description: 'Finding ADHD voice, executive dysfunction solutions, and building systems that work'
-    },
-    { 
-      id: 'southern-activist-chronicles', 
-      label: 'Southern Activist Chronicles', 
-      icon: '✊🏾',
-      description: 'Community organizing in small towns and building inclusive spaces in traditional communities'
-    },
-    { 
-      id: 'invisible-disabilities', 
-      label: 'Living with Invisible Disabilities', 
-      icon: '🌙',
-      description: 'Navigating social spaces, entrepreneurship, and teaching others about invisible disabilities'
-    }
-  ]
-
-  const filteredPosts = selectedSeries === 'all' 
-    ? blogPosts 
-    : blogPosts.filter(post => post.series === selectedSeries)
 
   const featuredPosts = blogPosts.filter(post => post.featured)
+  const recentPosts = blogPosts.filter(post => !post.featured).slice(0, 4)
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'Healing Tech': return 'rgba(139, 123, 155, 0.3)'
+      case 'Justice Work': return 'rgba(212, 175, 55, 0.3)'
+      case 'Design Philosophy': return 'rgba(163, 177, 138, 0.3)'
+      case 'Neurodivergent Tech': return 'rgba(255, 203, 55, 0.3)'
+      case 'Heritage Tech': return 'rgba(139, 123, 155, 0.3)'
+      default: return 'rgba(163, 177, 138, 0.3)'
+    }
+  }
 
   return (
     <section className="section">
       <div className="container">
-        {/* Header */}
-        <div className="section-header">
-          <div className="blog-header">
-            <img 
-              src="/images/logos/paperFinal26_MM_25.png" 
-              alt="Midnight Magnolia Stories"
-              className="blog-header-logo"
+        {/* Enhanced Header */}
+        <div className="text-center blog-header">
+          <h2 className="text-h1 animate-fade-in">
+            <GlowText 
+              text="📝 Stories & Wisdom"
+              variant="gradient"
+              size="xl"
+              colors={['var(--accent-primary)', 'var(--lavender-mist)']}
             />
-            <h2 className="text-h1 animate-fade-in">
-              <div className="blog-header-title">
-                <img 
-                  src="/images/logos/clearFinal1_MM_25.jpeg" 
-                  alt="Southern Roots"
-                  className="blog-header-title-logo"
-                />
-                Southern Roots, Modern Blooms
-              </div>
-            </h2>
-          </div>
+          </h2>
           <p className="text-body-lg animate-slide-up blog-description">
-            Personal narrative and community storytelling exploring disability advocacy, 
-            Black Southern experience, and the ADHD journey. These are the stories that shaped 
-            how I build technology and serve community.
+            Reflections on building healing-centered technology, honoring Southern roots, 
+            and creating digital spaces that serve liberation.
           </p>
         </div>
 
-        {/* Featured Posts */}
-        <div className="blog-featured-section">
-          <h3 className="text-h2 text-center blog-featured-section-title">
-            ✨ Featured Stories
-          </h3>
-          
-          <div className="grid grid-3 gap-lg">
-            {featuredPosts.map((post) => (
-              <article key={post.id} className="card animate-slide-up">
-                <div className="blog-post-tags">
-                  <div className="blog-post-meta">
-                    <span className="portfolio-tag">
-                      {blogSeries.find(s => s.id === post.series)?.icon} {blogSeries.find(s => s.id === post.series)?.label}
-                    </span>
-                    <span className="text-caption">{post.readTime}</span>
-                  </div>
-                  
-                  <h3 className="text-h3 blog-post-title">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-body blog-post-excerpt">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="portfolio-tags blog-post-tags">
-                    {post.tags.map((tag, index) => (
-                      <span key={index} className="portfolio-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="blog-post-footer">
-                    <span className="text-caption blog-post-date">
-                      {new Date(post.publishDate).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
-                    </span>
-                    <button type="button" className="btn btn-ghost blog-btn-small">
-                      Read Story →
-                    </button>
-                  </div>
-                </div>
-              </article>
-            ))}
+        {/* Enhanced Featured Posts */}
+        {featuredPosts.length > 0 && (
+          <div className="featured-posts-section">
+            <h3 className="text-h2 featured-posts-title">
+              <GlowText 
+                text="✨ Featured Stories"
+                variant="shimmer"
+                size="lg"
+                colors={['var(--contrast-gold)', 'var(--accent-primary)']}
+              />
+            </h3>
+            <div className="featured-posts-grid grid grid-2 gap-lg">
+              {featuredPosts.map((post, index) => (
+                <AnimatedCard 
+                  key={post.id}
+                  variant="glow"
+                  delay={index * 200}
+                  glowColor={getCategoryColor(post.category)}
+                  className="featured-post-card"
+                >
+                  <article className="blog-post-card">
+                    {post.imageUrl && (
+                      <div className="post-image blog-post-image">
+                        <img 
+                          src={post.imageUrl} 
+                          alt={post.title}
+                        />
+                        <div className="post-category-overlay">
+                          <span className="post-category blog-post-category">
+                            {post.category}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div className="post-content blog-post-content">
+                      <h4 className="text-h3 post-title blog-post-title">
+                        <GlowText 
+                          text={post.title}
+                          variant="gradient"
+                          size="md"
+                        />
+                      </h4>
+                      <p className="text-body post-excerpt blog-post-excerpt">
+                        {post.excerpt}
+                      </p>
+                      
+                      <div className="post-meta blog-post-meta">
+                        <span className="post-date text-caption blog-post-date">
+                          {new Date(post.publishDate).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        </span>
+                        <span className="post-read-time text-caption blog-post-read-time">
+                          {post.readTime}
+                        </span>
+                      </div>
+                      
+                      <InteractiveButton
+                        variant="secondary"
+                        magnetic={true}
+                        className="post-cta blog-post-cta"
+                      >
+                        Read Sacred Story →
+                      </InteractiveButton>
+                    </div>
+                  </article>
+                </AnimatedCard>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="section-divider"></div>
-
-        {/* Blog Series Navigation */}
-        <div className="blog-series-section">
-          <h3 className="text-h2 text-center blog-series-section-title">
-            📖 Blog Series
+        {/* Enhanced Recent Posts Grid */}
+        <div className="recent-posts-section">
+          <h3 className="text-h2 recent-posts-title">
+            <GlowText 
+              text="🌙 Recent Reflections"
+              variant="glow"
+              size="lg"
+            />
           </h3>
-          
-          <div className="grid grid-2 gap-lg">
-            {blogSeries.filter(series => series.id !== 'all').map((series) => (
-              <div 
-                key={series.id} 
-                className={`card-feature blog-series-card ${selectedSeries === series.id ? 'card-highlight' : ''}`}
-                onClick={() => setSelectedSeries(series.id)}
+          <div className="recent-posts-grid grid grid-2 gap-md">
+            {recentPosts.map((post, index) => (
+              <AnimatedCard 
+                key={post.id}
+                variant="float"
+                delay={index * 150}
+                glowColor={getCategoryColor(post.category)}
+                className="recent-post-card"
               >
-                <div className="text-center blog-post-tags">
-                  <div className="blog-series-icon">
-                    {series.icon}
+                <article className="blog-post-card compact">
+                  <div className="post-content blog-post-content">
+                    <div className="post-header">
+                      <span className="post-category blog-post-category">
+                        {post.category}
+                      </span>
+                      <span className="post-read-time text-caption blog-post-read-time">
+                        {post.readTime}
+                      </span>
+                    </div>
+                    
+                    <h4 className="text-h4 post-title blog-post-title">
+                      <GlowText 
+                        text={post.title}
+                        variant="gradient"
+                        size="sm"
+                      />
+                    </h4>
+                    <p className="text-body-sm post-excerpt blog-post-excerpt">
+                      {post.excerpt}
+                    </p>
+                    
+                    <div className="post-footer">
+                      <span className="post-date text-caption blog-post-date">
+                        {new Date(post.publishDate).toLocaleDateString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric' 
+                        })}
+                      </span>
+                      
+                      <InteractiveButton
+                        variant="ghost"
+                        size="sm"
+                        className="post-cta blog-post-cta"
+                      >
+                        Read →
+                      </InteractiveButton>
+                    </div>
                   </div>
-                  <h4 className="text-h3 blog-series-title">
-                    {series.label}
-                  </h4>
-                  <p className="text-body blog-series-description">
-                    {series.description}
-                  </p>
-                </div>
-                
-                <div className="text-center">
-                  <span className="text-caption blog-series-count">
-                    {blogPosts.filter(post => post.series === series.id).length} stories
-                  </span>
-                </div>
-              </div>
+                </article>
+              </AnimatedCard>
             ))}
           </div>
         </div>
 
-        {/* Series Filter */}
-        <div className="category-filter blog-filter-section">
-          {blogSeries.map((series) => (
-            <button
-              key={series.id}
-              type="button"
-              className={`btn ${selectedSeries === series.id ? 'btn-primary' : 'btn-ghost'} blog-btn-small`}
-              onClick={() => setSelectedSeries(series.id)}
-            >
-              {series.icon} {series.label}
-            </button>
-          ))}
-        </div>
-
-        {/* All Posts */}
-        <div className="blog-posts-grid">
-          {filteredPosts.map((post) => (
-            <article key={post.id} className="card animate-slide-up blog-post-grid-item">
-              <div className="grid grid-2 gap-lg">
-                <div>
-                  <div className="blog-post-meta">
-                    <span className="portfolio-tag">
-                      {blogSeries.find(s => s.id === post.series)?.icon} {blogSeries.find(s => s.id === post.series)?.label}
-                    </span>
-                    <span className="text-caption">{post.readTime}</span>
-                  </div>
-                  
-                  <h3 className="text-h3 blog-post-title">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-body blog-post-excerpt">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="portfolio-tags blog-post-tags">
-                    {post.tags.map((tag, index) => (
-                      <span key={index} className="portfolio-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+        {/* Enhanced Newsletter Signup */}
+        <AnimatedCard variant="glow" glowColor="rgba(255, 203, 55, 0.2)">
+          <div className="newsletter-signup blog-newsletter">
+            <div className="text-center">
+              <h3 className="text-h2 newsletter-title blog-newsletter-title">
+                <GlowText 
+                  text="🌸 Join the Healing Circle"
+                  variant="gradient"
+                  size="lg"
+                  colors={['var(--accent-primary)', 'var(--sage-green)']}
+                />
+              </h3>
+              <p className="text-body-lg newsletter-description blog-newsletter-description">
+                Receive monthly reflections on building healing-centered technology, 
+                along with resources for community care and digital liberation.
+              </p>
+              
+              <div className="newsletter-form blog-newsletter-form">
+                <div className="form-group">
+                  <input 
+                    type="email" 
+                    placeholder="Your sacred email address"
+                    className="email-input blog-email-input"
+                  />
+                  <InteractiveButton
+                    variant="magic"
+                    glow={true}
+                    className="newsletter-cta blog-newsletter-cta"
+                  >
+                    ✨ Join Circle
+                  </InteractiveButton>
                 </div>
-                
-                <div className="blog-post-content-column">
-                  <div className="blog-post-content-preview">
-                    <p className="text-body blog-post-preview-text">
-                      {post.content.substring(0, 200)}...
-                    </p>
-                  </div>
-                  
-                  <div className="blog-post-footer">
-                    <span className="text-caption blog-post-date">
-                      {new Date(post.publishDate).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
-                    </span>
-                    <button type="button" className="btn btn-secondary">
-                      Read Full Story →
-                    </button>
-                  </div>
-                </div>
+                <p className="text-caption newsletter-privacy blog-newsletter-privacy">
+                  We honor your inbox with gentle boundaries. Unsubscribe anytime.
+                </p>
               </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="section-divider"></div>
-
-        {/* Newsletter Signup */}
-        <div className="card text-center">
-          <h3 className="text-h2 blog-newsletter-title">
-            🌸 Stay Connected to the Journey
-          </h3>
-          <p className="text-body-lg blog-newsletter-description">
-            Authentic stories about building healing-centered technology, navigating neurodivergence, 
-            and creating accessible digital spaces. Delivered when there's something meaningful to share.
-          </p>
-          <div className="blog-newsletter-buttons">
-            <button type="button" className="btn btn-primary">
-              Subscribe to Stories 📧
-            </button>
-            <button type="button" className="btn btn-secondary">
-              RSS Feed 📡
-            </button>
+            </div>
           </div>
-          <p className="text-caption blog-newsletter-disclaimer">
-            No spam, no sales pitches, no artificial posting schedules. Just real stories when they're ready to be told.
+        </AnimatedCard>
+
+        {/* Enhanced View All Posts CTA */}
+        <div className="text-center blog-view-all">
+          <p className="text-body-lg">
+            Dive deeper into our digital sanctuary of stories
           </p>
+          <InteractiveButton
+            variant="secondary"
+            size="lg"
+            magnetic={true}
+          >
+            🏛️ Explore Full Archive
+          </InteractiveButton>
         </div>
       </div>
     </section>
