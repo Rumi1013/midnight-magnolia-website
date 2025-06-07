@@ -23,7 +23,7 @@ const ArchiveSection: React.FC = () => {
       description: 'Comprehensive digital archive documenting family lineage from Charleston, SC to New Orleans, LA, with connections to Gullah Geechee culture and sacred geography.',
       icon: '🌿',
       status: 'active',
-      itemCount: 247,
+      itemCount: 47,
       features: [
         'Family trees with census records (1870-1950)',
         'Freedmen\'s Bureau documentation',
@@ -40,7 +40,7 @@ const ArchiveSection: React.FC = () => {
       description: 'Documentation of visits to sacred sites, spiritual practices, and connections to Yoruba traditions, hoodoo, and Southern Black spiritual heritage.',
       icon: '🔮',
       status: 'growing',
-      itemCount: 89,
+      itemCount: 23,
       features: [
         'Oyotunji Village pilgrimage documentation',
         'Savannah mystical geography mapping',
@@ -56,7 +56,7 @@ const ArchiveSection: React.FC = () => {
       description: 'Digitized letters, land deeds, photographs, and family artifacts creating a comprehensive record of Southern Black life and resilience.',
       icon: '📜',
       status: 'active',
-      itemCount: 156,
+      itemCount: 89,
       features: [
         'Scanned family photographs (1890s-1990s)',
         'Original letters and correspondence',
@@ -72,7 +72,7 @@ const ArchiveSection: React.FC = () => {
       description: 'Living repository of Southern Black traditions, including food culture, healing practices, storytelling, and community wisdom.',
       icon: '🌾',
       status: 'growing',
-      itemCount: 134,
+      itemCount: 34,
       features: [
         'Traditional recipe collections with stories',
         'Herbal medicine and healing practices',
@@ -88,7 +88,7 @@ const ArchiveSection: React.FC = () => {
       description: 'Scholarly articles, books, and research materials supporting genealogy work and cultural understanding of the African diaspora in the South.',
       icon: '📚',
       status: 'planning',
-      itemCount: 67,
+      itemCount: 17,
       features: [
         'Gullah Geechee cultural research',
         'African diaspora academic papers',
@@ -128,7 +128,7 @@ const ArchiveSection: React.FC = () => {
         <div className="grid grid-4 gap-lg archive-stats-grid">
           <div className="card text-center">
             <div className="archive-stat-icon">📊</div>
-            <h3 className="text-h2 archive-stat-number">693</h3>
+            <h3 className="text-h2 archive-stat-number">210</h3>
             <p className="text-caption">Total Archived Items</p>
           </div>
           <div className="card text-center">

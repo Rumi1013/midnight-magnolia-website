@@ -20,7 +20,6 @@ import LogoShowcase from './components/LogoShowcase'
 import ArchiveSection from './components/ArchiveSection'
 import Dashboard from './components/Dashboard'
 import { PerformanceProvider } from './context/PerformanceContext'
-import { FloatingElements } from './components/MagicUI'
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home')
@@ -155,12 +154,6 @@ function App() {
         <ProgressIndicator />
         <PauseMoment position="bottom-right" />
         
-        {/* Subtle ambient Magic UI effects - reduced for accessibility */}
-        <FloatingElements 
-          type="firefly" 
-          count={4} 
-        />
-        
         <Navigation currentSection={currentSection} onNavigate={handleNavigate} />
         
         <main id="main-content" className="main-content">
@@ -175,7 +168,7 @@ function App() {
               <div className="footer-brand">
                 <div className="footer-logo">
                   <img 
-                    src="/images/logos/midnight-magnolia-hero.svg" 
+                    src="/images/logos/Midnight_MagnoliaJune-14.jpg" 
                     alt="Midnight Magnolia Logo"
                     className="footer-logo-image"
                   />

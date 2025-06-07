@@ -18,7 +18,7 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const [_isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const navigationItems: NavigationItem[] = [
     { id: 'home', label: 'Home', icon: '🌙', type: 'single' },
@@ -61,7 +61,9 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
 
   // Use one consistent beautiful logo instead of complex switching
   const getLogo = () => {
-    return '/images/logos/Midnight_MagnoliaJune-15.jpg' // Your beautiful new logo
+    return isScrolled 
+      ? "/images/logos/Midnight_MagnoliaJune-15.jpg"  // Smaller version when scrolled
+      : "/images/logos/Midnight_MagnoliaJune-16.jpg"  // Full logo when at top
   }
 
   useEffect(() => {

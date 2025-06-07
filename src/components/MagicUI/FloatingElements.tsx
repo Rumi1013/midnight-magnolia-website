@@ -14,7 +14,7 @@ interface FloatingElementsProps {
 
 const FloatingElements: React.FC<FloatingElementsProps> = ({
   type = 'firefly',
-  count = 6
+  count = 3
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 

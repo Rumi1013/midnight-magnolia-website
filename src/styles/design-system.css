@@ -5,12 +5,118 @@
 
 /* === Design Tokens === */
 :root {
-  /* Enhanced Typography Scale - Modern & SEO-Optimized */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-  --font-secondary: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  /* Core Brand Colors from Setup Documentation */
+  --midnight-blue: #0A192F;
+  --magnolia-white: #FAF3E0;
+  --rich-gold: #D4AF37;
+  --sage-green: #A3B18A;
   
-  /* Modern Spacing Scale */
+  /* Enhanced Accessibility Colors */
+  --text-primary: #0A192F;        /* Dark blue for maximum contrast */
+  --text-secondary: #2d3748;      /* Slightly lighter for secondary text */
+  --text-muted: #4a5568;          /* Medium gray for captions */
+  --text-light: #FAF3E0;          /* Magnolia white for dark backgrounds */
+  
+  /* High Contrast Backgrounds */
+  --bg-primary: #FAF3E0;          /* Magnolia white primary background */
+  --bg-secondary: #f7fafc;        /* Very light background */
+  --bg-card: #ffffff;             /* Pure white for cards */
+  --bg-dark: #0A192F;             /* Midnight blue for dark sections */
+  
+  /* Accent Colors with Proper Contrast */
+  --accent-primary: #D4AF37;      /* Rich gold */
+  --accent-secondary: #A3B18A;    /* Sage green */
+  --accent-tertiary: #0A192F;     /* Midnight blue for emphasis */
+  
+  /* Border and Interaction States */
+  --border-primary: #D4AF37;      /* Gold borders */
+  --border-secondary: #A3B18A;    /* Sage borders */
+  --border-light: #e2e8f0;       /* Light borders */
+  
+  /* Enhanced Typography Scale */
+  --font-primary: 'Lora', Georgia, serif;
+  --font-secondary: 'Playfair Display', Georgia, serif;
+  --font-accent: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Proper Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+  --space-3xl: 3rem;
+  --space-4xl: 4rem;
+  
+  /* Typography Sizes with Better Readability */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  
+  /* Improved Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(10, 25, 47, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(10, 25, 47, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(10, 25, 47, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(10, 25, 47, 0.1);
+  
+  /* Smooth Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* Status Colors with High Contrast */
+  --success: #38a169;
+  --warning: #d69e2e;
+  --error: #e53e3e;
+  --info: #3182ce;
+  
+  /* Border Colors */
+  --border-primary: #D4AF37;      /* Gold borders */
+  --border-secondary: #A3B18A;    /* Sage borders */
+  --border-focus: var(--accent-primary);
+  
+  /* Shadow Colors */
+  --shadow-sm: 0 1px 2px 0 rgba(10, 25, 47, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(10, 25, 47, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(10, 25, 47, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(10, 25, 47, 0.1);
+  
+  /* Typography Scale - Neurodiversity Friendly */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-secondary: 'Playfair Display', Georgia, serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  
+  /* Font Sizes - ADHD Friendly Scaling */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  
+  /* Line Heights - Reading Accessibility */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Spacing Scale - Cognitive Load Reduction */
   --space-xs: 0.25rem;    /* 4px */
   --space-sm: 0.5rem;     /* 8px */
   --space-md: 0.75rem;    /* 12px */
@@ -22,161 +128,25 @@
   --space-5xl: 6rem;      /* 96px */
   --space-6xl: 8rem;      /* 128px */
   
-  /* Fluid Typography System */
-  --text-xs: clamp(0.75rem, 0.9vw, 0.875rem);
-  --text-sm: clamp(0.875rem, 1vw, 1rem);
-  --text-base: clamp(1rem, 1.125vw, 1.125rem);
-  --text-lg: clamp(1.125rem, 1.25vw, 1.25rem);
-  --text-xl: clamp(1.25rem, 1.5vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 2vw, 2rem);
-  --text-3xl: clamp(1.875rem, 2.5vw, 2.5rem);
-  --text-4xl: clamp(2.25rem, 3vw, 3rem);
-  --text-5xl: clamp(3rem, 4vw, 4rem);
-  --text-6xl: clamp(3.75rem, 5vw, 5rem);
-  
-  /* Font Weights */
-  --weight-thin: 100;
-  --weight-light: 300;
-  --weight-normal: 400;
-  --weight-medium: 500;
-  --weight-semibold: 600;
-  --weight-bold: 700;
-  --weight-extrabold: 800;
-  --weight-black: 900;
-
-  /* IMPROVED ACCESSIBLE COLOR PALETTE */
-  /* Lighter, more accessible background colors */
-  --night-primary: #2d3748;        /* Lighter charcoal */
-  --night-secondary: #4a5568;      /* Medium gray-blue */
-  --midnight-mist: #718096;        /* Light gray-blue */
-  --deep-charcoal: #2d3748;
-  --magnolia-cream: #fffef7;       /* Warmer cream */
-  --warm-white: #fefcf7;
-  --pure-white: #ffffff;
-  
-  /* More accessible accent colors with better contrast */
-  --golden-accent: #f6d55c;        /* Brighter, more accessible gold */
-  --sage-green: #68d391;          /* Brighter green for better contrast */
-  --lavender-mist: #e6fffa;       /* Lighter, more readable */
-  --soft-rose: #fed7d7;           /* Better contrast pink */
-  --muted-gold: #d69e2e;          /* Higher contrast gold */
-  --contrast-gold: #fbd38d;       /* Much better contrast */
-  
-  /* IMPROVED SEMANTIC COLORS - WCAG AA Compliant */
-  --text-primary: #ffffff;         /* Pure white for maximum contrast */
-  --text-secondary: #e2e8f0;      /* Light gray with good contrast */
-  --text-muted: #cbd5e1;          /* Medium gray, still readable */
-  --text-on-light: #1a202c;       /* Dark text for light backgrounds */
-  
-  /* Better accent colors for accessibility */
-  --accent-primary: #fbd38d;       /* Light gold - excellent contrast */
-  --accent-secondary: #f6ad55;    /* Orange-gold - good contrast */
-  --accent-tertiary: #fc8181;     /* Light coral - good contrast */
-  --accent-quaternary: #b794f6;   /* Light purple - good contrast */
-  
-  /* IMPROVED BACKGROUND COLORS - Lighter for better readability */
-  --bg-primary: #2d3748;          /* Lighter primary background */
-  --bg-secondary: #4a5568;        /* Lighter secondary */
-  --bg-tertiary: #718096;         /* Much lighter tertiary */
-  --bg-card: rgba(74, 85, 104, 0.8);     /* Lighter cards */
-  --bg-card-hover: rgba(74, 85, 104, 0.9);
-  --bg-glass: rgba(255, 255, 255, 0.15);  /* More visible glass effect */
-  --bg-glass-hover: rgba(255, 255, 255, 0.25);
-  --bg-highlight: rgba(251, 211, 141, 0.2);  /* Lighter highlight */
-  
-  /* IMPROVED BORDER COLORS - Much more visible */
-  --border-primary: rgba(251, 211, 141, 0.6);    /* More visible gold border */
-  --border-secondary: rgba(255, 255, 255, 0.3);  /* More visible white border */
-  --border-accent: #fbd38d;                       /* Solid accent border */
-  --border-muted: rgba(255, 255, 255, 0.2);      /* More visible muted border */
-  
-  /* Softer Complementary Colors with Better Contrast */
-  --deep-purple: #805ad5;
-  --mystic-teal: #38b2ac;
-  --burnt-orange: #dd6b20;
-  --forest-green: #68d391;
-  --dusty-rose: #f56565;
-  --copper-bronze: #d69e2e;
-  --midnight-blue: #4299e1;
-  --amethyst: #9f7aea;
-  
-  /* Enhanced Sunset/Sunrise Palette - Better Contrast */
-  --sunset-orange: #fd9d56;
-  --sunrise-coral: #feb2b2;
-  --twilight-purple: #a78bfa;
-  --dawn-pink: #fbb6ce;
-  --dusk-blue: #63b3ed;
-  --golden-hour: #fbd38d;
-  --lavender-dream: #ddd6fe;
-  --rose-quartz: #fed7d7;
-  --periwinkle: #c3dafe;
-  --peach-glow: #fed7aa;
-  --violet-mist: #d6bcfa;
-  --sky-blush: #fef5e7;
-  
-  /* Accessible Coco Wedding-Inspired Palette */
-  --marigold-orange: #f6ad55;
-  --cempasuchil-gold: #fbd38d;
-  --spirit-purple: #9f7aea;
-  --papel-picado-blue: #63b3ed;
-  --fiesta-coral: #fc8181;
-  --altar-candle: #fbd38d;
-  --copal-smoke: #d6bcfa;
-  --guitar-warm: #ed8936;
-  --familia-pink: #f687b3;
-  --celebration-teal: #4fd1c7;
-  --memory-lavender: #d6bcfa;
-  --bridge-gold: #fbd38d;
-
-  /* Advanced Shadow System - Reduced intensity */
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.03);
-  --shadow-none: 0 0 #0000;
-  
-  /* Subtle Branded Shadows - Reduced for better readability */
-  --shadow-glow: 0 0 20px rgba(251, 211, 141, 0.2);
-  --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.2);
-  --shadow-purple: 0 0 15px rgba(159, 122, 234, 0.15);
-  --shadow-teal: 0 0 15px rgba(56, 178, 172, 0.15);
-  --shadow-rose: 0 0 15px rgba(245, 101, 101, 0.15);
-
-  /* Modern Border Radius */
-  --radius-none: 0px;
-  --radius-sm: 0.125rem;
+  /* Border Radius */
+  --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
-  --radius-3xl: 1.5rem;
   --radius-full: 9999px;
   
-  /* Enhanced Transitions - Slower for better UX */
-  --transition-all: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-colors: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-opacity: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-shadow: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-transform: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: 200ms ease;
-  --transition-normal: 300ms ease;
-  --transition-slow: 400ms ease;
+  /* Transition Timings - ADHD Friendly */
+  --transition-fast: 150ms;
+  --transition-normal: 250ms;
+  --transition-slow: 400ms;
   
-  /* Animation Curves */
-  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /* Focus Ring for Accessibility */
+  --focus-ring: 0 0 0 3px rgba(212, 175, 55, 0.3);
   
-  /* Z-Index Scale */
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal: 1040;
-  --z-tooltip: 1070;
+  /* Motion Preferences */
+  --animation-duration: 0.3s;
+  --animation-easing: cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 /* === Enhanced Base Styles === */
@@ -195,10 +165,10 @@ html {
 body {
   font-family: var(--font-primary);
   font-size: var(--text-base);
-  font-weight: var(--weight-normal);
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.7;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background: var(--bg-primary);
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -208,71 +178,60 @@ body {
 /* === Enhanced Typography System === */
 .text-display {
   font-family: var(--font-secondary);
-  font-size: var(--text-6xl);
-  font-weight: var(--weight-bold);
+  font-size: var(--text-4xl);
+  font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.025em;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.025em;
 }
 
 .text-h1 {
   font-family: var(--font-secondary);
-  font-size: var(--text-5xl);
-  font-weight: var(--weight-bold);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--text-primary);
   margin-bottom: var(--space-lg);
 }
 
 .text-h2 {
   font-family: var(--font-secondary);
-  font-size: var(--text-4xl);
-  font-weight: var(--weight-semibold);
-  line-height: 1.25;
-  letter-spacing: -0.015em;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: 1.3;
   color: var(--text-primary);
   margin-bottom: var(--space-md);
 }
 
 .text-h3 {
-  font-family: var(--font-primary);
-  font-size: var(--text-3xl);
-  font-weight: var(--weight-semibold);
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-  margin-bottom: var(--space-sm);
-}
-
-.text-body-lg {
+  font-family: var(--font-secondary);
   font-size: var(--text-xl);
-  font-weight: var(--weight-normal);
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-lg);
-}
-
-.text-body {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-normal);
-  line-height: 1.65;
-  color: var(--text-secondary);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
   margin-bottom: var(--space-md);
 }
 
+.text-body-lg {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.text-body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
 .text-caption {
+  font-family: var(--font-accent);
   font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
   line-height: 1.5;
   color: var(--text-muted);
-  letter-spacing: 0.025em;
-  text-transform: uppercase;
+  font-weight: 500;
 }
 
 /* === Enhanced Layout Utilities === */
@@ -340,14 +299,12 @@ body {
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-secondary);
-  border-radius: var(--radius-xl);
-  padding: var(--space-2xl);
-  box-shadow: var(--shadow-lg);
-  transition: var(--transition-all);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.2s ease;
   position: relative;
-  overflow: hidden;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  z-index: 1;
 }
 
 .card::before {
@@ -357,17 +314,21 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  background: linear-gradient(135deg, 
+    rgba(212, 175, 55, 0.05) 0%, 
+    rgba(139, 123, 155, 0.05) 50%, 
+    rgba(163, 177, 138, 0.05) 100%
+  );
+  border-radius: inherit;
+  z-index: -1;
   opacity: 0;
-  transition: var(--transition-opacity);
-  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-2xl), var(--shadow-glow);
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-primary);
 }
 
 .card:hover::before {
@@ -954,8 +915,8 @@ body {
 }
 
 .main-content {
-  min-height: 100vh;
-  padding-top: 120px; /* Add padding to account for sticky header */
+  padding-top: 100px; /* Add proper spacing for fixed navigation */
+  min-height: calc(100vh - 100px);
 }
 
 .app-footer {
@@ -1269,42 +1230,43 @@ body {
   }
 }
 
-/* === Navigation Accessibility & Z-Index Fixes === */
+/* === Navigation System === */
 .navigation {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 9999;
-  background: rgba(26, 35, 50, 0.95);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-primary);
-  transition: all 0.3s ease;
+  left: 0;
+  right: 0;
+  background: rgba(250, 248, 243, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  z-index: 9999; /* Increased back to highest value */
+  transition: all var(--transition-normal);
+  padding: var(--space-sm) 0;
 }
 
 .navigation.scrolled {
-  background: rgba(26, 35, 50, 0.98);
-  box-shadow: var(--shadow-lg);
+  background: rgba(250, 248, 243, 0.98);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-menu {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  min-width: 220px;
-  background: rgba(45, 55, 72, 0.98);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(251, 211, 141, 0.3);
+  transform: translateX(-50%) translateY(10px) scale(0.95);
+  background: var(--magnolia-white);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
+  padding: var(--space-md);
+  min-width: 220px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   opacity: 0;
   visibility: hidden;
-  transform: translateX(-50%) translateY(-10px) scale(0.95);
   transition: all var(--transition-normal);
-  z-index: 10000;
-  padding: var(--space-sm);
-  margin-top: var(--space-xs);
+  z-index: 10000; /* Higher than navigation */
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
 }
 
 .dropdown-menu::before {
@@ -1313,11 +1275,14 @@ body {
   top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid rgba(251, 211, 141, 0.3);
+  width: 16px;
+  height: 16px;
+  background: var(--magnolia-white);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: none;
+  border-right: none;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -1;
 }
 
 .dropdown-menu-open {
@@ -1335,6 +1300,7 @@ body {
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  color: var(--midnight-blue);
 }
 
 .dropdown-item::before {
@@ -1384,59 +1350,51 @@ body {
   color: var(--accent-primary);
 }
 
-@media (max-width: 768px) {
-  .mobile-menu-toggle {
-    display: block;
-  }
+/* === Main Content Layout === */
+.main-content {
+  padding-top: 100px; /* Add proper spacing for fixed navigation */
+  min-height: calc(100vh - 100px);
+}
 
-  .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-secondary);
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--transition-normal);
-    padding: var(--space-md);
-  }
+/* === Hero Section === */
+.hero-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1; /* Lower than navigation */
+}
 
-  .nav-menu-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
+/* === Text Readability Fixes === */
+.text-h1, .text-h2, .text-h3 {
+  color: var(--midnight-blue);
+  text-shadow: none;
+}
 
-  .nav-item {
-    width: 100%;
-  }
+.text-body, .text-body-lg {
+  color: var(--midnight-blue);
+  opacity: 0.9;
+}
 
-  .nav-link {
-    width: 100%;
-    text-align: left;
-    margin-bottom: var(--space-xs);
-  }
+/* Remove any problematic overlays */
+.hero-section::before,
+.hero-section::after {
+  display: none;
+}
 
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    border: none;
-    background: var(--bg-glass);
-    margin-left: var(--space-md);
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    padding: var(--space-xs) 0;
-  }
+/* === Card Text Contrast === */
+.card {
+  background: rgba(250, 248, 243, 0.95);
+  color: var(--midnight-blue);
+}
 
-  .brand-text {
-    display: none;
-  }
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+  color: var(--midnight-blue);
+}
+
+.card p, .card li, .card span {
+  color: var(--midnight-blue);
+  opacity: 0.9;
 }
 
 /* === Enhanced Responsive Design === */
@@ -1509,7 +1467,60 @@ body {
   }
 
   .btn:hover {
-    transform: translateY(-1px) scale(1.02);
+    transform: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-normal);
+    padding: var(--space-md);
+  }
+
+  .nav-menu-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    margin-bottom: var(--space-xs);
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: var(--bg-glass);
+    margin-left: var(--space-md);
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    padding: var(--space-xs) 0;
+  }
+
+  .brand-text {
+    display: none;
   }
 }
 
@@ -1781,4 +1792,198 @@ a:hover {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+/* Hero Component Styles */
+.hero-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.hero-title-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+}
+
+.hero-products-title {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  color: var(--accent-primary);
+}
+
+.hero-section {
+  min-height: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--space-2xl) 0 var(--space-3xl) 0;
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  margin-top: 0;
+  z-index: 1;
+}
+
+.community-tiers-section-title,
+.community-initiatives-section-title,
+.community-blog-section-title,
+.community-revenue-section-title {
+  color: var(--accent-primary);
+  margin-bottom: var(--space-xl);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+
+.community-tier-title {
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+.community-tier-price {
+  color: var(--accent-primary);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-xl);
+}
+
+.community-tier-description {
+  font-size: var(--text-base);
+  margin-bottom: var(--space-md);
+}
+
+.community-tier-benefits-title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  margin-bottom: var(--space-sm);
+}
+
+.community-tier-benefit-item {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.community-initiative-title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-xs);
+}
+
+.community-initiative-description {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.community-blog-series-title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-xs);
+}
+
+.community-blog-series-description {
+  font-size: var(--text-sm);
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(26, 35, 50, 0.95);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--accent-primary);
+  padding: var(--space-md) 0;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Hero Product Cards */
+.hero-products-section {
+  margin: var(--space-4xl) 0;
+}
+
+.hero-product-card {
+  padding: var(--space-lg);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: var(--text-primary);
+}
+
+.hero-product-card:hover {
+  transform: translateY(-2px);
+}
+
+.hero-product-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.hero-content {
+  margin-bottom: var(--space-4xl);
+}
+
+.hero-cta {
+  margin-top: var(--space-4xl);
+}
+
+.hero-cta-buttons {
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-lg);
+}
+
+/* Service Cards Improved */
+.services-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-primary);
+}
+
+.services-card h3,
+.services-card h4 {
+  color: var(--text-primary);
+}
+
+.services-card p {
+  color: var(--text-secondary);
+}
+
+/* Community Cards Improved */
+.community-tier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-primary);
+}
+
+.community-tier-card h4 {
+  color: var(--text-primary);
+}
+
+.community-tier-card p {
+  color: var(--text-secondary);
+}
+
+/* Hero Product Cards */
+.hero-product-card {
+  padding: var(--space-lg);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: var(--text-primary);
+}
+
+.hero-product-card h3 {
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.hero-product-card p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
 }
