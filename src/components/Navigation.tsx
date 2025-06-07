@@ -44,7 +44,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
 
   // Use one consistent beautiful logo instead of complex switching
   const getLogo = () => {
-    return '/images/logos/midnight-magnolia-main.png' // Your beautiful new logo
+    return '/images/logos/Midnight_MagnoliaJune-15.jpg' // Your beautiful new logo
   }
 
   useEffect(() => {
@@ -243,9 +243,11 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
         }
 
         .brand-logo {
-          width: 40px;
-          height: 40px;
-          border-radius: var(--radius-md);
+          width: 50px;
+          height: 50px;
+          border-radius: var(--radius-full);
+          object-fit: cover;
+          filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
         }
 
         .brand-text {

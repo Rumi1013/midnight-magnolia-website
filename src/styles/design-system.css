@@ -189,21 +189,21 @@
 }
 
 .text-body-lg {
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   font-weight: var(--weight-normal);
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
 .text-body {
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   font-weight: var(--weight-normal);
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
 .text-caption {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: var(--weight-normal);
   line-height: 1.5;
   color: var(--text-muted);
@@ -309,7 +309,7 @@
   padding: var(--space-sm) var(--space-lg);
   border: 2px solid transparent;
   border-radius: var(--radius-md);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: var(--weight-medium);
   text-decoration: none;
   cursor: pointer;
@@ -379,7 +379,7 @@
 /* Large Button Variant */
 .btn-large {
   padding: var(--space-md) var(--space-xl);
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
 }
 
@@ -511,6 +511,7 @@
     radial-gradient(circle at 40% 80%, rgba(200, 181, 219, 0.04) 0%, transparent 50%);
   color: var(--text-primary);
   font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 18px;
   line-height: 1.6;
 }
 

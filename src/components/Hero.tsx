@@ -17,11 +17,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <div className="hero-header">
               <h1 className="hero-title text-display" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-sm)' }}>
                 <img 
-                  src="/images/logos/midnight-magnolia-hero.svg" 
+                  src="/images/logos/Midnight_MagnoliaJune-16.jpg" 
                   alt="Midnight Magnolia"
                   style={{ 
-                    width: '60px', 
-                    height: '60px',
+                    width: '80px', 
+                    height: '80px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
                     filter: 'drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3))'
                   }}
                 />
@@ -47,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="product-showcase card" onClick={() => onNavigate('justice-resources')}>
                   <div className="product-visual">
                     <img 
-                      src="/images/gallery/justice-resources-visual.svg" 
+                      src="/images/logos/Midnight_MagnoliaJune-14.jpg" 
                       alt="Justice Resources"
                       className="product-background-image"
                     />
@@ -65,7 +67,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="product-showcase card" onClick={() => onNavigate('trauma-ai')}>
                   <div className="product-visual">
                     <img 
-                      src="/images/gallery/ai-generator-visual.svg" 
+                      src="/images/logos/Midnight_MagnoliaJune-13.jpg" 
                       alt="AI Document Generator"
                       className="product-background-image"
                     />
@@ -83,7 +85,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="product-showcase card" onClick={() => onNavigate('archive')}>
                   <div className="product-visual">
                     <img 
-                      src="/images/gallery/archive-visual.svg" 
+                      src="/images/logos/Midnight_MagnoliaJune-12.jpg" 
                       alt="Digital Archive"
                       className="product-background-image"
                     />
