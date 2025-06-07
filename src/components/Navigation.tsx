@@ -33,12 +33,28 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
         { id: 'justice-resources', label: 'Justice Resources', icon: '⚖️' }
       ]
     },
-    { id: 'portfolio', label: 'Portfolio', icon: '📚', type: 'single' },
-    { id: 'archive', label: 'Archive', icon: '🗂️', type: 'single' },
-    { id: 'blog', label: 'Stories', icon: '📝', type: 'single' },
-    { id: 'shop', label: 'Shop', icon: '🛒', type: 'single' },
-    { id: 'membership', label: 'Community', icon: '💚', type: 'single' },
-    { id: 'brand', label: 'Brand', icon: '🎨', type: 'single' },
+    { 
+      id: 'digital-sanctuary', 
+      label: 'Digital Sanctuary', 
+      icon: '🏛️', 
+      type: 'dropdown',
+      submenu: [
+        { id: 'archive', label: 'Ancestral Archive', icon: '📚' },
+        { id: 'portfolio', label: 'Portfolio', icon: '🎨' },
+        { id: 'blog', label: 'Stories & Wisdom', icon: '📝' }
+      ]
+    },
+    { 
+      id: 'community', 
+      label: 'Community', 
+      icon: '💚', 
+      type: 'dropdown',
+      submenu: [
+        { id: 'membership', label: 'Healing Circle', icon: '🌸' },
+        { id: 'shop', label: 'Sacred Shop', icon: '🛒' },
+        { id: 'brand', label: 'Brand Assets', icon: '🎭' }
+      ]
+    },
     { id: 'contact', label: 'Contact', icon: '✉️', type: 'single' }
   ]
 
@@ -345,30 +361,74 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
         .dropdown-menu {
           position: absolute;
           top: 100%;
-          left: 0;
-          min-width: 200px;
-          background: var(--bg-secondary);
-          border: 1px solid rgba(212, 175, 55, 0.2);
-          border-radius: var(--radius-md);
-          box-shadow: var(--shadow-lg);
+          left: 50%;
+          transform: translateX(-50%);
+          min-width: 220px;
+          background: rgba(26, 35, 50, 0.98);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 2px solid var(--accent-primary);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-xl);
           opacity: 0;
           visibility: hidden;
-          transform: translateY(-10px);
+          transform: translateX(-50%) translateY(-10px) scale(0.95);
           transition: all var(--transition-normal);
-          z-index: 9999;
-          padding: var(--space-xs);
+          z-index: 10000;
+          padding: var(--space-sm);
+          margin-top: var(--space-xs);
+        }
+
+        .dropdown-menu::before {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-bottom: 8px solid var(--accent-primary);
         }
 
         .dropdown-menu-open {
           opacity: 1;
           visibility: visible;
-          transform: translateY(0);
+          transform: translateX(-50%) translateY(0) scale(1);
         }
 
         .dropdown-item {
           width: 100%;
           text-align: left;
           margin-bottom: var(--space-xs);
+          padding: var(--space-sm) var(--space-md);
+          border-radius: var(--radius-md);
+          transition: all var(--transition-normal);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .dropdown-item::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 3px;
+          background: var(--accent-primary);
+          transform: scaleY(0);
+          transition: transform var(--transition-normal);
+        }
+
+        .dropdown-item:hover::before {
+          transform: scaleY(1);
+        }
+
+        .dropdown-item:hover {
+          background: rgba(212, 175, 55, 0.15);
+          transform: translateX(5px);
+          color: var(--accent-primary);
         }
 
         .dropdown-item:last-child {
@@ -378,6 +438,23 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
         .dropdown-item-active {
           background: var(--accent-primary);
           color: var(--night-primary);
+        }
+
+        .dropdown-item-active::before {
+          transform: scaleY(1);
+          background: var(--night-primary);
+        }
+
+        /* Hover effect for parent dropdown */
+        .nav-dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .nav-dropdown:hover .nav-link-dropdown {
+          background: rgba(212, 175, 55, 0.1);
+          color: var(--accent-primary);
         }
 
         @media (max-width: 768px) {

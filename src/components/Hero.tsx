@@ -49,7 +49,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="product-showcase card" onClick={() => onNavigate('justice-resources')}>
                   <div className="product-visual">
                     <img 
-                      src="/images/logos/Midnight_MagnoliaJune-14.jpg" 
+                      src="/images/professional/justice-resources-hero.svg" 
                       alt="Justice Resources"
                       className="product-background-image"
                     />
@@ -67,7 +67,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="product-showcase card" onClick={() => onNavigate('trauma-ai')}>
                   <div className="product-visual">
                     <img 
-                      src="/images/logos/Midnight_MagnoliaJune-13.jpg" 
+                      src="/images/professional/ai-generator-hero.svg" 
                       alt="AI Document Generator"
                       className="product-background-image"
                     />
@@ -85,7 +85,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="product-showcase card" onClick={() => onNavigate('archive')}>
                   <div className="product-visual">
                     <img 
-                      src="/images/logos/Midnight_MagnoliaJune-12.jpg" 
+                      src="/images/professional/archive-hero.svg" 
                       alt="Digital Archive"
                       className="product-background-image"
                     />

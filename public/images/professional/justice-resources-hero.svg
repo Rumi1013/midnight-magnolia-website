@@ -1,0 +1,74 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="warmGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="creamBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F5DC;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#FAF8F3;stop-opacity:0.7" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#creamBg)" rx="12"/>
+  
+  <!-- Courthouse Steps -->
+  <rect x="50" y="180" width="300" height="80" fill="#2a3441" opacity="0.8" rx="4"/>
+  <rect x="60" y="170" width="280" height="15" fill="#D4AF37" opacity="0.6"/>
+  <rect x="70" y="160" width="260" height="15" fill="#D4AF37" opacity="0.4"/>
+  <rect x="80" y="150" width="240" height="15" fill="#D4AF37" opacity="0.2"/>
+  
+  <!-- Columns -->
+  <rect x="120" y="80" width="20" height="100" fill="url(#warmGold)" rx="2"/>
+  <rect x="160" y="80" width="20" height="100" fill="url(#warmGold)" rx="2"/>
+  <rect x="200" y="80" width="20" height="100" fill="url(#warmGold)" rx="2"/>
+  <rect x="240" y="80" width="20" height="100" fill="url(#warmGold)" rx="2"/>
+  
+  <!-- Scales of Justice -->
+  <g transform="translate(180, 40)" filter="url(#glow)">
+    <!-- Scale Base -->
+    <rect x="-2" y="30" width="4" height="40" fill="#D4AF37"/>
+    <!-- Left Scale -->
+    <circle cx="-25" cy="35" r="12" fill="none" stroke="#D4AF37" stroke-width="2"/>
+    <line x1="-25" y1="23" x2="-25" y2="35" stroke="#D4AF37" stroke-width="2"/>
+    <!-- Right Scale -->
+    <circle cx="25" cy="35" r="12" fill="none" stroke="#D4AF37" stroke-width="2"/>
+    <line x1="25" y1="23" x2="25" y2="35" stroke="#D4AF37" stroke-width="2"/>
+    <!-- Center Bar -->
+    <line x1="-25" y1="23" x2="25" y2="23" stroke="#D4AF37" stroke-width="2"/>
+  </g>
+  
+  <!-- Magnolia Flowers -->
+  <g transform="translate(80, 50)" opacity="0.6">
+    <circle cx="0" cy="0" r="8" fill="#FAF8F3"/>
+    <circle cx="0" cy="0" r="6" fill="#F5F5DC"/>
+    <circle cx="0" cy="0" r="3" fill="#D4AF37"/>
+  </g>
+  
+  <g transform="translate(320, 60)" opacity="0.6">
+    <circle cx="0" cy="0" r="8" fill="#FAF8F3"/>
+    <circle cx="0" cy="0" r="6" fill="#F5F5DC"/>
+    <circle cx="0" cy="0" r="3" fill="#D4AF37"/>
+  </g>
+  
+  <!-- Documents -->
+  <g transform="translate(300, 120)" opacity="0.8">
+    <rect x="0" y="0" width="30" height="40" fill="#FAF8F3" stroke="#D4AF37" stroke-width="1" rx="2"/>
+    <line x1="5" y1="8" x2="25" y2="8" stroke="#2a3441" stroke-width="1"/>
+    <line x1="5" y1="15" x2="25" y2="15" stroke="#2a3441" stroke-width="1"/>
+    <line x1="5" y1="22" x2="20" y2="22" stroke="#2a3441" stroke-width="1"/>
+  </g>
+  
+  <!-- Southern Gothic Text -->
+  <text x="200" y="250" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#2a3441" opacity="0.7">
+    Community Justice Resources
+  </text>
+</svg> 
