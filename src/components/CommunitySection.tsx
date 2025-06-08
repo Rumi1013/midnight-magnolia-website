@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/design-system.css'
+import './CommunitySection.css'
 
 interface PatreonTier {
   name: string
@@ -138,54 +139,17 @@ const CommunitySection: React.FC = () => {
           </h3>
           
           <div className="tiers-grid grid grid-2 gap-lg">
-            {patreonTiers.map((tier, index) => (
-              <article 
-                key={index} 
-                className={`tier-card card community-tier-card ${tier.popular ? 'card-highlight' : ''} animate-slide-up`}
-              >
-                {tier.popular && (
-                  <div className="community-tier-popular-badge">
-                    ✨ MOST POPULAR
-                  </div>
-                )}
-
-                <div className="tier-header text-center community-tier-header">
-                  <h4 className="text-h2 community-tier-title">
-                    {tier.name}
-                  </h4>
-                  <div className="tier-price text-h1 community-tier-price">
-                    {tier.price}
-                  </div>
-                  <p className="text-body community-tier-description">
-                    {tier.description}
-                  </p>
-                </div>
-
-                <div className="tier-benefits community-tier-benefits">
-                  <h5 className="text-h3 community-tier-benefits-title">
-                    Sacred Offerings:
-                  </h5>
-                  <ul className="community-tier-benefits-list">
-                    {tier.benefits.map((benefit, benefitIndex) => (
-                      <li 
-                        key={benefitIndex}
-                        className="text-body community-tier-benefit-item"
-                      >
-                        <span className="community-tier-benefit-icon">
-                          ✨
-                        </span>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="community-tier-cta">
-                  <button type="button" className={`btn ${tier.popular ? 'btn-primary' : 'btn-secondary'} community-tier-button`}>
-                    Join on Patreon 🌸
-                  </button>
-                </div>
-              </article>
+            {patreonTiers.map((tier) => (
+              <div key={tier.name} className="community-tier-card">
+                <h3 className="tier-name">{tier.name}</h3>
+                <p className="tier-price">{tier.price}</p>
+                <p className="tier-description">{tier.description}</p>
+                <ul className="tier-benefits">
+                  {tier.benefits.map((benefit) => (
+                    <li key={benefit} className="tier-benefit">{benefit}</li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>
@@ -352,4 +316,4 @@ const CommunitySection: React.FC = () => {
   )
 }
 
-export default CommunitySection 
+export default CommunitySection

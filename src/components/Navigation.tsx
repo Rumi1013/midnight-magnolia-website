@@ -8,6 +8,7 @@ interface NavigationItem {
   icon: string
   type: 'single' | 'dropdown'
   submenu?: { id: string; label: string; icon: string }[]
+  subItems?: { icon?: React.ReactNode; id: string; label: string; highlight?: boolean }[]
 }
 
 interface NavigationProps {
@@ -24,39 +25,55 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
     { id: 'home', label: 'Home', icon: '🌙', type: 'single' },
     { id: 'about', label: 'About', icon: '🌿', type: 'single' },
     { 
-      id: 'services', 
-      label: 'Services', 
-      icon: '✨', 
-      type: 'dropdown',
-      submenu: [
-        { id: 'services', label: 'All Services', icon: '🔮' },
-        { id: 'trauma-ai', label: 'Trauma-Informed AI', icon: '🧠' },
-        { id: 'justice-resources', label: 'Justice Resources', icon: '⚖️' }
-      ]
-    },
-    { 
       id: 'digital-sanctuary', 
       label: 'Digital Sanctuary', 
       icon: '🏛️', 
       type: 'dropdown',
       submenu: [
-        { id: 'archive', label: 'Ancestral Archive', icon: '📚' },
-        { id: 'portfolio', label: 'Portfolio', icon: '🎨' },
-        { id: 'blog', label: 'Stories & Wisdom', icon: '📝' }
+        { id: 'digital-art', label: 'Digital Art', icon: '🎨' },
+        { id: 'journals', label: 'Healing Journals', icon: '📔' },
+        { id: 'automation', label: 'Automation Templates', icon: '⚡' },
+        { id: 'ai-prompts', label: 'AI Prompt Library', icon: '🤖' }
       ]
     },
     { 
-      id: 'community', 
-      label: 'Community', 
-      icon: '💚', 
+      id: 'memberships', 
+      label: 'Sacred Memberships', 
+      icon: '🌸', 
       type: 'dropdown',
       submenu: [
-        { id: 'membership', label: 'Healing Circle', icon: '🌸' },
-        { id: 'shop', label: 'Sacred Shop', icon: '🛒' },
-        { id: 'brand', label: 'Brand Assets', icon: '🎭' }
+        { id: 'magnolia-seed', label: 'Magnolia Seed ($3)', icon: '🌱' },
+        { id: 'crescent-bloom', label: 'Crescent Bloom ($7)', icon: '🌙' },
+        { id: 'golden-grove', label: 'Golden Grove ($15)', icon: '✨' },
+        { id: 'moonlit-sanctuary', label: 'Moonlit Sanctuary ($30)', icon: '🏯' },
+        { id: 'house-midnight', label: 'House of Midnight ($75)', icon: '🏠' }
       ]
     },
-    { id: 'contact', label: 'Contact', icon: '✉️', type: 'single' }
+    { 
+      id: 'services', 
+      label: 'Services', 
+      icon: '⚖️', 
+      type: 'dropdown',
+      submenu: [
+        { id: 'web-development', label: 'Web Development', icon: '💻' },
+        { id: 'brand-identity', label: 'Brand Identity', icon: '🎭' },
+        { id: 'digital-strategy', label: 'Digital Strategy', icon: '🗺️' },
+        { id: 'trauma-informed-legal', label: 'Gentle Justice Portal', icon: '⚖️' }
+      ]
+    },
+    { 
+      id: 'portfolio', 
+      label: 'Sacred Portfolio', 
+      icon: '🖼️', 
+      type: 'dropdown',
+      submenu: [
+        { id: 'southern-roots', label: 'Southern Roots Series', icon: '🌳' },
+        { id: 'digital-heritage', label: 'Digital Heritage', icon: '📚' },
+        { id: 'client-transformations', label: 'Client Transformations', icon: '🦋' },
+        { id: 'technical-showcases', label: 'Technical Showcases', icon: '⚙️' }
+      ]
+    },
+    { id: 'contact', label: 'Connect', icon: '✉️', type: 'single' }
   ]
 
   // Use one consistent beautiful logo instead of complex switching
@@ -158,7 +175,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                 ) : (
                   <>
                     <InteractiveButton
-                      variant={item.submenu?.some(sub => sub.id === currentSection) ? 'primary' : 'ghost'}
+                      variant={item.subItems?.some(sub => sub.id === currentSection) ? 'primary' : 'ghost'}
                       magnetic={true}
                       onClick={() => handleMenuItemClick(item)}
                       className="nav-link nav-link-dropdown"
@@ -172,7 +189,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                     
                     {/* Enhanced Dropdown Menu */}
                     <div className={`dropdown-menu ${activeDropdown === item.id ? 'dropdown-menu-open' : ''}`}>
-                      {item.submenu?.map((subItem) => (
+                      {item.subItems?.map((subItem) => (
                         <InteractiveButton
                           key={subItem.id}
                           variant={currentSection === subItem.id ? 'primary' : 'ghost'}

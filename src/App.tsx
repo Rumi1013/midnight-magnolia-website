@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './styles/design-system.css'
 import './theme-light.css'
 import './App.css'
@@ -7,11 +7,12 @@ import ProgressIndicator from './components/ProgressIndicator'
 import PauseMoment from './components/PauseMoment'
 import SkipNavigation from './components/SkipNavigation'
 import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import AboutSection from './components/AboutSection'
+// Import MainHero component instead of the problematic Hero component
+import MainHero from './components/MainHero'
 import ServicesSection from './components/ServicesSection'
 import ShopSection from './components/ShopSection'
 import CommunitySection from './components/CommunitySection'
+import SacredMemberships from './components/SacredMemberships'
 import PortfolioSection from './components/PortfolioSection'
 import BlogSection from './components/BlogSection'
 import TraumaInformedAI from './components/TraumaInformedAI'
@@ -20,26 +21,25 @@ import LogoShowcase from './components/LogoShowcase'
 import ArchiveSection from './components/ArchiveSection'
 import Dashboard from './components/Dashboard'
 import { PerformanceProvider } from './context/PerformanceContext'
+import EnhancedHero from './components/EnhancedHero'
+import SacredTestimonials from './components/SacredTestimonials'
+import SacredFeatureScroll from './components/SacredFeatureScroll'
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home')
   const [showDashboard, setShowDashboard] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const handleNavigate = (section: string) => {
     setCurrentSection(section)
     setShowDashboard(section === 'dashboard')
     
-    // Simple scroll to top for home, let natural padding handle other sections
-    if (section === 'home') {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-    } else {
-      // Just scroll to top of main content naturally - padding will handle the rest
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+    // Smooth scroll to section
+    const element = document.getElementById(section)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
       })
     }
   }
@@ -111,44 +111,87 @@ function App() {
     </section>
   )
 
+  // Define section type for better type safety
+  type SectionName = 'home' | 'about' | 'services' | 'shop' | 'memberships' |
+    'portfolio' | 'blog' | 'trauma-ai' | 'justice-resources' | 'brand' | 
+    'contact' | 'archive' | 'hero' | 'digital-art' | 'journals' | 'automation' |
+    'ai-prompts' | 'magnolia-seed' | 'crescent-bloom' | 'golden-grove' |
+    'moonlit-sanctuary' | 'house-midnight' | 'web-development' | 'brand-identity' |
+    'digital-strategy' | 'trauma-informed-legal' | 'southern-roots' | 
+    'digital-heritage' | 'client-transformations' | 'technical-showcases' |
+    'sanctuary' | 'testimonials' | 'community' | 'sacred-feature-scroll'
+
+  // Reusable Section component to avoid repetition
+  const Section: React.FC<{
+    name: SectionName;
+    children: React.ReactNode;
+  }> = ({ name, children }) => (
+    <div data-section={name}>{children}</div>
+  );
+
+  // Function to render the MainHero component
+  const renderHero = () => <MainHero onNavigate={handleNavigate} />;
+
+  // Enhanced section components mapping
+  const sectionComponents: {[key in SectionName]: React.ReactNode} = {
+    home: <EnhancedHero onNavigate={handleNavigate} />,
+    about: <ArchiveSection />,
+    sanctuary: <ServicesSection />,
+    memberships: <SacredMemberships />,
+    services: <ServicesSection />,
+    community: <CommunitySection />,
+    testimonials: <SacredTestimonials />,
+    shop: <ShopSection />,
+    portfolio: <PortfolioSection />,
+    blog: <BlogSection />,
+    'trauma-ai': <TraumaInformedAI />,
+    'justice-resources': <JusticeResources />,
+    brand: <LogoShowcase />,
+    contact: renderContact(),
+    archive: <ArchiveSection />,
+    hero: renderHero(),
+    'digital-art': <ShopSection />,
+    'journals': <ShopSection />,
+    'automation': <ShopSection />,
+    'ai-prompts': <ShopSection />,
+    'magnolia-seed': <SacredMemberships />,
+    'crescent-bloom': <SacredMemberships />,
+    'golden-grove': <SacredMemberships />,
+    'moonlit-sanctuary': <SacredMemberships />,
+    'house-midnight': <SacredMemberships />,
+    'web-development': <ServicesSection />,
+    'brand-identity': <ServicesSection />,
+    'digital-strategy': <ServicesSection />,
+    'trauma-informed-legal': <JusticeResources />,
+    'southern-roots': <PortfolioSection />,
+    'digital-heritage': <PortfolioSection />,
+    'client-transformations': <PortfolioSection />,
+    'technical-showcases': <PortfolioSection />,
+    'sacred-feature-scroll': <SacredFeatureScroll />
+  };
+
   const renderMainContent = () => {
     if (showDashboard) {
       return <Dashboard onNavigate={handleNavigate} />
     }
 
-    switch (currentSection) {
-      case 'home':
-        return <Hero onNavigate={handleNavigate} />
-      case 'about':
-        return <div data-section="about"><AboutSection /></div>
-      case 'services':
-        return <div data-section="services"><ServicesSection /></div>
-      case 'shop':
-        return <div data-section="shop"><ShopSection /></div>
-      case 'membership':
-        return <div data-section="membership"><CommunitySection /></div>
-      case 'portfolio':
-        return <div data-section="portfolio"><PortfolioSection /></div>
-      case 'blog':
-        return <div data-section="blog"><BlogSection /></div>
-      case 'trauma-ai':
-        return <div data-section="trauma-ai"><TraumaInformedAI /></div>
-      case 'justice-resources':
-        return <div data-section="justice-resources"><JusticeResources /></div>
-      case 'brand':
-        return <div data-section="brand"><LogoShowcase /></div>
-      case 'contact':
-        return <div data-section="contact">{renderContact()}</div>
-      case 'archive':
-        return <div data-section="archive"><ArchiveSection /></div>
-      default:
-        return <Hero onNavigate={handleNavigate} />
-    }
+    // Check if currentSection is a valid key in our mapping
+    const isValidSection = (section: string): section is SectionName => 
+      Object.keys(sectionComponents).includes(section);
+    
+    // Default to hero if currentSection is not in the mapping
+    const sectionName = isValidSection(currentSection) ? currentSection : 'hero';
+    
+    return (
+      <Section name={sectionName}>
+        {sectionComponents[sectionName] || renderHero()}
+      </Section>
+    );
   }
 
   return (
     <PerformanceProvider>
-      <div className="app-container">
+      <div className="app-container" ref={containerRef}>
         {/* Accessibility and ADHD-friendly navigation components */}
         <SkipNavigation mainContentId="main-content" />
         <ProgressIndicator />
@@ -168,7 +211,7 @@ function App() {
               <div className="footer-brand">
                 <div className="footer-logo">
                   <img 
-                    src="/images/logos/Midnight_MagnoliaJune-14.jpg" 
+                    src="/images/logos/Midnight_MagnoliaJune-12.jpg" 
                     alt="Midnight Magnolia Logo"
                     className="footer-logo-image"
                   />

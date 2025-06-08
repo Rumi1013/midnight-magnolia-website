@@ -12,7 +12,11 @@
   },
   "dependencies": {
     "@axe-core/react": "^4.10.2",
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.16.0",
+    "motion": "^12.16.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.16.0"

@@ -1,0 +1,50 @@
+/* Community Section Styles */
+.community-tier-card {
+  background: var(--magnolia-white);
+  border: 1px solid var(--rich-gold);
+  padding: var(--space-lg);
+  border-radius: 8px;
+  margin-bottom: var(--space-md);
+}
+
+.tier-name {
+  font-family: var(--font-heading);
+  color: var(--midnight-blue);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+.tier-price {
+  font-family: var(--font-heading);
+  color: var(--rich-gold);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.tier-description {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+
+.tier-benefits {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tier-benefits li {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-xs);
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.tier-benefits li:before {
+  content: '✨';
+  position: absolute;
+  left: 0;
+} 
