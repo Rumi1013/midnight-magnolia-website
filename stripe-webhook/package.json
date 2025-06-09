@@ -1,0 +1,23 @@
+{
+  "name": "stripe-webhook",
+  "version": "1.0.0",
+  "description": "A webhook handler for Stripe events.",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "stripe": "^8.0.0",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}

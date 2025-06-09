@@ -1,0 +1,25 @@
+class WebhookController {
+    public handleWebhook(req: any, res: any): void {
+        const event = req.body;
+
+        // Handle the event
+        switch (event.type) {
+            case 'payment_intent.succeeded':
+                // Handle successful payment intent
+                console.log('PaymentIntent was successful!');
+                break;
+            case 'payment_intent.payment_failed':
+                // Handle failed payment intent
+                console.log('PaymentIntent failed.');
+                break;
+            // Add more event types as needed
+            default:
+                console.log(`Unhandled event type ${event.type}`);
+        }
+
+        // Respond with a 200 status to acknowledge receipt of the event
+        res.status(200).send('Webhook received');
+    }
+}
+
+export default WebhookController;

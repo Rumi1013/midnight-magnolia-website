@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
 import './styles/design-system.css'
-import './theme-light.css'
 import './App.css'
 import { validateEnvironment, initializeAnalytics } from './lib/integrations'
 
