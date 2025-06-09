@@ -26,12 +26,10 @@ const SacredMemberships: React.FC = () => {
       name: 'Magnolia Seed',
       price: '$3',
       icon: '🌱',
-      description: 'Plant the seeds of transformation with gentle support',
+      description: 'Plant the roots of transformation.',
       benefits: [
-        'Monthly affirmations & wallpapers',
-        'Access to community sanctuary',
-        'New moon intention prompts',
-        'Sacred pause moments'
+        'Monthly affirmation cards',
+        'Exclusive wallpapers'
       ],
       cta: 'Plant Your Seed'
     },
@@ -40,12 +38,12 @@ const SacredMemberships: React.FC = () => {
       name: 'Crescent Bloom',
       price: '$7',
       icon: '🌙',
-      description: 'Embrace the lunar cycles of growth and reflection',
+      description: 'Bloom into deeper insight and intention.',
       benefits: [
         'Everything in Magnolia Seed',
-        'Tarot spotlights & guidance',
-        'Blog access to wisdom stories',
-        'Moon phase rituals'
+        'Tarot card previews',
+        'Blog access',
+        'Voting on upcoming features'
       ],
       cta: 'Begin Blooming'
     },
@@ -54,13 +52,12 @@ const SacredMemberships: React.FC = () => {
       name: 'Golden Grove',
       price: '$15',
       icon: '✨',
-      description: 'Flourish in the golden light of sustainable abundance',
+      description: 'Grow your practice with grounded ritual.',
       benefits: [
         'Everything in Crescent Bloom',
-        'Monthly journal pages & templates',
-        'Audio rituals for healing',
-        'Early access to digital products',
-        'Gentle productivity tools'
+        'Monthly journal pages',
+        'Printable rituals',
+        'Access to meditations'
       ],
       highlighted: true,
       cta: 'Enter the Grove'
@@ -70,13 +67,12 @@ const SacredMemberships: React.FC = () => {
       name: 'Moonlit Sanctuary',
       price: '$30',
       icon: '🏯',
-      description: 'Find refuge in personalized guidance and deep community',
+      description: 'Sanctuary space for guided creation and reflection.',
       benefits: [
         'Everything in Golden Grove',
-        'Personalized content & recommendations',
-        'Monthly healing circles (virtual)',
-        'Direct messaging with Latisha',
-        'Custom automation templates'
+        'Personalized prompts',
+        'Group journaling circles',
+        'Mini live Q&As'
       ],
       cta: 'Enter Your Sanctuary'
     },
@@ -85,14 +81,12 @@ const SacredMemberships: React.FC = () => {
       name: 'House of Midnight',
       price: '$75',
       icon: '🏠',
-      description: 'The deepest transformation through intimate connection',
+      description: 'Step fully into the circle with deeper access, care, and creativity.',
       benefits: [
         'Everything in Moonlit Sanctuary',
-        'Quarterly care packages (physical)',
-        'Monthly 1:1 connection calls',
-        'Beta access to all new offerings',
-        'Co-creation opportunities',
-        'Legacy building support'
+        'Quarterly ritual boxes',
+        '1:1 private consults',
+        'Early product previews'
       ],
       cta: 'Join the House'
     }

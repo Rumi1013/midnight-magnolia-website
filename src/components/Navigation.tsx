@@ -175,7 +175,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                 ) : (
                   <>
                     <InteractiveButton
-                      variant={item.subItems?.some(sub => sub.id === currentSection) ? 'primary' : 'ghost'}
+                      variant={item.submenu?.some(sub => sub.id === currentSection) ? 'primary' : 'ghost'}
                       magnetic={true}
                       onClick={() => handleMenuItemClick(item)}
                       className="nav-link nav-link-dropdown"
@@ -189,7 +189,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentSection, onNavigate }) =
                     
                     {/* Enhanced Dropdown Menu */}
                     <div className={`dropdown-menu ${activeDropdown === item.id ? 'dropdown-menu-open' : ''}`}>
-                      {item.subItems?.map((subItem) => (
+                      {item.submenu?.map((subItem) => (
                         <InteractiveButton
                           key={subItem.id}
                           variant={currentSection === subItem.id ? 'primary' : 'ghost'}
