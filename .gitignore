@@ -1,3 +1,81 @@
+# Dependencies
+node_modules/
+**/node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js / React / Vite
+/.next/
+**/.next/
+/out/
+/build
+/dist
+.vite
+
+# Environment variables - SECURITY CRITICAL
+.env*
+!.env.local.example
+!.env.example
+**/.env*
+!**/.env.example
+!**/.env.local.example
+
+# API Keys and Secrets - SECURITY CRITICAL
+**/config.json
+**/secrets.json
+**/*secret*
+**/*key*
+**/*credential*
+**/*password*
+**/auth.json
+**/token*
+**/*.pem
+**/*.p12
+**/*.pfx
+**/*.cer
+**/*.crt
+**/*.key
+
+# Stripe / Payment secrets
+stripe-webhook/.env
+stripe-webhook/**/.env
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Personal/Legal documents - PRIVACY CRITICAL
+**/*intake*.pdf
+**/*legal*.pdf
+**/*personal*.pdf
+
+# Media files (if large)
+*.mov
+*.mp4
+*.avi
+
+# Backup files
+*.bak
+*.backup
+*~
+
 # Logs
 logs
 *.log
