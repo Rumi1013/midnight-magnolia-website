@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -9,133 +8,209 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Loader2 } from "lucide-react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  phoneNumber: z.string().min(10, { message: "Please enter a valid phone number." }),
-  budget: z.string().min(1, { message: "Please enter your budget." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  name: z.string().min(2, { message: "Please share your name (at least 2 characters)." }),
+  email: z.string().email({ message: "Please provide a valid email so we can respond to you." }),
+  phone: z.string().optional(),
+  subject: z.string().min(1, { message: "Please select a subject for your message." }),
+  message: z.string().min(10, { message: "Please share a bit more detail (at least 10 characters)." }),
 })
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
-      phoneNumber: "",
-      budget: "",
+      phone: "",
+      subject: "",
       message: "",
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
-    // Simulate API call
-    setTimeout(() => {
-      console.log(values)
+    setSubmitResult(null)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitResult({
+          success: true,
+          message: data.message || "Your message has been sent. We'll respond soon.",
+        })
+        form.reset()
+      } else {
+        setSubmitResult({
+          success: false,
+          message: data.message || "Something went wrong. Please try again.",
+        })
+      }
+    } catch (error) {
+      setSubmitResult({
+        success: false,
+        message: "There was a problem sending your message. Please try again or email us directly.",
+      })
+    } finally {
       setIsSubmitting(false)
-      form.reset()
-      alert("Thank you for your message. We'll get back to you soon!")
-    }, 2000)
+    }
   }
 
   return (
-    <section className="bg-background py-20">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl mb-4">Get in Touch</h2>
-          <p className="text-lg text-muted-foreground">
-            We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
-          </p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="John Doe" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="john@example.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="phoneNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <Input placeholder="+1 (555) 000-0000" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="budget"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Budget</FormLabel>
-                    <FormControl>
-                      <Input placeholder="$1,000 - $5,000" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Tell us about your project..." className="min-h-[120px]" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
-          </Form>
-        </motion.div>
-      </div>
-    </section>
+    <div className="space-y-6">
+      {submitResult && (
+        <Alert className={submitResult.success ? "bg-[#A3B18A] bg-opacity-20" : "bg-red-900 bg-opacity-20"}>
+          <AlertDescription className="text-[#FAF3E0]">{submitResult.message}</AlertDescription>
+        </Alert>
+      )}
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[#FAF3E0]">Name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Your name"
+                    {...field}
+                    className="bg-[#FAF3E0] bg-opacity-10 border-[#D4B99F] border-opacity-30 text-[#FAF3E0] placeholder:text-[#FAF3E0] placeholder:opacity-50"
+                  />
+                </FormControl>
+                <FormMessage className="text-[#D4AF37]" />
+              </FormItem>
+            )}
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-[#FAF3E0]">Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="your.email@example.com"
+                      type="email"
+                      {...field}
+                      className="bg-[#FAF3E0] bg-opacity-10 border-[#D4B99F] border-opacity-30 text-[#FAF3E0] placeholder:text-[#FAF3E0] placeholder:opacity-50"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-[#D4AF37]" />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-[#FAF3E0]">Phone (Optional)</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="(555) 123-4567"
+                      {...field}
+                      className="bg-[#FAF3E0] bg-opacity-10 border-[#D4B99F] border-opacity-30 text-[#FAF3E0] placeholder:text-[#FAF3E0] placeholder:opacity-50"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-[#D4AF37]" />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <FormField
+            control={form.control}
+            name="subject"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[#FAF3E0]">Subject</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="bg-[#FAF3E0] bg-opacity-10 border-[#D4B99F] border-opacity-30 text-[#FAF3E0]">
+                      <SelectValue placeholder="Select a subject" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="bg-[#0A192F] border-[#D4B99F] border-opacity-30">
+                    <SelectItem value="general" className="text-[#FAF3E0]">
+                      General Inquiry
+                    </SelectItem>
+                    <SelectItem value="product" className="text-[#FAF3E0]">
+                      Product Question
+                    </SelectItem>
+                    <SelectItem value="order" className="text-[#FAF3E0]">
+                      Order Support
+                    </SelectItem>
+                    <SelectItem value="wholesale" className="text-[#FAF3E0]">
+                      Wholesale Inquiry
+                    </SelectItem>
+                    <SelectItem value="collaboration" className="text-[#FAF3E0]">
+                      Collaboration
+                    </SelectItem>
+                    <SelectItem value="other" className="text-[#FAF3E0]">
+                      Other
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage className="text-[#D4AF37]" />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[#FAF3E0]">Message</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Share your thoughts, questions, or what you're seeking..."
+                    className="min-h-[150px] bg-[#FAF3E0] bg-opacity-10 border-[#D4B99F] border-opacity-30 text-[#FAF3E0] placeholder:text-[#FAF3E0] placeholder:opacity-50"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage className="text-[#D4AF37]" />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-[#A3B18A] hover:bg-[#A3B18A] hover:opacity-90 text-[#0A192F] font-medium py-2"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              "Send Message"
+            )}
+          </Button>
+        </form>
+      </Form>
+    </div>
   )
 }
