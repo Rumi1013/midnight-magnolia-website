@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Calendar, MapPin, Users } from "lucide-react"
+import { Calendar, MapPin, Clock, Users, ChevronRight, MessageCircle, Heart } from "lucide-react"
 import FloatingMoon from "@/app/components/FloatingMoon"
 import FloatingZodiac from "@/app/components/FloatingZodiac"
 
@@ -247,4 +247,217 @@ export default function CommunityPageClient() {
                               </div>
                               <div className="flex items-center gap-1">
                                 <Users size={14} />
-                                <span className="font-lora text-sm">{event.attendees
+                                <span className="font-lora text-sm">{event.attendees} attending</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+              </div>
+
+              {/* All Events List */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {events.map((event) => (
+                  <motion.div
+                    key={event.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white rounded-xl shadow-sm p-6 group"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <Calendar size={16} className="text-sage-green" />
+                      <span className="font-montserrat text-sm font-semibold text-sage-green">{event.date}</span>
+                    </div>
+                    <h3 className="font-playfair text-xl font-bold text-midnight-blue mb-3 group-hover:text-sage-green transition-colors duration-300">
+                      {event.title}
+                    </h3>
+                    <p className="font-lora text-gray-700 mb-4">{event.description}</p>
+                    <div className="flex flex-wrap items-center gap-4 text-gray-500 mb-4">
+                      <div className="flex items-center gap-1">
+                        <Clock size={14} />
+                        <span className="font-lora text-xs">{event.time}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MapPin size={14} />
+                        <span className="font-lora text-xs">{event.location}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users size={14} />
+                        <span className="font-lora text-xs">{event.attendees} attending</span>
+                      </div>
+                    </div>
+                    <Link
+                      href={`/community/events/${event.id}`}
+                      className="inline-flex items-center gap-2 text-sage-green font-montserrat text-sm font-semibold hover:gap-3 transition-all duration-300"
+                    >
+                      Learn More & Register <ChevronRight size={14} />
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Testimonials Section */}
+        {activeTab === "testimonials" && (
+          <section className="py-16 bg-magnolia-white">
+            <div className="container mx-auto px-6">
+              <h2 className="font-playfair text-3xl font-bold text-midnight-blue mb-10 text-center">
+                Community Stories
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {testimonials.map((testimonial) => (
+                  <motion.div
+                    key={testimonial.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white rounded-xl shadow-sm p-6"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                        <Image
+                          src={testimonial.image || "/placeholder.svg"}
+                          alt={testimonial.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="font-playfair text-lg font-bold text-midnight-blue">{testimonial.name}</h3>
+                        <p className="font-lora text-sm text-gray-600">{testimonial.location}</p>
+                      </div>
+                    </div>
+                    <p className="font-lora text-gray-700 italic">"{testimonial.quote}"</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Forum Section */}
+        {activeTab === "forum" && (
+          <section className="py-16 bg-magnolia-white">
+            <div className="container mx-auto px-6">
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="font-playfair text-3xl font-bold text-midnight-blue">Discussion Forum</h2>
+                <Link
+                  href="/community/forum"
+                  className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg"
+                >
+                  View All Topics
+                </Link>
+              </div>
+              <div className="space-y-4">
+                {forumTopics.map((topic) => (
+                  <motion.div
+                    key={topic.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white rounded-xl shadow-sm p-6 group hover:shadow-md transition-shadow duration-300"
+                  >
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="font-playfair text-lg font-bold text-midnight-blue mb-2 group-hover:text-sage-green transition-colors duration-300">
+                          {topic.title}
+                        </h3>
+                        <div className="flex items-center gap-6 text-gray-500">
+                          <div className="flex items-center gap-1">
+                            <MessageCircle size={14} />
+                            <span className="font-lora text-sm">{topic.replies} replies</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Heart size={14} />
+                            <span className="font-lora text-sm">{topic.likes} likes</span>
+                          </div>
+                          <span className="font-lora text-sm">Last active {topic.lastActive}</span>
+                        </div>
+                      </div>
+                      <ChevronRight
+                        size={20}
+                        className="text-gray-400 group-hover:text-sage-green transition-colors duration-300"
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Membership Section */}
+        {activeTab === "membership" && (
+          <section className="py-16 bg-magnolia-white">
+            <div className="container mx-auto px-6">
+              <h2 className="font-playfair text-3xl font-bold text-midnight-blue mb-10 text-center">
+                Membership Benefits
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+                  <div className="bg-sage-green/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Calendar size={24} className="text-sage-green" />
+                  </div>
+                  <h3 className="font-playfair text-xl font-bold text-midnight-blue mb-3">Exclusive Events</h3>
+                  <p className="font-lora text-gray-700">
+                    Access to member-only workshops, healing circles, and intimate gatherings with limited capacity.
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+                  <div className="bg-sage-green/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <MessageCircle size={24} className="text-sage-green" />
+                  </div>
+                  <h3 className="font-playfair text-xl font-bold text-midnight-blue mb-3">Private Community</h3>
+                  <p className="font-lora text-gray-700">
+                    Join our private forum for deeper conversations, peer support, and resource sharing.
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+                  <div className="bg-sage-green/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users size={24} className="text-sage-green" />
+                  </div>
+                  <h3 className="font-playfair text-xl font-bold text-midnight-blue mb-3">Mentorship Program</h3>
+                  <p className="font-lora text-gray-700">
+                    Connect with experienced community members for guidance on your healing journey.
+                  </p>
+                </div>
+              </div>
+              <div className="text-center mt-10">
+                <Link
+                  href="/community/join"
+                  className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-lg"
+                >
+                  Become a Member
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* CTA Section */}
+        <section className="py-20 bg-[#0A192F]">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="font-playfair text-4xl font-bold text-magnolia-white mb-6">Ready to Join Our Circle?</h2>
+              <p className="font-lora text-xl text-magnolia-white/80 leading-relaxed mb-8">
+                Take the first step toward connecting with a community that truly understands your journey. Your healing
+                matters, and you don't have to walk this path alone.
+              </p>
+              <Link
+                href="/community/join"
+                className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-lg"
+              >
+                Join Our Community Today
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  )
+}

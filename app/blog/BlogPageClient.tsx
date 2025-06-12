@@ -28,7 +28,7 @@ const blogPosts = [
     author: "Latisha Vincent-Waters",
     date: "June 4, 2024",
     readTime: "8 min read",
-    image: "/southern-gothic-mansion.png",
+    image: "/placeholder.svg?key=ruqy2",
     featured: true,
   },
   {
