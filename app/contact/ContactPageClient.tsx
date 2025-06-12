@@ -5,7 +5,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Card, CardContent } from "@/components/ui/card"
-import { MailIcon, PhoneIcon, ClockIcon, HeartIcon, MoonIcon, StarIcon } from "lucide-react"
+import { MailIcon, PhoneIcon, ClockIcon, HeartIcon, MoonIcon, StarIcon, ArrowRightIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import ContactForm from "../components/ContactForm"
 
 // Animation variants
@@ -70,10 +72,26 @@ export default function ContactPageClient() {
           <motion.p
             variants={fadeIn}
             custom={1}
-            className="text-xl md:text-2xl text-[#FAF3E0] opacity-90 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-[#FAF3E0] opacity-90 max-w-3xl mx-auto mb-8"
           >
             "In the quiet spaces between words, healing begins. Reach out when your soul is ready."
           </motion.p>
+
+          {/* CTA Button */}
+          <motion.div
+            variants={fadeIn}
+            custom={2}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-block"
+          >
+            <Link href="#contact-form">
+              <Button className="bg-[#A3B18A] hover:bg-[#A3B18A] hover:opacity-90 text-[#0A192F] font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 shadow-lg">
+                Share Your Journey
+                <ArrowRightIcon className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </motion.div>
         </motion.div>
 
         {/* Floating elements */}
@@ -118,7 +136,7 @@ export default function ContactPageClient() {
       </section>
 
       {/* Main Content */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-24">
+      <section id="contact-form" className="px-4 sm:px-6 lg:px-8 pb-24 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Contact Form */}
@@ -288,6 +306,25 @@ export default function ContactPageClient() {
                     </ul>
                   </CardContent>
                 </Card>
+              </motion.div>
+
+              {/* Return to Home Button */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={fadeIn}
+                custom={5}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <Link href="/">
+                  <Button
+                    variant="outline"
+                    className="w-full border-[#D4B99F] border-opacity-50 text-[#FAF3E0] hover:bg-[#FAF3E0] hover:bg-opacity-5 transition-all duration-300"
+                  >
+                    Return to Home
+                  </Button>
+                </Link>
               </motion.div>
             </div>
           </div>
