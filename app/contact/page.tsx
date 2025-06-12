@@ -1,7 +1,6 @@
-import type { Metadata } from "next"
 import ContactPageClient from "./ContactPageClient"
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Contact Us | Midnight Magnolia",
   description: "Reach out to Midnight Magnolia for support, inquiries, or to begin your healing journey with us.",
 }
