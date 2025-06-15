@@ -4,6 +4,7 @@ import "./globals.css"
 import Header from "./components/Header"
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "./components/Footer"
+import PerformanceMonitor from "./components/PerformanceMonitor"
 
 export const metadata: Metadata = {
   title: "v0 App",
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <PerformanceMonitor />
           <Header />
           <main className="pt-20">{children}</main>
           <Footer />
