@@ -1,356 +1,242 @@
 "use client"
 
-import { useState, useEffect } from "react"
-
-const AFFIRMATIONS = ["You are worthy of rest", "Your pace is sacred", "Healing is not linear", "You belong here"]
+import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import Image from "next/image"
 
 export default function Hero() {
-  const [mounted, setMounted] = useState(false)
-  const [currentAffirmation, setCurrentAffirmation] = useState(0)
+  const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 })
 
   useEffect(() => {
-    setMounted(true)
-    const interval = setInterval(() => {
-      setCurrentAffirmation((prev) => (prev + 1) % AFFIRMATIONS.length)
-    }, 4000)
-    return () => clearInterval(interval)
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  if (!mounted) return <HeroSkeleton />
-
   return (
-    <section className="hero">
-      <div className="hero-background">
-        <div className="celestial-overlay" />
-        <FloatingElements />
+    <section className="relative min-h-screen bg-midnight-blue overflow-hidden flex items-center justify-center">
+      {/* Background texture */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-sage-green/20 to-transparent" />
       </div>
 
-      <div className="container">
-        <div className="hero-content">
-          <div className="hero-logo">
-            <div className="logo-circle">
-              <span className="logo-icon">🌸</span>
-            </div>
-          </div>
+      {/* Floating magnolia petals */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-4 h-4 bg-magnolia-white/20 rounded-full"
+            initial={{
+              x: Math.random() * windowSize.width,
+              y: -20,
+              rotate: 0,
+            }}
+            animate={{
+              y: windowSize.height + 20,
+              rotate: 360,
+              x: Math.random() * windowSize.width + (Math.random() - 0.5) * 200,
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+              delay: i * 2,
+            }}
+          />
+        ))}
+      </div>
 
-          <div className="hero-text">
-            <p className="hero-subtitle">Welcome to your digital sanctuary</p>
-
-            <h1 className="hero-title">
-              Midnight
-              <br />
-              <span className="text-gold">Magnolia</span>
-            </h1>
-
-            <div className="affirmation-container">
-              <p className="affirmation" key={currentAffirmation}>
-                "{AFFIRMATIONS[currentAffirmation]}"
-              </p>
-            </div>
-
-            <p className="hero-description">
-              Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle
-              productivity, sacred rituals, and transformative digital tools.
-            </p>
-          </div>
-
-          <div className="hero-actions">
-            <button className="btn btn-primary btn-large">Enter the Garden</button>
-            <button className="btn btn-secondary btn-large">Explore Sacred Tools</button>
-          </div>
-
-          <div className="hero-stats">
-            {[
-              { number: "500+", label: "Healing souls" },
-              { number: "78", label: "Tarot cards" },
-              { number: "24/7", label: "Gentle support" },
-            ].map((stat, index) => (
-              <div key={index} className="stat">
-                <div className="stat-number">{stat.number}</div>
-                <div className="stat-label">{stat.label}</div>
+      <div className="relative z-10 container mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
+          {/* Left content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8 text-center lg:text-left"
+          >
+            {/* Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex justify-center lg:justify-start mb-8"
+            >
+              <div className="relative w-32 h-32 rounded-full overflow-hidden">
+                <Image
+                  src="/images/logo-main.jpg"
+                  alt="Midnight Magnolia - A Southern Gothic Digital Sanctuary"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
-            ))}
-          </div>
+            </motion.div>
+
+            <div className="space-y-6">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-sage-green font-montserrat text-base tracking-[0.2em] uppercase font-medium"
+              >
+                Welcome to your digital sanctuary
+              </motion.p>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="font-playfair text-6xl lg:text-8xl font-bold text-magnolia-white leading-[0.9]"
+              >
+                Midnight
+                <br />
+                <span className="text-gold">Magnolia</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="font-lora text-xl lg:text-2xl text-magnolia-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              >
+                Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle
+                productivity, sacred rituals, and transformative digital tools.
+              </motion.p>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
+            >
+              <button className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[56px] text-lg">
+                Enter the Garden
+              </button>
+              <button className="border-2 border-magnolia-white/30 hover:border-gold text-magnolia-white hover:text-gold font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 min-h-[56px] text-lg">
+                Explore Sacred Tools
+              </button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+              className="flex items-center justify-center lg:justify-start gap-8 pt-8"
+            >
+              <div className="text-center">
+                <p className="text-gold font-playfair text-3xl font-bold">500+</p>
+                <p className="text-magnolia-white/60 font-montserrat text-sm">Healing souls</p>
+              </div>
+              <div className="w-px h-16 bg-magnolia-white/20" />
+              <div className="text-center">
+                <p className="text-gold font-playfair text-3xl font-bold">78</p>
+                <p className="text-magnolia-white/60 font-montserrat text-sm">Tarot cards</p>
+              </div>
+              <div className="w-px h-16 bg-magnolia-white/20" />
+              <div className="text-center">
+                <p className="text-gold font-playfair text-3xl font-bold">24/7</p>
+                <p className="text-magnolia-white/60 font-montserrat text-sm">Gentle support</p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right content - Mystical illustration */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative flex items-center justify-center"
+          >
+            <div className="relative w-full max-w-[600px] h-[600px] flex items-center justify-center">
+              {/* Central logo with mystical elements */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 60, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="w-80 h-80 rounded-full border-2 border-gold/30 flex items-center justify-center">
+                  <div className="w-60 h-60 rounded-full border border-sage-green/40 flex items-center justify-center">
+                    <div className="w-40 h-40 rounded-full bg-gradient-to-br from-magnolia-white/20 to-gold/20 flex items-center justify-center backdrop-blur-sm">
+                      <div className="relative w-32 h-32 rounded-full overflow-hidden">
+                        <Image
+                          src="/images/logo-circular.jpg"
+                          alt="Midnight Magnolia Sacred Symbol"
+                          fill
+                          className="object-contain rounded-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Floating elements */}
+              <motion.div
+                animate={{ y: [-15, 15, -15] }}
+                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                className="absolute top-16 right-16 text-5xl"
+              >
+                🌙
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [15, -15, 15] }}
+                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+                className="absolute bottom-16 left-16 text-4xl"
+              >
+                ✨
+              </motion.div>
+
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                className="absolute top-32 left-8 text-3xl"
+              >
+                🕯️
+              </motion.div>
+
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
+                className="absolute bottom-32 right-8 text-3xl"
+              >
+                🌿
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      <ScrollIndicator />
-
-      <style jsx>{`
-        .hero {
-          min-height: 100vh;
-          background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--midnight-indigo) 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .hero-background {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-        }
-
-        .celestial-overlay {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at 30% 20%, rgba(163, 177, 138, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 70% 80%, rgba(155, 143, 181, 0.08) 0%, transparent 50%);
-        }
-
-        .hero-content {
-          position: relative;
-          z-index: 10;
-          text-align: center;
-          padding: var(--space-2xl) 0;
-          max-width: 800px;
-          margin: 0 auto;
-        }
-
-        .hero-logo {
-          margin-bottom: var(--space-xl);
-        }
-
-        .logo-circle {
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, rgba(250, 243, 224, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto;
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(250, 243, 224, 0.2);
-        }
-
-        .logo-icon {
-          font-size: 3rem;
-          filter: drop-shadow(0 0 10px rgba(250, 243, 224, 0.3));
-        }
-
-        .hero-text {
-          margin-bottom: var(--space-xl);
-        }
-
-        .hero-subtitle {
-          color: var(--sage-green);
-          font-family: var(--font-ui);
-          font-size: 0.875rem;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          font-weight: 500;
-          margin-bottom: var(--space-md);
-        }
-
-        .hero-title {
-          font-family: var(--font-display);
-          font-size: clamp(3rem, 8vw, 6rem);
-          font-weight: 900;
-          color: var(--magnolia-white);
-          line-height: 0.9;
-          margin-bottom: var(--space-lg);
-          text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .affirmation-container {
-          height: 60px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: var(--space-lg);
-        }
-
-        .affirmation {
-          font-family: var(--font-display);
-          font-size: 1.25rem;
-          color: var(--lavender-mist);
-          font-style: italic;
-          opacity: 0;
-          animation: fadeInOut 4s infinite;
-        }
-
-        @keyframes fadeInOut {
-          0%, 100% { opacity: 0; transform: translateY(10px); }
-          20%, 80% { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-description {
-          font-size: 1.25rem;
-          color: rgba(250, 243, 224, 0.9);
-          line-height: 1.6;
-          margin-bottom: var(--space-xl);
-        }
-
-        .hero-actions {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-md);
-          align-items: center;
-          margin-bottom: var(--space-xl);
-        }
-
-        .btn-large {
-          padding: var(--space-md) var(--space-xl);
-          font-size: 1.125rem;
-          min-width: 200px;
-        }
-
-        .hero-stats {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: var(--space-xl);
-          flex-wrap: wrap;
-        }
-
-        .stat {
-          text-align: center;
-        }
-
-        .stat-number {
-          font-family: var(--font-display);
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--rich-gold);
-          text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-        }
-
-        .stat-label {
-          font-family: var(--font-ui);
-          font-size: 0.875rem;
-          color: rgba(250, 243, 224, 0.6);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        @media (min-width: 640px) {
-          .hero-actions {
-            flex-direction: row;
-            gap: var(--space-lg);
-          }
-        }
-      `}</style>
-    </section>
-  )
-}
-
-function FloatingElements() {
-  return (
-    <div className="floating-elements">
-      {[...Array(8)].map((_, i) => (
-        <div
-          key={i}
-          className="floating-element"
-          style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${i * 2}s`,
-            animationDuration: `${8 + Math.random() * 4}s`,
-          }}
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+          className="text-magnolia-white/60 text-center"
         >
-          {["🌙", "✨", "🌿", "🕯️"][i % 4]}
-        </div>
-      ))}
-
-      <style jsx>{`
-        .floating-elements {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-        }
-
-        .floating-element {
-          position: absolute;
-          font-size: 1.5rem;
-          opacity: 0.6;
-          animation: float infinite linear;
-          filter: drop-shadow(0 0 10px rgba(250, 243, 224, 0.3));
-        }
-
-        @keyframes float {
-          0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.6;
-          }
-          90% {
-            opacity: 0.6;
-          }
-          100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-          }
-        }
-      `}</style>
-    </div>
-  )
-}
-
-function ScrollIndicator() {
-  return (
-    <div className="scroll-indicator">
-      <p>Begin your journey</p>
-      <div className="scroll-mouse">
-        <div className="scroll-dot" />
-      </div>
-
-      <style jsx>{`
-        .scroll-indicator {
-          position: absolute;
-          bottom: var(--space-lg);
-          left: 50%;
-          transform: translateX(-50%);
-          text-align: center;
-          color: rgba(250, 243, 224, 0.6);
-          font-family: var(--font-ui);
-          font-size: 0.875rem;
-        }
-
-        .scroll-mouse {
-          width: 24px;
-          height: 40px;
-          border: 2px solid rgba(250, 243, 224, 0.3);
-          border-radius: 20px;
-          margin: var(--space-xs) auto 0;
-          display: flex;
-          justify-content: center;
-          padding-top: 8px;
-        }
-
-        .scroll-dot {
-          width: 4px;
-          height: 12px;
-          background-color: rgba(250, 243, 224, 0.6);
-          border-radius: 2px;
-          animation: scroll-bounce 2s infinite;
-        }
-
-        @keyframes scroll-bounce {
-          0%, 100% { transform: translateY(0); opacity: 1; }
-          50% { transform: translateY(8px); opacity: 0.5; }
-        }
-      `}</style>
-    </div>
-  )
-}
-
-function HeroSkeleton() {
-  return (
-    <section
-      className="hero bg-midnight"
-      style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}
-    >
-      <div className="text-center text-magnolia">
-        <div className="animate-pulse">
-          <div className="w-32 h-32 bg-magnolia/10 rounded-full mx-auto mb-8"></div>
-          <div className="h-16 bg-magnolia/10 rounded mb-4"></div>
-          <div className="h-8 bg-magnolia/10 rounded mb-8"></div>
-        </div>
-      </div>
+          <p className="font-montserrat text-sm mb-2">Begin your journey</p>
+          <div className="w-6 h-10 border-2 border-magnolia-white/30 rounded-full mx-auto flex justify-center">
+            <div className="w-1 h-3 bg-magnolia-white/60 rounded-full mt-2" />
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

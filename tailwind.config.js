@@ -19,6 +19,19 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Midnight Magnolia Brand Colors
+        "midnight-blue": "#0A192F",
+        "midnight-indigo": "#1a1a3e",
+        "magnolia-white": "#FAF3E0",
+        "rich-gold": "#D4AF37",
+        gold: "#D4AF37",
+        "sage-green": "#A3B18A",
+        "lavender-mist": "#9b8fb5",
+        "dewdrop-silver": "#E8E5E0",
+        "petal-blush": "#F5D5C8",
+        "deep-plum": "#4A3556",
+        "warm-gray": "#D4B99F",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -52,6 +65,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        playfair: ["Playfair Display", "serif"],
+        lora: ["Lora", "serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
