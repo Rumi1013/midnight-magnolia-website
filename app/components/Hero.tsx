@@ -8,31 +8,13 @@ const AFFIRMATIONS = ["You are worthy of rest", "Your pace is sacred", "Healing 
 export default function Hero() {
   const [mounted, setMounted] = useState(false)
   const [currentAffirmation, setCurrentAffirmation] = useState(0)
-  const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 })
 
   useEffect(() => {
     setMounted(true)
-
-    // Handle window resize
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
-
-    handleResize()
-    window.addEventListener("resize", handleResize)
-
-    // Handle affirmation rotation
     const interval = setInterval(() => {
       setCurrentAffirmation((prev) => (prev + 1) % AFFIRMATIONS.length)
     }, 4000)
-
-    return () => {
-      clearInterval(interval)
-      window.removeEventListener("resize", handleResize)
-    }
+    return () => clearInterval(interval)
   }, [])
 
   if (!mounted) {
@@ -44,7 +26,7 @@ export default function Hero() {
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-sage-green/10 via-transparent to-lavender-mist/5" />
-        <FloatingElements windowSize={windowSize} />
+        <FloatingElements />
       </div>
 
       {/* Main Content */}
@@ -104,7 +86,7 @@ export default function Hero() {
             </div>
 
             <motion.p
-              className="mx-auto max-w-3xl text-xl leading-relaxed text-magnolia-white/90 md:text-2xl"
+              className="mx-auto max-w-3xl font-lora text-xl leading-relaxed text-magnolia-white/90 md:text-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -173,11 +155,7 @@ export default function Hero() {
   )
 }
 
-interface FloatingElementsProps {
-  windowSize: { width: number; height: number }
-}
-
-function FloatingElements({ windowSize }: FloatingElementsProps) {
+function FloatingElements() {
   const elements = ["🌙", "✨", "🌿", "🕯️"]
 
   return (
@@ -187,13 +165,13 @@ function FloatingElements({ windowSize }: FloatingElementsProps) {
           key={index}
           className="absolute text-2xl opacity-60"
           initial={{
-            x: Math.random() * windowSize.width,
-            y: windowSize.height + 50,
+            x: typeof window !== "undefined" ? Math.random() * window.innerWidth : 0,
+            y: typeof window !== "undefined" ? window.innerHeight + 50 : 0,
             rotate: 0,
           }}
           animate={{
             y: -50,
-            x: Math.random() * windowSize.width + (Math.random() - 0.5) * 200,
+            x: typeof window !== "undefined" ? Math.random() * window.innerWidth : 0,
             rotate: 360,
           }}
           transition={{

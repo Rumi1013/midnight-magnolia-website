@@ -64,22 +64,21 @@
     @apply border-border;
   }
 
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Lora", serif;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 2rem;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden;
   }
 }
 
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center whitespace-nowrap rounded-full px-8 py-4 text-base font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
-    font-family: var(--font-montserrat);
+    font-family: "Montserrat", sans-serif;
     min-height: 56px;
   }
 
@@ -88,7 +87,7 @@
   }
 
   .btn-primary:hover {
-    background-color: var(--lavender-mist);
+    background-color: #9b8fb5;
     transform: translateY(-2px);
   }
 
@@ -119,31 +118,27 @@
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--magnolia-white);
+    background: #faf3e0;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--sage-green);
+    background: #a3b18a;
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--rich-gold);
+    background: #d4af37;
   }
 
   /* Focus styles for accessibility */
   *:focus-visible {
-    outline: 2px solid var(--rich-gold);
+    outline: 2px solid #d4af37;
     outline-offset: 2px;
   }
 
