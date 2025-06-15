@@ -8,13 +8,31 @@ const AFFIRMATIONS = ["You are worthy of rest", "Your pace is sacred", "Healing 
 export default function Hero() {
   const [mounted, setMounted] = useState(false)
   const [currentAffirmation, setCurrentAffirmation] = useState(0)
+  const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 })
 
   useEffect(() => {
     setMounted(true)
+
+    // Handle window resize
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+
+    // Handle affirmation rotation
     const interval = setInterval(() => {
       setCurrentAffirmation((prev) => (prev + 1) % AFFIRMATIONS.length)
     }, 4000)
-    return () => clearInterval(interval)
+
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener("resize", handleResize)
+    }
   }, [])
 
   if (!mounted) {
@@ -26,11 +44,11 @@ export default function Hero() {
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-sage-green/10 via-transparent to-lavender-mist/5" />
-        <FloatingElements />
+        <FloatingElements windowSize={windowSize} />
       </div>
 
       {/* Main Content */}
-      <div className="container relative z-10 flex min-h-screen items-center justify-center">
+      <div className="container relative z-10 flex min-h-screen items-center justify-center py-20">
         <motion.div
           className="mx-auto max-w-4xl text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -103,8 +121,24 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
           >
-            <button className="btn btn-primary text-lg">Enter the Garden</button>
-            <button className="btn btn-secondary text-lg">Explore Sacred Tools</button>
+            <button
+              className="btn btn-primary text-lg"
+              onClick={() => {
+                const aboutSection = document.getElementById("about")
+                aboutSection?.scrollIntoView({ behavior: "smooth" })
+              }}
+            >
+              Enter the Garden
+            </button>
+            <button
+              className="btn btn-secondary text-lg"
+              onClick={() => {
+                const productsSection = document.getElementById("products")
+                productsSection?.scrollIntoView({ behavior: "smooth" })
+              }}
+            >
+              Explore Sacred Tools
+            </button>
           </motion.div>
 
           {/* Stats */}
@@ -134,32 +168,32 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-        <p className="font-montserrat text-sm text-magnolia-white/60">Begin your journey</p>
-        <div className="mx-auto mt-2 flex h-10 w-6 justify-center rounded-full border-2 border-magnolia-white/30">
-          <div className="mt-2 h-3 w-1 animate-pulse rounded-full bg-magnolia-white/60" />
-        </div>
-      </div>
+      <ScrollIndicator />
     </section>
   )
 }
 
-function FloatingElements() {
+interface FloatingElementsProps {
+  windowSize: { width: number; height: number }
+}
+
+function FloatingElements({ windowSize }: FloatingElementsProps) {
   const elements = ["🌙", "✨", "🌿", "🕯️"]
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {elements.map((element, index) => (
         <motion.div
           key={index}
           className="absolute text-2xl opacity-60"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: window.innerHeight + 50,
+            x: Math.random() * windowSize.width,
+            y: windowSize.height + 50,
+            rotate: 0,
           }}
           animate={{
             y: -50,
-            x: Math.random() * window.innerWidth,
+            x: Math.random() * windowSize.width + (Math.random() - 0.5) * 200,
             rotate: 360,
           }}
           transition={{
@@ -176,6 +210,36 @@ function FloatingElements() {
         </motion.div>
       ))}
     </div>
+  )
+}
+
+function ScrollIndicator() {
+  const handleScrollClick = () => {
+    const aboutSection = document.getElementById("about")
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  return (
+    <motion.div
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer text-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 1.2 }}
+      onClick={handleScrollClick}
+    >
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+        className="text-magnolia-white/60"
+      >
+        <p className="font-montserrat text-sm mb-2">Begin your journey</p>
+        <div className="mx-auto flex h-10 w-6 justify-center rounded-full border-2 border-magnolia-white/30">
+          <div className="mt-2 h-3 w-1 animate-pulse rounded-full bg-magnolia-white/60" />
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
