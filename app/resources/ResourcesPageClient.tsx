@@ -219,8 +219,24 @@ export default function ResourcesPageClient() {
   }
 
   const handlePurchaseResource = async (resource: any) => {
-    if (!purchaseForm.name || !purchaseForm.email) {
-      alert("Please fill in your name and email address.")
+    // Enhanced validation
+    if (!purchaseForm.name?.trim()) {
+      alert("Please enter your full name.")
+      return
+    }
+
+    if (!purchaseForm.email?.trim() || !purchaseForm.email.includes("@")) {
+      alert("Please enter a valid email address.")
+      return
+    }
+
+    if (purchaseForm.name.length > 100) {
+      alert("Name is too long. Please use a shorter name.")
+      return
+    }
+
+    if (purchaseForm.email.length > 254) {
+      alert("Email address is too long.")
       return
     }
 
@@ -237,20 +253,25 @@ export default function ResourcesPageClient() {
           resourceName: resource.title,
           price: resource.price,
           type: resource.type,
-          customerEmail: purchaseForm.email,
+          customerEmail: purchaseForm.email.trim(),
         }),
       })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to create checkout session")
+      }
 
       const data = await response.json()
 
       if (data.url) {
         window.location.href = data.url
       } else {
-        throw new Error(data.error || "Failed to create checkout session")
+        throw new Error("No checkout URL received")
       }
     } catch (error) {
       console.error("Purchase error:", error)
-      alert("There was an error processing your purchase. Please try again.")
+      alert("There was an error processing your purchase. Please try again or contact support.")
     } finally {
       setIsPurchaseLoading(false)
     }

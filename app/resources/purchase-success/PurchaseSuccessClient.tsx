@@ -18,22 +18,21 @@ export default function PurchaseSuccessClient() {
 
   useEffect(() => {
     if (sessionId) {
-      // In a real app, you'd fetch session details from Stripe
-      // For now, we'll simulate the data
+      // Validate session ID format
+      if (!/^cs_[a-zA-Z0-9_]+$/.test(sessionId)) {
+        setIsLoading(false)
+        return
+      }
+
+      // In production, fetch from secure API endpoint
       setTimeout(() => {
         setSessionData({
-          id: sessionId,
-          resource: "Complete Ancestral Healing Course",
-          amount: 197,
-          customerEmail: "customer@example.com",
+          id: sessionId.substring(0, 20) + "...", // Truncate for security
+          resource: "Premium Resource", // Generic fallback
+          amount: "***", // Hide amount for security
+          customerEmail: "***@***.com", // Mask email
           date: new Date().toISOString(),
-          downloadLinks: [
-            { name: "Course Introduction Video", url: "#", type: "video" },
-            { name: "Week 1-4 Workbook", url: "#", type: "pdf" },
-            { name: "Week 5-8 Workbook", url: "#", type: "pdf" },
-            { name: "Guided Meditation Audio", url: "#", type: "audio" },
-            { name: "Bonus Resources", url: "#", type: "pdf" },
-          ],
+          downloadLinks: [{ name: "Resource Files", url: "/api/secure-download", type: "secure" }],
         })
         setIsLoading(false)
       }, 1000)
@@ -94,12 +93,14 @@ export default function PurchaseSuccessClient() {
 
                     <div className="flex justify-between items-center py-3 border-b border-magnolia-white/10">
                       <span className="font-lora text-magnolia-white/70">Amount Paid</span>
-                      <span className="font-playfair text-xl font-bold text-gold">${sessionData?.amount || "197"}</span>
+                      <span className="font-playfair text-xl font-bold text-gold">Payment Confirmed</span>
                     </div>
 
                     <div className="flex justify-between items-center py-3 border-b border-magnolia-white/10">
-                      <span className="font-lora text-magnolia-white/70">Order ID</span>
-                      <span className="font-mono text-sm text-magnolia-white">{sessionId?.substring(0, 16)}...</span>
+                      <span className="font-lora text-magnolia-white/70">Order Reference</span>
+                      <span className="font-mono text-sm text-magnolia-white">
+                        {sessionId ? `***${sessionId.slice(-8)}` : "Processing..."}
+                      </span>
                     </div>
 
                     <div className="flex justify-between items-center py-3">

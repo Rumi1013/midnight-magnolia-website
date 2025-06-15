@@ -2,20 +2,14 @@ import { NextResponse } from "next/server"
 
 export async function GET() {
   try {
-    // Simple health check
+    // Basic health check - don't expose sensitive system information
     return NextResponse.json({
       status: "healthy",
       timestamp: new Date().toISOString(),
-      message: "Midnight Magnolia API is running",
+      version: "1.0.0",
     })
   } catch (error) {
     console.error("Health check failed:", error)
-    return NextResponse.json(
-      {
-        status: "error",
-        message: "Health check failed",
-      },
-      { status: 500 },
-    )
+    return NextResponse.json({ status: "unhealthy" }, { status: 500 })
   }
 }

@@ -122,8 +122,24 @@ export default function ServicesPageClient() {
     selectedCategory === "All Services" ? services : services.filter((service) => service.category === selectedCategory)
 
   const handleBookService = async (service: any) => {
-    if (!bookingForm.name || !bookingForm.email) {
-      alert("Please fill in your name and email address.")
+    // Enhanced validation
+    if (!bookingForm.name?.trim()) {
+      alert("Please enter your full name.")
+      return
+    }
+
+    if (!bookingForm.email?.trim() || !bookingForm.email.includes("@")) {
+      alert("Please enter a valid email address.")
+      return
+    }
+
+    if (bookingForm.name.length > 100) {
+      alert("Name is too long. Please use a shorter name.")
+      return
+    }
+
+    if (bookingForm.email.length > 254) {
+      alert("Email address is too long.")
       return
     }
 
@@ -140,20 +156,25 @@ export default function ServicesPageClient() {
           serviceName: service.title,
           price: service.price,
           duration: service.duration,
-          customerEmail: bookingForm.email,
+          customerEmail: bookingForm.email.trim(),
         }),
       })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to create checkout session")
+      }
 
       const data = await response.json()
 
       if (data.url) {
         window.location.href = data.url
       } else {
-        throw new Error(data.error || "Failed to create checkout session")
+        throw new Error("No checkout URL received")
       }
     } catch (error) {
       console.error("Booking error:", error)
-      alert("There was an error processing your booking. Please try again.")
+      alert("There was an error processing your booking. Please try again or contact support.")
     } finally {
       setIsBookingLoading(false)
     }

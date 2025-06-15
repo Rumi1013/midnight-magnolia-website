@@ -18,14 +18,20 @@ export default function BookingSuccessClient() {
 
   useEffect(() => {
     if (sessionId) {
-      // In a real app, you'd fetch session details from Stripe
-      // For now, we'll simulate the data
+      // Validate session ID format
+      if (!/^cs_[a-zA-Z0-9_]+$/.test(sessionId)) {
+        setIsLoading(false)
+        return
+      }
+
+      // In a real app, you'd fetch session details from your secure API
+      // Never expose Stripe secret keys or sensitive data to the client
       setTimeout(() => {
         setSessionData({
-          id: sessionId,
-          service: "Ancestral Healing Consultation",
-          amount: 150,
-          customerEmail: "customer@example.com",
+          id: sessionId.substring(0, 20) + "...", // Truncate for security
+          service: "Healing Session", // Generic fallback
+          amount: "***", // Hide amount for security
+          customerEmail: "***@***.com", // Mask email
           date: new Date().toISOString(),
         })
         setIsLoading(false)
@@ -87,14 +93,14 @@ export default function BookingSuccessClient() {
 
                     <div className="flex justify-between items-center py-3 border-b border-magnolia-white/10">
                       <span className="font-lora text-magnolia-white/70">Amount Paid</span>
-                      <span className="font-playfair text-xl font-bold text-sage-green">
-                        ${sessionData?.amount || "150"}
-                      </span>
+                      <span className="font-playfair text-xl font-bold text-sage-green">Payment Confirmed</span>
                     </div>
 
                     <div className="flex justify-between items-center py-3 border-b border-magnolia-white/10">
-                      <span className="font-lora text-magnolia-white/70">Booking ID</span>
-                      <span className="font-mono text-sm text-magnolia-white">{sessionId?.substring(0, 16)}...</span>
+                      <span className="font-lora text-magnolia-white/70">Booking Reference</span>
+                      <span className="font-mono text-sm text-magnolia-white">
+                        {sessionId ? `***${sessionId.slice(-8)}` : "Processing..."}
+                      </span>
                     </div>
 
                     <div className="flex justify-between items-center py-3">
