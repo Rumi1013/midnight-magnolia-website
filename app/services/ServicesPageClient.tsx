@@ -10,6 +10,18 @@ import { Badge } from "@/components/ui/badge"
 import { Clock, Star, CheckCircle, ArrowRight } from "lucide-react"
 import FloatingMoon from "@/app/components/FloatingMoon"
 import FloatingZodiac from "@/app/components/FloatingZodiac"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Loader2 } from "lucide-react"
 
 const services = [
   {
@@ -94,9 +106,67 @@ const categories = ["All Services", "Individual", "Group", "Workshop"]
 
 export default function ServicesPageClient() {
   const [selectedCategory, setSelectedCategory] = useState("All Services")
+  const [bookingModal, setBookingModal] = useState<{ open: boolean; service: any | null }>({
+    open: false,
+    service: null,
+  })
+  const [bookingForm, setBookingForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+  const [isBookingLoading, setIsBookingLoading] = useState(false)
 
   const filteredServices =
     selectedCategory === "All Services" ? services : services.filter((service) => service.category === selectedCategory)
+
+  const handleBookService = async (service: any) => {
+    if (!bookingForm.name || !bookingForm.email) {
+      alert("Please fill in your name and email address.")
+      return
+    }
+
+    setIsBookingLoading(true)
+
+    try {
+      const response = await fetch("/api/stripe/create-service-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          serviceId: service.id,
+          serviceName: service.title,
+          price: service.price,
+          duration: service.duration,
+          customerEmail: bookingForm.email,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error(data.error || "Failed to create checkout session")
+      }
+    } catch (error) {
+      console.error("Booking error:", error)
+      alert("There was an error processing your booking. Please try again.")
+    } finally {
+      setIsBookingLoading(false)
+    }
+  }
+
+  const openBookingModal = (service: any) => {
+    setBookingModal({ open: true, service })
+  }
+
+  const closeBookingModal = () => {
+    setBookingModal({ open: false, service: null })
+    setBookingForm({ name: "", email: "", phone: "", message: "" })
+  }
 
   return (
     <>
@@ -219,9 +289,114 @@ export default function ServicesPageClient() {
                         <div className="font-playfair text-xl font-bold text-midnight-blue">${service.price}</div>
                       </div>
 
-                      <Button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold transition-all duration-300">
-                        Book Session
-                      </Button>
+                      <Dialog open={bookingModal.open} onOpenChange={(open) => !open && closeBookingModal()}>
+                        <DialogTrigger asChild>
+                          <Button
+                            className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold transition-all duration-300"
+                            onClick={() => openBookingModal(service)}
+                          >
+                            Book Session
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="bg-magnolia-white max-w-md">
+                          <DialogHeader>
+                            <DialogTitle className="font-playfair text-2xl text-midnight-blue">
+                              Book Your Session
+                            </DialogTitle>
+                            <DialogDescription className="font-lora text-gray-700">
+                              {bookingModal.service?.title} - ${bookingModal.service?.price}
+                            </DialogDescription>
+                          </DialogHeader>
+
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="name" className="font-montserrat text-midnight-blue">
+                                Full Name *
+                              </Label>
+                              <Input
+                                id="name"
+                                value={bookingForm.name}
+                                onChange={(e) => setBookingForm({ ...bookingForm, name: e.target.value })}
+                                className="border-warm-gray focus:border-sage-green"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="email" className="font-montserrat text-midnight-blue">
+                                Email Address *
+                              </Label>
+                              <Input
+                                id="email"
+                                type="email"
+                                value={bookingForm.email}
+                                onChange={(e) => setBookingForm({ ...bookingForm, email: e.target.value })}
+                                className="border-warm-gray focus:border-sage-green"
+                                required
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="phone" className="font-montserrat text-midnight-blue">
+                                Phone Number
+                              </Label>
+                              <Input
+                                id="phone"
+                                type="tel"
+                                value={bookingForm.phone}
+                                onChange={(e) => setBookingForm({ ...bookingForm, phone: e.target.value })}
+                                className="border-warm-gray focus:border-sage-green"
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="message" className="font-montserrat text-midnight-blue">
+                                Message (Optional)
+                              </Label>
+                              <Textarea
+                                id="message"
+                                value={bookingForm.message}
+                                onChange={(e) => setBookingForm({ ...bookingForm, message: e.target.value })}
+                                className="border-warm-gray focus:border-sage-green"
+                                rows={3}
+                                placeholder="Tell us about your healing goals or any questions you have..."
+                              />
+                            </div>
+
+                            <div className="bg-sage-green/10 p-4 rounded-lg">
+                              <p className="font-lora text-sm text-midnight-blue">
+                                After payment, we'll contact you within 24 hours to schedule your session at a time that
+                                works for you.
+                              </p>
+                            </div>
+
+                            <div className="flex gap-3">
+                              <Button
+                                variant="outline"
+                                onClick={closeBookingModal}
+                                className="flex-1 border-warm-gray text-midnight-blue hover:bg-warm-gray/10"
+                                disabled={isBookingLoading}
+                              >
+                                Cancel
+                              </Button>
+                              <Button
+                                onClick={() => handleBookService(bookingModal.service)}
+                                className="flex-1 bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold"
+                                disabled={isBookingLoading}
+                              >
+                                {isBookingLoading ? (
+                                  <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Processing...
+                                  </>
+                                ) : (
+                                  `Pay $${bookingModal.service?.price}`
+                                )}
+                              </Button>
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     </CardContent>
                   </Card>
                 </motion.div>

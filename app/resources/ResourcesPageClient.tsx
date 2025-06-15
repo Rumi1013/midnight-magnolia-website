@@ -7,9 +7,18 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Download, FileText, Video, Headphones, Search, BookOpen } from "lucide-react"
+import { Download, FileText, Video, Headphones, Search, BookOpen, CreditCard, Loader2 } from "lucide-react"
 import FloatingMoon from "@/app/components/FloatingMoon"
 import FloatingZodiac from "@/app/components/FloatingZodiac"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
 
 const resources = [
   {
@@ -103,15 +112,83 @@ const resources = [
     featured: false,
     free: true,
   },
+  {
+    id: 9,
+    title: "Complete Ancestral Healing Course",
+    description:
+      "Comprehensive 8-week course with video lessons, workbooks, and personal guidance for deep ancestral healing work.",
+    type: "Course",
+    category: "Healing",
+    downloadCount: 234,
+    image: "/placeholder.svg?height=300&width=400",
+    featured: true,
+    free: false,
+    price: 197,
+  },
+  {
+    id: 10,
+    title: "Premium ADHD Productivity System",
+    description:
+      "Advanced productivity system with custom templates, video tutorials, and monthly group coaching calls.",
+    type: "System",
+    category: "Productivity",
+    downloadCount: 156,
+    image: "/placeholder.svg?height=300&width=400",
+    featured: true,
+    free: false,
+    price: 97,
+  },
+  {
+    id: 11,
+    title: "Sacred Business Blueprint",
+    description:
+      "Complete guide to building a trauma-informed business that aligns with your values and supports your healing.",
+    type: "Blueprint",
+    category: "Business",
+    downloadCount: 89,
+    image: "/placeholder.svg?height=300&width=400",
+    featured: false,
+    free: false,
+    price: 147,
+  },
 ]
 
-const categories = ["All Resources", "Self-Care", "Productivity", "Healing", "Spirituality", "Movement", "Journaling"]
-const types = ["All Types", "PDF Guide", "Workbook", "Audio", "Video", "Template", "Toolkit"]
+const categories = [
+  "All Resources",
+  "Self-Care",
+  "Productivity",
+  "Healing",
+  "Spirituality",
+  "Movement",
+  "Journaling",
+  "Business",
+]
+const types = [
+  "All Types",
+  "PDF Guide",
+  "Workbook",
+  "Audio",
+  "Video",
+  "Template",
+  "Toolkit",
+  "Course",
+  "System",
+  "Blueprint",
+]
 
 export default function ResourcesPageClient() {
   const [selectedCategory, setSelectedCategory] = useState("All Resources")
   const [selectedType, setSelectedType] = useState("All Types")
   const [searchQuery, setSearchQuery] = useState("")
+  const [purchaseModal, setPurchaseModal] = useState<{ open: boolean; resource: any | null }>({
+    open: false,
+    resource: null,
+  })
+  const [purchaseForm, setPurchaseForm] = useState({
+    name: "",
+    email: "",
+  })
+  const [isPurchaseLoading, setIsPurchaseLoading] = useState(false)
 
   const filteredResources = resources.filter((resource) => {
     const matchesCategory = selectedCategory === "All Resources" || resource.category === selectedCategory
@@ -139,6 +216,53 @@ export default function ResourcesPageClient() {
       default:
         return <FileText className="h-4 w-4" />
     }
+  }
+
+  const handlePurchaseResource = async (resource: any) => {
+    if (!purchaseForm.name || !purchaseForm.email) {
+      alert("Please fill in your name and email address.")
+      return
+    }
+
+    setIsPurchaseLoading(true)
+
+    try {
+      const response = await fetch("/api/stripe/create-resource-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          resourceId: resource.id,
+          resourceName: resource.title,
+          price: resource.price,
+          type: resource.type,
+          customerEmail: purchaseForm.email,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error(data.error || "Failed to create checkout session")
+      }
+    } catch (error) {
+      console.error("Purchase error:", error)
+      alert("There was an error processing your purchase. Please try again.")
+    } finally {
+      setIsPurchaseLoading(false)
+    }
+  }
+
+  const openPurchaseModal = (resource: any) => {
+    setPurchaseModal({ open: true, resource })
+  }
+
+  const closePurchaseModal = () => {
+    setPurchaseModal({ open: false, resource: null })
+    setPurchaseForm({ name: "", email: "" })
   }
 
   return (
@@ -248,10 +372,95 @@ export default function ResourcesPageClient() {
                         </Badge>
                       </div>
 
-                      <Button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold">
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Free
-                      </Button>
+                      {resource.free ? (
+                        <Button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold">
+                          <Download className="mr-2 h-4 w-4" />
+                          Download Free
+                        </Button>
+                      ) : (
+                        <Dialog open={purchaseModal.open} onOpenChange={(open) => !open && closePurchaseModal()}>
+                          <DialogTrigger asChild>
+                            <Button
+                              className="w-full bg-gold hover:bg-gold/90 text-midnight-blue font-montserrat font-semibold"
+                              onClick={() => openPurchaseModal(resource)}
+                            >
+                              <CreditCard className="mr-2 h-4 w-4" />
+                              Purchase ${resource.price}
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="bg-magnolia-white max-w-md">
+                            <DialogHeader>
+                              <DialogTitle className="font-playfair text-2xl text-midnight-blue">
+                                Purchase Resource
+                              </DialogTitle>
+                              <DialogDescription className="font-lora text-gray-700">
+                                {purchaseModal.resource?.title} - ${purchaseModal.resource?.price}
+                              </DialogDescription>
+                            </DialogHeader>
+
+                            <div className="space-y-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="purchase-name" className="font-montserrat text-midnight-blue">
+                                  Full Name *
+                                </Label>
+                                <Input
+                                  id="purchase-name"
+                                  value={purchaseForm.name}
+                                  onChange={(e) => setPurchaseForm({ ...purchaseForm, name: e.target.value })}
+                                  className="border-warm-gray focus:border-sage-green"
+                                  required
+                                />
+                              </div>
+
+                              <div className="space-y-2">
+                                <Label htmlFor="purchase-email" className="font-montserrat text-midnight-blue">
+                                  Email Address *
+                                </Label>
+                                <Input
+                                  id="purchase-email"
+                                  type="email"
+                                  value={purchaseForm.email}
+                                  onChange={(e) => setPurchaseForm({ ...purchaseForm, email: e.target.value })}
+                                  className="border-warm-gray focus:border-sage-green"
+                                  required
+                                />
+                              </div>
+
+                              <div className="bg-gold/10 p-4 rounded-lg">
+                                <p className="font-lora text-sm text-midnight-blue">
+                                  You'll receive download links immediately after payment. All purchases include
+                                  lifetime access.
+                                </p>
+                              </div>
+
+                              <div className="flex gap-3">
+                                <Button
+                                  variant="outline"
+                                  onClick={closePurchaseModal}
+                                  className="flex-1 border-warm-gray text-midnight-blue hover:bg-warm-gray/10"
+                                  disabled={isPurchaseLoading}
+                                >
+                                  Cancel
+                                </Button>
+                                <Button
+                                  onClick={() => handlePurchaseResource(purchaseModal.resource)}
+                                  className="flex-1 bg-gold hover:bg-gold/90 text-midnight-blue font-montserrat font-semibold"
+                                  disabled={isPurchaseLoading}
+                                >
+                                  {isPurchaseLoading ? (
+                                    <>
+                                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                      Processing...
+                                    </>
+                                  ) : (
+                                    `Pay $${purchaseModal.resource?.price}`
+                                  )}
+                                </Button>
+                              </div>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      )}
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -367,13 +576,107 @@ export default function ResourcesPageClient() {
                                   <Download className="h-3 w-3" />
                                   <span className="font-lora text-xs">{resource.downloadCount}</span>
                                 </div>
-                                <Button
-                                  size="sm"
-                                  className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold"
-                                >
-                                  <Download className="mr-1 h-3 w-3" />
-                                  Download
-                                </Button>
+                                {resource.free ? (
+                                  <Button
+                                    size="sm"
+                                    className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold"
+                                  >
+                                    <Download className="mr-1 h-3 w-3" />
+                                    Download
+                                  </Button>
+                                ) : (
+                                  <Dialog
+                                    open={purchaseModal.open}
+                                    onOpenChange={(open) => !open && closePurchaseModal()}
+                                  >
+                                    <DialogTrigger asChild>
+                                      <Button
+                                        size="sm"
+                                        className="bg-gold hover:bg-gold/90 text-midnight-blue font-montserrat font-semibold"
+                                        onClick={() => openPurchaseModal(resource)}
+                                      >
+                                        <CreditCard className="mr-1 h-3 w-3" />
+                                        Purchase ${resource.price}
+                                      </Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="bg-magnolia-white max-w-md">
+                                      <DialogHeader>
+                                        <DialogTitle className="font-playfair text-2xl text-midnight-blue">
+                                          Purchase Resource
+                                        </DialogTitle>
+                                        <DialogDescription className="font-lora text-gray-700">
+                                          {purchaseModal.resource?.title} - ${purchaseModal.resource?.price}
+                                        </DialogDescription>
+                                      </DialogHeader>
+
+                                      <div className="space-y-4">
+                                        <div className="space-y-2">
+                                          <Label htmlFor="purchase-name" className="font-montserrat text-midnight-blue">
+                                            Full Name *
+                                          </Label>
+                                          <Input
+                                            id="purchase-name"
+                                            value={purchaseForm.name}
+                                            onChange={(e) => setPurchaseForm({ ...purchaseForm, name: e.target.value })}
+                                            className="border-warm-gray focus:border-sage-green"
+                                            required
+                                          />
+                                        </div>
+
+                                        <div className="space-y-2">
+                                          <Label
+                                            htmlFor="purchase-email"
+                                            className="font-montserrat text-midnight-blue"
+                                          >
+                                            Email Address *
+                                          </Label>
+                                          <Input
+                                            id="purchase-email"
+                                            type="email"
+                                            value={purchaseForm.email}
+                                            onChange={(e) =>
+                                              setPurchaseForm({ ...purchaseForm, email: e.target.value })
+                                            }
+                                            className="border-warm-gray focus:border-sage-green"
+                                            required
+                                          />
+                                        </div>
+
+                                        <div className="bg-gold/10 p-4 rounded-lg">
+                                          <p className="font-lora text-sm text-midnight-blue">
+                                            You'll receive download links immediately after payment. All purchases
+                                            include lifetime access.
+                                          </p>
+                                        </div>
+
+                                        <div className="flex gap-3">
+                                          <Button
+                                            variant="outline"
+                                            onClick={closePurchaseModal}
+                                            className="flex-1 border-warm-gray text-midnight-blue hover:bg-warm-gray/10"
+                                            disabled={isPurchaseLoading}
+                                          >
+                                            Cancel
+                                          </Button>
+                                          <Button
+                                            onClick={() => handlePurchaseResource(purchaseModal.resource)}
+                                            className="flex-1 bg-gold hover:bg-gold/90 text-midnight-blue font-montserrat font-semibold"
+                                            disabled={isPurchaseLoading}
+                                          >
+                                            {isPurchaseLoading ? (
+                                              <>
+                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                Processing...
+                                              </>
+                                            ) : (
+                                              `Pay $${purchaseModal.resource?.price}`
+                                            )}
+                                          </Button>
+                                        </div>
+                                      </div>
+                                    </DialogContent>
+                                  </Dialog>
+                                )}
                               </div>
                             </div>
                           </div>
