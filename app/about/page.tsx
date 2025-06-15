@@ -1,7 +1,25 @@
+import type { Metadata } from "next"
+import { Suspense } from "react"
+import AboutPageClient from "./AboutPageClient"
 import FloatingMoon from "@/app/components/FloatingMoon"
 import FloatingZodiac from "@/app/components/FloatingZodiac"
 
-export default function AboutPage() {
+export const metadata: Metadata = {
+  title: "About Us | Midnight Magnolia",
+  description:
+    "Learn about our mission to create a digital sanctuary for healing through Southern Gothic grace and ancestral wisdom.",
+  keywords: ["about", "founder", "mission", "Southern Gothic", "healing", "wellness", "spiritual guidance"],
+}
+
+function AboutLoading() {
+  return (
+    <div className="min-h-screen bg-midnight-blue flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-sage-green"></div>
+    </div>
+  )
+}
+
+function OldAboutPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -93,5 +111,13 @@ export default function AboutPage() {
         </a>
       </div>
     </main>
+  )
+}
+
+export default function AboutPage() {
+  return (
+    <Suspense fallback={<AboutLoading />}>
+      <AboutPageClient />
+    </Suspense>
   )
 }
