@@ -1,10 +1,59 @@
 import type React from "react"
+import type { Metadata } from "next"
+import { Playfair_Display, Lora, Montserrat } from "next/font/google"
 import "./globals.css"
 
-export const metadata = {
-  title: "Midnight Magnolia",
-  description: "A Southern Gothic wellness brand blending healing, ancestral wisdom, and gentle productivity",
-  generator: "v0.dev",
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+})
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
+  display: "swap",
+})
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+})
+
+export const metadata: Metadata = {
+  title: "Midnight Magnolia - Southern Gothic Digital Sanctuary",
+  description:
+    "Where ancestral wisdom meets Southern Gothic grace. A digital sanctuary for healing through gentle productivity, sacred rituals, and transformative tools.",
+  keywords: ["healing", "wellness", "Southern Gothic", "digital sanctuary", "ancestral wisdom"],
+  authors: [{ name: "Midnight Magnolia" }],
+  creator: "Midnight Magnolia",
+  publisher: "Midnight Magnolia",
+  openGraph: {
+    title: "Midnight Magnolia - Southern Gothic Digital Sanctuary",
+    description: "Where ancestral wisdom meets Southern Gothic grace.",
+    url: "https://midnightmagnolia.com",
+    siteName: "Midnight Magnolia",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Midnight Magnolia - Southern Gothic Digital Sanctuary",
+    description: "Where ancestral wisdom meets Southern Gothic grace.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -13,8 +62,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${playfair.variable} ${lora.variable} ${montserrat.variable}`}>
+      <body className="font-lora antialiased">{children}</body>
     </html>
   )
 }
