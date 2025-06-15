@@ -1,123 +1,190 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import styles from "./Hero.module.css"
 
-export default function Hero() {
+const AFFIRMATIONS = ["You are worthy of rest", "Your pace is sacred", "Healing is not linear", "You belong here"]
+
+interface HeroProps {
+  className?: string
+}
+
+export default function Hero({ className = "" }: HeroProps) {
   const [mounted, setMounted] = useState(false)
+  const [currentAffirmation, setCurrentAffirmation] = useState(0)
 
   useEffect(() => {
     setMounted(true)
+    const interval = setInterval(() => {
+      setCurrentAffirmation((prev) => (prev + 1) % AFFIRMATIONS.length)
+    }, 4000)
+    return () => clearInterval(interval)
   }, [])
 
   if (!mounted) {
-    return (
-      <section className="min-h-screen bg-midnight-blue flex items-center justify-center">
-        <div className="text-center text-magnolia-white">
-          <div className="animate-pulse">
-            <div className="w-32 h-32 bg-magnolia-white/10 rounded-full mx-auto mb-8"></div>
-            <div className="h-16 bg-magnolia-white/10 rounded mb-4 max-w-md mx-auto"></div>
-            <div className="h-8 bg-magnolia-white/10 rounded mb-8 max-w-lg mx-auto"></div>
-          </div>
-        </div>
-      </section>
-    )
+    return <HeroSkeleton />
   }
 
   return (
-    <section className="relative min-h-screen bg-midnight-blue overflow-hidden flex items-center justify-center">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-sage-green/10 via-transparent to-lavender-mist/5"></div>
+    <section className={`${styles.hero} ${className}`}>
+      <div className={styles.backgroundOverlay} />
+      <FloatingElements />
 
-      {/* Floating elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-20 left-20 text-4xl opacity-60 animate-bounce"
-          style={{ animationDelay: "0s", animationDuration: "3s" }}
+      <div className="container">
+        <motion.div
+          className={styles.heroContent}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          🌙
-        </div>
-        <div
-          className="absolute top-40 right-32 text-3xl opacity-50 animate-bounce"
-          style={{ animationDelay: "1s", animationDuration: "4s" }}
-        >
-          ✨
-        </div>
-        <div
-          className="absolute bottom-32 left-16 text-3xl opacity-40 animate-bounce"
-          style={{ animationDelay: "2s", animationDuration: "5s" }}
-        >
-          🌿
-        </div>
-        <div
-          className="absolute bottom-20 right-20 text-2xl opacity-60 animate-bounce"
-          style={{ animationDelay: "0.5s", animationDuration: "3.5s" }}
-        >
-          🕯️
-        </div>
+          <LogoSection />
+          <TextSection currentAffirmation={currentAffirmation} />
+          <ActionButtons />
+          <StatsSection />
+        </motion.div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Logo */}
-          <div className="mb-12">
-            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-magnolia-white/20 to-gold/20 flex items-center justify-center backdrop-blur-sm border border-magnolia-white/30">
-              <span className="text-6xl">🌸</span>
-            </div>
-          </div>
+      <ScrollIndicator />
+    </section>
+  )
+}
 
-          {/* Content */}
-          <div className="space-y-8">
-            <p className="text-sage-green font-montserrat text-sm tracking-[0.2em] uppercase font-medium">
-              Welcome to your digital sanctuary
-            </p>
+function LogoSection() {
+  return (
+    <motion.div
+      className={styles.logoContainer}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className={styles.logoCircle}>
+        <span className={styles.logoIcon}>🌸</span>
+      </div>
+    </motion.div>
+  )
+}
 
-            <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold text-magnolia-white leading-tight">
-              Midnight
-              <br />
-              <span className="text-gold">Magnolia</span>
-            </h1>
+interface TextSectionProps {
+  currentAffirmation: number
+}
 
-            <p className="font-lora text-xl md:text-2xl text-magnolia-white/90 leading-relaxed max-w-3xl mx-auto">
-              Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle
-              productivity, sacred rituals, and transformative digital tools.
-            </p>
+function TextSection({ currentAffirmation }: TextSectionProps) {
+  return (
+    <div className={styles.heroText}>
+      <motion.p
+        className={styles.heroSubtitle}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        Welcome to your digital sanctuary
+      </motion.p>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-              <button className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[56px] text-lg">
-                Enter the Garden
-              </button>
-              <button className="border-2 border-magnolia-white/30 hover:border-gold text-magnolia-white hover:text-gold font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 min-h-[56px] text-lg">
-                Explore Sacred Tools
-              </button>
-            </div>
+      <motion.h1
+        className={styles.heroTitle}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        Midnight
+        <br />
+        <span className={styles.heroTitleGold}>Magnolia</span>
+      </motion.h1>
 
-            {/* Stats */}
-            <div className="flex items-center justify-center gap-8 pt-12 flex-wrap">
-              <div className="text-center">
-                <p className="text-gold font-playfair text-3xl font-bold">500+</p>
-                <p className="text-magnolia-white/60 font-montserrat text-sm">Healing souls</p>
-              </div>
-              <div className="w-px h-16 bg-magnolia-white/20 hidden sm:block"></div>
-              <div className="text-center">
-                <p className="text-gold font-playfair text-3xl font-bold">78</p>
-                <p className="text-magnolia-white/60 font-montserrat text-sm">Tarot cards</p>
-              </div>
-              <div className="w-px h-16 bg-magnolia-white/20 hidden sm:block"></div>
-              <div className="text-center">
-                <p className="text-gold font-playfair text-3xl font-bold">24/7</p>
-                <p className="text-magnolia-white/60 font-montserrat text-sm">Gentle support</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className={styles.affirmationContainer}>
+        <p className={styles.affirmation} key={currentAffirmation}>
+          "{AFFIRMATIONS[currentAffirmation]}"
+        </p>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
-        <p className="text-magnolia-white/60 font-montserrat text-sm mb-2">Begin your journey</p>
-        <div className="w-6 h-10 border-2 border-magnolia-white/30 rounded-full mx-auto flex justify-center">
-          <div className="w-1 h-3 bg-magnolia-white/60 rounded-full mt-2 animate-pulse"></div>
+      <motion.p
+        className={styles.heroDescription}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+      >
+        Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle productivity,
+        sacred rituals, and transformative digital tools.
+      </motion.p>
+    </div>
+  )
+}
+
+function ActionButtons() {
+  return (
+    <motion.div
+      className={styles.heroActions}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.7 }}
+    >
+      <button className={`btn btn-primary ${styles.btnLarge}`}>Enter the Garden</button>
+      <button className={`btn btn-secondary ${styles.btnLarge}`}>Explore Sacred Tools</button>
+    </motion.div>
+  )
+}
+
+function StatsSection() {
+  const stats = [
+    { number: "500+", label: "Healing souls" },
+    { number: "78", label: "Tarot cards" },
+    { number: "24/7", label: "Gentle support" },
+  ]
+
+  return (
+    <motion.div
+      className={styles.heroStats}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.9 }}
+    >
+      {stats.map((stat, index) => (
+        <div key={index}>
+          <div className={styles.stat}>
+            <div className={styles.statNumber}>{stat.number}</div>
+            <div className={styles.statLabel}>{stat.label}</div>
+          </div>
+          {index < stats.length - 1 && <div className={styles.statDivider} />}
+        </div>
+      ))}
+    </motion.div>
+  )
+}
+
+function FloatingElements() {
+  const elements = ["🌙", "✨", "🌿", "🕯️"]
+
+  return (
+    <div className={styles.floatingElements}>
+      {elements.map((element, index) => (
+        <div key={index} className={styles.floatingElement}>
+          {element}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function ScrollIndicator() {
+  return (
+    <div className={styles.scrollIndicator}>
+      <p>Begin your journey</p>
+      <div className={styles.scrollMouse}>
+        <div className={styles.scrollDot} />
+      </div>
+    </div>
+  )
+}
+
+function HeroSkeleton() {
+  return (
+    <section className="flex min-h-screen items-center justify-center bg-midnight-blue">
+      <div className="text-center text-magnolia-white">
+        <div className="animate-pulse">
+          <div className="mx-auto mb-8 h-32 w-32 rounded-full bg-magnolia-white/10"></div>
+          <div className="mx-auto mb-4 h-16 max-w-md rounded bg-magnolia-white/10"></div>
+          <div className="mx-auto mb-8 h-8 max-w-lg rounded bg-magnolia-white/10"></div>
         </div>
       </div>
     </section>
