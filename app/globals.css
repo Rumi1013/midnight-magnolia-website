@@ -1,33 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lora:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Brand Colors */
+  --midnight-blue: #0a192f;
+  --midnight-indigo: #1a1a3e;
+  --magnolia-white: #faf3e0;
+  --rich-gold: #d4af37;
+  --sage-green: #a3b18a;
+  --lavender-mist: #9b8fb5;
+  --dewdrop-silver: #e8e5e0;
+  --petal-blush: #f5d5c8;
+  --deep-plum: #4a3556;
+
+  /* Typography */
+  --font-display: "Playfair Display", serif;
+  --font-body: "Lora", serif;
+  --font-ui: "Montserrat", sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Shadows */
+  --shadow-soft: 0 2px 8px rgba(10, 25, 47, 0.1);
+  --shadow-medium: 0 4px 16px rgba(10, 25, 47, 0.15);
+  --shadow-strong: 0 8px 32px rgba(10, 25, 47, 0.2);
+
+  /* Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-gentle: all 0.4s ease-out;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html,
-body {
-  height: 100%;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
+  color: var(--midnight-blue);
+  background-color: var(--magnolia-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-button:hover {
-  opacity: 0.9;
-  transition: opacity 0.2s;
+/* Typography Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+.font-ui {
+  font-family: var(--font-ui);
 }
 
-input:focus {
-  outline: 2px solid #d4af37;
-  outline-offset: 2px;
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+.text-midnight {
+  color: var(--midnight-blue);
+}
+.text-magnolia {
+  color: var(--magnolia-white);
+}
+.text-gold {
+  color: var(--rich-gold);
+}
+.text-sage {
+  color: var(--sage-green);
+}
+.text-lavender {
+  color: var(--lavender-mist);
 }
 
-@media (max-width: 640px) {
-  div[style*="display: flex"] {
-    flex-direction: column !important;
+.bg-midnight {
+  background-color: var(--midnight-blue);
+}
+.bg-magnolia {
+  background-color: var(--magnolia-white);
+}
+.bg-sage {
+  background-color: var(--sage-green);
+}
+
+/* Button Base Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 9999px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--sage-green);
+  color: var(--midnight-blue);
+}
+
+.btn-primary:hover {
+  background-color: var(--lavender-mist);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--magnolia-white);
+  border: 2px solid rgba(250, 243, 224, 0.3);
+}
+
+.btn-secondary:hover {
+  border-color: var(--rich-gold);
+  color: var(--rich-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Card Styles */
+.card {
+  background: var(--magnolia-white);
+  border-radius: 1.5rem;
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-gentle);
+  border: 1px solid var(--dewdrop-silver);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Responsive Grid */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Section Spacing */
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+}
+
+/* Focus States */
+*:focus-visible {
+  outline: 2px solid var(--rich-gold);
+  outline-offset: 2px;
 }

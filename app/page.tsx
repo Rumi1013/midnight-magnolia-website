@@ -1,17 +1,17 @@
 import Hero from "./components/Hero"
-import AboutSection from "./components/AboutSection"
-import ProductsSection from "./components/ProductsSection"
-import ShopSection from "./components/ShopSection"
+import About from "./components/About"
+import Products from "./components/Products"
+import Shop from "./components/Shop"
 import Footer from "./components/Footer"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <main>
       <Hero />
-      <AboutSection />
-      <ProductsSection />
-      <ShopSection />
+      <About />
+      <Products />
+      <Shop />
       <Footer />
-    </div>
+    </main>
   )
 }
