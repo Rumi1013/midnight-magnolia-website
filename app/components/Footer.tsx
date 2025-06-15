@@ -1,28 +1,57 @@
-import Link from "next/link"
+"use client"
 
 export default function Footer() {
   return (
-    <footer className="bg-midnight-blue border-t border-magnolia-white/10">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+    <footer style={{ backgroundColor: "#0A192F", borderTop: "1px solid rgba(250, 243, 224, 0.1)" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "4rem 1.5rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: "2rem",
+            marginBottom: "3rem",
+          }}
+        >
           {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">🌸</div>
+          <div style={{ gridColumn: "span 2" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+              <div style={{ fontSize: "2rem" }}>🌸</div>
               <div>
-                <div className="font-playfair text-2xl font-bold text-magnolia-white">Midnight Magnolia</div>
-                <div className="font-montserrat text-sm text-sage-green tracking-wider">
+                <div style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#FAF3E0", fontFamily: "serif" }}>
+                  Midnight Magnolia
+                </div>
+                <div
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "#A3B18A",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                >
                   DIGITAL SANCTUARY FOR HEALING
                 </div>
               </div>
             </div>
-            <p className="font-lora text-magnolia-white/70 leading-relaxed max-w-md">
+            <p style={{ color: "rgba(250, 243, 224, 0.7)", lineHeight: "1.6", maxWidth: "400px" }}>
               Where ancestral wisdom meets Southern Gothic grace. Your journey of healing through gentle productivity
               and sacred rituals begins here.
             </p>
-            <div className="flex gap-4 mt-6">
+            <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem" }}>
               {["🌙", "✨", "🌱", "🕯️"].map((emoji, index) => (
-                <div key={index} className="text-2xl hover:scale-110 transition-transform duration-300 cursor-pointer">
+                <div
+                  key={index}
+                  style={{
+                    fontSize: "1.5rem",
+                    cursor: "pointer",
+                    transition: "transform 0.3s ease",
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = "scale(1.1)"
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = "scale(1)"
+                  }}
+                >
                   {emoji}
                 </div>
               ))}
@@ -31,8 +60,18 @@ export default function Footer() {
 
           {/* Sacred Tools */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold text-magnolia-white mb-4">Sacred Tools</h3>
-            <ul className="space-y-3">
+            <h3
+              style={{
+                fontSize: "1.125rem",
+                fontWeight: "600",
+                color: "#FAF3E0",
+                marginBottom: "1rem",
+                fontFamily: "serif",
+              }}
+            >
+              Sacred Tools
+            </h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {[
                 "The Magnolia Reset",
                 "Midnight Messages",
@@ -40,13 +79,23 @@ export default function Footer() {
                 "Healing Journals",
                 "Ritual Guides",
               ].map((item) => (
-                <li key={item}>
-                  <Link
+                <li key={item} style={{ marginBottom: "0.75rem" }}>
+                  <a
                     href="#"
-                    className="font-lora text-magnolia-white/70 hover:text-sage-green transition-colors duration-300"
+                    style={{
+                      color: "rgba(250, 243, 224, 0.7)",
+                      textDecoration: "none",
+                      transition: "color 0.3s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.color = "#A3B18A"
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.color = "rgba(250, 243, 224, 0.7)"
+                    }}
                   >
                     {item}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -54,16 +103,36 @@ export default function Footer() {
 
           {/* Community */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold text-magnolia-white mb-4">Community</h3>
-            <ul className="space-y-3">
+            <h3
+              style={{
+                fontSize: "1.125rem",
+                fontWeight: "600",
+                color: "#FAF3E0",
+                marginBottom: "1rem",
+                fontFamily: "serif",
+              }}
+            >
+              Community
+            </h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {["Our Story", "Healing Circle", "Testimonials", "Support", "Contact"].map((item) => (
-                <li key={item}>
-                  <Link
+                <li key={item} style={{ marginBottom: "0.75rem" }}>
+                  <a
                     href="#"
-                    className="font-lora text-magnolia-white/70 hover:text-sage-green transition-colors duration-300"
+                    style={{
+                      color: "rgba(250, 243, 224, 0.7)",
+                      textDecoration: "none",
+                      transition: "color 0.3s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.color = "#A3B18A"
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.color = "rgba(250, 243, 224, 0.7)"
+                    }}
                   >
                     {item}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -71,20 +140,40 @@ export default function Footer() {
         </div>
 
         {/* Bottom section */}
-        <div className="border-t border-magnolia-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="font-lora text-magnolia-white/60 text-sm">
+        <div
+          style={{
+            borderTop: "1px solid rgba(250, 243, 224, 0.1)",
+            paddingTop: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <p style={{ color: "rgba(250, 243, 224, 0.6)", fontSize: "0.875rem", textAlign: "center" }}>
             © 2024 Midnight Magnolia. Crafted with love and intention. All rights reserved.
           </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link href="#" className="font-lora text-magnolia-white/60 hover:text-sage-green transition-colors text-sm">
-              Privacy
-            </Link>
-            <Link href="#" className="font-lora text-magnolia-white/60 hover:text-sage-green transition-colors text-sm">
-              Terms
-            </Link>
-            <Link href="#" className="font-lora text-magnolia-white/60 hover:text-sage-green transition-colors text-sm">
-              Accessibility
-            </Link>
+          <div style={{ display: "flex", gap: "1.5rem" }}>
+            {["Privacy", "Terms", "Accessibility"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                style={{
+                  color: "rgba(250, 243, 224, 0.6)",
+                  fontSize: "0.875rem",
+                  textDecoration: "none",
+                  transition: "color 0.3s ease",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.color = "#A3B18A"
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.color = "rgba(250, 243, 224, 0.6)"
+                }}
+              >
+                {item}
+              </a>
+            ))}
           </div>
         </div>
       </div>
