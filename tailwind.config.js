@@ -31,6 +31,7 @@ module.exports = {
         "petal-blush": "#F5D5C8",
         "deep-plum": "#4A3556",
         "warm-gray": "#D4B99F",
+        // Default shadcn colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

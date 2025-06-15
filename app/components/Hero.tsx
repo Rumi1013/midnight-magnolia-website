@@ -1,242 +1,125 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import Image from "next/image"
 
 export default function Hero() {
-  const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 })
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
-
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
+    setMounted(true)
   }, [])
+
+  if (!mounted) {
+    return (
+      <section className="min-h-screen bg-midnight-blue flex items-center justify-center">
+        <div className="text-center text-magnolia-white">
+          <div className="animate-pulse">
+            <div className="w-32 h-32 bg-magnolia-white/10 rounded-full mx-auto mb-8"></div>
+            <div className="h-16 bg-magnolia-white/10 rounded mb-4 max-w-md mx-auto"></div>
+            <div className="h-8 bg-magnolia-white/10 rounded mb-8 max-w-lg mx-auto"></div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="relative min-h-screen bg-midnight-blue overflow-hidden flex items-center justify-center">
-      {/* Background texture */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-sage-green/20 to-transparent" />
-      </div>
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-sage-green/10 via-transparent to-lavender-mist/5"></div>
 
-      {/* Floating magnolia petals */}
+      {/* Floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-4 h-4 bg-magnolia-white/20 rounded-full"
-            initial={{
-              x: Math.random() * windowSize.width,
-              y: -20,
-              rotate: 0,
-            }}
-            animate={{
-              y: windowSize.height + 20,
-              rotate: 360,
-              x: Math.random() * windowSize.width + (Math.random() - 0.5) * 200,
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-              delay: i * 2,
-            }}
-          />
-        ))}
+        <div
+          className="absolute top-20 left-20 text-4xl opacity-60 animate-bounce"
+          style={{ animationDelay: "0s", animationDuration: "3s" }}
+        >
+          🌙
+        </div>
+        <div
+          className="absolute top-40 right-32 text-3xl opacity-50 animate-bounce"
+          style={{ animationDelay: "1s", animationDuration: "4s" }}
+        >
+          ✨
+        </div>
+        <div
+          className="absolute bottom-32 left-16 text-3xl opacity-40 animate-bounce"
+          style={{ animationDelay: "2s", animationDuration: "5s" }}
+        >
+          🌿
+        </div>
+        <div
+          className="absolute bottom-20 right-20 text-2xl opacity-60 animate-bounce"
+          style={{ animationDelay: "0.5s", animationDuration: "3.5s" }}
+        >
+          🕯️
+        </div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
-          {/* Left content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8 text-center lg:text-left"
-          >
-            {/* Logo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="flex justify-center lg:justify-start mb-8"
-            >
-              <div className="relative w-32 h-32 rounded-full overflow-hidden">
-                <Image
-                  src="/images/logo-main.jpg"
-                  alt="Midnight Magnolia - A Southern Gothic Digital Sanctuary"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </motion.div>
-
-            <div className="space-y-6">
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-sage-green font-montserrat text-base tracking-[0.2em] uppercase font-medium"
-              >
-                Welcome to your digital sanctuary
-              </motion.p>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="font-playfair text-6xl lg:text-8xl font-bold text-magnolia-white leading-[0.9]"
-              >
-                Midnight
-                <br />
-                <span className="text-gold">Magnolia</span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="font-lora text-xl lg:text-2xl text-magnolia-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0"
-              >
-                Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle
-                productivity, sacred rituals, and transformative digital tools.
-              </motion.p>
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Logo */}
+          <div className="mb-12">
+            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-magnolia-white/20 to-gold/20 flex items-center justify-center backdrop-blur-sm border border-magnolia-white/30">
+              <span className="text-6xl">🌸</span>
             </div>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
-            >
+          {/* Content */}
+          <div className="space-y-8">
+            <p className="text-sage-green font-montserrat text-sm tracking-[0.2em] uppercase font-medium">
+              Welcome to your digital sanctuary
+            </p>
+
+            <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold text-magnolia-white leading-tight">
+              Midnight
+              <br />
+              <span className="text-gold">Magnolia</span>
+            </h1>
+
+            <p className="font-lora text-xl md:text-2xl text-magnolia-white/90 leading-relaxed max-w-3xl mx-auto">
+              Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle
+              productivity, sacred rituals, and transformative digital tools.
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
               <button className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[56px] text-lg">
                 Enter the Garden
               </button>
               <button className="border-2 border-magnolia-white/30 hover:border-gold text-magnolia-white hover:text-gold font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 min-h-[56px] text-lg">
                 Explore Sacred Tools
               </button>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="flex items-center justify-center lg:justify-start gap-8 pt-8"
-            >
+            {/* Stats */}
+            <div className="flex items-center justify-center gap-8 pt-12 flex-wrap">
               <div className="text-center">
                 <p className="text-gold font-playfair text-3xl font-bold">500+</p>
                 <p className="text-magnolia-white/60 font-montserrat text-sm">Healing souls</p>
               </div>
-              <div className="w-px h-16 bg-magnolia-white/20" />
+              <div className="w-px h-16 bg-magnolia-white/20 hidden sm:block"></div>
               <div className="text-center">
                 <p className="text-gold font-playfair text-3xl font-bold">78</p>
                 <p className="text-magnolia-white/60 font-montserrat text-sm">Tarot cards</p>
               </div>
-              <div className="w-px h-16 bg-magnolia-white/20" />
+              <div className="w-px h-16 bg-magnolia-white/20 hidden sm:block"></div>
               <div className="text-center">
                 <p className="text-gold font-playfair text-3xl font-bold">24/7</p>
                 <p className="text-magnolia-white/60 font-montserrat text-sm">Gentle support</p>
               </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right content - Mystical illustration */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative flex items-center justify-center"
-          >
-            <div className="relative w-full max-w-[600px] h-[600px] flex items-center justify-center">
-              {/* Central logo with mystical elements */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <div className="w-80 h-80 rounded-full border-2 border-gold/30 flex items-center justify-center">
-                  <div className="w-60 h-60 rounded-full border border-sage-green/40 flex items-center justify-center">
-                    <div className="w-40 h-40 rounded-full bg-gradient-to-br from-magnolia-white/20 to-gold/20 flex items-center justify-center backdrop-blur-sm">
-                      <div className="relative w-32 h-32 rounded-full overflow-hidden">
-                        <Image
-                          src="/images/logo-circular.jpg"
-                          alt="Midnight Magnolia Sacred Symbol"
-                          fill
-                          className="object-contain rounded-full"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating elements */}
-              <motion.div
-                animate={{ y: [-15, 15, -15] }}
-                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-                className="absolute top-16 right-16 text-5xl"
-              >
-                🌙
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [15, -15, 15] }}
-                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-16 left-16 text-4xl"
-              >
-                ✨
-              </motion.div>
-
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                className="absolute top-32 left-8 text-3xl"
-              >
-                🕯️
-              </motion.div>
-
-              <motion.div
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
-                className="absolute bottom-32 right-8 text-3xl"
-              >
-                🌿
-              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-          className="text-magnolia-white/60 text-center"
-        >
-          <p className="font-montserrat text-sm mb-2">Begin your journey</p>
-          <div className="w-6 h-10 border-2 border-magnolia-white/30 rounded-full mx-auto flex justify-center">
-            <div className="w-1 h-3 bg-magnolia-white/60 rounded-full mt-2" />
-          </div>
-        </motion.div>
-      </motion.div>
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+        <p className="text-magnolia-white/60 font-montserrat text-sm mb-2">Begin your journey</p>
+        <div className="w-6 h-10 border-2 border-magnolia-white/30 rounded-full mx-auto flex justify-center">
+          <div className="w-1 h-3 bg-magnolia-white/60 rounded-full mt-2 animate-pulse"></div>
+        </div>
+      </div>
     </section>
   )
 }
