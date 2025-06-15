@@ -25,14 +25,12 @@ export default function Header() {
   }, [])
 
   const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Shop", href: "/shop" },
-    { name: "Blog", href: "/blog" },
-    { name: "Services", href: "/services" },
-    { name: "Events", href: "/events" },
-    { name: "Resources", href: "/resources" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Sacred Tools", href: "#products" },
+    { name: "Shop", href: "#shop" },
+    { name: "Our Story", href: "#about" },
+    { name: "Midnight Musings", href: "#blog" },
+    { name: "Justice & Healing", href: "#justice" },
+    { name: "Community", href: "#testimonials" },
   ]
 
   return (
@@ -93,12 +91,9 @@ export default function Header() {
           )}
 
           {/* CTA Button */}
-          <Link
-            href="/contact"
-            className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm"
-          >
-            Connect With Us
-          </Link>
+          <button className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
+            Enter Garden
+          </button>
 
           {/* Mobile menu button */}
           <button
@@ -130,13 +125,9 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="block w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4 text-center"
-            >
-              Connect With Us
-            </Link>
+            <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4">
+              Enter Garden
+            </button>
           </div>
         </motion.div>
       )}
