@@ -36,7 +36,7 @@ export default function Header() {
   return (
     <motion.header
       className={`fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
-        scrolled ? "bg-midnight-blue/90 shadow-md" : "bg-midnight-blue/50"
+        scrolled ? "bg-red-900/95 shadow-lg" : "bg-red-900/80"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -69,7 +69,7 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="font-lora text-sm text-magnolia-white hover:text-sage-green transition-colors duration-300 relative group"
+              className="font-lora text-sm text-magnolia-white hover:text-gold transition-colors duration-300 relative group"
             >
               {item.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-sage-green transition-all duration-300 group-hover:w-full" />
@@ -83,7 +83,7 @@ export default function Header() {
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
+              className="rounded-full p-2 bg-black/20 text-magnolia-white hover:bg-gold/20 hover:text-gold transition-colors duration-300"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
@@ -98,7 +98,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
+            className="lg:hidden rounded-full p-2 bg-black/20 text-magnolia-white hover:bg-gold/20 hover:text-gold transition-colors duration-300"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
@@ -112,7 +112,7 @@ export default function Header() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden bg-midnight-blue border-t border-magnolia-white/10"
+          className="lg:hidden bg-red-900/95 border-t border-black/20"
         >
           <div className="px-6 py-4 space-y-4">
             {navigation.map((item) => (
