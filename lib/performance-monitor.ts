@@ -1,5 +1,7 @@
 "use client"
 
+import { useEffect } from "react"
+
 interface PerformanceMetrics {
   page: string
   loadTime: number
@@ -180,6 +182,39 @@ class PerformanceMonitor {
       console.warn("Failed to track custom metric:", error)
     }
   }
+
+  public monitorPageLoad(page: string) {
+    if (typeof window === "undefined") return
+
+    this.metrics.page = page
+
+    // Collect metrics when page loads
+    if (document.readyState === "complete") {
+      this.collectBasicMetrics()
+      setTimeout(() => this.sendMetrics(), 1000)
+    } else {
+      window.addEventListener("load", () => {
+        this.collectBasicMetrics()
+        setTimeout(() => this.sendMetrics(), 1000)
+      })
+    }
+  }
 }
 
+// Export the class as default
 export default PerformanceMonitor
+
+// Export the hook for easy integration
+export function usePerformanceMonitoring(page: string) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const monitor = PerformanceMonitor.getInstance()
+      monitor.monitorPageLoad(page)
+    }
+  }, [page])
+}
+
+// Export the instance getter
+export function getPerformanceMonitor() {
+  return PerformanceMonitor.getInstance()
+}

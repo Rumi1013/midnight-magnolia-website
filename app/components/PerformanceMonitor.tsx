@@ -1,6 +1,4 @@
 "use client"
-
-import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { usePerformanceMonitoring } from "@/lib/performance-monitor"
 
@@ -9,8 +7,6 @@ export default function PerformanceMonitor() {
 
   // Monitor performance for current page
   usePerformanceMonitoring(pathname)
-
-  useEffect(() => {}, [pathname])
 
   return null // This component doesn't render anything
 }

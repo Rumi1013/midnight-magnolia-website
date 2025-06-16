@@ -3,10 +3,12 @@ import type { Metadata } from "next"
 import { Playfair_Display, Lora, Montserrat } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
-import { Suspense } from "react"
-import Loading from "./loading"
-import PerformanceMonitor from "@/app/components/PerformanceMonitor"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import FloatingMoon from "./components/FloatingMoon"
+import FloatingZodiac from "./components/FloatingZodiac"
+import PerformanceMonitor from "./components/PerformanceMonitor"
+import ErrorBoundary from "./components/ErrorBoundary"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -27,15 +29,12 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: {
-    default: "Midnight Magnolia - Southern Gothic Wellness Sanctuary",
-    template: "%s | Midnight Magnolia",
-  },
+  title: "Midnight Magnolia - Southern Gothic Wellness Sanctuary",
   description:
     "A digital sanctuary for healing through Southern Gothic grace. Wellness, ancestral wisdom, and gentle productivity for people with chronic illness and ADHD.",
   keywords: [
     "wellness",
-    "southern gothic",
+    "Southern Gothic",
     "healing",
     "chronic illness",
     "ADHD",
@@ -45,27 +44,17 @@ export const metadata: Metadata = {
   authors: [{ name: "Midnight Magnolia" }],
   creator: "Midnight Magnolia",
   publisher: "Midnight Magnolia",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://midnightmagnolia.com"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
+    title: "Midnight Magnolia - Southern Gothic Wellness Sanctuary",
+    description: "A digital sanctuary for healing through Southern Gothic grace",
     type: "website",
     locale: "en_US",
-    url: "/",
-    title: "Midnight Magnolia - Southern Gothic Wellness Sanctuary",
-    description: "A digital sanctuary for healing through Southern Gothic grace.",
     siteName: "Midnight Magnolia",
   },
   twitter: {
     card: "summary_large_image",
     title: "Midnight Magnolia - Southern Gothic Wellness Sanctuary",
-    description: "A digital sanctuary for healing through Southern Gothic grace.",
+    description: "A digital sanctuary for healing through Southern Gothic grace",
   },
   robots: {
     index: true,
@@ -78,6 +67,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "your-google-verification-code",
+  },
     generator: 'v0.dev'
 }
 
@@ -89,11 +81,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${playfair.variable} ${lora.variable} ${montserrat.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-          <PerformanceMonitor />
-          <Toaster />
-        </ThemeProvider>
+        <ErrorBoundary>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+            <div className="relative min-h-screen bg-midnight-blue text-magnolia-white overflow-x-hidden">
+              <FloatingMoon />
+              <FloatingZodiac />
+              <Header />
+              <main className="relative z-10">{children}</main>
+              <Footer />
+              <PerformanceMonitor />
+            </div>
+          </ThemeProvider>
+        </ErrorBoundary>
       </body>
     </html>
   )

@@ -13,10 +13,10 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log error to monitoring system
+    // Log error to console for debugging
     console.error("Application error:", error)
 
-    // Send error to monitoring API
+    // Send error to monitoring API (with error handling)
     if (typeof window !== "undefined") {
       fetch("/api/monitoring/alerts", {
         method: "POST",
@@ -29,12 +29,15 @@ export default function Error({
           severity: "high",
           metadata: {
             digest: error.digest,
-            stack: error.stack,
+            stack: error.stack?.substring(0, 1000), // Limit stack trace length
             url: window.location.href,
             userAgent: navigator.userAgent,
+            timestamp: new Date().toISOString(),
           },
         }),
-      }).catch(console.error)
+      }).catch((fetchError) => {
+        console.warn("Failed to send error to monitoring:", fetchError)
+      })
     }
   }, [error])
 
@@ -45,17 +48,21 @@ export default function Error({
           <div className="mx-auto mb-4 h-12 w-12 rounded-full bg-red-500/10 flex items-center justify-center">
             <AlertTriangle className="h-6 w-6 text-red-500" />
           </div>
-          <CardTitle className="text-magnolia-white font-playfair">Something went wrong</CardTitle>
+          <CardTitle className="text-magnolia-white font-playfair text-xl">Something went wrong</CardTitle>
           <CardDescription className="text-warm-gray font-lora">
             We encountered an unexpected error. Our healing energies are working to restore balance.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {error.digest && <div className="text-xs text-warm-gray text-center font-mono">Error ID: {error.digest}</div>}
+          {error.digest && (
+            <div className="text-xs text-warm-gray text-center font-mono bg-midnight-blue/50 p-2 rounded">
+              Error ID: {error.digest}
+            </div>
+          )}
           <div className="flex flex-col gap-3">
             <Button
               onClick={reset}
-              className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-medium"
+              className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-medium transition-colors"
             >
               <RefreshCw className="h-4 w-4 mr-2" />
               Try again
@@ -63,7 +70,7 @@ export default function Error({
             <Button
               onClick={() => (window.location.href = "/")}
               variant="outline"
-              className="w-full border-magnolia-white/20 text-magnolia-white hover:bg-magnolia-white/5"
+              className="w-full border-magnolia-white/20 text-magnolia-white hover:bg-magnolia-white/5 transition-colors"
             >
               <Home className="h-4 w-4 mr-2" />
               Return to sanctuary
