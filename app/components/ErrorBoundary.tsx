@@ -24,29 +24,26 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("ErrorBoundary caught an error:", error, errorInfo)
+    // Log error but don't break the app
+    console.error("ErrorBoundary caught an error:", error)
 
-    // Send error to monitoring API
+    // Try to send error to monitoring, but don't fail if it doesn't work
     if (typeof window !== "undefined") {
       fetch("/api/monitoring/alerts", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "react_error",
           message: error.message || "React component error",
           severity: "high",
           metadata: {
-            stack: error.stack?.substring(0, 1000),
-            componentStack: errorInfo.componentStack?.substring(0, 1000),
+            stack: error.stack?.substring(0, 500),
             url: window.location.href,
-            userAgent: navigator.userAgent,
             timestamp: new Date().toISOString(),
           },
         }),
-      }).catch((fetchError) => {
-        console.warn("Failed to send error to monitoring:", fetchError)
+      }).catch(() => {
+        // Silently fail
       })
     }
   }
@@ -77,7 +74,7 @@ class ErrorBoundary extends Component<Props, State> {
               <div className="flex flex-col gap-3">
                 <Button
                   onClick={this.handleReset}
-                  className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-medium transition-colors"
+                  className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-medium"
                 >
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Try again
@@ -85,7 +82,7 @@ class ErrorBoundary extends Component<Props, State> {
                 <Button
                   onClick={this.handleGoHome}
                   variant="outline"
-                  className="w-full border-magnolia-white/20 text-magnolia-white hover:bg-magnolia-white/5 transition-colors"
+                  className="w-full border-magnolia-white/20 text-magnolia-white hover:bg-magnolia-white/5"
                 >
                   <Home className="h-4 w-4 mr-2" />
                   Return to sanctuary
