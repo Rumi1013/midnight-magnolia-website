@@ -18,7 +18,11 @@ const zodiacSigns = [
   { symbol: "♓", name: "Pisces", x: 60, y: 35 },
 ]
 
-function FloatingZodiac() {
+interface FloatingZodiacProps {
+  fullPage?: boolean
+}
+
+function FloatingZodiac({ fullPage = false }: FloatingZodiacProps) {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
@@ -32,13 +36,31 @@ function FloatingZodiac() {
     return () => window.removeEventListener("resize", updateSize)
   }, [])
 
+  // Generate additional signs for full page coverage
+  const allSigns = fullPage
+    ? [
+        ...zodiacSigns,
+        // Additional signs for full page coverage
+        { symbol: "♈", name: "Aries2", x: 30, y: 90 },
+        { symbol: "♉", name: "Taurus2", x: 95, y: 55 },
+        { symbol: "♊", name: "Gemini2", x: 8, y: 30 },
+        { symbol: "♋", name: "Cancer2", x: 65, y: 85 },
+        { symbol: "♌", name: "Leo2", x: 40, y: 5 },
+        { symbol: "♍", name: "Virgo2", x: 88, y: 15 },
+        { symbol: "♎", name: "Libra2", x: 12, y: 65 },
+        { symbol: "♏", name: "Scorpio2", x: 78, y: 95 },
+        { symbol: "♐", name: "Sagittarius2", x: 55, y: 50 },
+        { symbol: "♑", name: "Capricorn2", x: 35, y: 25 },
+        { symbol: "♒", name: "Aquarius2", x: 85, y: 65 },
+        { symbol: "♓", name: "Pisces2", x: 18, y: 80 },
+      ]
+    : zodiacSigns
+
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {" "}
-      {/* z-index is 0 here, intended to be behind content */}
-      {zodiacSigns.map((sign, index) => (
+    <div className={`fixed inset-0 pointer-events-none z-0 overflow-hidden ${fullPage ? "h-full" : ""}`}>
+      {allSigns.map((sign, index) => (
         <motion.div
-          key={sign.name}
+          key={`${sign.name}-${index}`}
           className="absolute text-sage-green opacity-30 text-2xl font-playfair pointer-events-none"
           style={{
             left: `${sign.x}%`,
