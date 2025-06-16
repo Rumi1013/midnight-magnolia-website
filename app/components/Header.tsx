@@ -35,11 +35,11 @@ export default function Header() {
 
   return (
     <>
-      {/* Fixed burgundy bar that slides down like a blind */}
+      {/* Burgundy bar that slides up like a blind when scrolling */}
       <AnimatePresence>
-        {scrolled && (
+        {!scrolled && (
           <motion.div
-            initial={{ y: -100, opacity: 0 }}
+            initial={{ y: 0, opacity: 1 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
             transition={{
@@ -54,7 +54,7 @@ export default function Header() {
               <div className="flex lg:flex-1">
                 <Link href="/" className="-m-1.5 p-1.5 group">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-8 h-8 overflow-hidden rounded-full">
+                    <div className="relative w-10 h-10 overflow-hidden rounded-full">
                       <Image
                         src="/images/logo-minimal.jpg"
                         alt="Midnight Magnolia"
@@ -63,7 +63,7 @@ export default function Header() {
                       />
                     </div>
                     <div>
-                      <div className="font-playfair text-lg font-bold text-magnolia-white">Midnight Magnolia</div>
+                      <div className="font-playfair text-xl font-bold text-magnolia-white">Midnight Magnolia</div>
                       <div className="font-montserrat text-xs text-sage-green tracking-wider">DIGITAL SANCTUARY</div>
                     </div>
                   </div>
@@ -144,83 +144,90 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Transparent header for top of page */}
-      {!scrolled && (
-        <motion.header
-          className="fixed top-0 z-40 w-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
-            {/* Logo */}
-            <div className="flex lg:flex-1">
-              <Link href="/" className="-m-1.5 p-1.5 group">
-                <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 overflow-hidden rounded-full">
-                    <Image
-                      src="/images/logo-minimal.jpg"
-                      alt="Midnight Magnolia"
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-                  <div>
-                    <div className="font-playfair text-xl font-bold text-magnolia-white drop-shadow-lg">
-                      Midnight Magnolia
+      {/* Transparent header that appears when scrolled */}
+      <AnimatePresence>
+        {scrolled && (
+          <motion.header
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{
+              type: "tween",
+              duration: 0.4,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+            className="fixed top-0 z-40 w-full"
+          >
+            <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+              {/* Logo */}
+              <div className="flex lg:flex-1">
+                <Link href="/" className="-m-1.5 p-1.5 group">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-8 h-8 overflow-hidden rounded-full">
+                      <Image
+                        src="/images/logo-minimal.jpg"
+                        alt="Midnight Magnolia"
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
                     </div>
-                    <div className="font-montserrat text-xs text-sage-green tracking-wider drop-shadow-md">
-                      DIGITAL SANCTUARY
+                    <div>
+                      <div className="font-playfair text-lg font-bold text-magnolia-white drop-shadow-lg">
+                        Midnight Magnolia
+                      </div>
+                      <div className="font-montserrat text-xs text-sage-green tracking-wider drop-shadow-md">
+                        DIGITAL SANCTUARY
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex lg:gap-x-6">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="font-lora text-sm text-magnolia-white hover:text-gold transition-colors duration-300 relative group drop-shadow-md"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-sage-green transition-all duration-300 group-hover:w-full" />
                 </Link>
-              ))}
-            </div>
+              </div>
 
-            {/* Right side actions */}
-            <div className="flex flex-1 justify-end items-center gap-4">
-              {/* Theme toggle */}
-              {mounted && (
-                <button
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="rounded-full p-2 bg-black/30 text-magnolia-white hover:bg-gold/30 hover:text-gold transition-colors duration-300 backdrop-blur-sm"
-                  aria-label="Toggle theme"
-                >
-                  {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex lg:gap-x-6">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="font-lora text-sm text-magnolia-white hover:text-gold transition-colors duration-300 relative group drop-shadow-md"
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-sage-green transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                ))}
+              </div>
+
+              {/* Right side actions */}
+              <div className="flex flex-1 justify-end items-center gap-4">
+                {/* Theme toggle */}
+                {mounted && (
+                  <button
+                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    className="rounded-full p-2 bg-black/30 text-magnolia-white hover:bg-gold/30 hover:text-gold transition-colors duration-300 backdrop-blur-sm"
+                    aria-label="Toggle theme"
+                  >
+                    {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+                  </button>
+                )}
+
+                {/* CTA Button */}
+                <button className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm shadow-lg">
+                  Enter Garden
                 </button>
-              )}
 
-              {/* CTA Button */}
-              <button className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm shadow-lg">
-                Enter Garden
-              </button>
-
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden rounded-full p-2 bg-black/30 text-magnolia-white hover:bg-gold/30 hover:text-gold transition-colors duration-300 backdrop-blur-sm"
-                aria-label="Toggle menu"
-              >
-                {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
-              </button>
-            </div>
-          </nav>
-        </motion.header>
-      )}
+                {/* Mobile menu button */}
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="lg:hidden rounded-full p-2 bg-black/30 text-magnolia-white hover:bg-gold/30 hover:text-gold transition-colors duration-300 backdrop-blur-sm"
+                  aria-label="Toggle menu"
+                >
+                  {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+                </button>
+              </div>
+            </nav>
+          </motion.header>
+        )}
+      </AnimatePresence>
     </>
   )
 }
