@@ -203,18 +203,33 @@ export default function ServicesPageClient() {
     message: "",
   })
   const [isBookingLoading, setIsBookingLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const filteredServices =
     selectedCategory === "All Services" ? services : services.filter((service) => service.category === selectedCategory)
 
   const handleBookService = async (service: any) => {
+    setError(null)
+
+    // Enhanced validation
     if (!bookingForm.name?.trim()) {
-      alert("Please enter your full name.")
+      setError("Please enter your full name.")
       return
     }
 
     if (!bookingForm.email?.trim() || !bookingForm.email.includes("@")) {
-      alert("Please enter a valid email address.")
+      setError("Please enter a valid email address.")
+      return
+    }
+
+    if (bookingForm.name.length > 100) {
+      setError("Name is too long. Please use a shorter name.")
+      return
+    }
+
+    if (bookingForm.email.length > 254) {
+      setError("Email address is too long.")
       return
     }
 
@@ -252,7 +267,7 @@ export default function ServicesPageClient() {
       }
     } catch (error) {
       console.error("Booking error:", error)
-      alert("There was an error processing your booking. Please try again or contact support.")
+      setError("There was an error processing your booking. Please try again or contact support.")
     } finally {
       setIsBookingLoading(false)
     }
@@ -493,6 +508,12 @@ export default function ServicesPageClient() {
                           </DialogHeader>
 
                           <div className="space-y-4">
+                            {error && (
+                              <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+                                <p className="font-lora text-sm text-red-700">{error}</p>
+                              </div>
+                            )}
+
                             <div className="space-y-2">
                               <Label htmlFor="name" className="font-montserrat text-midnight-blue">
                                 Full Name *
