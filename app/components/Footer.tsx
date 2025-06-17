@@ -1,92 +1,39 @@
 import Link from "next/link"
+import { Heart } from "lucide-react"
 
 export default function Footer() {
+  const footerLinks = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Shop", href: "/shop" },
+    { name: "Services", href: "/services" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
+    { name: "Justice", href: "/justice" },
+    { name: "Portfolio", href: "/portfolio" },
+  ]
+
   return (
-    <footer className="bg-midnight-blue border-t border-magnolia-white/10">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">🌸</div>
-              <div>
-                <div className="font-playfair text-2xl font-bold text-magnolia-white">Midnight Magnolia</div>
-                <div className="font-montserrat text-sm text-sage-green tracking-wider">
-                  DIGITAL SANCTUARY FOR HEALING
-                </div>
-              </div>
+    <footer className="bg-midnight-blue-darker text-warm-gray border-t border-warm-gray/20 mt-24 relative z-10">
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <nav className="flex flex-wrap justify-center -mx-5 -my-2" aria-label="Footer">
+          {footerLinks.map((link) => (
+            <div key={link.name} className="px-5 py-2">
+              <Link
+                href={link.href}
+                className="text-base text-warm-gray hover:text-magnolia-white transition-colors font-lora"
+              >
+                {link.name}
+              </Link>
             </div>
-            <p className="font-lora text-magnolia-white/70 leading-relaxed max-w-md">
-              Where ancestral wisdom meets Southern Gothic grace. Your journey of healing through gentle productivity
-              and sacred rituals begins here.
-            </p>
-            <div className="flex gap-4 mt-6">
-              {["🌙", "✨", "🌱", "🕯️"].map((emoji, index) => (
-                <div key={index} className="text-2xl hover:scale-110 transition-transform duration-300 cursor-pointer">
-                  {emoji}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Sacred Tools */}
-          <div>
-            <h3 className="font-playfair text-lg font-semibold text-magnolia-white mb-4">Sacred Tools</h3>
-            <ul className="space-y-3">
-              {[
-                "The Magnolia Reset",
-                "Midnight Messages",
-                "Sacred Productivity",
-                "Healing Journals",
-                "Ritual Guides",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href="#"
-                    className="font-lora text-magnolia-white/70 hover:text-sage-green transition-colors duration-300"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Community */}
-          <div>
-            <h3 className="font-playfair text-lg font-semibold text-magnolia-white mb-4">Community</h3>
-            <ul className="space-y-3">
-              {["Our Story", "Healing Circle", "Testimonials", "Support", "Contact"].map((item) => (
-                <li key={item}>
-                  <Link
-                    href="#"
-                    className="font-lora text-magnolia-white/70 hover:text-sage-green transition-colors duration-300"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom section */}
-        <div className="border-t border-magnolia-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="font-lora text-magnolia-white/60 text-sm">
-            © 2024 Midnight Magnolia. Crafted with love and intention. All rights reserved.
-          </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link href="#" className="font-lora text-magnolia-white/60 hover:text-sage-green transition-colors text-sm">
-              Privacy
-            </Link>
-            <Link href="#" className="font-lora text-magnolia-white/60 hover:text-sage-green transition-colors text-sm">
-              Terms
-            </Link>
-            <Link href="#" className="font-lora text-magnolia-white/60 hover:text-sage-green transition-colors text-sm">
-              Accessibility
-            </Link>
-          </div>
-        </div>
+          ))}
+        </nav>
+        <p className="mt-8 text-center text-base text-warm-gray/80 font-montserrat flex items-center justify-center gap-2">
+          Crafted with <Heart className="w-4 h-4 text-sage-green" /> in the digital twilight.
+        </p>
+        <p className="mt-2 text-center text-sm text-warm-gray/60 font-montserrat">
+          &copy; {new Date().getFullYear()} Midnight Magnolia. All rights reserved.
+        </p>
       </div>
     </footer>
   )
