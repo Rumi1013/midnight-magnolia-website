@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Eye } from "lucide-react"
 import FloatingMoon from "@/app/components/FloatingMoon"
 import FloatingZodiac from "@/app/components/FloatingZodiac"
+import Link from "next/link"
 
 const projects = [
   {
@@ -81,32 +82,32 @@ export default function PortfolioClient() {
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative block bg-black rounded-xl overflow-hidden"
-                >
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    width={800}
-                    height={600}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-hover:opacity-50"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                    <Badge className="bg-sage-green text-midnight-blue w-fit mb-2">{project.category}</Badge>
-                    <h3 className="font-playfair text-2xl font-bold text-white">{project.title}</h3>
-                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-magnolia-white/90 font-lora mb-4">{project.description}</p>
-                      <button className="flex items-center gap-2 text-gold font-montserrat font-semibold">
-                        <Eye size={16} /> View Project
-                      </button>
+                <Link key={project.id} href={`/portfolio/${project.id}`} passHref>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group relative block bg-black rounded-xl overflow-hidden h-96 cursor-pointer"
+                  >
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      fill
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-hover:opacity-50"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                      <Badge className="bg-sage-green text-midnight-blue w-fit mb-2">{project.category}</Badge>
+                      <h3 className="font-playfair text-2xl font-bold text-white">{project.title}</h3>
+                      <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p className="text-magnolia-white/90 font-lora mb-4 line-clamp-2">{project.description}</p>
+                        <div className="flex items-center gap-2 text-gold font-montserrat font-semibold">
+                          <Eye size={16} /> View Project
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>
