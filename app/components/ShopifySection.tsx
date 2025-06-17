@@ -6,7 +6,7 @@ import { useRef, useState } from "react"
 import Image from "next/image"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Heart, Star, Truck, Shield, Gift, BookOpen, Palette, ShoppingBag, Edit3 } from "lucide-react"
+import { Heart, Truck, Shield, Gift, BookOpen, Palette, ShoppingBag, Edit3 } from "lucide-react"
 
 // Data merged from ProductsSection.tsx
 const digitalProductsData = [
@@ -319,100 +319,7 @@ export default function ShopifySection() {
               transition={{ duration: 0.5 }}
               className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
             >
-              {combinedFeaturedProducts.map((product, index) => (
-                <motion.div
-                  key={`${product.name}-${index}`} // Ensure unique key
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }} // Faster stagger
-                  className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group relative flex flex-col"
-                >
-                  {product.comingSoon && (
-                    <div className="absolute top-2 left-2 bg-gradient-to-r from-gold to-sage-green text-midnight-blue font-montserrat font-bold text-xs px-3 py-1 rounded-full shadow-lg z-10">
-                      COMING SOON
-                    </div>
-                  )}
-                  <div className="relative h-56 w-full">
-                    {" "}
-                    {/* Increased height */}
-                    {typeof product.image === "string" && product.image.startsWith("/") ? (
-                      <Image
-                        src={product.image || "/placeholder.svg"}
-                        alt={product.name}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-warm-gray/10 text-5xl group-hover:scale-110 transition-transform duration-300">
-                        {product.image} {/* Emoji or placeholder */}
-                      </div>
-                    )}
-                    {product.bestseller && (
-                      <div className="absolute top-3 right-3 bg-gold text-midnight-blue text-xs font-montserrat font-bold px-3 py-1 rounded-full">
-                        Bestseller
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="p-4 flex flex-col flex-grow">
-                    <span className="font-montserrat text-xs text-sage-green mb-1 font-semibold">{product.type}</span>
-                    <h3 className="font-playfair text-lg font-bold text-midnight-blue mb-1 group-hover:text-sage-green transition-colors duration-300">
-                      {product.name}
-                    </h3>
-                    {product.subtitle && (
-                      <p className="font-montserrat text-xs text-midnight-blue/70 mb-2">{product.subtitle}</p>
-                    )}
-                    <p className="font-lora text-gray-700 text-sm mb-3 leading-relaxed flex-grow">
-                      {product.description}
-                    </p>
-
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="flex items-center">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`h-3 w-3 ${
-                              i < Math.floor(product.rating || 0) ? "text-gold fill-current" : "text-gray-300"
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <span className="font-montserrat text-xs text-gray-600">
-                        {product.rating || "N/A"} ({product.reviews || 0})
-                      </span>
-                    </div>
-
-                    <div className="mt-auto">
-                      {" "}
-                      {/* Pushes price and button to bottom */}
-                      <div className="flex items-baseline justify-between mb-3">
-                        <div>
-                          <span className="font-playfair text-lg font-bold text-midnight-blue">
-                            {product.digitalPrice || product.price}
-                          </span>
-                          {product.digitalPrice && product.price !== product.digitalPrice && (
-                            <span className="font-lora text-xs text-gray-500 ml-1"> (Digital)</span>
-                          )}
-                        </div>
-                        {product.originalPrice && (
-                          <span className="font-lora text-xs text-gray-500 line-through">{product.originalPrice}</span>
-                        )}
-                      </div>
-                      <button
-                        className={`w-full font-montserrat font-semibold px-4 py-2 rounded-full transition-all duration-300 min-h-[40px] text-sm ${
-                          product.comingSoon
-                            ? "bg-warm-gray text-gray-600 cursor-not-allowed"
-                            : "bg-sage-green hover:bg-sage-green/90 text-midnight-blue hover:shadow-lg"
-                        }`}
-                        disabled={product.comingSoon}
-                      >
-                        {product.comingSoon ? "Coming Soon" : "View Details"}
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <p className="text-magnolia-white">Featured products temporarily hidden for debugging.</p>
             </motion.div>
           </TabsContent>
 
