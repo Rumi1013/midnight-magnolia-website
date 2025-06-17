@@ -39,6 +39,26 @@ CREATE TABLE IF NOT EXISTS monitoring_alerts (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create uptime stats table
+CREATE TABLE IF NOT EXISTS uptime_stats (
+    id SERIAL PRIMARY KEY,
+    service_name VARCHAR(255) NOT NULL,
+    status VARCHAR(50) NOT NULL, -- up, down, degraded
+    checked_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    response_time_ms INTEGER,
+    error_details TEXT
+);
+
+-- Create performance logs table
+CREATE TABLE IF NOT EXISTS performance_logs (
+    id SERIAL PRIMARY KEY,
+    metric_name VARCHAR(255) NOT NULL,
+    value FLOAT NOT NULL,
+    unit VARCHAR(50),
+    tags JSONB, -- e.g., {"page": "/home", "region": "us-east-1"}
+    timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_uptime_checks_timestamp ON uptime_checks(timestamp);
 CREATE INDEX IF NOT EXISTS idx_uptime_checks_status ON uptime_checks(status);
@@ -49,6 +69,10 @@ CREATE INDEX IF NOT EXISTS idx_performance_metrics_page ON performance_metrics(p
 CREATE INDEX IF NOT EXISTS idx_monitoring_alerts_timestamp ON monitoring_alerts(timestamp);
 CREATE INDEX IF NOT EXISTS idx_monitoring_alerts_status ON monitoring_alerts(status);
 CREATE INDEX IF NOT EXISTS idx_monitoring_alerts_severity ON monitoring_alerts(severity);
+
+-- Add indexes for common queries
+CREATE INDEX IF NOT EXISTS idx_uptime_stats_service_checked ON uptime_stats (service_name, checked_at DESC);
+CREATE INDEX IF NOT EXISTS idx_performance_logs_metric_timestamp ON performance_logs (metric_name, timestamp DESC);
 
 -- Create a view for recent performance summary
 CREATE OR REPLACE VIEW recent_performance_summary AS

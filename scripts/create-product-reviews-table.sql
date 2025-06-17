@@ -22,25 +22,28 @@ CREATE TABLE IF NOT EXISTS products (
 -- Create product reviews table
 CREATE TABLE IF NOT EXISTS product_reviews (
     id SERIAL PRIMARY KEY,
-    product_id INTEGER NOT NULL,
-    customer_name VARCHAR(255) NOT NULL,
-    customer_email VARCHAR(255) NOT NULL,
+    product_id VARCHAR(255) NOT NULL, -- Could be Shopify product ID or internal product SKU
+    user_id VARCHAR(255), -- If users are authenticated and submitting reviews
+    reviewer_name VARCHAR(255) NOT NULL,
+    reviewer_email VARCHAR(255), -- Optional, consider privacy
     rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
-    title VARCHAR(255),
-    review_text TEXT NOT NULL,
-    is_verified_purchase BOOLEAN DEFAULT false,
-    is_approved BOOLEAN DEFAULT true,
-    helpful_count INTEGER DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+    title TEXT,
+    body TEXT NOT NULL,
+    images JSONB, -- Array of image URLs if reviews can include images
+    is_verified_purchase BOOLEAN DEFAULT FALSE,
+    status VARCHAR(50) DEFAULT 'pending', -- pending, approved, rejected, flagged
+    helpful_votes INTEGER DEFAULT 0,
+    not_helpful_votes INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create indexes for better performance
-CREATE INDEX IF NOT EXISTS idx_product_reviews_product_id ON product_reviews(product_id);
+CREATE INDEX IF NOT EXISTS idx_product_reviews_product_id_status ON product_reviews (product_id, status, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_product_reviews_user_id ON product_reviews (user_id);
 CREATE INDEX IF NOT EXISTS idx_product_reviews_rating ON product_reviews(rating);
 CREATE INDEX IF NOT EXISTS idx_product_reviews_created_at ON product_reviews(created_at DESC);
-CREATE INDEX IF NOT EXISTS idx_product_reviews_approved ON product_reviews(is_approved);
+CREATE INDEX IF NOT EXISTS idx_product_reviews_approved ON product_reviews(status);
 
 -- Create review helpfulness tracking table
 CREATE TABLE IF NOT EXISTS review_helpfulness (
@@ -62,7 +65,7 @@ INSERT INTO products (name, slug, description, price, sale_price, category, tags
 ('Elegant Moon Mug', 'elegant-moon-mug', 'Sip your evening tea under the moon''s guidance with this celestial ceramic mug.', 32.00, 25.00, 'Drinkware', ARRAY['ceramic', 'moon', 'evening ritual'], '/elegant-moon-magnolia-mug.png', 20);
 
 -- Insert sample reviews for testing
-INSERT INTO product_reviews (product_id, customer_name, customer_email, rating, title, review_text, is_verified_purchase) VALUES
+INSERT INTO product_reviews (product_id, reviewer_name, reviewer_email, rating, title, body, is_verified_purchase) VALUES
 (1, 'Sarah M.', 'sarah.m@example.com', 5, 'Perfect for my spiritual practice', 'This journal has become an essential part of my daily ritual. The quality is exceptional and the pages feel sacred to write on.', true),
 (1, 'Luna W.', 'luna.w@example.com', 5, 'Beautiful and meaningful', 'I love tracking my moon cycles in this journal. The design is gorgeous and it feels so special to use.', true),
 (1, 'Maya R.', 'maya.r@example.com', 4, 'Great quality, love the design', 'Really well-made journal with beautiful paper. Only wish it was a bit larger, but overall very happy with my purchase.', true),
@@ -73,11 +76,11 @@ INSERT INTO product_reviews (product_id, customer_name, customer_email, rating, 
 (5, 'Sage B.', 'sage.b@example.com', 5, 'Perfect for evening rituals', 'I use this mug every night for my bedtime tea. The moon design is so calming and beautiful.', true);
 
 -- Update helpful counts for some reviews
-UPDATE product_reviews SET helpful_count = 8 WHERE id = 1;
-UPDATE product_reviews SET helpful_count = 6 WHERE id = 2;
-UPDATE product_reviews SET helpful_count = 4 WHERE id = 3;
-UPDATE product_reviews SET helpful_count = 7 WHERE id = 4;
-UPDATE product_reviews SET helpful_count = 5 WHERE id = 5;
+UPDATE product_reviews SET helpful_votes = 8 WHERE id = 1;
+UPDATE product_reviews SET helpful_votes = 6 WHERE id = 2;
+UPDATE product_reviews SET helpful_votes = 4 WHERE id = 3;
+UPDATE product_reviews SET helpful_votes = 7 WHERE id = 4;
+UPDATE product_reviews SET helpful_votes = 5 WHERE id = 5;
 
 -- Create a view for product review statistics
 CREATE OR REPLACE VIEW product_review_stats AS
@@ -92,7 +95,7 @@ SELECT
     COUNT(CASE WHEN pr.rating = 2 THEN 1 END) as two_star_count,
     COUNT(CASE WHEN pr.rating = 1 THEN 1 END) as one_star_count
 FROM products p
-LEFT JOIN product_reviews pr ON p.id = pr.product_id AND pr.is_approved = true
+LEFT JOIN product_reviews pr ON p.id = pr.product_id AND pr.status = 'approved'
 GROUP BY p.id, p.name;
 
 -- Create function to update product rating cache
