@@ -20,14 +20,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        // Midnight Magnolia Brand Colors
-        "midnight-blue": "#0A192F",
-        "magnolia-white": "#FAF3E0",
-        "sage-green": "#A3B18A",
-        "warm-gray": "#D4B99F",
-        gold: "#D4AF37",
-
-        // Keep existing shadcn colors for components
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -61,17 +53,25 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      fontFamily: {
-        playfair: ["var(--font-playfair)", ...fontFamily.serif],
-        lora: ["var(--font-lora)", ...fontFamily.serif],
-        montserrat: ["var(--font-montserrat)", ...fontFamily.sans],
-        sans: ["var(--font-montserrat)", ...fontFamily.sans],
+        // Midnight Magnolia Brand Colors
+        "midnight-blue": "#0A192F", // Primary/Backgrounds
+        "magnolia-white": "#FAF3E0", // Text/Light Elements
+        "sage-green": "#A3B18A", // CTAs/Links/Success
+        "warm-gray": "#D4B99F", // Subtle Elements/Borders
+        "rich-gold": "#D4AF37", // Premium/Special Emphasis (mapped from Gold)
+        // Adding a slightly darker shade for UI depth, similar to 'midnight-teal' from previous context
+        "midnight-blue-darker": "#071323",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["var(--font-montserrat)", ...fontFamily.sans],
+        playfair: ["var(--font-playfair-display)", "serif"],
+        lora: ["var(--font-lora)", "serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -82,20 +82,13 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        glow: {
-          "0%, 100%": { opacity: 1 },
-          "50%": { opacity: 0.5 },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        float: "float 3s ease-in-out infinite",
-        glow: "glow 2s ease-in-out infinite",
+      },
+      boxShadow: {
+        gentle: "0 4px 6px -1px rgba(212, 175, 55, 0.1), 0 2px 4px -1px rgba(212, 175, 55, 0.06)", // Gold-tinted soft shadow
       },
     },
   },

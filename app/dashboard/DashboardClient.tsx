@@ -11,6 +11,7 @@ import {
   MoonIcon,
   BellIcon,
   ArrowTrendingUpIcon,
+  LightBulbIcon,
 } from "@heroicons/react/24/outline"
 
 interface EnergyLevel {
@@ -108,6 +109,15 @@ export default function DashboardClient() {
               >
                 <SparklesIcon className="w-5 h-5" />
                 <span className="font-lora">Content Creation</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/dashboard/ai-content-studio"
+                className="flex items-center gap-3 px-4 py-3 rounded-lg text-magnolia-white hover:bg-magnolia-white/10 transition-colors"
+              >
+                <LightBulbIcon className="w-5 h-5" />
+                <span className="font-lora">AI Content Studio</span>
               </a>
             </li>
             <li>
