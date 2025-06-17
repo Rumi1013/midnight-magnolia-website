@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import ServicesPageClient from "./ServicesPageClient"
-import ErrorBoundary from "@/app/components/ErrorBoundary"
 
 export const metadata: Metadata = {
   title: "Healing Services | Midnight Magnolia",
@@ -20,10 +19,8 @@ function ServicesLoading() {
 
 export default function ServicesPage() {
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<ServicesLoading />}>
-        <ServicesPageClient />
-      </Suspense>
-    </ErrorBoundary>
+    <Suspense fallback={<ServicesLoading />}>
+      <ServicesPageClient />
+    </Suspense>
   )
 }

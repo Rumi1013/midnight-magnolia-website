@@ -1,60 +1,38 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import ErrorBoundary from "@/app/components/ErrorBoundary"
-import PerformanceMonitor from "@/app/components/PerformanceMonitor"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { Mona_Sans as FontSans } from "next/font/google"
-import { Young_Serif as FontSerif } from "next/font/google"
-import { Lora } from "next/font/google"
-import { Montserrat } from "next/font/google"
-
-const inter = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const playfair = FontSerif({
-  subsets: ["latin"],
-  variable: "--font-serif-playfair",
-})
-
-const lora = Lora({
-  subsets: ["latin"],
-  variable: "--font-serif-lora",
-})
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-})
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+import FloatingMoon from "./components/FloatingMoon"
+import FloatingZodiac from "./components/FloatingZodiac"
+import PerformanceMonitor from "./components/PerformanceMonitor"
+import ErrorBoundary from "./components/ErrorBoundary"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
+  title: "Midnight Magnolia | Sacred Healing & Wellness",
+  description: "Southern Gothic wellness sanctuary blending ancestral wisdom with modern healing practices",
   generator: "v0.dev",
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
-    <html lang="en" suppressHydrationWarnings>
-      <body className={`${inter.variable} ${playfair.variable} ${lora.variable} ${montserrat.variable} antialiased`}>
+    <html lang="en">
+      <body>
         <ErrorBoundary>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-            <div className="relative min-h-screen">
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <div className="relative min-h-screen bg-midnight-blue text-magnolia-white overflow-x-hidden">
+              <FloatingMoon />
+              <FloatingZodiac />
               <Header />
-              <main className="flex-1">{children}</main>
+              <main className="pt-20">{children}</main>
               <Footer />
+              <PerformanceMonitor />
             </div>
-            <Toaster />
-            <PerformanceMonitor />
           </ThemeProvider>
         </ErrorBoundary>
       </body>

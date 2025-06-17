@@ -3,80 +3,64 @@
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
-const zodiacSigns = [
-  { symbol: "♈", name: "Aries", x: 10, y: 15 },
-  { symbol: "♉", name: "Taurus", x: 85, y: 25 },
-  { symbol: "♊", name: "Gemini", x: 20, y: 60 },
-  { symbol: "♋", name: "Cancer", x: 75, y: 70 },
-  { symbol: "♌", name: "Leo", x: 5, y: 85 },
-  { symbol: "♍", name: "Virgo", x: 90, y: 80 },
-  { symbol: "♎", name: "Libra", x: 15, y: 40 },
-  { symbol: "♏", name: "Scorpio", x: 80, y: 45 },
-  { symbol: "♐", name: "Sagittarius", x: 25, y: 20 },
-  { symbol: "♑", name: "Capricorn", x: 70, y: 10 },
-  { symbol: "♒", name: "Aquarius", x: 45, y: 75 },
-  { symbol: "♓", name: "Pisces", x: 60, y: 35 },
-]
-
 interface FloatingZodiacProps {
   fullPage?: boolean
 }
 
-function FloatingZodiac({ fullPage = false }: FloatingZodiacProps) {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+const zodiacSigns = [
+  { symbol: "♈", name: "Aries" },
+  { symbol: "♉", name: "Taurus" },
+  { symbol: "♊", name: "Gemini" },
+  { symbol: "♋", name: "Cancer" },
+  { symbol: "♌", name: "Leo" },
+  { symbol: "♍", name: "Virgo" },
+  { symbol: "♎", name: "Libra" },
+  { symbol: "♏", name: "Scorpio" },
+  { symbol: "♐", name: "Sagittarius" },
+  { symbol: "♑", name: "Capricorn" },
+  { symbol: "♒", name: "Aquarius" },
+  { symbol: "♓", name: "Pisces" },
+]
+
+export default function FloatingZodiac({ fullPage = false }: FloatingZodiacProps) {
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    function updateSize() {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
-    }
-
-    window.addEventListener("resize", updateSize)
-    updateSize()
-
-    return () => window.removeEventListener("resize", updateSize)
+    setMounted(true)
   }, [])
 
-  // Generate additional signs for full page coverage
-  const allSigns = fullPage
-    ? [
-        ...zodiacSigns,
-        // Additional signs for full page coverage
-        { symbol: "♈", name: "Aries2", x: 30, y: 90 },
-        { symbol: "♉", name: "Taurus2", x: 95, y: 55 },
-        { symbol: "♊", name: "Gemini2", x: 8, y: 30 },
-        { symbol: "♋", name: "Cancer2", x: 65, y: 85 },
-        { symbol: "♌", name: "Leo2", x: 40, y: 5 },
-        { symbol: "♍", name: "Virgo2", x: 88, y: 15 },
-        { symbol: "♎", name: "Libra2", x: 12, y: 65 },
-        { symbol: "♏", name: "Scorpio2", x: 78, y: 95 },
-        { symbol: "♐", name: "Sagittarius2", x: 55, y: 50 },
-        { symbol: "♑", name: "Capricorn2", x: 35, y: 25 },
-        { symbol: "♒", name: "Aquarius2", x: 85, y: 65 },
-        { symbol: "♓", name: "Pisces2", x: 18, y: 80 },
-      ]
-    : zodiacSigns
+  if (!mounted) return null
+
+  const signsToShow = fullPage ? zodiacSigns : zodiacSigns.slice(0, 6)
 
   return (
-    <div className={`fixed inset-0 pointer-events-none z-0 overflow-hidden ${fullPage ? "h-full" : ""}`}>
-      {allSigns.map((sign, index) => (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {signsToShow.map((sign, index) => (
         <motion.div
-          key={`${sign.name}-${index}`}
-          className="absolute text-sage-green opacity-30 text-2xl font-playfair pointer-events-none"
-          style={{
-            left: `${sign.x}%`,
-            top: `${sign.y}%`,
+          key={sign.name}
+          className="absolute text-magnolia-white/10 text-2xl font-serif select-none"
+          initial={{
+            x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
+            y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+            opacity: 0,
           }}
           animate={{
-            x: [0, 20, -10, 0],
-            y: [0, -15, 10, 0],
-            rotate: [0, 5, -5, 0],
-            opacity: [0.3, 0.5, 0.2, 0.3],
+            x: [
+              Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
+              Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
+            ],
+            y: [
+              Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+              Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+            ],
+            opacity: [0, 0.3, 0],
+            rotate: [0, 360],
           }}
           transition={{
-            duration: 15 + index * 2,
+            duration: 20 + Math.random() * 10,
             repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: index * 0.5,
+            ease: "linear",
+            delay: index * 2,
           }}
         >
           {sign.symbol}
@@ -85,5 +69,3 @@ function FloatingZodiac({ fullPage = false }: FloatingZodiacProps) {
     </div>
   )
 }
-
-export default FloatingZodiac
