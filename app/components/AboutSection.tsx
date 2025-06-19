@@ -1,120 +1,61 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { Card, CardContent } from "@/components/ui/card"
 
 export default function AboutSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
-
   return (
-    <section ref={ref} className="py-20 bg-magnolia-white">
+    <section className="py-20 bg-magnolia-white text-midnight-blue">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="space-y-4">
-              <p className="bg-sage-green text-magnolia-white font-montserrat text-sm tracking-wider uppercase px-4 py-2 rounded-full inline-block font-bold">
-                Our Sacred Mission
-              </p>
-              <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-midnight-blue leading-tight">
-                Healing is not linear,
-                <br />
-                <span className="text-gold">and that's beautiful</span>
-              </h2>
-            </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-playfair mb-6">Your Healing Journey Begins Here</h2>
+          <p className="text-xl font-lora text-midnight-blue/80 max-w-3xl mx-auto">
+            We understand that healing is not linear, and your pace is sacred. Our digital sanctuary blends ancestral
+            wisdom with gentle productivity for those navigating chronic illness, ADHD, and the beautiful complexity of
+            being human.
+          </p>
+        </motion.div>
 
-            <div className="space-y-6 font-lora text-lg text-gray-800 leading-relaxed">
-              <p>
-                Founded by <strong className="text-midnight-blue">Latisha Vincent-Waters</strong> under Rumi-Nations
-                LLC, Midnight Magnolia is a digital sanctuary where Southern Gothic grace meets ancestral wisdom. We
-                create tools for souls seeking transformation through gentle productivity and sacred rituals.
-              </p>
-              <p>
-                Whether you're navigating chronic illness, ADHD, sobriety, or simply seeking a more mindful approach to
-                life and business, you belong here. Every ritual, every journal prompt, every gentle reminder is crafted
-                with love for the beautifully complex human you are.
-              </p>
-              <p>
-                From our healing journals and tarot decks to our courier services and digital business tools, everything
-                we create honors your pace, your story, and your unique journey toward wholeness.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-6">
-              <div className="text-center p-6 bg-midnight-blue/5 rounded-2xl">
-                <div className="text-3xl mb-2">🌱</div>
-                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-2">Gentle Growth</h3>
-                <p className="font-lora text-gray-700 text-sm">Progress at your own sacred pace</p>
-              </div>
-              <div className="text-center p-6 bg-sage-green/10 rounded-2xl">
-                <div className="text-3xl mb-2">🕯️</div>
-                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-2">Sacred Rituals</h3>
-                <p className="font-lora text-gray-700 text-sm">Daily practices for inner peace</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right content - Values grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
-          >
-            {[
-              {
-                icon: "🌙",
-                title: "Trauma-Informed",
-                description: "Every tool designed with gentleness and understanding for your healing journey.",
-              },
-              {
-                icon: "🌸",
-                title: "Ancestral Wisdom",
-                description: "Honoring the strength and knowledge passed down through generations of resilient women.",
-              },
-              {
-                icon: "✨",
-                title: "Neurodivergent Friendly",
-                description: "Celebrating different minds with tools that work with your brain, not against it.",
-              },
-              {
-                icon: "🕊️",
-                title: "Inclusive Sanctuary",
-                description: "A safe space for all identities, especially Black women and marginalized voices.",
-              },
-              {
-                icon: "🔮",
-                title: "Digital Innovation",
-                description: "Blending ancient wisdom with modern technology for accessible healing tools.",
-              },
-              {
-                icon: "🚗",
-                title: "Community Support",
-                description: "From digital products to local courier services, we support your whole life.",
-              },
-            ].map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-sm border border-warm-gray/20 hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="text-3xl flex-shrink-0">{value.icon}</div>
-                <div>
-                  <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-2">{value.title}</h3>
-                  <p className="font-lora text-gray-700 leading-relaxed">{value.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Gentle Productivity",
+              description: "Tools and wisdom that honor your energy cycles and natural rhythms.",
+              icon: "🌱",
+            },
+            {
+              title: "Ancestral Wisdom",
+              description: "Time-honored practices reimagined for modern healing journeys.",
+              icon: "🌿",
+            },
+            {
+              title: "Sacred Community",
+              description: "A supportive space where your story and struggles are honored.",
+              icon: "🤝",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-midnight-blue text-magnolia-white border-sage-green/20 hover:border-sage-green/40 transition-colors">
+                <CardContent className="p-8 text-center">
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <h3 className="text-2xl font-playfair mb-4 text-sage-green">{item.title}</h3>
+                  <p className="font-lora text-magnolia-white/80">{item.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
