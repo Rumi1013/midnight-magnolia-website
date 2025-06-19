@@ -1,20 +1,27 @@
 import Hero from "./components/Hero"
 import AboutSection from "./components/AboutSection"
-import JusticeSection from "./components/JusticeSection"
-// ProductsSection and ShopSection are removed as their content is merged into ShopifySection
-import ShopifySection from "./components/ShopifySection" // This is now the main product showcase
+import ProductsSection from "./components/ProductsSection"
+import ShopSection from "./components/ShopSection"
+import ShopifySection from "./components/ShopifySection"
 import BlogSection from "./components/BlogSection"
+import JusticeSection from "./components/JusticeSection"
 import TestimonialsSection from "./components/TestimonialsSection"
 import NewsletterSection from "./components/NewsletterSection"
+import FloatingMoon from "./components/FloatingMoon"
+import FloatingZodiac from "./components/FloatingZodiac"
 
 export default function HomePage() {
   return (
     <>
+      <FloatingMoon />
+      <FloatingZodiac />
       <Hero />
       <AboutSection />
-      <JusticeSection />
-      <ShopifySection /> {/* Consolidated product showcase */}
+      <ProductsSection />
+      <ShopSection />
+      <ShopifySection />
       <BlogSection />
+      <JusticeSection />
       <TestimonialsSection />
       <NewsletterSection />
     </>

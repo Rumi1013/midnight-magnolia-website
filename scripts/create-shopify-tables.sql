@@ -2,35 +2,34 @@
 
 -- Customers table
 CREATE TABLE IF NOT EXISTS shopify_customers (
-    id BIGINT PRIMARY KEY,
-    store_id INTEGER REFERENCES shopify_stores(id) ON DELETE CASCADE,
-    email VARCHAR(255),
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    phone VARCHAR(50),
-    orders_count INTEGER,
-    total_spent NUMERIC(10, 2),
-    state VARCHAR(50), -- e.g., 'enabled', 'disabled'
-    created_at_shopify TIMESTAMP WITH TIME ZONE,
-    updated_at_shopify TIMESTAMP WITH TIME ZONE,
-    admin_graphql_api_id TEXT,
+    id SERIAL PRIMARY KEY,
+    shopify_customer_id BIGINT UNIQUE NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    phone VARCHAR(20),
+    accepts_marketing BOOLEAN DEFAULT false,
+    total_spent DECIMAL(10,2) DEFAULT 0.00,
+    orders_count INTEGER DEFAULT 0,
+    tags TEXT[],
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     synced_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Products table
 CREATE TABLE IF NOT EXISTS shopify_products (
-    id BIGINT PRIMARY KEY,
-    store_id INTEGER REFERENCES shopify_stores(id) ON DELETE CASCADE,
-    title TEXT,
-    vendor VARCHAR(255),
-    product_type VARCHAR(255),
-    status VARCHAR(50),
-    created_at_shopify TIMESTAMP WITH TIME ZONE,
-    updated_at_shopify TIMESTAMP WITH TIME ZONE,
-    published_at_shopify TIMESTAMP WITH TIME ZONE,
-    handle VARCHAR(255),
-    tags TEXT,
-    admin_graphql_api_id TEXT,
+    id SERIAL PRIMARY KEY,
+    shopify_product_id BIGINT UNIQUE NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    handle VARCHAR(255) NOT NULL,
+    description TEXT,
+    product_type VARCHAR(100),
+    vendor VARCHAR(100),
+    status VARCHAR(20) DEFAULT 'active',
+    tags TEXT[],
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     synced_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -63,18 +62,20 @@ CREATE TABLE IF NOT EXISTS shopify_product_variants (
 
 -- Orders table
 CREATE TABLE IF NOT EXISTS shopify_orders (
-    id BIGINT PRIMARY KEY,
-    store_id INTEGER REFERENCES shopify_stores(id) ON DELETE CASCADE,
-    email VARCHAR(255),
-    phone VARCHAR(50),
-    total_price NUMERIC(10, 2),
-    currency CHAR(3),
-    financial_status VARCHAR(50),
-    fulfillment_status VARCHAR(50),
-    created_at_shopify TIMESTAMP WITH TIME ZONE,
-    updated_at_shopify TIMESTAMP WITH TIME ZONE,
-    customer_locale VARCHAR(10),
-    admin_graphql_api_id TEXT,
+    id SERIAL PRIMARY KEY,
+    shopify_order_id BIGINT UNIQUE NOT NULL,
+    order_number VARCHAR(50) NOT NULL,
+    customer_id INTEGER REFERENCES shopify_customers(id),
+    customer_email VARCHAR(255),
+    customer_name VARCHAR(200),
+    total_price DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(3) DEFAULT 'USD',
+    financial_status VARCHAR(20),
+    fulfillment_status VARCHAR(20),
+    shipping_address JSONB,
+    billing_address JSONB,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     synced_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -136,19 +137,11 @@ CREATE TABLE IF NOT EXISTS shopify_customer_addresses (
 
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_shopify_customers_email ON shopify_customers(email);
-CREATE INDEX IF NOT EXISTS idx_shopify_customers_shopify_id ON shopify_customers(id);
+CREATE INDEX IF NOT EXISTS idx_shopify_customers_shopify_id ON shopify_customers(shopify_customer_id);
 CREATE INDEX IF NOT EXISTS idx_shopify_products_handle ON shopify_products(handle);
-CREATE INDEX IF NOT EXISTS idx_shopify_products_shopify_id ON shopify_products(id);
-CREATE INDEX IF NOT EXISTS idx_shopify_orders_customer_email ON shopify_orders(email);
-CREATE INDEX IF NOT EXISTS idx_shopify_orders_shopify_id ON shopify_orders(id);
-CREATE INDEX IF NOT EXISTS idx_shopify_orders_created_at ON shopify_orders(created_at_shopify);
+CREATE INDEX IF NOT EXISTS idx_shopify_products_shopify_id ON shopify_products(shopify_product_id);
+CREATE INDEX IF NOT EXISTS idx_shopify_orders_customer_email ON shopify_orders(customer_email);
+CREATE INDEX IF NOT EXISTS idx_shopify_orders_shopify_id ON shopify_orders(shopify_order_id);
+CREATE INDEX IF NOT EXISTS idx_shopify_orders_created_at ON shopify_orders(created_at);
 CREATE INDEX IF NOT EXISTS idx_webhook_logs_topic ON webhook_logs(webhook_topic);
 CREATE INDEX IF NOT EXISTS idx_webhook_logs_processed_at ON webhook_logs(processed_at);
-
-CREATE TABLE IF NOT EXISTS shopify_stores (
-    id SERIAL PRIMARY KEY,
-    shop_domain VARCHAR(255) UNIQUE NOT NULL,
-    access_token TEXT NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);

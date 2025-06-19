@@ -8,8 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { serviceId, serviceName, price, duration, customerEmail, customerName, customerPhone, customerMessage } =
-      body
+    const { serviceId, serviceName, price, duration, customerEmail } = body
 
     // Validate all inputs
     if (!serviceId || typeof serviceId !== "number") {
@@ -28,16 +27,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid email format" }, { status: 400 })
     }
 
-    if (customerName && typeof customerName !== "string") {
-      return NextResponse.json({ error: "Invalid name format" }, { status: 400 })
-    }
-
     // Sanitize inputs
     const sanitizedServiceName = serviceName.trim().substring(0, 100)
     const sanitizedDuration = duration?.trim().substring(0, 50) || "Session"
-    const sanitizedCustomerName = customerName?.trim().substring(0, 100) || ""
-    const sanitizedCustomerPhone = customerPhone?.trim().substring(0, 20) || ""
-    const sanitizedCustomerMessage = customerMessage?.trim().substring(0, 500) || ""
 
     // Create or retrieve customer with error handling
     let customer
@@ -53,8 +45,6 @@ export async function POST(request: NextRequest) {
         } else {
           customer = await stripe.customers.create({
             email: customerEmail.toLowerCase().trim(),
-            name: sanitizedCustomerName || undefined,
-            phone: sanitizedCustomerPhone || undefined,
           })
         }
       } catch (customerError) {
@@ -92,9 +82,6 @@ export async function POST(request: NextRequest) {
         serviceId: serviceId.toString(),
         serviceName: sanitizedServiceName,
         duration: sanitizedDuration,
-        customerName: sanitizedCustomerName,
-        customerPhone: sanitizedCustomerPhone,
-        customerMessage: sanitizedCustomerMessage,
       },
       custom_text: {
         submit: {
@@ -113,11 +100,6 @@ export async function POST(request: NextRequest) {
     console.error("Error creating service checkout session:", error)
 
     // Don't expose internal error details
-    return NextResponse.json(
-      {
-        error: "Unable to create checkout session. Please try again.",
-      },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: "Unable to create checkout session. Please try again." }, { status: 500 })
   }
 }

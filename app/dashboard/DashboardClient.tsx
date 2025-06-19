@@ -11,7 +11,6 @@ import {
   MoonIcon,
   BellIcon,
   ArrowTrendingUpIcon,
-  LightBulbIcon,
 } from "@heroicons/react/24/outline"
 
 interface EnergyLevel {
@@ -104,7 +103,7 @@ export default function DashboardClient() {
             </li>
             <li>
               <a
-                href="/dashboard/content"
+                href="#content"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-magnolia-white hover:bg-magnolia-white/10 transition-colors"
               >
                 <SparklesIcon className="w-5 h-5" />
@@ -113,16 +112,7 @@ export default function DashboardClient() {
             </li>
             <li>
               <a
-                href="/dashboard/ai-content-studio"
-                className="flex items-center gap-3 px-4 py-3 rounded-lg text-magnolia-white hover:bg-magnolia-white/10 transition-colors"
-              >
-                <LightBulbIcon className="w-5 h-5" />
-                <span className="font-lora">AI Content Studio</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="/shop"
+                href="#inventory"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-magnolia-white hover:bg-magnolia-white/10 transition-colors"
               >
                 <DocumentTextIcon className="w-5 h-5" />
@@ -131,7 +121,7 @@ export default function DashboardClient() {
             </li>
             <li>
               <a
-                href="/dashboard/shopify"
+                href="#sales"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-magnolia-white hover:bg-magnolia-white/10 transition-colors"
               >
                 <ArrowTrendingUpIcon className="w-5 h-5" />
@@ -140,7 +130,7 @@ export default function DashboardClient() {
             </li>
             <li>
               <a
-                href="/dashboard/clients"
+                href="#clients"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-magnolia-white hover:bg-magnolia-white/10 transition-colors"
               >
                 <UserGroupIcon className="w-5 h-5" />
@@ -149,7 +139,7 @@ export default function DashboardClient() {
             </li>
             <li>
               <a
-                href="/dashboard/settings"
+                href="#settings"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-magnolia-white hover:bg-magnolia-white/10 transition-colors"
               >
                 <CogIcon className="w-5 h-5" />
@@ -280,10 +270,7 @@ export default function DashboardClient() {
                 </div>
               </div>
             </div>
-            <a
-              href="/dashboard/activity"
-              className="block text-center mt-6 text-rich-gold font-montserrat text-sm hover:underline"
-            >
+            <a href="#" className="block text-center mt-6 text-rich-gold font-montserrat text-sm hover:underline">
               View all activity
             </a>
           </div>
@@ -381,28 +368,28 @@ export default function DashboardClient() {
           <h2 className="font-playfair text-xl font-bold text-rich-gold mb-6">Quick Create</h2>
           <div className="grid grid-cols-4 gap-4">
             <a
-              href="/dashboard/ai-content-studio"
+              href="#"
               className="flex flex-col items-center p-4 bg-magnolia-white/5 rounded-lg hover:bg-magnolia-white/10 transition-colors"
             >
               <SparklesIcon className="w-8 h-8 text-rich-gold mb-2" />
               <span className="font-montserrat text-sm text-magnolia-white text-center">Affirmation Card</span>
             </a>
             <a
-              href="/dashboard/ai-content-studio"
+              href="#"
               className="flex flex-col items-center p-4 bg-magnolia-white/5 rounded-lg hover:bg-magnolia-white/10 transition-colors"
             >
               <MoonIcon className="w-8 h-8 text-rich-gold mb-2" />
               <span className="font-montserrat text-sm text-magnolia-white text-center">Tarot Description</span>
             </a>
             <a
-              href="/dashboard/ai-content-studio"
+              href="#"
               className="flex flex-col items-center p-4 bg-magnolia-white/5 rounded-lg hover:bg-magnolia-white/10 transition-colors"
             >
               <DocumentTextIcon className="w-8 h-8 text-rich-gold mb-2" />
               <span className="font-montserrat text-sm text-magnolia-white text-center">Journal Prompt</span>
             </a>
             <a
-              href="/dashboard/ai-content-studio"
+              href="#"
               className="flex flex-col items-center p-4 bg-magnolia-white/5 rounded-lg hover:bg-magnolia-white/10 transition-colors"
             >
               <ArrowTrendingUpIcon className="w-8 h-8 text-rich-gold mb-2" />

@@ -14,21 +14,19 @@ export default function FloatingMoon() {
 
   return (
     <motion.div
-      className="fixed top-[10%] right-[5%] w-20 h-20 rounded-full -z-10 pointer-events-none"
-      style={{
-        boxShadow: `0 0 40px 10px ${theme === "dark" ? "#FAF3E0" : "#A3B18A"}30`,
-        background: `radial-gradient(circle, ${theme === "dark" ? "#FAF3E0" : "#f0e6d2"} 20%, transparent 70%)`,
-      }}
+      className="fixed top-20 right-8 z-50 text-4xl cursor-pointer"
       animate={{
-        y: [0, -25, 0],
-        x: [0, 15, 0],
+        rotate: [0, 360],
+        y: [-5, 5, -5],
       }}
       transition={{
-        duration: 25,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
-        repeatType: "mirror",
+        rotate: { duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+        y: { duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
       }}
-    />
+      whileHover={{ scale: 1.2 }}
+      title="Your guiding moon"
+    >
+      🌙
+    </motion.div>
   )
 }
