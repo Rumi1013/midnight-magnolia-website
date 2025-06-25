@@ -11,11 +11,11 @@ import FloatingZodiac from "./components/FloatingZodiac"
 export default function Home() {
   return (
     <>
-      {/* Ensure these are rendered at the top level of the page fragment */}
+      {/* Floating elements - these need to be client components */}
       <FloatingMoon />
       <FloatingZodiac />
 
-      {/* The rest of the page content */}
+      {/* Main content sections */}
       <Hero />
       <AboutSection />
       <ProductsSection />

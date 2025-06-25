@@ -72,7 +72,21 @@ export default function ShopifyDebugPage() {
                   {testResult.success ? "✨ Connection Successful!" : "💔 Connection Failed"}
                 </h3>
 
-                <pre className="bg-midnight-blue/50 text-magnolia-white p-4 rounded-lg overflow-auto text-sm font-mono">
+                {!testResult.success && testResult.details?.envDebug && (
+                  <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+                    <h4 className="font-montserrat font-semibold text-yellow-400 mb-3">🔍 Environment Variables:</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-mono">
+                      {Object.entries(testResult.details.envDebug).map(([key, value]) => (
+                        <div key={key} className="flex justify-between">
+                          <span className="text-magnolia-white/60">{key}:</span>
+                          <span className={value === "Set" ? "text-sage-green" : "text-red-400"}>{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <pre className="bg-midnight-blue/50 text-magnolia-white p-4 rounded-lg overflow-auto text-sm font-mono max-h-96">
                   {JSON.stringify(testResult, null, 2)}
                 </pre>
 
@@ -91,19 +105,28 @@ export default function ShopifyDebugPage() {
 
                 {!testResult.success && (
                   <div className="mt-4 p-4 bg-red-500/10 rounded-lg">
-                    <h4 className="font-montserrat font-semibold text-red-400 mb-2">Troubleshooting:</h4>
+                    <h4 className="font-montserrat font-semibold text-red-400 mb-2">🌿 Healing Guidance:</h4>
                     <div className="text-magnolia-white/80 text-sm space-y-2">
-                      {testResult.details?.hasDomain === false && (
-                        <p>❌ Missing SHOPIFY_STOREFRONT_ADMIN environment variable</p>
+                      {testResult.details?.domain?.includes("2a0839ea") && (
+                        <div className="p-3 bg-yellow-500/20 rounded border border-yellow-500/30">
+                          <p className="font-semibold text-yellow-400">🚨 Domain Issue Detected:</p>
+                          <p>Your domain appears to be a hash instead of your shop name.</p>
+                          <p className="mt-2">
+                            <strong>Fix:</strong> Set SHOPIFY_STOREFRONT_ADMIN to your actual shop domain:
+                          </p>
+                          <code className="block mt-1 p-2 bg-midnight-blue/50 rounded text-xs">
+                            your-shop-name.myshopify.com
+                          </code>
+                        </div>
                       )}
-                      {testResult.details?.hasToken === false && (
-                        <p>❌ Missing SHOPIFY_ADMIN_API environment variable</p>
+                      {testResult.error?.includes("fetch failed") && (
+                        <p>🌐 Network issue - check your domain format and internet connection</p>
                       )}
                       {testResult.error?.includes("401") && (
-                        <p>❌ Invalid Storefront Access Token - check your SHOPIFY_ADMIN_API value</p>
+                        <p>🔑 Invalid Storefront Access Token - check your SHOPIFY_ADMIN_API value</p>
                       )}
                       {testResult.error?.includes("404") && (
-                        <p>❌ Invalid shop domain - check your SHOPIFY_STOREFRONT_ADMIN value</p>
+                        <p>🏪 Shop not found - verify your shop domain is correct</p>
                       )}
                     </div>
                   </div>
@@ -114,14 +137,28 @@ export default function ShopifyDebugPage() {
         </div>
 
         <div className="mt-8 bg-magnolia-white/5 rounded-2xl p-6">
-          <h3 className="font-playfair text-xl font-bold text-magnolia-white mb-4">🌿 Environment Variables Needed:</h3>
-          <div className="space-y-2 font-mono text-sm text-magnolia-white/80">
-            <p>
-              <strong>SHOPIFY_STOREFRONT_ADMIN:</strong> your-shop.myshopify.com
-            </p>
-            <p>
-              <strong>SHOPIFY_ADMIN_API:</strong> your-storefront-access-token
-            </p>
+          <h3 className="font-playfair text-xl font-bold text-magnolia-white mb-4">
+            🌿 Correct Environment Variables:
+          </h3>
+          <div className="space-y-3 text-sm">
+            <div className="p-3 bg-sage-green/10 rounded border border-sage-green/30">
+              <p className="font-mono text-sage-green font-semibold">SHOPIFY_STOREFRONT_ADMIN</p>
+              <p className="text-magnolia-white/80 mt-1">
+                Your shop domain: <code>your-shop-name.myshopify.com</code>
+              </p>
+              <p className="text-magnolia-white/60 text-xs mt-1">
+                (Replace "your-shop-name" with your actual shop name)
+              </p>
+            </div>
+            <div className="p-3 bg-sage-green/10 rounded border border-sage-green/30">
+              <p className="font-mono text-sage-green font-semibold">SHOPIFY_ADMIN_API</p>
+              <p className="text-magnolia-white/80 mt-1">
+                Your Storefront Access Token: <code>shpat_xxxxxxxxxxxxxxxx</code>
+              </p>
+              <p className="text-magnolia-white/60 text-xs mt-1">
+                (Get this from your Shopify Admin → Apps → Private Apps)
+              </p>
+            </div>
           </div>
         </div>
       </div>

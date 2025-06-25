@@ -6,6 +6,7 @@ import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
 import { MoonIcon, SunIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
+import CartIcon from "./CartIcon"
 
 export default function Header() {
   const [mounted, setMounted] = useState(false)
@@ -89,6 +90,9 @@ export default function Header() {
               {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
             </button>
           )}
+
+          {/* Cart Icon */}
+          <CartIcon />
 
           {/* CTA Button */}
           <button className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">

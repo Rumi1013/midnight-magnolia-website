@@ -32,7 +32,11 @@ export default function Hero() {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-4 h-4 bg-magnolia-white/20 rounded-full"
+            className="absolute w-6 h-8 bg-gradient-to-b from-magnolia-white/30 to-magnolia-white/10 rounded-full transform scale-y-125"
+            style={{
+              borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%",
+              filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
+            }}
             initial={{
               x: Math.random() * windowSize.width,
               y: -20,
@@ -53,8 +57,8 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto">
+      <div className="relative z-5 container mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-2 gap-16 items-center w-full max-w-7xl mx-auto backdrop-blur-[1px]">
           {/* Left content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -163,8 +167,10 @@ export default function Hero() {
                 transition={{ duration: 60, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <div className="w-80 h-80 rounded-full border-2 border-gold/30 flex items-center justify-center">
-                  <div className="w-60 h-60 rounded-full border border-sage-green/40 flex items-center justify-center">
+                <div className="w-80 h-80 flex items-center justify-center font-bold rounded-full border-4 border-dotted border-transparent shadow-xl opacity-100">
+                  <div className="w-60 h-60 rounded-full border border-sage-green/40 flex items-center justify-center relative">
+                    <div className="absolute inset-0 rounded-full border-2 border-sage-green/20 blur-sm"></div>
+                    <div className="absolute inset-1 rounded-full border border-sage-green/30 blur-[2px]"></div>
                     <div className="w-40 h-40 rounded-full bg-gradient-to-br from-magnolia-white/20 to-gold/20 flex items-center justify-center backdrop-blur-sm">
                       <div className="relative w-32 h-32 rounded-full overflow-hidden">
                         <Image

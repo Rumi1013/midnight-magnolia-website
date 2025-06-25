@@ -1,86 +1,86 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-// 🌙 Test connection to sacred Shopify sanctuary
-export async function GET(request: NextRequest) {
-  const SHOPIFY_DOMAIN = process.env.SHOPIFY_STOREFRONT_ADMIN?.replace("https://", "").replace("http://", "")
-  const SHOPIFY_STOREFRONT_TOKEN = process.env.SHOPIFY_ADMIN_API
+// 🌸 Sacred Shopify configuration - using your correct credentials
+const SHOPIFY_DOMAIN = "3ada30-b9.myshopify.com"
+const SHOPIFY_STOREFRONT_TOKEN = "7d01fd6b53d40fa958e39a5f49fa0ea8"
+const SHOPIFY_API_VERSION = "2024-01"
 
+// 🌸 Simple shop info query to test connection
+const SHOP_INFO_QUERY = `
+  query getShop {
+    shop {
+      name
+      description
+      primaryDomain {
+        host
+      }
+    }
+  }
+`
+
+export async function GET(request: NextRequest) {
   try {
     console.log("🌙 Testing sacred Shopify connection...")
     console.log("Domain:", SHOPIFY_DOMAIN)
-    console.log("Has Token:", !!SHOPIFY_STOREFRONT_TOKEN)
+    console.log("Token preview:", SHOPIFY_STOREFRONT_TOKEN.substring(0, 8) + "...")
 
-    if (!SHOPIFY_DOMAIN || !SHOPIFY_STOREFRONT_TOKEN) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Missing sacred credentials",
-          details: {
-            hasDomain: !!SHOPIFY_DOMAIN,
-            hasToken: !!SHOPIFY_STOREFRONT_TOKEN,
-            domain: SHOPIFY_DOMAIN,
-            envVars: {
-              SHOPIFY_STOREFRONT_ADMIN: process.env.SHOPIFY_STOREFRONT_ADMIN ? "Set" : "Missing",
-              SHOPIFY_ADMIN_API: process.env.SHOPIFY_ADMIN_API ? "Set" : "Missing",
-            },
-          },
-        },
-        { status: 400 },
-      )
-    }
+    const apiUrl = `https://${SHOPIFY_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`
+    console.log("🌸 Testing connection to:", apiUrl)
 
-    // 🌸 Simple shop query to test connection
-    const testQuery = `
-      query {
-        shop {
-          name
-          description
-          primaryDomain {
-            url
-          }
-          currencyCode
-        }
-      }
-    `
-
-    const response = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`, {
+    // 🌿 Test the connection
+    const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN,
+        "User-Agent": "Midnight-Magnolia-Store/1.0",
+        Accept: "application/json",
+        "Cache-Control": "no-cache",
       },
-      body: JSON.stringify({ query: testQuery }),
+      body: JSON.stringify({
+        query: SHOP_INFO_QUERY,
+      }),
     })
 
-    const responseText = await response.text()
-    console.log("Response status:", response.status)
-    console.log("Response text:", responseText)
-
     if (!response.ok) {
+      const errorText = await response.text()
+      console.error("Shopify API Response Error:", response.status, errorText)
+
+      let errorMessage = "Connection failed"
+      if (response.status === 401) {
+        errorMessage = "Invalid Storefront Access Token"
+      } else if (response.status === 403) {
+        errorMessage = "Access forbidden - check Storefront API permissions"
+      } else if (response.status === 404) {
+        errorMessage = `Shop not found: ${SHOPIFY_DOMAIN}`
+      }
+
       return NextResponse.json(
         {
           success: false,
-          error: `Connection failed: ${response.status}`,
-          details: {
+          error: errorMessage,
+          message: `Failed to connect to ${SHOPIFY_DOMAIN}`,
+          debug: {
             status: response.status,
-            statusText: response.statusText,
-            response: responseText,
             domain: SHOPIFY_DOMAIN,
-            url: `https://${SHOPIFY_DOMAIN}/api/2024-01/graphql.json`,
+            tokenPreview: SHOPIFY_STOREFRONT_TOKEN.substring(0, 8) + "...",
+            errorText: errorText.substring(0, 200),
           },
         },
         { status: response.status },
       )
     }
 
-    const data = JSON.parse(responseText)
+    const data = await response.json()
 
     if (data.errors) {
+      console.error("Shopify GraphQL Errors:", data.errors)
       return NextResponse.json(
         {
           success: false,
           error: "GraphQL errors",
-          details: {
+          message: "API returned errors",
+          debug: {
             errors: data.errors,
             domain: SHOPIFY_DOMAIN,
           },
@@ -89,28 +89,32 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // 🌸 Success! Sacred connection established
+    // 🌙 Success! Return shop info
+    console.log("✨ Sacred connection established!")
     return NextResponse.json({
       success: true,
-      message: "Sacred Shopify connection established! ✨",
-      shop: data.data?.shop,
+      message: "Sacred connection established! ✨",
+      shop: data.data?.shop || null,
       connection: {
         domain: SHOPIFY_DOMAIN,
+        tokenPreview: SHOPIFY_STOREFRONT_TOKEN.substring(0, 8) + "...",
+        tokenType: "Storefront API",
         timestamp: new Date().toISOString(),
-        status: "Connected with healing energy",
       },
     })
   } catch (error: any) {
-    console.error("Sacred connection test failed:", error)
+    console.error("💔 Sacred connection test error:", error)
 
     return NextResponse.json(
       {
         success: false,
         error: "Connection test failed",
-        details: {
-          message: error.message,
+        message: error.message || "Unable to test sacred connection",
+        debug: {
           domain: SHOPIFY_DOMAIN,
-          hasToken: !!SHOPIFY_STOREFRONT_TOKEN,
+          tokenPreview: SHOPIFY_STOREFRONT_TOKEN.substring(0, 8) + "...",
+          timestamp: new Date().toISOString(),
+          errorDetails: error.message,
         },
       },
       { status: 500 },

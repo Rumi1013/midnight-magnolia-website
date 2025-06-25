@@ -51,11 +51,14 @@ export function useShopifyProducts(limit = 20): UseShopifyProductsReturn {
   const testConnection = async () => {
     try {
       setConnectionStatus("connecting")
+      setError(null)
+
+      console.log("🌙 Testing sacred connection...")
       const response = await fetch("/api/shopify/test-connection")
       const data = await response.json()
 
       if (data.success) {
-        console.log("✨ Sacred Shopify connection established:", data.shop?.name)
+        console.log("✨ Sacred Shopify connection established:", data.shop?.name || "Connected")
         setConnectionStatus("connected")
         return true
       } else {
