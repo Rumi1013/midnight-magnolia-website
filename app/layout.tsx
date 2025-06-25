@@ -5,6 +5,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import { CartProvider } from "@/app/hooks/useCart"
+import SacredCart from "./components/SacredCart"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Midnight Magnolia" }],
   creator: "Midnight Magnolia",
   publisher: "Midnight Magnolia",
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -52,11 +54,14 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${lora.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <div className="relative min-h-screen bg-midnight-blue text-magnolia-white overflow-x-hidden">
-            <Header />
-            <main className="relative z-10 pt-20">{children}</main>
-            <Footer />
-          </div>
+          <CartProvider>
+            <div className="relative min-h-screen bg-midnight-blue text-magnolia-white overflow-x-hidden">
+              <Header />
+              <main className="relative z-10 pt-20">{children}</main>
+              <Footer />
+            </div>
+            <SacredCart />
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>
