@@ -1,70 +1,97 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import ProductCard from "./ProductCard"
+
+const featuredProducts = [
+  {
+    id: "magnolia-reset",
+    title: "The Magnolia Reset",
+    subtitle: "90-DAY HEALING JOURNAL",
+    description:
+      "A gentle companion for your sobriety and healing journey, with daily prompts that honor your pace and celebrate your progress.",
+    category: "HEALING JOURNALS",
+    image: "📖",
+    formats: [
+      { name: "Digital Download", price: 29, type: "digital" as const },
+      { name: "KDP Paperback", price: 47, type: "print" as const },
+      { name: "Hardcover Edition", price: 67, type: "print" as const },
+    ],
+    features: ["Daily affirmations", "Sobriety tracker", "Gentle accountability", "Progress celebration"],
+    comingSoon: true,
+  },
+  {
+    id: "midnight-messages",
+    title: "Midnight Messages",
+    subtitle: "TAROT & AFFIRMATION DECK",
+    description:
+      "78 beautiful cards featuring Black icons with Southern Gothic elegance, ancestral wisdom, and empowering affirmations.",
+    category: "TAROT & DIVINATION",
+    image: "🔮",
+    formats: [
+      { name: "Digital Deck", price: 19, type: "digital" as const },
+      { name: "Print-on-Demand", price: 33, type: "print" as const },
+      { name: "Deluxe Physical Set", price: 55, type: "physical" as const },
+    ],
+    features: ["78 unique cards", "Digital guidebook", "Monthly spreads", "Ancestor wisdom"],
+    comingSoon: true,
+  },
+  {
+    id: "sacred-productivity",
+    title: "Sacred Productivity",
+    subtitle: "ADHD-FRIENDLY PLANNER",
+    description:
+      "Planning tools that work with your neurodivergent brain, not against it. Gentle structure for chaotic minds with spoon theory integration.",
+    category: "DIGITAL PLANNERS",
+    image: "📝",
+    formats: [
+      { name: "Digital Templates", price: 19, type: "digital" as const },
+      { name: "Printable PDF", price: 29, type: "print" as const },
+      { name: "KDP Spiral Bound", price: 39, type: "print" as const },
+    ],
+    features: ["Flexible templates", "Energy tracking", "Spoon theory integration", "Executive function support"],
+    comingSoon: true,
+  },
+]
 
 export default function ProductsSection() {
-  const products = [
-    {
-      name: "Sacred Planning Journal",
-      description: "A gentle approach to productivity that honors your energy cycles",
-      price: "$28",
-      image: "/healing-journal-cover.png",
-    },
-    {
-      name: "Midnight Moon Mug",
-      description: "Sip your morning ritual from this mystical ceramic companion",
-      price: "$24",
-      image: "/midnight-moon-mug.png",
-    },
-    {
-      name: "Magnolia Tote Bag",
-      description: "Carry your essentials in Southern Gothic style",
-      price: "$32",
-      image: "/magnolia-tote-bag.png",
-    },
-  ]
-
   return (
-    <section className="py-20 bg-midnight-blue text-magnolia-white">
+    <section id="products" className="py-20 bg-midnight-blue relative overflow-hidden">
+      {/* Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 text-sage-green/20 text-2xl">✨</div>
+        <div className="absolute top-40 right-20 text-gold/20 text-3xl">🌙</div>
+        <div className="absolute bottom-20 left-20 text-sage-green/20 text-2xl">🌸</div>
+      </div>
+
       <div className="container mx-auto px-6">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-playfair mb-6">Sacred Tools for Your Journey</h2>
-          <p className="text-xl font-lora text-magnolia-white/80 max-w-3xl mx-auto">
-            Thoughtfully crafted items to support your healing practice and daily rituals.
+          <p className="font-montserrat text-sage-green text-sm uppercase tracking-wider mb-4">
+            SACRED TOOLS FOR TRANSFORMATION
+          </p>
+          <h2 className="font-playfair text-4xl md:text-5xl font-bold text-magnolia-white mb-6">Featured Products</h2>
+          <p className="font-lora text-magnolia-white/80 text-lg max-w-3xl mx-auto leading-relaxed">
+            Carefully crafted tools to support your healing journey. Each product is designed with love, intention, and
+            deep respect for your unique path.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {products.map((product, index) => (
+        {/* Products Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {featuredProducts.map((product, index) => (
             <motion.div
-              key={index}
+              key={product.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
             >
-              <Card className="bg-magnolia-white text-midnight-blue overflow-hidden hover:shadow-mystical transition-shadow">
-                <div className="aspect-square relative">
-                  <Image src={product.image || "/placeholder.svg"} alt={product.name} fill className="object-cover" />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-playfair mb-2">{product.name}</h3>
-                  <p className="font-lora text-midnight-blue/80 mb-4">{product.description}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-2xl font-montserrat font-bold text-gold">{product.price}</span>
-                    <Button className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue">Add to Altar</Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <ProductCard {...product} />
             </motion.div>
           ))}
         </div>
