@@ -5,16 +5,17 @@ import ShopSection from "./components/ShopSection"
 import ShopifySection from "./components/ShopifySection"
 import BlogSection from "./components/BlogSection"
 import JusticeSection from "./components/JusticeSection"
-import TestimonialsSection from "./components/TestimonialsSection"
-import NewsletterSection from "./components/NewsletterSection"
 import FloatingMoon from "./components/FloatingMoon"
 import FloatingZodiac from "./components/FloatingZodiac"
 
-export default function HomePage() {
+export default function Home() {
   return (
     <>
+      {/* Floating elements - these need to be client components */}
       <FloatingMoon />
       <FloatingZodiac />
+
+      {/* Main content sections */}
       <Hero />
       <AboutSection />
       <ProductsSection />
@@ -22,8 +23,6 @@ export default function HomePage() {
       <ShopifySection />
       <BlogSection />
       <JusticeSection />
-      <TestimonialsSection />
-      <NewsletterSection />
     </>
   )
 }

@@ -1,26 +1,34 @@
 "use client"
 
 import { ShoppingBag } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { useCart } from "@/app/hooks/useCart"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function CartIcon() {
-  const { state, dispatch } = useCart()
+  const { state, toggleCart } = useCart()
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => dispatch({ type: "TOGGLE_CART" })}
-      className="relative text-magnolia-white hover:text-gold hover:bg-midnight-blue/20 transition-colors"
-      aria-label={`Shopping cart with ${state.items.length} items`}
+    <button
+      onClick={toggleCart}
+      className="relative rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300 group"
+      aria-label={`Sacred collection (${state.itemCount} items)`}
     >
-      <ShoppingBag className="h-5 w-5" />
-      {state.items.length > 0 && (
-        <span className="absolute -top-1 -right-1 bg-gold text-midnight-blue text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-          {state.items.length}
-        </span>
-      )}
-    </Button>
+      <ShoppingBag className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+
+      {/* Sacred Item Count Badge */}
+      <AnimatePresence>
+        {state.itemCount > 0 && (
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            className="absolute -top-1 -right-1 bg-rich-gold text-midnight-blue text-xs font-montserrat font-bold 
+                     rounded-full h-5 w-5 flex items-center justify-center min-w-[20px] shadow-lg"
+          >
+            {state.itemCount > 99 ? "99+" : state.itemCount}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </button>
   )
 }

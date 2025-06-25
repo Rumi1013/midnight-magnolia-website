@@ -10,36 +10,51 @@ const zodiacSigns = [
   { symbol: "♋", name: "Cancer", x: 75, y: 70 },
   { symbol: "♌", name: "Leo", x: 5, y: 85 },
   { symbol: "♍", name: "Virgo", x: 90, y: 80 },
+  { symbol: "♎", name: "Libra", x: 15, y: 40 },
+  { symbol: "♏", name: "Scorpio", x: 80, y: 45 },
+  { symbol: "♐", name: "Sagittarius", x: 25, y: 20 },
+  { symbol: "♑", name: "Capricorn", x: 70, y: 10 },
+  { symbol: "♒", name: "Aquarius", x: 45, y: 75 },
+  { symbol: "♓", name: "Pisces", x: 60, y: 35 },
 ]
 
-export default function FloatingZodiac() {
-  const [mounted, setMounted] = useState(false)
+function FloatingZodiac() {
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    function updateSize() {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    }
 
-  if (!mounted) return null
+    window.addEventListener("resize", updateSize)
+    updateSize()
+
+    return () => window.removeEventListener("resize", updateSize)
+  }, [])
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {" "}
+      {/* z-index is 0 here, intended to be behind content */}
       {zodiacSigns.map((sign, index) => (
         <motion.div
           key={sign.name}
-          className="absolute text-sage-green opacity-20 text-2xl font-playfair pointer-events-none"
+          className="absolute text-sage-green opacity-30 text-2xl font-playfair pointer-events-none"
           style={{
             left: `${sign.x}%`,
             top: `${sign.y}%`,
           }}
           animate={{
-            x: [0, 10, -5, 0],
-            y: [0, -8, 5, 0],
-            rotate: [0, 3, -3, 0],
-            opacity: [0.2, 0.3, 0.1, 0.2],
+            x: [0, 20, -10, 0],
+            y: [0, -15, 10, 0],
+            rotate: [0, 5, -5, 0],
+            opacity: [0.3, 0.5, 0.2, 0.3],
           }}
           transition={{
-            duration: 12 + index * 2,
+            duration: 15 + index * 2,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
-            delay: index * 0.8,
+            delay: index * 0.5,
           }}
         >
           {sign.symbol}
@@ -48,3 +63,5 @@ export default function FloatingZodiac() {
     </div>
   )
 }
+
+export default FloatingZodiac

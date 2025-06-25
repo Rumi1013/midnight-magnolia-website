@@ -7,34 +7,37 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(request: NextRequest) {
   try {
-    const { items } = await request.json()
+    const { items, success_url, cancel_url } = await request.json()
 
-    const lineItems = items.map((item: any) => ({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: item.name,
-          images: item.image ? [item.image] : [],
-        },
-        unit_amount: Math.round(item.price * 100),
-      },
-      quantity: item.quantity,
-    }))
-
+    // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items: lineItems,
+      line_items: items,
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/shop`,
+      success_url,
+      cancel_url,
       metadata: {
-        source: "midnight_magnolia_shop",
+        source: "midnight-magnolia-shop",
+      },
+      custom_text: {
+        submit: {
+          message: "Complete your sacred purchase with love and intention ✨",
+        },
+      },
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          description: "Sacred offerings from Midnight Magnolia",
+          metadata: {
+            source: "midnight-magnolia",
+          },
+        },
       },
     })
 
     return NextResponse.json({ url: session.url })
-  } catch (error) {
+  } catch (error: any) {
     console.error("Stripe checkout error:", error)
-    return NextResponse.json({ error: "Failed to create checkout session" }, { status: 500 })
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

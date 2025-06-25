@@ -1,20 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
 
-export default function FloatingMoon() {
-  const [mounted, setMounted] = useState(false)
-  const { theme } = useTheme()
-
-  useEffect(() => setMounted(true), [])
-
-  if (!mounted) return null
-
+function FloatingMoon() {
   return (
     <motion.div
-      className="fixed top-20 right-8 z-50 text-4xl cursor-pointer"
+      className="fixed top-20 right-8 z-50 text-4xl cursor-pointer" // Increased z-index to 50
       animate={{
         rotate: [0, 360],
         y: [-5, 5, -5],
@@ -30,3 +21,5 @@ export default function FloatingMoon() {
     </motion.div>
   )
 }
+
+export default FloatingMoon

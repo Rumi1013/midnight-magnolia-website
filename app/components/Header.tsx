@@ -26,12 +26,12 @@ export default function Header() {
   }, [])
 
   const navigation = [
-    { name: "Sacred Tools", href: "#products" },
-    { name: "Shop", href: "#shop" },
-    { name: "Our Story", href: "#about" },
-    { name: "Midnight Musings", href: "#blog" },
-    { name: "Justice & Healing", href: "#justice" },
-    { name: "Community", href: "#testimonials" },
+    { name: "Sacred Tools", href: "/shop" },
+    { name: "Shop", href: "/shop" },
+    { name: "Our Story", href: "/about" },
+    { name: "Midnight Musings", href: "/blog" },
+    { name: "Justice & Healing", href: "/justice" },
+    { name: "Community", href: "/community" },
   ]
 
   return (
