@@ -5,8 +5,6 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import { CartProvider } from "@/app/hooks/useCart"
-import SacredCart from "./components/SacredCart"
 
 // Font configurations
 const inter = Inter({ subsets: ["latin"] })
@@ -131,14 +129,11 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <CartProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1 pt-20">{children}</main>
-              <Footer />
-            </div>
-            <SacredCart />
-          </CartProvider>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1 pt-20">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -1,12 +1,13 @@
 "use client"
 
+import { Suspense } from "react"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { useSearchParams } from "next/navigation"
-import { CheckCircle, Download, Mail, Sparkles } from "lucide-react"
+import { CheckCircle, Download, Mail, Sparkles, Gift } from "lucide-react"
 import Link from "next/link"
 
-export default function CheckoutSuccessPage() {
+const SuccessPageClient = () => {
   const searchParams = useSearchParams()
   const sessionId = searchParams.get("session_id")
   const [orderDetails, setOrderDetails] = useState<any>(null)
@@ -14,33 +15,31 @@ export default function CheckoutSuccessPage() {
 
   useEffect(() => {
     if (sessionId) {
-      // In a real implementation, you'd fetch order details from your API
-      // For now, we'll simulate this
-      setTimeout(() => {
-        setOrderDetails({
-          id: "ORD-" + Math.random().toString(36).substr(2, 9).toUpperCase(),
-          total: 47.0,
-          items: [
-            {
-              name: "The Magnolia Reset 90-Day Journal",
-              format: "Print",
-              price: 47.0,
-              digitalDelivery: false,
-            },
-          ],
-          email: "customer@example.com",
-        })
-        setLoading(false)
-      }, 1500)
+      // Fetch order details from Stripe
+      fetchOrderDetails(sessionId)
+    } else {
+      setLoading(false)
     }
   }, [sessionId])
+
+  const fetchOrderDetails = async (sessionId: string) => {
+    try {
+      const response = await fetch(`/api/stripe/session/${sessionId}`)
+      const data = await response.json()
+      setOrderDetails(data)
+    } catch (error) {
+      console.error("Error fetching order details:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   if (loading) {
     return (
       <div className="min-h-screen bg-midnight-blue flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-sage-green border-t-transparent mx-auto mb-4"></div>
-          <p className="font-lora text-magnolia-white/80">Processing your sacred purchase...</p>
+          <p className="font-lora text-magnolia-white/80">Preparing your sacred offerings...</p>
         </div>
       </div>
     )
@@ -56,117 +55,146 @@ export default function CheckoutSuccessPage() {
           className="text-center"
         >
           {/* Success Icon */}
-          <div className="mb-8">
-            <div className="w-20 h-20 bg-sage-green rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle size={40} className="text-midnight-blue" />
-            </div>
-            <div className="flex items-center justify-center gap-2 text-sage-green">
-              <Sparkles size={16} />
-              <span className="font-montserrat text-sm font-semibold">Sacred Purchase Complete</span>
-              <Sparkles size={16} />
-            </div>
-          </div>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="w-20 h-20 bg-sage-green rounded-full flex items-center justify-center mx-auto mb-6"
+          >
+            <CheckCircle size={40} className="text-midnight-blue" />
+          </motion.div>
 
-          {/* Thank You Message */}
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-magnolia-white mb-6">
-            Thank You, Beautiful Soul
+          {/* Success Message */}
+          <h1 className="font-playfair text-4xl md:text-5xl font-bold text-magnolia-white mb-4">
+            Sacred Purchase Complete! ✨
           </h1>
-          <p className="font-lora text-xl text-magnolia-white/80 mb-8 leading-relaxed">
-            Your sacred offerings are being prepared with love and intention. May they serve your healing journey with
-            grace.
+          <p className="font-lora text-xl text-magnolia-white/80 mb-8">
+            Your healing journey begins now, beautiful soul. Thank you for trusting us with your transformation.
           </p>
 
-          {/* Order Details */}
-          {orderDetails && (
-            <div className="bg-magnolia-white rounded-3xl p-8 mb-8 text-left">
-              <h2 className="font-playfair text-2xl font-bold text-midnight-blue mb-6 text-center">
-                Order Confirmation
-              </h2>
+          {/* Order Summary Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="bg-magnolia-white rounded-3xl p-8 mb-8 text-left"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Sparkles className="text-sage-green" size={24} />
+              <h2 className="font-playfair text-2xl font-bold text-midnight-blue">Your Sacred Collection</h2>
+            </div>
 
-              <div className="space-y-4 mb-6">
-                <div className="flex justify-between items-center pb-2 border-b border-sage-green/20">
-                  <span className="font-lora text-midnight-blue/70">Order ID:</span>
-                  <span className="font-montserrat font-semibold text-midnight-blue">{orderDetails.id}</span>
-                </div>
-
-                {orderDetails.items.map((item: any, index: number) => (
-                  <div key={index} className="flex justify-between items-start py-3 border-b border-sage-green/10">
-                    <div className="flex-1">
-                      <h4 className="font-playfair font-semibold text-midnight-blue">{item.name}</h4>
-                      <p className="font-montserrat text-sm text-sage-green">{item.format} Format</p>
-                      {item.digitalDelivery && (
-                        <div className="flex items-center gap-1 mt-1">
-                          <Download size={12} className="text-sage-green" />
-                          <span className="font-lora text-xs text-sage-green">Digital delivery</span>
-                        </div>
-                      )}
-                    </div>
-                    <span className="font-playfair font-bold text-midnight-blue">${item.price.toFixed(2)}</span>
-                  </div>
-                ))}
-
-                <div className="flex justify-between items-center pt-4 border-t border-sage-green/30">
-                  <span className="font-playfair text-lg font-bold text-midnight-blue">Sacred Total:</span>
-                  <span className="font-playfair text-2xl font-bold text-midnight-blue">
-                    ${orderDetails.total.toFixed(2)}
-                  </span>
-                </div>
+            {/* Digital Delivery Notice */}
+            <div className="bg-sage-green/10 border border-sage-green/30 rounded-2xl p-4 mb-6">
+              <div className="flex items-center gap-3 mb-2">
+                <Download className="text-sage-green" size={20} />
+                <h3 className="font-montserrat font-semibold text-sage-green">Instant Access Available</h3>
               </div>
+              <p className="font-lora text-midnight-blue/70 text-sm">
+                Your digital products are ready for download! Check your email for download links, or access them from
+                your customer portal.
+              </p>
+            </div>
 
-              {/* Digital Delivery Notice */}
-              {orderDetails.items.some((item: any) => item.digitalDelivery) && (
-                <div className="bg-sage-green/10 rounded-2xl p-4 mb-6">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Download size={18} className="text-sage-green" />
-                    <span className="font-montserrat font-semibold text-midnight-blue">Instant Access</span>
-                  </div>
-                  <p className="font-lora text-sm text-midnight-blue/80">
-                    Your digital offerings have been sent to your email and are ready for download.
-                  </p>
-                </div>
-              )}
+            {/* Email Confirmation */}
+            <div className="bg-midnight-blue/5 border border-midnight-blue/10 rounded-2xl p-4 mb-6">
+              <div className="flex items-center gap-3 mb-2">
+                <Mail className="text-midnight-blue" size={20} />
+                <h3 className="font-montserrat font-semibold text-midnight-blue">Confirmation Email Sent</h3>
+              </div>
+              <p className="font-lora text-midnight-blue/70 text-sm">
+                A detailed receipt and download instructions have been sent to your email. Please check your inbox (and
+                spam folder just in case).
+              </p>
+            </div>
 
-              {/* Email Confirmation */}
-              <div className="bg-sage-green/5 rounded-2xl p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <Mail size={18} className="text-sage-green" />
-                  <span className="font-montserrat font-semibold text-midnight-blue">Confirmation Sent</span>
-                </div>
-                <p className="font-lora text-sm text-midnight-blue/80">
-                  A detailed confirmation has been sent to your email with all purchase details and access instructions.
+            {/* Order ID */}
+            {sessionId && (
+              <div className="text-center py-4 border-t border-midnight-blue/10">
+                <p className="font-montserrat text-sm text-midnight-blue/60">
+                  Order ID: <span className="font-mono">{sessionId.slice(-8).toUpperCase()}</span>
                 </p>
               </div>
-            </div>
-          )}
+            )}
+          </motion.div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* Next Steps */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="grid md:grid-cols-2 gap-6 mb-8"
+          >
+            {/* Download Portal */}
+            <div className="bg-magnolia-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
+              <Download className="text-sage-green mx-auto mb-3" size={32} />
+              <h3 className="font-playfair text-xl font-bold text-magnolia-white mb-2">Access Your Downloads</h3>
+              <p className="font-lora text-magnolia-white/70 text-sm mb-4">
+                Visit your customer portal to download your digital products anytime.
+              </p>
+              <Link
+                href="/customer/downloads"
+                className="inline-block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300"
+              >
+                Access Portal
+              </Link>
+            </div>
+
+            {/* Join Community */}
+            <div className="bg-magnolia-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
+              <Gift className="text-rich-gold mx-auto mb-3" size={32} />
+              <h3 className="font-playfair text-xl font-bold text-magnolia-white mb-2">Join Our Sacred Circle</h3>
+              <p className="font-lora text-magnolia-white/70 text-sm mb-4">
+                Connect with other souls on their healing journey in our supportive community.
+              </p>
+              <Link
+                href="/community"
+                className="inline-block bg-rich-gold hover:bg-rich-gold/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300"
+              >
+                Join Community
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Continue Shopping */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="text-center"
+          >
             <Link
               href="/shop"
-              className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold 
-                       px-8 py-4 rounded-2xl transition-all duration-300 hover:shadow-lg"
+              className="inline-block bg-magnolia-white/10 hover:bg-magnolia-white/20 text-magnolia-white font-lora px-8 py-4 rounded-full transition-all duration-300 border border-magnolia-white/20"
             >
-              Continue Sacred Shopping
+              Continue Exploring Sacred Offerings
             </Link>
-            <Link
-              href="/dashboard"
-              className="bg-transparent border border-sage-green text-sage-green hover:bg-sage-green/10 
-                       font-montserrat font-semibold px-8 py-4 rounded-2xl transition-all duration-300"
-            >
-              View Your Account
-            </Link>
-          </div>
+          </motion.div>
 
-          {/* Blessing */}
-          <div className="mt-12 p-6 bg-sage-green/5 rounded-2xl border border-sage-green/20">
-            <p className="font-lora text-magnolia-white/90 italic leading-relaxed">
-              "May these sacred tools guide you toward healing, growth, and the gentle transformation your soul seeks.
-              You are worthy of all the love and care you're giving yourself."
+          {/* Sacred Blessing */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            className="mt-12 text-center"
+          >
+            <div className="text-4xl mb-4">🌙</div>
+            <p className="font-lora text-magnolia-white/60 italic max-w-md mx-auto">
+              "May these sacred tools guide you gently toward the healing and transformation your soul seeks. You are
+              worthy of all the love and peace you're creating."
             </p>
-            <p className="font-playfair text-sage-green mt-4">— With love, Midnight Magnolia ✨</p>
-          </div>
+            <p className="font-montserrat text-sage-green text-sm mt-4">— With love and light, Midnight Magnolia</p>
+          </motion.div>
         </motion.div>
       </div>
     </div>
+  )
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div>Loading your sacred confirmation...</div>}>
+      <SuccessPageClient />
+    </Suspense>
   )
 }
