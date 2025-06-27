@@ -32,26 +32,6 @@
     font-family: var(--font-montserrat), sans-serif;
   }
 
-  .bg-midnight-blue {
-    background-color: var(--midnight-blue);
-  }
-
-  .bg-magnolia-white {
-    background-color: var(--magnolia-white);
-  }
-
-  .bg-sage-green {
-    background-color: var(--sage-green);
-  }
-
-  .bg-warm-gray {
-    background-color: var(--warm-gray);
-  }
-
-  .bg-gold {
-    background-color: var(--gold);
-  }
-
   .text-midnight-blue {
     color: var(--midnight-blue);
   }
@@ -70,6 +50,26 @@
 
   .text-gold {
     color: var(--gold);
+  }
+
+  .bg-midnight-blue {
+    background-color: var(--midnight-blue);
+  }
+
+  .bg-magnolia-white {
+    background-color: var(--magnolia-white);
+  }
+
+  .bg-sage-green {
+    background-color: var(--sage-green);
+  }
+
+  .bg-warm-gray {
+    background-color: var(--warm-gray);
+  }
+
+  .bg-gold {
+    background-color: var(--gold);
   }
 
   .border-midnight-blue {
@@ -92,8 +92,12 @@
     border-color: var(--gold);
   }
 
-  .shadow-mystical {
-    box-shadow: 0 10px 25px -5px rgba(163, 177, 138, 0.1), 0 10px 10px -5px rgba(163, 177, 138, 0.04);
+  .hover\:bg-sage-green\/90:hover {
+    background-color: rgb(163 177 138 / 0.9);
+  }
+
+  .hover\:bg-midnight-blue\/90:hover {
+    background-color: rgb(10 25 47 / 0.9);
   }
 
   .line-clamp-2 {
@@ -111,13 +115,18 @@
   }
 }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--midnight-blue);
+  background: var(--magnolia-white);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -126,25 +135,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  background: var(--midnight-blue);
 }

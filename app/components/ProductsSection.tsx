@@ -1,164 +1,100 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import Link from "next/link"
+import { ShoppingBag, Sparkles } from "lucide-react"
+
+const products = [
+  {
+    id: 1,
+    name: "Sacred Healing Journal",
+    description: "A beautifully crafted journal for your healing journey",
+    price: "$28",
+    image: "/placeholder.svg?height=300&width=300&text=Sacred+Journal",
+    category: "Digital Tools",
+  },
+  {
+    id: 2,
+    name: "Midnight Moon Mug",
+    description: "Sip your sacred beverages in Southern Gothic style",
+    price: "$24",
+    image: "/placeholder.svg?height=300&width=300&text=Moon+Mug",
+    category: "Sacred Tools",
+  },
+  {
+    id: 3,
+    name: "Magnolia Wisdom Cards",
+    description: "Daily affirmations and gentle guidance cards",
+    price: "$32",
+    image: "/placeholder.svg?height=300&width=300&text=Wisdom+Cards",
+    category: "Digital Tools",
+  },
+]
 
 export default function ProductsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
-
-  const featuredProducts = [
-    {
-      title: "The Magnolia Reset",
-      subtitle: "90-Day Healing Journal",
-      description:
-        "A gentle companion for your sobriety and healing journey, with daily prompts that honor your pace and celebrate your progress.",
-      price: "$47",
-      digitalPrice: "$29",
-      image: "📖",
-      category: "Healing Journals",
-      features: ["Daily affirmations", "Sobriety tracker", "Gentle accountability", "Progress celebration"],
-      available: ["Digital Download", "KDP Paperback", "Hardcover Edition"],
-      comingSoon: true,
-    },
-    {
-      title: "Midnight Messages",
-      subtitle: "Tarot & Affirmation Deck",
-      description:
-        "78 beautiful cards featuring Black icons with Southern Gothic elegance, ancestral wisdom, and empowering affirmations.",
-      price: "$33",
-      digitalPrice: "$19",
-      image: "🔮",
-      category: "Tarot & Divination",
-      features: ["78 unique cards", "Digital guidebook", "Monthly spreads", "Ancestor wisdom"],
-      available: ["Digital Deck", "Print-on-Demand", "Deluxe Physical Set"],
-      comingSoon: true,
-    },
-    {
-      title: "Sacred Productivity",
-      subtitle: "ADHD-Friendly Planner",
-      description:
-        "Planning tools that work with your neurodivergent brain, not against it. Gentle structure for chaotic minds with spoon theory integration.",
-      price: "$29",
-      digitalPrice: "$19",
-      image: "📝",
-      category: "Digital Planners",
-      features: ["Flexible templates", "Energy tracking", "Spoon theory integration", "Executive function support"],
-      available: ["Digital Templates", "Printable PDF", "KDP Spiral Bound"],
-      comingSoon: true,
-    },
-  ]
-
   return (
-    <section ref={ref} id="products" className="py-20 bg-midnight-blue">
-      <div className="container mx-auto px-6">
+    <section className="py-20 bg-midnight-blue">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-sage-green font-montserrat text-sm tracking-wider uppercase mb-4">
-            Sacred Tools for Transformation
-          </p>
-          <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-magnolia-white mb-6">Featured Products</h2>
-          <p className="font-lora text-xl text-magnolia-white/80 max-w-3xl mx-auto leading-relaxed">
-            Carefully crafted tools to support your healing journey. Each product is designed with love, intention, and
-            deep respect for your unique path.
+          <h2 className="font-playfair text-4xl md:text-5xl font-bold text-magnolia-white mb-6">
+            Sacred
+            <span className="text-gold"> Tools</span>
+          </h2>
+          <p className="font-lora text-xl text-magnolia-white/80 max-w-2xl mx-auto">
+            Carefully curated tools and treasures to support your healing journey
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {featuredProducts.map((product, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {products.map((product, index) => (
             <motion.div
-              key={product.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              key={product.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-[#F5EDD6] rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group h-full flex flex-col relative overflow-hidden"
+              viewport={{ once: true }}
+              className="bg-magnolia-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              {/* Coming Soon Banner */}
-              {product.comingSoon && (
-                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-gold to-sage-green text-midnight-blue font-montserrat font-bold text-xs px-6 py-2 transform rotate-12 shadow-lg z-10">
-                  COMING SOON
-                </div>
-              )}
+              <div className="aspect-square bg-sage-green/10 rounded-xl mb-4 flex items-center justify-center">
+                <img
+                  src={product.image || "/placeholder.svg"}
+                  alt={product.name}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
 
-              <div className="text-center mb-6">
-                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {product.image}
-                </div>
-                <div className="bg-midnight-blue text-magnolia-white font-montserrat text-xs font-bold tracking-wide uppercase px-3 py-1 rounded-full inline-block mb-3">
+              <div className="text-center">
+                <span className="inline-block bg-sage-green/20 text-sage-green font-montserrat text-xs font-semibold px-3 py-1 rounded-full mb-2">
                   {product.category}
-                </div>
-                <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-2">{product.title}</h3>
-                <p className="font-montserrat text-midnight-blue font-semibold text-sm tracking-wide uppercase">
-                  {product.subtitle}
-                </p>
-              </div>
-
-              <p className="font-lora text-gray-800 leading-relaxed mb-6 flex-grow">{product.description}</p>
-
-              <div className="mb-6">
-                <h4 className="font-montserrat text-sm font-semibold text-midnight-blue mb-3">Available Formats:</h4>
-                <div className="flex flex-wrap gap-2">
-                  {product.available.map((format, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-midnight-blue text-magnolia-white px-3 py-1 rounded-full text-xs font-montserrat font-semibold"
-                    >
-                      {format}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <ul className="space-y-2 mb-8">
-                {product.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3 font-lora text-gray-700 text-sm">
-                    <div className="w-2 h-2 bg-sage-green rounded-full flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="space-y-4 mt-auto">
+                </span>
+                <h3 className="font-playfair text-xl font-bold text-midnight-blue mb-2">{product.name}</h3>
+                <p className="font-lora text-midnight-blue/70 mb-4">{product.description}</p>
                 <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-gold font-playfair text-2xl font-bold">{product.digitalPrice}</div>
-                    <div className="text-gray-600 font-lora text-sm">Digital</div>
-                  </div>
-                  <div>
-                    <div className="text-midnight-blue font-playfair text-2xl font-bold">{product.price}</div>
-                    <div className="text-gray-600 font-lora text-sm">Print</div>
-                  </div>
+                  <span className="font-montserrat text-2xl font-bold text-sage-green">{product.price}</span>
+                  <button className="bg-midnight-blue hover:bg-midnight-blue/90 text-magnolia-white p-2 rounded-full transition-colors">
+                    <ShoppingBag size={20} />
+                  </button>
                 </div>
-                <button
-                  className={`w-full font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 min-h-[44px] ${
-                    product.comingSoon
-                      ? "bg-warm-gray text-gray-600 cursor-not-allowed"
-                      : "bg-sage-green hover:bg-sage-green/90 text-midnight-blue hover:shadow-lg"
-                  }`}
-                  disabled={product.comingSoon}
-                >
-                  {product.comingSoon ? "Coming Soon" : "Add to Altar"}
-                </button>
               </div>
             </motion.div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <button className="border-2 border-sage-green hover:bg-sage-green text-sage-green hover:text-midnight-blue font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 min-h-[44px]">
+        <div className="text-center">
+          <Link
+            href="/shop"
+            className="inline-flex items-center gap-2 bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+          >
+            <Sparkles size={20} />
             Explore All Sacred Tools
-          </button>
-        </motion.div>
+          </Link>
+        </div>
       </div>
     </section>
   )
