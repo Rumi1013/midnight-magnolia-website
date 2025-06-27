@@ -3,9 +3,8 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { ShoppingCart, Heart, Eye, Plus, Minus, X, Search, Star, Download, Package, Book, Sparkles } from "lucide-react"
+import { ShoppingCart, Heart, Eye, X, Search, Star, Download, Sparkles } from "lucide-react"
 
-// 🌙 Complete Midnight Magnolia Product Catalog
 interface Product {
   id: string
   name: string
@@ -24,7 +23,6 @@ interface Product {
 }
 
 const MIDNIGHT_MAGNOLIA_PRODUCTS: Product[] = [
-  // Digital Products
   {
     id: "magnolia-reset-journal",
     name: "The Magnolia Reset 90-Day Journal",
@@ -70,36 +68,6 @@ const MIDNIGHT_MAGNOLIA_PRODUCTS: Product[] = [
     deliveryInfo: "Printable PDF planner",
   },
   {
-    id: "entrepreneur-starter-kit",
-    name: "Digital Entrepreneur's Sacred Starter Kit",
-    description: "Complete business foundation with authentic marketing strategies and templates",
-    price: 37,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop",
-    category: "digital",
-    type: "instant-download",
-    tags: ["business", "marketing", "templates"],
-    inStock: true,
-    rating: 4.8,
-    reviews: 203,
-    deliveryInfo: "Digital bundle with templates",
-  },
-  {
-    id: "notion-templates",
-    name: "Sacred Business Notion Templates",
-    description: "Complete business management system with healing-centered workflows",
-    price: 49,
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=500&fit=crop",
-    category: "digital",
-    type: "instant-download",
-    tags: ["notion", "business", "organization"],
-    inStock: true,
-    rating: 4.7,
-    reviews: 94,
-    deliveryInfo: "Notion template + setup guide",
-  },
-
-  // Physical Sacred Tools
-  {
     id: "rose-quartz-set",
     name: "Rose Quartz Heart Healing Set",
     description: "Hand-selected rose quartz crystals for heart chakra healing and self-love",
@@ -142,110 +110,6 @@ const MIDNIGHT_MAGNOLIA_PRODUCTS: Product[] = [
     reviews: 112,
     deliveryInfo: "Ships in 3-5 business days",
   },
-  {
-    id: "leather-journal-set",
-    name: "Vegan Leather Sacred Journal Set",
-    description: "Beautiful vegan leather journal with matching pen and protective pouch",
-    price: 42,
-    image: "https://images.unsplash.com/photo-1455791875203-27095cc5129b?w=400&h=500&fit=crop",
-    category: "physical",
-    type: "physical-product",
-    tags: ["journal", "writing", "luxury"],
-    inStock: true,
-    rating: 4.6,
-    reviews: 58,
-    deliveryInfo: "Ships in 3-5 business days",
-  },
-
-  // Pet Products
-  {
-    id: "pet-blessing-kit",
-    name: "Sacred Pet Blessing & Healing Kit",
-    description: "Gentle healing tools and blessing rituals for your beloved animal companions",
-    price: 24,
-    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=500&fit=crop",
-    category: "pet",
-    type: "instant-download",
-    tags: ["pets", "healing", "blessing"],
-    inStock: true,
-    rating: 4.7,
-    reviews: 67,
-    deliveryInfo: "Digital guide + printables",
-  },
-  {
-    id: "pet-crystal-collar",
-    name: "Crystal-Infused Pet Collar Charm",
-    description: "Protective crystal charm for your pet's collar with amethyst and clear quartz",
-    price: 18,
-    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=500&fit=crop",
-    category: "pet",
-    type: "physical-product",
-    tags: ["pets", "crystals", "protection"],
-    inStock: true,
-    rating: 4.5,
-    reviews: 43,
-    deliveryInfo: "Ships in 2-3 business days",
-  },
-
-  // Digital Artwork
-  {
-    id: "southern-gothic-prints",
-    name: "Southern Gothic Digital Art Collection",
-    description: "Printable art collection featuring magnolias, moons, and mystical imagery",
-    price: 15,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop",
-    category: "artwork",
-    type: "digital-art",
-    tags: ["art", "printable", "gothic"],
-    inStock: true,
-    rating: 4.6,
-    reviews: 82,
-    deliveryInfo: "High-res digital files",
-  },
-  {
-    id: "moon-phase-calendar",
-    name: "2024 Moon Phase Sacred Calendar",
-    description: "Beautiful printable calendar with moon phases and sacred holidays marked",
-    price: 12,
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop",
-    category: "artwork",
-    type: "digital-art",
-    tags: ["calendar", "moon", "printable"],
-    inStock: true,
-    rating: 4.8,
-    reviews: 95,
-    deliveryInfo: "Printable PDF calendar",
-  },
-
-  // KDP Books
-  {
-    id: "magnolia-reset-book",
-    name: "The Magnolia Reset - Paperback Edition",
-    description: "Physical copy of the transformational healing guide, available on Amazon",
-    price: 24.99,
-    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=500&fit=crop",
-    category: "kdp",
-    type: "amazon-book",
-    tags: ["book", "healing", "transformation"],
-    inStock: true,
-    rating: 4.9,
-    reviews: 234,
-    deliveryInfo: "Available on Amazon",
-  },
-  {
-    id: "southern-gothic-poetry",
-    name: "Midnight Musings: Southern Gothic Poetry",
-    description: "Collection of healing poetry rooted in Southern Gothic tradition",
-    price: 18.99,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop",
-    category: "kdp",
-    type: "amazon-book",
-    tags: ["poetry", "book", "gothic"],
-    inStock: true,
-    rating: 4.7,
-    reviews: 156,
-    deliveryInfo: "Available on Amazon",
-  },
 ]
 
 export default function ShopPageClient() {
@@ -256,7 +120,6 @@ export default function ShopPageClient() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null)
 
-  // Filter products
   const filteredProducts = MIDNIGHT_MAGNOLIA_PRODUCTS.filter((product) => {
     const matchesCategory = selectedCategory === "all" || product.category === selectedCategory
     const matchesSearch =
@@ -266,7 +129,6 @@ export default function ShopPageClient() {
     return matchesCategory && matchesSearch
   })
 
-  // Add to cart
   const addToCart = (product: Product) => {
     const existingItem = cart.find((item) => item.id === product.id)
     if (existingItem) {
@@ -274,16 +136,8 @@ export default function ShopPageClient() {
     } else {
       setCart([...cart, { ...product, quantity: 1 }])
     }
-
-    // Show success message
-    const notification = document.createElement("div")
-    notification.className = "fixed top-20 right-4 bg-sage-green text-midnight-blue px-4 py-2 rounded-lg z-50 shadow-lg"
-    notification.textContent = `${product.name} added to your sacred collection!`
-    document.body.appendChild(notification)
-    setTimeout(() => notification.remove(), 3000)
   }
 
-  // Toggle favorite
   const toggleFavorite = (productId: string) => {
     const newFavorites = new Set(favorites)
     if (newFavorites.has(productId)) {
@@ -294,7 +148,6 @@ export default function ShopPageClient() {
     setFavorites(newFavorites)
   }
 
-  // Handle purchase
   const handlePurchase = (product: Product) => {
     if (product.type === "amazon-book") {
       window.open(`https://amazon.com/dp/your-book-id-${product.id}`, "_blank")
@@ -307,38 +160,6 @@ export default function ShopPageClient() {
   const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0)
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0)
 
-  // Update cart item quantity
-  const updateCartItemQuantity = (itemId: string, change: number) => {
-    setCart((prevCart) => {
-      return prevCart
-        .map((item) => {
-          if (item.id === itemId) {
-            const newQuantity = item.quantity + change
-            if (newQuantity > 0) {
-              return { ...item, quantity: newQuantity }
-            } else {
-              // Remove item if quantity is 0
-              return null // Use null to mark for removal
-            }
-          }
-          return item
-        })
-        .filter(Boolean) as any[] // Filter out null items
-    })
-  }
-
-  // Remove cart item
-  const removeCartItem = (itemId: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== itemId))
-  }
-
-  // Checkout placeholder
-  const handleCheckout = () => {
-    alert("Navigating to checkout...")
-    setIsCartOpen(false)
-    setCart([])
-  }
-
   return (
     <div className="min-h-screen bg-midnight-blue">
       {/* Header */}
@@ -349,14 +170,12 @@ export default function ShopPageClient() {
               Sacred Midnight Magnolia Collection
             </h1>
             <p className="font-lora text-xl text-magnolia-white/80 max-w-3xl mx-auto">
-              Transform your creativity into sustainable income with our complete collection of digital products, sacred
-              tools, pet blessings, artwork, and published books
+              Transform your creativity into sustainable income with our complete collection of digital products and
+              sacred tools
             </p>
           </div>
 
-          {/* Search and Filter */}
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-magnolia-white/60 h-5 w-5" />
               <input
@@ -368,7 +187,6 @@ export default function ShopPageClient() {
               />
             </div>
 
-            {/* Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
               className="relative bg-sage-green hover:bg-sage-green/90 text-midnight-blue px-6 py-3 rounded-full font-montserrat font-semibold transition-all duration-300 flex items-center gap-2"
@@ -426,7 +244,6 @@ export default function ShopPageClient() {
                 transition={{ duration: 0.4 }}
                 className="bg-magnolia-white rounded-2xl overflow-hidden shadow-sm hover:shadow-mystical transition-all duration-300 border border-transparent hover:border-sage-green/30 h-full flex flex-col group"
               >
-                {/* Product Image */}
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
                     src={product.image || "/placeholder.svg"}
@@ -436,21 +253,14 @@ export default function ShopPageClient() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
 
-                  {/* Badges */}
-                  <div className="absolute top-3 left-3 flex flex-col gap-2">
-                    {product.featured && (
+                  {product.featured && (
+                    <div className="absolute top-3 left-3">
                       <span className="bg-gold/90 text-midnight-blue px-2 py-1 rounded-full text-xs font-montserrat font-bold">
                         ✨ Featured
                       </span>
-                    )}
-                    {product.originalPrice && (
-                      <span className="bg-red-500/90 text-magnolia-white px-2 py-1 rounded-full text-xs font-montserrat font-bold">
-                        SALE
-                      </span>
-                    )}
-                  </div>
+                    </div>
+                  )}
 
-                  {/* Overlay Actions */}
                   <div className="absolute inset-0 bg-midnight-blue/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                     <button
                       onClick={() => setQuickViewProduct(product)}
@@ -471,9 +281,7 @@ export default function ShopPageClient() {
                   </div>
                 </div>
 
-                {/* Product Details */}
                 <div className="p-4 flex-1 flex flex-col">
-                  {/* Rating */}
                   <div className="flex items-center gap-1 mb-2">
                     <Star size={14} className="fill-gold text-gold" />
                     <span className="font-montserrat text-sm text-midnight-blue/80">
@@ -481,46 +289,21 @@ export default function ShopPageClient() {
                     </span>
                   </div>
 
-                  {/* Product Name */}
                   <h3 className="font-playfair text-lg font-semibold text-midnight-blue mb-2 leading-tight line-clamp-2">
                     {product.name}
                   </h3>
 
-                  {/* Description */}
                   <p className="font-lora text-midnight-blue/70 text-sm leading-relaxed mb-3 flex-1 line-clamp-3">
                     {product.description}
                   </p>
 
-                  {/* Price */}
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center space-x-2">
-                      <span className="font-playfair text-xl font-bold text-midnight-blue">${product.price}</span>
-                      {product.originalPrice && (
-                        <span className="text-sm text-midnight-blue/50 line-through">${product.originalPrice}</span>
-                      )}
-                    </div>
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs font-montserrat font-medium ${
-                        product.type === "instant-download"
-                          ? "bg-blue-500/20 text-blue-700"
-                          : product.type === "amazon-book"
-                            ? "bg-purple-500/20 text-purple-700"
-                            : product.type === "digital-art"
-                              ? "bg-pink-500/20 text-pink-700"
-                              : "bg-green-500/20 text-green-700"
-                      }`}
-                    >
-                      {product.type === "instant-download"
-                        ? "Digital"
-                        : product.type === "amazon-book"
-                          ? "Amazon"
-                          : product.type === "digital-art"
-                            ? "Art"
-                            : "Physical"}
+                    <span className="font-playfair text-xl font-bold text-midnight-blue">${product.price}</span>
+                    <span className="px-2 py-1 rounded-full text-xs font-montserrat font-medium bg-blue-500/20 text-blue-700">
+                      {product.type === "instant-download" ? "Digital" : "Physical"}
                     </span>
                   </div>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-1 mb-3">
                     {product.tags.slice(0, 3).map((tag) => (
                       <span
@@ -532,28 +315,16 @@ export default function ShopPageClient() {
                     ))}
                   </div>
 
-                  {/* Action Button */}
                   <button
                     onClick={() => handlePurchase(product)}
                     disabled={!product.inStock}
-                    className={`w-full font-montserrat font-bold py-3 px-4 rounded-full transition-all duration-300 ${
-                      product.inStock
-                        ? "bg-sage-green hover:bg-sage-green/90 text-midnight-blue hover:shadow-lg"
-                        : "bg-warm-gray/50 text-midnight-blue/50 cursor-not-allowed"
-                    }`}
+                    className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-3 px-4 rounded-full transition-all duration-300 hover:shadow-lg"
                   >
-                    {product.type === "amazon-book"
-                      ? "View on Amazon"
-                      : product.inStock
-                        ? "Add to Sacred Collection"
-                        : "Currently Unavailable"}
+                    Add to Sacred Collection
                   </button>
 
-                  {/* Delivery Info */}
                   <div className="mt-2 text-xs text-midnight-blue/60 text-center flex items-center justify-center gap-1">
-                    {product.type === "instant-download" && <Download className="w-3 h-3" />}
-                    {product.type === "physical-product" && <Package className="w-3 h-3" />}
-                    {product.type === "amazon-book" && <Book className="w-3 h-3" />}
+                    <Download className="w-3 h-3" />
                     {product.deliveryInfo}
                   </div>
                 </div>
@@ -561,7 +332,6 @@ export default function ShopPageClient() {
             ))}
           </div>
 
-          {/* Empty State */}
           {filteredProducts.length === 0 && (
             <div className="text-center py-16">
               <Sparkles className="h-16 w-16 text-sage-green/50 mx-auto mb-4" />
@@ -591,7 +361,6 @@ export default function ShopPageClient() {
               className="fixed right-0 top-0 h-full w-full max-w-md bg-magnolia-white shadow-2xl z-50"
             >
               <div className="flex h-full flex-col">
-                {/* Cart Header */}
                 <div className="flex items-center justify-between border-b border-sage-green/20 px-6 py-4 bg-midnight-blue">
                   <h2 className="font-playfair text-lg font-semibold text-magnolia-white">Your Sacred Collection</h2>
                   <button
@@ -602,7 +371,6 @@ export default function ShopPageClient() {
                   </button>
                 </div>
 
-                {/* Cart Items */}
                 <div className="flex-1 overflow-y-auto px-6 py-4">
                   {cart.length === 0 ? (
                     <div className="text-center mt-8">
@@ -627,21 +395,9 @@ export default function ShopPageClient() {
                             <p className="font-montserrat text-sm font-bold text-midnight-blue">${item.price}</p>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <button
-                              onClick={() => updateCartItemQuantity(item.id, -1)}
-                              className="text-midnight-blue/60 hover:text-midnight-blue p-1"
-                            >
-                              <Minus className="h-4 w-4" />
-                            </button>
                             <span className="font-montserrat text-midnight-blue font-medium w-8 text-center">
                               {item.quantity}
                             </span>
-                            <button
-                              onClick={() => updateCartItemQuantity(item.id, 1)}
-                              className="text-midnight-blue/60 hover:text-midnight-blue p-1"
-                            >
-                              <Plus className="h-4 w-4" />
-                            </button>
                           </div>
                         </div>
                       ))}
@@ -649,7 +405,6 @@ export default function ShopPageClient() {
                   )}
                 </div>
 
-                {/* Cart Footer */}
                 {cart.length > 0 && (
                   <div className="border-t border-sage-green/20 px-6 py-4 bg-sage-green/5">
                     <div className="flex items-center justify-between mb-4">
@@ -659,16 +414,14 @@ export default function ShopPageClient() {
                       </span>
                     </div>
                     <button
-                      onClick={handleCheckout}
+                      onClick={() => {
+                        alert("Checkout functionality would be implemented here!")
+                        setIsCartOpen(false)
+                      }}
                       className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-4 px-4 rounded-full transition-all duration-300 hover:shadow-lg mb-3"
                     >
                       Begin Sacred Checkout
                     </button>
-                    <div className="text-center">
-                      <p className="font-montserrat text-xs text-midnight-blue/60">
-                        ✓ Secure checkout • ✓ Instant digital delivery • ✓ Lifetime access
-                      </p>
-                    </div>
                   </div>
                 )}
               </div>
@@ -726,17 +479,15 @@ export default function ShopPageClient() {
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <button
-                        onClick={() => {
-                          handlePurchase(quickViewProduct)
-                          setQuickViewProduct(null)
-                        }}
-                        className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-3 px-4 rounded-full transition-all duration-300"
-                      >
-                        {quickViewProduct.type === "amazon-book" ? "View on Amazon" : "Add to Sacred Collection"}
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => {
+                        handlePurchase(quickViewProduct)
+                        setQuickViewProduct(null)
+                      }}
+                      className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-3 px-4 rounded-full transition-all duration-300"
+                    >
+                      Add to Sacred Collection
+                    </button>
                   </div>
                 </div>
               </motion.div>
