@@ -103,7 +103,10 @@ export default function BlogSection() {
 
                 <p className="font-lora text-gray-700 leading-relaxed mb-6">{post.excerpt}</p>
 
-                <button className="text-sage-green font-montserrat font-semibold hover:text-midnight-blue transition-colors duration-300 flex items-center gap-2">
+                <button
+                  onClick={() => (window.location.href = "/blog")}
+                  className="text-sage-green font-montserrat font-semibold hover:text-midnight-blue transition-colors duration-300 flex items-center gap-2"
+                >
                   Read More
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </button>
@@ -118,7 +121,10 @@ export default function BlogSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-12"
         >
-          <button className="border-2 border-sage-green hover:bg-sage-green text-sage-green hover:text-magnolia-white font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 min-h-[44px]">
+          <button
+            onClick={() => (window.location.href = "/blog")}
+            className="border-2 border-sage-green hover:bg-sage-green text-sage-green hover:text-magnolia-white font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 min-h-[44px]"
+          >
             Visit Midnight Musings
           </button>
         </motion.div>

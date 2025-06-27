@@ -60,7 +60,7 @@ export default function CompleteShopClient() {
 
   // 🌿 Sacred Product Catalog
   const sacredProducts: SacredProduct[] = [
-    // Healing Journals
+    // Digital Sacred Tools
     {
       id: "magnolia-reset-90",
       name: "The Magnolia Reset 90-Day Journal",
@@ -78,7 +78,7 @@ export default function CompleteShopClient() {
     {
       id: "midnight-tarot-deck",
       name: "Midnight Messages Tarot Deck",
-      description: "Divination cards rooted in Southern Gothic wisdom and healing energy",
+      description: "78 cards featuring Black icons with Southern Gothic elegance and ancestral wisdom",
       prices: { digital: 19, print: 33 },
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop",
       category: "healing-journals",
@@ -103,8 +103,6 @@ export default function CompleteShopClient() {
       inStock: true,
       deliveryTime: "Instant download",
     },
-
-    // Business Suite
     {
       id: "digital-entrepreneur-kit",
       name: "Digital Entrepreneur's Starter Kit",
@@ -115,19 +113,6 @@ export default function CompleteShopClient() {
       type: "digital-download",
       formats: ["digital"],
       tags: ["entrepreneurship", "marketing", "business-strategy"],
-      inStock: true,
-      deliveryTime: "Instant download",
-    },
-    {
-      id: "brand-identity-workbook",
-      name: "Brand Identity Workbook",
-      description: "Discover your authentic brand voice and visual identity with soul-centered exercises",
-      prices: { digital: 29 },
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=500&fit=crop",
-      category: "business-suite",
-      type: "digital-download",
-      formats: ["digital"],
-      tags: ["branding", "identity", "authenticity"],
       inStock: true,
       deliveryTime: "Instant download",
     },
@@ -145,26 +130,55 @@ export default function CompleteShopClient() {
       deliveryTime: "Instant download",
     },
 
-    // Physical Products
+    // Sacred Physical Tools
     {
-      id: "vegan-leather-journal",
-      name: "Vegan Leather Journal Set with Pen & Pouch",
-      description: "Handcrafted journal with matching pouch and premium pen for sacred writing",
-      prices: { physical: 25 },
+      id: "amethyst-crystal-set",
+      name: "Amethyst Crystal Healing Set",
+      description: "Hand-selected amethyst crystals for meditation, healing, and spiritual protection",
+      prices: { physical: 35 },
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=500&fit=crop",
+      category: "physical-products",
+      type: "shopify-product",
+      formats: ["physical"],
+      tags: ["crystals", "healing", "meditation"],
+      featured: true,
+      inStock: true,
+      shipping: "3-5 business days",
+      shopifyId: "crystal-amethyst-001",
+    },
+    {
+      id: "sage-cleansing-bundle",
+      name: "White Sage Cleansing Bundle",
+      description: "Ethically sourced white sage for spiritual cleansing and energy clearing rituals",
+      prices: { physical: 18 },
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop",
+      category: "physical-products",
+      type: "shopify-product",
+      formats: ["physical"],
+      tags: ["sage", "cleansing", "ritual"],
+      inStock: true,
+      shipping: "2-4 business days",
+      shopifyId: "sage-bundle-001",
+    },
+    {
+      id: "moonstone-journal",
+      name: "Moonstone Leather Journal",
+      description: "Handcrafted leather journal with moonstone accent for sacred writing and reflection",
+      prices: { physical: 42 },
       image: "https://images.unsplash.com/photo-1455791875203-27095cc5129b?w=400&h=500&fit=crop",
       category: "physical-products",
       type: "shopify-product",
       formats: ["physical"],
-      tags: ["journal", "writing", "luxury"],
+      tags: ["journal", "moonstone", "writing"],
       featured: true,
       inStock: true,
       shipping: "3-5 business days",
-      shopifyId: "journal-set-001",
+      shopifyId: "journal-moonstone-001",
     },
     {
       id: "essential-oil-diffuser",
       name: "Sacred Space Essential Oil Diffuser",
-      description: "Premium ultrasonic diffuser for creating healing atmospheres",
+      description: "Premium ultrasonic diffuser for creating healing atmospheres with aromatherapy",
       prices: { physical: 63 },
       originalPrice: 75,
       image: "https://images.unsplash.com/photo-1615891113000-53d3ce9b2aee?w=400&h=500&fit=crop",
@@ -177,9 +191,9 @@ export default function CompleteShopClient() {
       shopifyId: "diffuser-001",
     },
     {
-      id: "sacred-candles",
+      id: "ritual-candle-set",
       name: "Midnight Ritual Candles Set",
-      description: "Hand-poured candles for sacred ceremonies and meditation",
+      description: "Hand-poured soy candles infused with herbs for sacred ceremonies and meditation",
       prices: { physical: 45 },
       image: "https://images.unsplash.com/photo-1546878819-a4ce9d29e200?w=400&h=500&fit=crop",
       category: "physical-products",
@@ -188,14 +202,74 @@ export default function CompleteShopClient() {
       tags: ["candles", "ritual", "meditation"],
       inStock: true,
       shipping: "3-5 business days",
-      shopifyId: "candles-ritual",
+      shopifyId: "candles-ritual-001",
+    },
+
+    // Pet Sacred Products
+    {
+      id: "mystical-cat-bandana",
+      name: "Mystical Cat Bandana",
+      description: "Celestial-themed bandana for your feline familiar with moon and star patterns",
+      prices: { physical: 16 },
+      image: "https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=400&h=500&fit=crop",
+      category: "physical-products",
+      type: "shopify-product",
+      formats: ["physical"],
+      tags: ["pet", "cat", "mystical"],
+      inStock: true,
+      shipping: "2-3 business days",
+      shopifyId: "pet-bandana-001",
+    },
+    {
+      id: "sacred-paws-bowl",
+      name: "Sacred Paws Feeding Bowl",
+      description: "Ceramic bowl with protective symbols for your pet's daily nourishment rituals",
+      prices: { physical: 28 },
+      image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=500&fit=crop",
+      category: "physical-products",
+      type: "shopify-product",
+      formats: ["physical"],
+      tags: ["pet", "bowl", "sacred"],
+      inStock: true,
+      shipping: "3-5 business days",
+      shopifyId: "pet-bowl-001",
+    },
+
+    // Artwork & Prints
+    {
+      id: "magnolia-moon-print",
+      name: "Magnolia Moon Art Print",
+      description: "Limited edition print featuring magnolia blossoms under a full moon",
+      prices: { physical: 25 },
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=500&fit=crop",
+      category: "physical-products",
+      type: "shopify-product",
+      formats: ["physical"],
+      tags: ["art", "print", "magnolia"],
+      inStock: true,
+      shipping: "2-4 business days",
+      shopifyId: "art-print-001",
+    },
+    {
+      id: "ancestral-wisdom-poster",
+      name: "Ancestral Wisdom Poster",
+      description: "Inspirational poster featuring quotes from Black women healers and ancestors",
+      prices: { physical: 20 },
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=500&fit=crop",
+      category: "physical-products",
+      type: "shopify-product",
+      formats: ["physical"],
+      tags: ["art", "wisdom", "ancestors"],
+      inStock: true,
+      shipping: "2-4 business days",
+      shopifyId: "poster-wisdom-001",
     },
 
     // KDP Books
     {
       id: "magnolia-reset-book",
       name: "The Magnolia Reset - Paperback",
-      description: "Physical book available through Amazon KDP with healing wisdom",
+      description: "Physical book available through Amazon KDP with 90 days of healing wisdom",
       prices: { kdp: 24.99 },
       image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=500&fit=crop",
       category: "kdp-books",
@@ -203,6 +277,19 @@ export default function CompleteShopClient() {
       formats: ["kdp"],
       tags: ["book", "healing", "transformation"],
       externalLink: "https://amazon.com/dp/your-book-id",
+      inStock: true,
+    },
+    {
+      id: "southern-gothic-poetry",
+      name: "Southern Gothic Healing Poetry",
+      description: "Collection of healing verses rooted in ancestral wisdom and Southern heritage",
+      prices: { kdp: 18.99 },
+      image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=500&fit=crop",
+      category: "kdp-books",
+      type: "kdp-book",
+      formats: ["kdp"],
+      tags: ["poetry", "healing", "southern-gothic"],
+      externalLink: "https://amazon.com/dp/your-poetry-book-id",
       inStock: true,
     },
   ]
@@ -467,7 +554,7 @@ export default function CompleteShopClient() {
             </p>
             <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
               <button
-                onClick={() => handleNavigation("shop")}
+                onClick={() => (window.location.href = "/blog")}
                 className="w-full sm:w-auto bg-gold hover:bg-gold/90 text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
               >
                 Enter Sacred Sanctuary
@@ -508,18 +595,18 @@ export default function CompleteShopClient() {
                 {category === "all"
                   ? "All Sacred Offerings"
                   : category === "healing-journals"
-                    ? "Healing Journals"
+                    ? "Digital Tools"
                     : category === "business-suite"
                       ? "Business Suite"
                       : category === "physical-products"
-                        ? "Physical Products"
-                        : "Sacred Books"}
+                        ? "Sacred Tools & Art"
+                        : "Published Books"}
               </button>
             ))}
           </div>
 
           {/* Products Grid */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout">
               {filteredProducts.map((product) => (
                 <motion.div
@@ -529,10 +616,10 @@ export default function CompleteShopClient() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
-                  className="bg-magnolia-white rounded-3xl overflow-hidden shadow-sm hover:shadow-mystical transition-all duration-300 border border-transparent hover:border-sage-green/30 h-full flex flex-col group"
+                  className="bg-magnolia-white rounded-2xl overflow-hidden shadow-sm hover:shadow-mystical transition-all duration-300 border border-transparent hover:border-sage-green/30 h-full flex flex-col group"
                 >
                   {/* Product Image */}
-                  <div className="relative aspect-square overflow-hidden">
+                  <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
                       src={product.image || "/placeholder.svg"}
                       alt={product.name}

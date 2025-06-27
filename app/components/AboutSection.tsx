@@ -59,6 +59,14 @@ export default function AboutSection() {
                 <p className="font-lora text-gray-700 text-sm">Daily practices for inner peace</p>
               </div>
             </div>
+            <div className="mt-8">
+              <button
+                onClick={() => (window.location.href = "/about")}
+                className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 min-h-[44px]"
+              >
+                Discover Our Full Story
+              </button>
+            </div>
           </motion.div>
 
           {/* Right content - Values grid */}
