@@ -1,5 +1,3 @@
-const { fontFamily } = require("tailwindcss/defaultTheme")
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -10,6 +8,7 @@ module.exports = {
     "./src/**/*.{ts,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
+  prefix: "",
   theme: {
     container: {
       center: true,
@@ -20,14 +19,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        // Midnight Magnolia Brand Colors
         "midnight-blue": "#0A192F",
         "magnolia-white": "#FAF3E0",
         "sage-green": "#A3B18A",
         "warm-gray": "#D4B99F",
         gold: "#D4AF37",
-
-        // Keep existing shadcn colors for components
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -63,10 +59,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        playfair: ["var(--font-playfair)", ...fontFamily.serif],
-        lora: ["var(--font-lora)", ...fontFamily.serif],
-        montserrat: ["var(--font-montserrat)", ...fontFamily.sans],
-        sans: ["var(--font-montserrat)", ...fontFamily.sans],
+        playfair: ["var(--font-playfair)", "serif"],
+        lora: ["var(--font-lora)", "serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -75,27 +70,20 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        glow: {
-          "0%, 100%": { opacity: 1 },
-          "50%": { opacity: 0.5 },
+          to: { height: "0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        float: "float 3s ease-in-out infinite",
-        glow: "glow 2s ease-in-out infinite",
+      },
+      boxShadow: {
+        mystical: "0 10px 25px -5px rgba(163, 177, 138, 0.1), 0 10px 10px -5px rgba(163, 177, 138, 0.04)",
       },
     },
   },

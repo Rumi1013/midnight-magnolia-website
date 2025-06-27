@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { Calendar, Clock, Heart, MessageCircle, Share2, X } from "lucide-react"
+import { Calendar, Clock, Heart, MessageCircle, Share2, X, Tag } from "lucide-react"
 
 interface BlogPost {
   id: string
@@ -112,7 +112,7 @@ export default function BlogPageClient() {
   const categories = ["all", "healing", "productivity", "spirituality", "business"]
 
   const filteredPosts = BLOG_POSTS.filter(
-    (post) => selectedCategory === "all" || post.category.toLowerCase() === selectedCategory
+    (post) => selectedCategory === "all" || post.category.toLowerCase() === selectedCategory,
   )
 
   const toggleFavorite = (postId: string) => {
@@ -273,9 +273,7 @@ export default function BlogPageClient() {
       {/* Newsletter Section */}
       <div className="bg-gradient-to-r from-sage-green/20 to-gold/20 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-playfair text-3xl font-bold text-magnolia-white mb-4">
-            Join Our Sacred Circle
-          </h2>
+          <h2 className="font-playfair text-3xl font-bold text-magnolia-white mb-4">Join Our Sacred Circle</h2>
           <p className="font-lora text-magnolia-white/80 mb-8">
             Receive weekly musings, healing wisdom, and gentle guidance delivered to your inbox.
           </p>
@@ -346,4 +344,57 @@ export default function BlogPageClient() {
                     </h1>
                     <p className="font-montserrat text-magnolia-white/80">By {selectedPost.author}</p>
                   </div>
-                \
+                </div>
+
+                <div className="p-8">
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {selectedPost.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-flex items-center gap-1 px-3 py-1 bg-sage-green/20 text-sage-green text-sm rounded-full font-montserrat"
+                      >
+                        <Tag size={12} />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="prose prose-lg max-w-none">
+                    <div className="font-lora text-midnight-blue/80 leading-relaxed whitespace-pre-line">
+                      {selectedPost.content}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-sage-green/20">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <button
+                          onClick={() => toggleFavorite(selectedPost.id)}
+                          className="flex items-center gap-2 px-4 py-2 rounded-full bg-sage-green/10 hover:bg-sage-green/20 transition-colors duration-200"
+                        >
+                          <Heart
+                            size={18}
+                            className={`transition-colors duration-200 ${
+                              favorites.has(selectedPost.id) ? "fill-sage-green text-sage-green" : "text-midnight-blue"
+                            }`}
+                          />
+                          <span className="font-montserrat text-sm text-midnight-blue">
+                            {favorites.has(selectedPost.id) ? "Saved" : "Save"}
+                          </span>
+                        </button>
+                        <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-sage-green/10 hover:bg-sage-green/20 transition-colors duration-200">
+                          <Share2 size={18} className="text-midnight-blue" />
+                          <span className="font-montserrat text-sm text-midnight-blue">Share</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
