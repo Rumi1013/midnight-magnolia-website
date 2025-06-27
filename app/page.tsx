@@ -1,7 +1,7 @@
 import Hero from "./components/Hero"
 import AboutSection from "./components/AboutSection"
 import ProductsSection from "./components/ProductsSection"
-import ShopSection from "./components/ShopSection"
+import FeaturedProducts from "./components/FeaturedProducts"
 import ShopifySection from "./components/ShopifySection"
 import BlogSection from "./components/BlogSection"
 import JusticeSection from "./components/JusticeSection"
@@ -19,7 +19,7 @@ export default function Home() {
       <Hero />
       <AboutSection />
       <ProductsSection />
-      <ShopSection />
+      <FeaturedProducts />
       <ShopifySection />
       <BlogSection />
       <JusticeSection />
