@@ -2,9 +2,9 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Playfair_Display, Lora, Montserrat } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "./components/theme-provider"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
+import { ThemeProvider } from "@/components/theme-provider"
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
 
 const inter = Inter({ subsets: ["latin"] })
 const playfair = Playfair_Display({
@@ -21,11 +21,9 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Midnight Magnolia - Digital Sanctuary for Healing & Transformation",
+  title: "Midnight Magnolia - Digital Sanctuary for Healing",
   description:
-    "Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle productivity, sacred rituals, and transformative digital tools.",
-  keywords:
-    "healing, Southern Gothic, wellness, ADHD, productivity, digital sanctuary, transformation, ancestral wisdom",
+    "Transform your creativity into sustainable income with sacred tools, digital products, and ancestral wisdom for chronic illness warriors and spiritual entrepreneurs.",
     generator: 'v0.dev'
 }
 
