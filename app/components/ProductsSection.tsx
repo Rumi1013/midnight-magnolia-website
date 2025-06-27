@@ -135,10 +135,14 @@ export default function ProductsSection() {
                   </div>
                 </div>
                 <button
-                  onClick={() => (window.location.href = "/shop/complete")}
-                  className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 min-h-[44px]"
+                  className={`w-full font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 min-h-[44px] ${
+                    product.comingSoon
+                      ? "bg-warm-gray text-gray-600 cursor-not-allowed"
+                      : "bg-sage-green hover:bg-sage-green/90 text-midnight-blue hover:shadow-lg"
+                  }`}
+                  disabled={product.comingSoon}
                 >
-                  View in Sacred Collection
+                  {product.comingSoon ? "Coming Soon" : "Add to Altar"}
                 </button>
               </div>
             </motion.div>
@@ -151,10 +155,7 @@ export default function ProductsSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <button
-            onClick={() => (window.location.href = "/shop/complete")}
-            className="border-2 border-sage-green hover:bg-sage-green text-sage-green hover:text-midnight-blue font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 min-h-[44px]"
-          >
+          <button className="border-2 border-sage-green hover:bg-sage-green text-sage-green hover:text-midnight-blue font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 min-h-[44px]">
             Explore All Sacred Tools
           </button>
         </motion.div>
