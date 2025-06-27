@@ -1,38 +1,112 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 import Link from "next/link"
-import { Heart, Leaf, Moon, Star, Sparkles, BookOpen } from "lucide-react"
+import { Heart, Sparkles, Moon, Star } from "lucide-react"
 
 export default function AboutPageClient() {
   return (
-    <div className="min-h-screen bg-magnolia-white pt-20">
+    <div className="min-h-screen bg-magnolia-white pt-16">
       {/* Hero Section */}
-      <section className="bg-midnight-blue py-20">
+      <section className="bg-midnight-blue py-20 relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            animate={{ y: [-20, 20, -20], rotate: [0, 5, 0] }}
+            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            className="absolute top-20 left-10 text-gold/30"
+          >
+            <Moon size={40} />
+          </motion.div>
+          <motion.div
+            animate={{ y: [20, -20, 20], rotate: [0, -5, 0] }}
+            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            className="absolute bottom-20 right-20 text-sage-green/30"
+          >
+            <Star size={32} />
+          </motion.div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-magnolia-white mb-6">
+              Our Sacred
+              <span className="block text-gold">Story</span>
+            </h1>
+            <p className="font-lora text-xl text-magnolia-white/80 max-w-2xl mx-auto">
+              Where ancestral wisdom meets Southern Gothic grace in a digital sanctuary for healing souls
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Story Section */}
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-              <h1 className="font-playfair text-4xl md:text-6xl font-bold text-magnolia-white mb-6">
-                Our Sacred
-                <span className="text-gold"> Story</span>
-              </h1>
-              <p className="font-lora text-xl text-magnolia-white/80 leading-relaxed">
-                Born from the intersection of ancestral wisdom and modern wellness, Midnight Magnolia is more than a
-                brand—it's a sacred sanctuary for those seeking gentle transformation.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative">
+                <Image
+                  src="/placeholder.svg?height=600&width=500&text=Founder+Story"
+                  alt="Midnight Magnolia Founder"
+                  width={500}
+                  height={600}
+                  className="rounded-2xl shadow-lg"
+                />
+                <div className="absolute -top-6 -right-6 bg-gold text-midnight-blue p-4 rounded-full">
+                  <Heart className="h-8 w-8" />
+                </div>
+                <div className="absolute -bottom-6 -left-6 bg-sage-green text-midnight-blue p-4 rounded-full">
+                  <Sparkles className="h-8 w-8" />
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              viewport={{ once: true }}
+              className="space-y-8"
             >
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-sage-green/20 to-gold/20 p-8 flex items-center justify-center">
-                <div className="text-center">
-                  <Moon className="w-24 h-24 text-gold mx-auto mb-4" />
-                  <h3 className="font-playfair text-2xl font-bold text-magnolia-white mb-2">Digital Sanctuary</h3>
-                  <p className="font-lora text-magnolia-white/70">Where healing begins with gentle intention</p>
+              <div>
+                <h2 className="font-playfair text-3xl md:text-4xl font-bold text-midnight-blue mb-6">
+                  Born from Necessity,
+                  <span className="block text-gold">Nurtured by Grace</span>
+                </h2>
+
+                <div className="space-y-6 font-lora text-lg text-midnight-blue/80 leading-relaxed">
+                  <p>
+                    Midnight Magnolia emerged from the intersection of chronic illness, ADHD, and the deep need for
+                    healing tools that actually understand the complexities of living with invisible disabilities.
+                  </p>
+
+                  <p>
+                    As a Black woman navigating the wellness space, I found myself searching for resources that spoke to
+                    my experience—tools that honored both struggle and strength, that embraced the beauty in darkness
+                    alongside the light.
+                  </p>
+
+                  <p>
+                    Southern Gothic aesthetics became my language of healing, a way to process trauma while finding
+                    beauty in the broken places. This digital sanctuary was born from that journey.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center p-6 bg-sage-green/10 rounded-2xl">
+                  <div className="text-3xl font-playfair font-bold text-midnight-blue mb-2">2024</div>
+                  <div className="font-montserrat text-sm text-midnight-blue/70">Founded</div>
+                </div>
+                <div className="text-center p-6 bg-gold/10 rounded-2xl">
+                  <div className="text-3xl font-playfair font-bold text-midnight-blue mb-2">1000+</div>
+                  <div className="font-montserrat text-sm text-midnight-blue/70">Souls Served</div>
                 </div>
               </div>
             </motion.div>
@@ -41,206 +115,54 @@ export default function AboutPageClient() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-midnight-blue mb-6">
-              Our Sacred
-              <span className="text-sage-green"> Mission</span>
-            </h2>
-            <p className="font-lora text-xl text-midnight-blue/80 max-w-3xl mx-auto leading-relaxed">
-              We understand the unique challenges of living with chronic illness, ADHD, and the beautiful complexity of
-              neurodivergent minds. Our tools and rituals honor your pace, celebrate your journey, and nurture your
-              soul.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-center bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <Heart className="w-12 h-12 text-sage-green mx-auto mb-4" />
-              <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-4">Gentle Care</h3>
-              <p className="font-lora text-midnight-blue/70 leading-relaxed">
-                We honor your energy levels and create tools that work with your natural rhythms, not against them. Your
-                healing journey is sacred, and we treat it as such.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-center bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <Leaf className="w-12 h-12 text-sage-green mx-auto mb-4" />
-              <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-4">Ancestral Wisdom</h3>
-              <p className="font-lora text-midnight-blue/70 leading-relaxed">
-                Drawing from generations of healing knowledge, we blend traditional practices with modern understanding
-                to create meaningful, accessible wellness tools.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="text-center bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <Star className="w-12 h-12 text-sage-green mx-auto mb-4" />
-              <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-4">Sacred Rituals</h3>
-              <p className="font-lora text-midnight-blue/70 leading-relaxed">
-                Every practice we share is designed to bring meaning and intention to your daily life, transforming
-                ordinary moments into opportunities for healing and growth.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Section */}
       <section className="py-20 bg-sage-green/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-midnight-blue/20 to-sage-green/20 p-8 flex items-center justify-center">
-                <div className="text-center">
-                  <Sparkles className="w-24 h-24 text-midnight-blue mx-auto mb-4" />
-                  <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-2">Founded with Love</h3>
-                  <p className="font-lora text-midnight-blue/70">Created by someone who understands the journey</p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-playfair text-4xl font-bold text-midnight-blue mb-6">
-                A Personal
-                <span className="text-sage-green"> Journey</span>
-              </h2>
-              <p className="font-lora text-lg text-midnight-blue/80 mb-6 leading-relaxed">
-                Midnight Magnolia was born from my own journey with chronic illness and ADHD. After years of struggling
-                with traditional productivity methods and wellness approaches that felt harsh and unsustainable, I began
-                creating tools that honored my energy and celebrated my unique way of being.
-              </p>
-              <p className="font-lora text-lg text-midnight-blue/80 mb-8 leading-relaxed">
-                What started as personal healing practices grew into a mission to create a sanctuary for others walking
-                similar paths. Every product, every piece of content, every ritual is crafted with deep understanding of
-                what it means to heal gently and live authentically.
-              </p>
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 bg-midnight-blue hover:bg-midnight-blue/90 text-magnolia-white font-montserrat font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-lg"
-              >
-                <BookOpen size={20} />
-                Read Our Healing Words
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
           >
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-midnight-blue mb-6">
-              Sacred
-              <span className="text-gold"> Values</span>
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-midnight-blue mb-8">
+              Our Sacred <span className="text-gold">Mission</span>
             </h2>
-            <p className="font-lora text-xl text-midnight-blue/80 max-w-2xl mx-auto">
-              The principles that guide everything we create and share
-            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-8 rounded-2xl shadow-sm">
+                <div className="bg-sage-green/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Heart className="h-8 w-8 text-sage-green" />
+                </div>
+                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-4">Trauma-Informed</h3>
+                <p className="font-lora text-midnight-blue/70">
+                  Every tool we create honors your healing journey and respects your pace
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl shadow-sm">
+                <div className="bg-gold/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Sparkles className="h-8 w-8 text-gold" />
+                </div>
+                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-4">Inclusive</h3>
+                <p className="font-lora text-midnight-blue/70">
+                  A sanctuary for all bodies, minds, and spirits seeking gentle transformation
+                </p>
+              </div>
+
+              <div className="bg-white p-8 rounded-2xl shadow-sm">
+                <div className="bg-midnight-blue/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Moon className="h-8 w-8 text-midnight-blue" />
+                </div>
+                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-4">Sacred</h3>
+                <p className="font-lora text-midnight-blue/70">
+                  Honoring ancestral wisdom while embracing modern healing practices
+                </p>
+              </div>
+            </div>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-4">Gentle Productivity</h3>
-              <p className="font-lora text-midnight-blue/70 leading-relaxed">
-                We believe productivity should feel nourishing, not depleting. Our tools help you accomplish what
-                matters while honoring your energy and well-being.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-4">Inclusive Healing</h3>
-              <p className="font-lora text-midnight-blue/70 leading-relaxed">
-                Healing looks different for everyone. We create space for all bodies, all minds, and all journeys,
-                celebrating the beautiful diversity of human experience.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-4">Sacred Simplicity</h3>
-              <p className="font-lora text-midnight-blue/70 leading-relaxed">
-                The most powerful healing often comes from simple, consistent practices. We focus on creating tools that
-                are beautiful, meaningful, and easy to integrate.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg"
-            >
-              <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-4">Community Care</h3>
-              <p className="font-lora text-midnight-blue/70 leading-relaxed">
-                Healing happens in community. We foster connections between kindred spirits and create spaces where
-                vulnerability is met with compassion and understanding.
-              </p>
-            </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Call to Action */}
       <section className="py-20 bg-midnight-blue">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -249,26 +171,26 @@ export default function AboutPageClient() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-magnolia-white mb-6">
-              Begin Your Sacred
-              <span className="text-gold"> Journey</span>
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-magnolia-white mb-6">
+              Ready to Begin Your
+              <span className="block text-gold">Sacred Journey?</span>
             </h2>
             <p className="font-lora text-xl text-magnolia-white/80 mb-8 max-w-2xl mx-auto">
-              You belong here, beautiful soul. Your healing matters, your pace is sacred, and your journey is worthy of
-              celebration.
+              Join our community of healing souls and discover tools that honor your unique path
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/shop"
-                className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
               >
                 Explore Sacred Tools
               </Link>
               <Link
-                href="/blog"
-                className="bg-transparent border-2 border-magnolia-white/30 hover:border-gold text-magnolia-white hover:text-gold font-montserrat font-semibold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
+                href="/contact"
+                className="bg-transparent border-2 border-magnolia-white text-magnolia-white hover:bg-magnolia-white hover:text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300"
               >
-                Enter the Garden
+                Connect With Us
               </Link>
             </div>
           </motion.div>
