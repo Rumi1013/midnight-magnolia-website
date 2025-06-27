@@ -307,6 +307,38 @@ export default function ShopPageClient() {
   const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0)
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0)
 
+  // Update cart item quantity
+  const updateCartItemQuantity = (itemId: string, change: number) => {
+    setCart((prevCart) => {
+      return prevCart
+        .map((item) => {
+          if (item.id === itemId) {
+            const newQuantity = item.quantity + change
+            if (newQuantity > 0) {
+              return { ...item, quantity: newQuantity }
+            } else {
+              // Remove item if quantity is 0
+              return null // Use null to mark for removal
+            }
+          }
+          return item
+        })
+        .filter(Boolean) as any[] // Filter out null items
+    })
+  }
+
+  // Remove cart item
+  const removeCartItem = (itemId: string) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== itemId))
+  }
+
+  // Checkout placeholder
+  const handleCheckout = () => {
+    alert("Navigating to checkout...")
+    setIsCartOpen(false)
+    setCart([])
+  }
+
   return (
     <div className="min-h-screen bg-midnight-blue">
       {/* Header */}
@@ -595,13 +627,19 @@ export default function ShopPageClient() {
                             <p className="font-montserrat text-sm font-bold text-midnight-blue">${item.price}</p>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <button className="text-midnight-blue/60 hover:text-midnight-blue p-1">
+                            <button
+                              onClick={() => updateCartItemQuantity(item.id, -1)}
+                              className="text-midnight-blue/60 hover:text-midnight-blue p-1"
+                            >
                               <Minus className="h-4 w-4" />
                             </button>
                             <span className="font-montserrat text-midnight-blue font-medium w-8 text-center">
                               {item.quantity}
                             </span>
-                            <button className="text-midnight-blue/60 hover:text-midnight-blue p-1">
+                            <button
+                              onClick={() => updateCartItemQuantity(item.id, 1)}
+                              className="text-midnight-blue/60 hover:text-midnight-blue p-1"
+                            >
                               <Plus className="h-4 w-4" />
                             </button>
                           </div>
@@ -620,7 +658,10 @@ export default function ShopPageClient() {
                         ${cartTotal.toFixed(2)}
                       </span>
                     </div>
-                    <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-4 px-4 rounded-full transition-all duration-300 hover:shadow-lg mb-3">
+                    <button
+                      onClick={handleCheckout}
+                      className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-4 px-4 rounded-full transition-all duration-300 hover:shadow-lg mb-3"
+                    >
                       Begin Sacred Checkout
                     </button>
                     <div className="text-center">
