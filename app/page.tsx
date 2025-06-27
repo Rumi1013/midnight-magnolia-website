@@ -1,17 +1,17 @@
 import Hero from "./components/Hero"
+import ProductGrid from "./components/ProductGrid"
 import AboutSection from "./components/AboutSection"
-import ProductsSection from "./components/ProductsSection"
 import BlogSection from "./components/BlogSection"
 import NewsletterSection from "./components/NewsletterSection"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-midnight-blue">
+    <main className="min-h-screen bg-midnight-blue">
       <Hero />
+      <ProductGrid products={[]} />
       <AboutSection />
-      <ProductsSection />
       <BlogSection />
       <NewsletterSection />
-    </div>
+    </main>
   )
 }
