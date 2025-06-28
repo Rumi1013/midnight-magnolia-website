@@ -6,12 +6,12 @@ import NewsletterSection from "./components/NewsletterSection"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen bg-midnight-blue">
       <Hero />
-      <ProductGrid />
+      <ProductGrid products={[]} />
       <AboutSection />
       <BlogSection />
       <NewsletterSection />
-    </div>
+    </main>
   )
 }

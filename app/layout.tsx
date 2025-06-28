@@ -23,7 +23,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Midnight Magnolia - Digital Sanctuary for Healing",
   description:
-    "Transform your creativity into sustainable income with sacred tools, digital products, and ancestral wisdom.",
+    "Transform your creativity into sustainable income with sacred tools, digital products, and ancestral wisdom for chronic illness warriors and spiritual entrepreneurs.",
     generator: 'v0.dev'
 }
 
