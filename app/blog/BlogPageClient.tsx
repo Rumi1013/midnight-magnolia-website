@@ -1,342 +1,386 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import Image from "next/image"
-import { Search, Calendar, Clock, Heart, Tag } from "lucide-react"
+import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
+import { Calendar, Clock, Heart, Search, Tag } from "lucide-react"
 
-const blogPosts = [
+interface BlogPost {
+  id: number
+  title: string
+  excerpt: string
+  content: string
+  image: string
+  category: string
+  readTime: string
+  date: string
+  slug: string
+  tags: string[]
+  isFeatured: boolean
+}
+
+const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "Gentle Productivity for Chronic Illness Warriors",
-    excerpt:
-      "Discover how to honor your energy cycles while building a sustainable creative practice that works with your body, not against it.",
-    content: "Full blog post content would go here...",
-    image: "/placeholder.svg?height=400&width=600&text=Gentle+Productivity",
+    title: "Sacred Productivity for Chronic Illness Warriors",
+    excerpt: "Discover gentle systems that honor your energy cycles and create sustainable success without burnout.",
+    content:
+      "Living with chronic illness while building a business requires a completely different approach to productivity...",
+    image: "/placeholder.svg?height=300&width=500&text=Sacred+Productivity",
     category: "Wellness",
-    tags: ["chronic illness", "productivity", "self-care"],
-    date: "Dec 15, 2024",
     readTime: "8 min read",
-    author: "Midnight Magnolia",
-    featured: true,
+    date: "Dec 15, 2024",
+    slug: "sacred-productivity-chronic-illness",
+    tags: ["chronic illness", "productivity", "wellness", "energy management"],
+    isFeatured: true,
   },
   {
     id: 2,
-    title: "Sacred Boundaries: The Art of Saying No with Grace",
-    excerpt:
-      "Learn to set boundaries that protect your energy while maintaining relationships, rooted in Southern wisdom and ancestral knowing.",
-    content: "Full blog post content would go here...",
-    image: "/placeholder.svg?height=400&width=600&text=Sacred+Boundaries",
-    category: "Mindset",
-    tags: ["boundaries", "relationships", "self-care"],
+    title: "Building Your Digital Sanctuary: A Beginner's Guide",
+    excerpt: "Step-by-step guidance for creating an online business that aligns with your values and healing journey.",
+    content: "Your digital sanctuary is more than just a website—it's a sacred space where healing happens...",
+    image: "/placeholder.svg?height=300&width=500&text=Digital+Sanctuary",
+    category: "Business",
+    readTime: "12 min read",
     date: "Dec 12, 2024",
-    readTime: "6 min read",
-    author: "Midnight Magnolia",
-    featured: false,
+    slug: "building-digital-sanctuary",
+    tags: ["business", "digital", "sanctuary", "online presence"],
+    isFeatured: true,
   },
   {
     id: 3,
-    title: "Moon Phases and Business Cycles: Aligning with Natural Rhythms",
-    excerpt:
-      "Harness the power of lunar cycles to optimize your business strategy and honor your natural creative ebbs and flows.",
-    content: "Full blog post content would go here...",
-    image: "/placeholder.svg?height=400&width=600&text=Moon+Business",
-    category: "Business",
-    tags: ["moon phases", "business", "natural rhythms"],
+    title: "Moon Cycles and Manifestation for Entrepreneurs",
+    excerpt: "Harness lunar energy to align your business goals with natural rhythms and ancestral wisdom.",
+    content:
+      "The moon has guided humanity for millennia, and as spiritual entrepreneurs, we can tap into this ancient wisdom...",
+    image: "/placeholder.svg?height=300&width=500&text=Moon+Cycles",
+    category: "Spirituality",
+    readTime: "6 min read",
     date: "Dec 10, 2024",
-    readTime: "10 min read",
-    author: "Midnight Magnolia",
-    featured: true,
+    slug: "moon-cycles-manifestation",
+    tags: ["moon cycles", "manifestation", "spirituality", "business"],
+    isFeatured: false,
   },
   {
     id: 4,
-    title: "Creating Sacred Space in Small Homes",
-    excerpt:
-      "Transform any corner of your home into a healing sanctuary, regardless of space constraints or budget limitations.",
-    content: "Full blog post content would go here...",
-    image: "/placeholder.svg?height=400&width=600&text=Sacred+Space",
-    category: "Lifestyle",
-    tags: ["sacred space", "home", "ritual"],
+    title: "The Art of Gentle Boundaries in Business",
+    excerpt: "Learn to protect your energy while serving your community with love and authenticity.",
+    content: "Boundaries aren't walls—they're sacred containers that allow your gifts to flourish...",
+    image: "/placeholder.svg?height=300&width=500&text=Gentle+Boundaries",
+    category: "Business",
+    readTime: "10 min read",
     date: "Dec 8, 2024",
-    readTime: "7 min read",
-    author: "Midnight Magnolia",
-    featured: false,
+    slug: "gentle-boundaries-business",
+    tags: ["boundaries", "business", "energy protection", "authenticity"],
+    isFeatured: false,
   },
   {
     id: 5,
-    title: "The Healing Power of Southern Gothic Aesthetics",
-    excerpt:
-      "Explore how embracing darkness and beauty can become a powerful tool for processing trauma and finding strength.",
-    content: "Full blog post content would go here...",
-    image: "/placeholder.svg?height=400&width=600&text=Gothic+Healing",
-    category: "Healing",
-    tags: ["southern gothic", "aesthetics", "trauma healing"],
+    title: "Ancestral Healing for Modern Entrepreneurs",
+    excerpt: "Connect with your lineage to heal generational patterns and build wealth with integrity.",
+    content: "Our ancestors' dreams live within us, and healing their wounds opens pathways to abundance...",
+    image: "/placeholder.svg?height=300&width=500&text=Ancestral+Healing",
+    category: "Spirituality",
+    readTime: "15 min read",
     date: "Dec 5, 2024",
-    readTime: "9 min read",
-    author: "Midnight Magnolia",
-    featured: false,
+    slug: "ancestral-healing-entrepreneurs",
+    tags: ["ancestral healing", "generational trauma", "wealth", "spirituality"],
+    isFeatured: true,
   },
   {
     id: 6,
-    title: "Building Community as an Introverted Entrepreneur",
-    excerpt:
-      "Strategies for creating meaningful connections and building your business community while honoring your introverted nature.",
-    content: "Full blog post content would go here...",
-    image: "/placeholder.svg?height=400&width=600&text=Introverted+Business",
-    category: "Business",
-    tags: ["introvert", "community", "entrepreneurship"],
+    title: "Creating Sacred Rituals for Business Success",
+    excerpt: "Infuse your work with intention and magic through daily practices that honor your journey.",
+    content: "Every successful business is built on rituals—some conscious, some unconscious...",
+    image: "/placeholder.svg?height=300&width=500&text=Sacred+Rituals",
+    category: "Spirituality",
+    readTime: "7 min read",
     date: "Dec 3, 2024",
-    readTime: "8 min read",
-    author: "Midnight Magnolia",
-    featured: false,
+    slug: "sacred-rituals-business",
+    tags: ["rituals", "business", "intention", "magic"],
+    isFeatured: false,
   },
 ]
 
-const categories = ["All", "Wellness", "Mindset", "Business", "Lifestyle", "Healing"]
+const categories = ["All", "Wellness", "Business", "Spirituality"]
 
 export default function BlogPageClient() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
-  const [favorites, setFavorites] = useState<number[]>([])
+  const [favorites, setFavorites] = useState<Set<number>>(new Set())
 
   const filteredPosts = blogPosts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory
+
     return matchesSearch && matchesCategory
   })
 
+  const featuredPosts = filteredPosts.filter((post) => post.isFeatured)
+  const regularPosts = filteredPosts.filter((post) => !post.isFeatured)
+
   const toggleFavorite = (postId: number) => {
-    setFavorites((prev) => (prev.includes(postId) ? prev.filter((id) => id !== postId) : [...prev, postId]))
+    setFavorites((prev) => {
+      const newFavorites = new Set(prev)
+      if (newFavorites.has(postId)) {
+        newFavorites.delete(postId)
+      } else {
+        newFavorites.add(postId)
+      }
+      return newFavorites
+    })
   }
 
   return (
     <div className="min-h-screen bg-magnolia-white pt-16">
-      {/* Hero Section */}
-      <section className="bg-midnight-blue py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-magnolia-white mb-6">
-              Sacred
-              <span className="text-gold"> Wisdom</span>
-            </h1>
-            <p className="font-lora text-xl text-magnolia-white/80 max-w-2xl mx-auto">
-              Gentle guidance, ancestral wisdom, and practical magic for your healing journey
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <h1 className="font-playfair text-4xl md:text-6xl font-bold text-midnight-blue mb-6">
+            The Sacred <span className="text-sage-green">Garden</span>
+          </h1>
+          <p className="font-lora text-xl text-midnight-blue/70 max-w-2xl mx-auto">
+            Gentle wisdom, healing insights, and practical magic for your entrepreneurial journey
+          </p>
+        </motion.div>
+
         {/* Search and Filters */}
-        <div className="flex flex-col lg:flex-row gap-6 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col md:flex-row gap-4 mb-12"
+        >
           {/* Search */}
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-midnight-blue/50 w-5 h-5" />
+          <div className="relative flex-1">
+            <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-midnight-blue/40" />
             <input
               type="text"
-              placeholder="Search sacred wisdom..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-full border-2 border-sage-green/20 focus:border-sage-green focus:outline-none font-montserrat"
+              placeholder="Search for wisdom..."
+              className="w-full pl-10 pr-4 py-3 border border-warm-gray/30 rounded-full focus:outline-none focus:ring-2 focus:ring-sage-green focus:border-transparent font-lora"
             />
           </div>
 
           {/* Category Filter */}
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full font-montserrat font-medium transition-all duration-200 ${
+                className={`px-6 py-3 rounded-full font-montserrat font-semibold transition-all duration-300 ${
                   selectedCategory === category
                     ? "bg-sage-green text-midnight-blue"
-                    : "bg-sage-green/20 text-midnight-blue hover:bg-sage-green/30"
+                    : "bg-white text-midnight-blue/70 hover:bg-sage-green/10 border border-warm-gray/30"
                 }`}
               >
                 {category}
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Featured Posts */}
-        {selectedCategory === "All" && (
-          <div className="mb-16">
-            <h2 className="font-playfair text-2xl font-bold text-midnight-blue mb-8">Featured Wisdom</h2>
+        {featuredPosts.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mb-16"
+          >
+            <h2 className="font-playfair text-3xl font-bold text-midnight-blue mb-8">Featured Wisdom</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {blogPosts
-                .filter((post) => post.featured)
-                .map((post, index) => (
+              {featuredPosts.slice(0, 2).map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 * index }}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={post.image || "/placeholder.svg"}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-sage-green/90 text-midnight-blue px-3 py-1 rounded-full text-sm font-montserrat font-bold">
+                        {post.category}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => toggleFavorite(post.id)}
+                      className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white transition-colors duration-200"
+                    >
+                      <Heart
+                        size={18}
+                        className={`${
+                          favorites.has(post.id)
+                            ? "fill-sage-green text-sage-green"
+                            : "text-midnight-blue hover:text-sage-green"
+                        } transition-colors duration-200`}
+                      />
+                    </button>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="flex items-center gap-4 text-midnight-blue/60 text-sm font-montserrat mb-3">
+                      <div className="flex items-center gap-1">
+                        <Calendar size={14} />
+                        {post.date}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock size={14} />
+                        {post.readTime}
+                      </div>
+                    </div>
+
+                    <h3 className="font-playfair text-2xl font-semibold text-midnight-blue mb-3 group-hover:text-sage-green transition-colors duration-200">
+                      {post.title}
+                    </h3>
+
+                    <p className="font-lora text-midnight-blue/70 leading-relaxed mb-4">{post.excerpt}</p>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-flex items-center gap-1 px-2 py-1 bg-sage-green/10 text-sage-green text-xs rounded-full font-montserrat"
+                        >
+                          <Tag size={10} />
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="inline-flex items-center gap-2 text-sage-green hover:text-sage-green/80 font-montserrat font-semibold transition-colors duration-200"
+                    >
+                      Read Sacred Wisdom →
+                    </Link>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
+        {/* Regular Posts */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <h2 className="font-playfair text-3xl font-bold text-midnight-blue mb-8">All Wisdom</h2>
+
+          <AnimatePresence mode="popLayout">
+            {filteredPosts.length > 0 ? (
+              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredPosts.map((post) => (
                   <motion.article
                     key={post.id}
-                    initial={{ opacity: 0, y: 30 }}
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden">
                       <Image
                         src={post.image || "/placeholder.svg"}
                         alt={post.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-gold/90 text-midnight-blue px-3 py-1 rounded-full text-xs font-montserrat font-bold">
-                          Featured
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-sage-green/90 text-midnight-blue px-2 py-1 rounded-full text-xs font-montserrat font-bold">
+                          {post.category}
                         </span>
                       </div>
                       <button
                         onClick={() => toggleFavorite(post.id)}
-                        className="absolute top-4 right-4 p-2 rounded-full bg-white/90 hover:bg-white transition-colors"
+                        className="absolute top-3 right-3 p-2 rounded-full bg-white/80 hover:bg-white transition-colors duration-200"
                       >
                         <Heart
-                          className={`w-5 h-5 ${
-                            favorites.includes(post.id) ? "text-red-500 fill-current" : "text-midnight-blue/60"
-                          }`}
+                          size={16}
+                          className={`${
+                            favorites.has(post.id)
+                              ? "fill-sage-green text-sage-green"
+                              : "text-midnight-blue hover:text-sage-green"
+                          } transition-colors duration-200`}
                         />
                       </button>
                     </div>
 
-                    <div className="p-6">
-                      <div className="flex items-center gap-4 text-xs text-midnight-blue/60 mb-3">
+                    <div className="p-5">
+                      <div className="flex items-center gap-3 text-midnight-blue/60 text-xs font-montserrat mb-3">
                         <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          <span className="font-montserrat">{post.date}</span>
+                          <Calendar size={12} />
+                          {post.date}
                         </div>
                         <div className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          <span className="font-montserrat">{post.readTime}</span>
+                          <Clock size={12} />
+                          {post.readTime}
                         </div>
                       </div>
 
-                      <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-3 group-hover:text-sage-green transition-colors duration-200">
+                      <h3 className="font-playfair text-lg font-semibold text-midnight-blue mb-2 line-clamp-2 group-hover:text-sage-green transition-colors duration-200">
                         {post.title}
                       </h3>
 
-                      <p className="font-lora text-midnight-blue/70 mb-4 line-clamp-3">{post.excerpt}</p>
+                      <p className="font-lora text-midnight-blue/70 text-sm leading-relaxed mb-3 line-clamp-3">
+                        {post.excerpt}
+                      </p>
 
-                      <div className="flex items-center gap-2 mb-4">
-                        <Tag className="h-4 w-4 text-sage-green" />
-                        <div className="flex gap-2 flex-wrap">
-                          {post.tags.slice(0, 3).map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2 py-1 bg-sage-green/20 text-sage-green text-xs rounded font-montserrat"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                      <div className="flex flex-wrap gap-1 mb-3">
+                        {post.tags.slice(0, 2).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 bg-sage-green/10 text-sage-green text-xs rounded-full font-montserrat"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
 
-                      <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold py-3 px-4 rounded-full transition-all duration-300">
-                        Read Sacred Wisdom
-                      </button>
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="inline-flex items-center gap-1 text-sage-green hover:text-sage-green/80 font-montserrat font-semibold text-sm transition-colors duration-200"
+                      >
+                        Read More →
+                      </Link>
                     </div>
                   </motion.article>
                 ))}
-            </div>
-          </div>
-        )}
-
-        {/* All Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map((post, index) => (
-            <motion.article
-              key={post.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={post.image || "/placeholder.svg"}
-                  alt={post.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-sage-green/90 text-midnight-blue px-3 py-1 rounded-full text-xs font-montserrat font-bold">
-                    {post.category}
-                  </span>
-                </div>
-                <button
-                  onClick={() => toggleFavorite(post.id)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-white/90 hover:bg-white transition-colors"
-                >
-                  <Heart
-                    className={`w-4 h-4 ${
-                      favorites.includes(post.id) ? "text-red-500 fill-current" : "text-midnight-blue/60"
-                    }`}
-                  />
-                </button>
-              </div>
-
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-xs text-midnight-blue/60 mb-3">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    <span className="font-montserrat">{post.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    <span className="font-montserrat">{post.readTime}</span>
-                  </div>
-                </div>
-
-                <h3 className="font-playfair text-lg font-semibold text-midnight-blue mb-2 line-clamp-2 group-hover:text-sage-green transition-colors duration-200">
-                  {post.title}
-                </h3>
-
-                <p className="font-lora text-midnight-blue/70 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
-
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="flex gap-1 flex-wrap">
-                    {post.tags.slice(0, 2).map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-sage-green/20 text-sage-green text-xs rounded font-montserrat"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold py-2 px-4 rounded-full transition-all duration-300">
-                  Read More
-                </button>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {filteredPosts.length === 0 && (
-          <div className="text-center py-16">
-            <div className="w-24 h-24 bg-sage-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Search className="w-12 h-12 text-sage-green" />
-            </div>
-            <h3 className="font-playfair text-2xl font-bold text-midnight-blue mb-2">No Sacred Wisdom Found</h3>
-            <p className="font-lora text-midnight-blue/70 mb-6">Try adjusting your search or browse all categories</p>
-            <button
-              onClick={() => {
-                setSearchTerm("")
-                setSelectedCategory("All")
-              }}
-              className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold py-3 px-6 rounded-full transition-all duration-300"
-            >
-              View All Posts
-            </button>
-          </div>
-        )}
+              </motion.div>
+            ) : (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-16">
+                <div className="text-6xl mb-4">🌸</div>
+                <h3 className="font-playfair text-2xl text-midnight-blue mb-2">No wisdom found</h3>
+                <p className="font-lora text-midnight-blue/60">
+                  Try adjusting your search or explore different categories
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.section>
       </div>
     </div>
   )

@@ -76,7 +76,7 @@ const products: SacredProduct[] = [
     id: 6,
     name: "Midnight Moon Candle Set",
     price: 45,
-    image: "https://images.unsplash.com/photo-1546878819-a4ce9d29e200?w=300&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300&h=400&fit=crop",
     category: "Candles",
     description: "Hand-poured candles for sacred ceremonies",
     rating: 4.9,
@@ -229,7 +229,7 @@ export default function ProductGrid({ products: propProducts, className = "" }: 
 
                     {/* 🌙 Blessed indicator */}
                     {product.isBlessed && (
-                      <div className="absolute top-3 left-3 bg-rich-gold/90 text-midnight-blue px-2 py-1 rounded-full text-xs font-montserrat font-semibold">
+                      <div className="absolute top-3 left-3 bg-gold/90 text-midnight-blue px-2 py-1 rounded-full text-xs font-montserrat font-semibold">
                         ✨ Blessed
                       </div>
                     )}
@@ -262,7 +262,7 @@ export default function ProductGrid({ products: propProducts, className = "" }: 
                   <div className="p-4 flex-1 flex flex-col">
                     {/* ⭐ Rating with gentle stars */}
                     <div className="flex items-center gap-1 mb-2">
-                      <Star size={14} className="fill-rich-gold text-rich-gold" />
+                      <Star size={14} className="fill-gold text-gold" />
                       <span className="font-montserrat text-sm text-midnight-blue/80">
                         {product.rating} ({product.reviews})
                       </span>
@@ -288,7 +288,7 @@ export default function ProductGrid({ products: propProducts, className = "" }: 
                           bg-sage-green hover:bg-sage-green/90 text-midnight-blue
                           font-montserrat font-semibold text-xs
                           transition-all duration-200 hover:shadow-md
-                          focus:outline-none focus:ring-2 focus:ring-rich-gold focus:ring-offset-2
+                          focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2
                         "
                       >
                         <ShoppingBag size={14} />
@@ -313,7 +313,7 @@ export default function ProductGrid({ products: propProducts, className = "" }: 
                 px-8 py-4 rounded-full border-2 border-sage-green
                 text-sage-green hover:bg-sage-green hover:text-midnight-blue
                 font-lora font-semibold transition-all duration-300
-                focus:outline-none focus:ring-2 focus:ring-rich-gold focus:ring-offset-2
+                focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2
               "
             >
               Reveal More Sacred Offerings

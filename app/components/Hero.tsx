@@ -1,99 +1,143 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { motion } from "framer-motion"
-import { Sparkles, Moon, Star } from "lucide-react"
+import { ChevronDown, Sparkles } from "lucide-react"
 
 const affirmations = [
   "You are worthy of rest",
   "Your pace is sacred",
   "Healing is not linear",
-  "Your journey matters",
+  "Your story matters",
   "You belong here",
+  "Your sensitivity is a gift",
 ]
 
 export default function Hero() {
   const [currentAffirmation, setCurrentAffirmation] = useState(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setCurrentAffirmation((prev) => (prev + 1) % affirmations.length)
     }, 3000)
-    return () => clearInterval(interval)
+    return () => clearInterval(timer)
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-midnight-blue overflow-hidden flex items-center justify-center">
-      {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{ y: [-20, 20, -20], rotate: [0, 5, 0] }}
-          transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          className="absolute top-20 left-10 text-gold/30"
-        >
-          <Moon size={40} />
-        </motion.div>
-        <motion.div
-          animate={{ y: [20, -20, 20], rotate: [0, -5, 0] }}
-          transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          className="absolute top-32 right-20 text-sage-green/30"
-        >
-          <Star size={24} />
-        </motion.div>
-        <motion.div
-          animate={{ y: [-15, 15, -15], rotate: [0, 10, 0] }}
-          transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          className="absolute bottom-40 left-20 text-magnolia-white/20"
-        >
-          <Sparkles size={32} />
-        </motion.div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-midnight-blue">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-sage-green/10 rounded-full blur-xl" />
+        <div className="absolute bottom-20 right-10 w-48 h-48 bg-gold/10 rounded-full blur-xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sage-green/5 rounded-full blur-2xl" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+        {/* Main Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-8"
+        >
           <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold text-magnolia-white mb-6">
             Welcome to Your
-            <span className="block text-gold">Digital Sanctuary</span>
+            <span className="block text-sage-green">Digital Sanctuary</span>
           </h1>
-
-          <div className="h-16 mb-8 flex items-center justify-center">
-            <motion.p
-              key={currentAffirmation}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="font-lora text-xl md:text-2xl text-sage-green italic"
-            >
-              "{affirmations[currentAffirmation]}"
-            </motion.p>
-          </div>
-
-          <p className="font-lora text-lg md:text-xl text-magnolia-white/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Where ancestral wisdom meets Southern Gothic grace. Transform your healing journey through sacred tools,
-            gentle productivity, and digital sanctuary designed for chronic illness warriors and spiritual
-            entrepreneurs.
+          <p className="font-lora text-xl md:text-2xl text-magnolia-white/80 max-w-2xl mx-auto leading-relaxed">
+            Transform your creativity into sustainable income with sacred tools, ancestral wisdom, and gentle
+            productivity for chronic illness warriors.
           </p>
+        </motion.div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/blog"
-              className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-            >
-              Enter the Garden
-            </Link>
-            <Link
-              href="/shop"
-              className="bg-transparent border-2 border-magnolia-white text-magnolia-white hover:bg-magnolia-white hover:text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300"
-            >
-              Explore Sacred Tools
-            </Link>
+        {/* Rotating Affirmations */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="mb-12"
+        >
+          <div className="h-16 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentAffirmation}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="font-lora text-lg md:text-xl text-gold italic flex items-center gap-2"
+              >
+                <Sparkles size={20} className="text-sage-green" />
+                {affirmations[currentAffirmation]}
+                <Sparkles size={20} className="text-sage-green" />
+              </motion.p>
+            </AnimatePresence>
           </div>
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+        >
+          <Link
+            href="/blog"
+            className="group bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+          >
+            Enter the Garden
+            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200 inline-block">→</span>
+          </Link>
+          <Link
+            href="/shop"
+            className="group border-2 border-sage-green text-sage-green hover:bg-sage-green hover:text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
+          >
+            Explore Sacred Tools
+          </Link>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="flex flex-col items-center"
+        >
+          <p className="font-lora text-magnolia-white/60 text-sm mb-2">Discover your sacred offerings</p>
+          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}>
+            <ChevronDown size={24} className="text-sage-green" />
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-magnolia-white to-transparent" />
+      {/* Floating Elements */}
+      <motion.div
+        className="absolute top-1/4 left-1/4 w-2 h-2 bg-gold rounded-full"
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.3, 1, 0.3],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute top-3/4 right-1/4 w-1 h-1 bg-sage-green rounded-full"
+        animate={{
+          y: [0, -15, 0],
+          opacity: [0.5, 1, 0.5],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
     </section>
   )
 }
