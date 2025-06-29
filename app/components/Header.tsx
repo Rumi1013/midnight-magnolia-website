@@ -1,97 +1,136 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, ShoppingBag, User } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useTheme } from "next-themes"
+import { motion } from "framer-motion"
+import { MoonIcon, SunIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
 
 export default function Header() {
+  const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    setMounted(true)
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const navigation = [
-    { name: "Home", href: "/" },
+    { name: "Sacred Tools", href: "/shop" },
     { name: "Shop", href: "/shop" },
-    { name: "Blog", href: "/blog" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Our Story", href: "/about" },
+    { name: "Midnight Musings", href: "/blog" },
+    { name: "Justice & Healing", href: "/justice" },
+    { name: "Community", href: "/community" },
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-midnight-blue/95 backdrop-blur-sm border-b border-sage-green/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span className="font-playfair text-2xl font-bold text-magnolia-white">
-              Midnight <span className="text-gold">Magnolia</span>
-            </span>
+    <motion.header
+      className={`fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
+        scrolled ? "bg-midnight-blue/90 shadow-md" : "bg-midnight-blue/50"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+        {/* Logo */}
+        <div className="flex lg:flex-1">
+          <Link href="/" className="-m-1.5 p-1.5 group">
+            <div className="flex items-center gap-3">
+              <div className="relative w-10 h-10 overflow-hidden rounded-full">
+                <Image
+                  src="/images/logo-minimal.jpg"
+                  alt="Midnight Magnolia"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+              </div>
+              <div>
+                <div className="font-playfair text-xl font-bold text-magnolia-white">Midnight Magnolia</div>
+                <div className="font-montserrat text-xs text-sage-green tracking-wider">DIGITAL SANCTUARY</div>
+              </div>
+            </div>
           </Link>
+        </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex lg:gap-x-6">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="font-lora text-sm text-magnolia-white hover:text-sage-green transition-colors duration-300 relative group"
+            >
+              {item.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-sage-green transition-all duration-300 group-hover:w-full" />
+            </Link>
+          ))}
+        </div>
+
+        {/* Right side actions */}
+        <div className="flex flex-1 justify-end items-center gap-4">
+          {/* Theme toggle */}
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+            </button>
+          )}
+
+          {/* CTA Button */}
+          <button className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
+            Enter Garden
+          </button>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="lg:hidden bg-midnight-blue border-t border-magnolia-white/10"
+        >
+          <div className="px-6 py-4 space-y-4">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="font-montserrat text-magnolia-white hover:text-sage-green transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+                className="block font-lora text-magnolia-white hover:text-sage-green transition-colors duration-300 py-2"
               >
                 {item.name}
               </Link>
             ))}
-          </nav>
-
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
-              <User className="h-5 w-5" />
-            </button>
-            <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
-              <ShoppingBag className="h-5 w-5" />
+            <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4">
+              Enter Garden
             </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-magnolia-white hover:text-sage-green transition-colors duration-200"
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-midnight-blue border-t border-sage-green/20"
-          >
-            <div className="px-4 py-4 space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block font-montserrat text-magnolia-white hover:text-sage-green transition-colors duration-200"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="flex items-center space-x-4 pt-4 border-t border-sage-green/20">
-                <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
-                  <User className="h-5 w-5" />
-                </button>
-                <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
-                  <ShoppingBag className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+        </motion.div>
+      )}
+    </motion.header>
   )
 }

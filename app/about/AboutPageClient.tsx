@@ -1,201 +1,235 @@
 "use client"
 
-import { motion } from "framer-motion"
 import Image from "next/image"
-import Link from "next/link"
-import { Heart, Sparkles, Moon, Star } from "lucide-react"
+import FloatingMoon from "../../components/FloatingMoon"
+import FloatingZodiac from "../../components/FloatingZodiac"
 
 export default function AboutPageClient() {
   return (
-    <div className="min-h-screen bg-magnolia-white pt-16">
-      {/* Hero Section */}
-      <section className="bg-midnight-blue py-20 relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{ y: [-20, 20, -20], rotate: [0, 5, 0] }}
-            transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            className="absolute top-20 left-10 text-gold/30"
-          >
-            <Moon size={40} />
-          </motion.div>
-          <motion.div
-            animate={{ y: [20, -20, 20], rotate: [0, -5, 0] }}
-            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-            className="absolute bottom-20 right-20 text-sage-green/30"
-          >
-            <Star size={32} />
-          </motion.div>
-        </div>
+    <>
+      <FloatingMoon />
+      <FloatingZodiac />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-magnolia-white mb-6">
-              Our Sacred
-              <span className="block text-gold">Story</span>
-            </h1>
-            <p className="font-lora text-xl text-magnolia-white/80 max-w-2xl mx-auto">
-              Where ancestral wisdom meets Southern Gothic grace in a digital sanctuary for healing souls
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Main Story Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative">
-                <Image
-                  src="/placeholder.svg?height=600&width=500&text=Founder+Story"
-                  alt="Midnight Magnolia Founder"
-                  width={500}
-                  height={600}
-                  className="rounded-2xl shadow-lg"
-                />
-                <div className="absolute -top-6 -right-6 bg-gold text-midnight-blue p-4 rounded-full">
-                  <Heart className="h-8 w-8" />
-                </div>
-                <div className="absolute -bottom-6 -left-6 bg-sage-green text-midnight-blue p-4 rounded-full">
-                  <Sparkles className="h-8 w-8" />
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="font-playfair text-3xl md:text-4xl font-bold text-midnight-blue mb-6">
-                  Born from Necessity,
-                  <span className="block text-gold">Nurtured by Grace</span>
-                </h2>
-
-                <div className="space-y-6 font-lora text-lg text-midnight-blue/80 leading-relaxed">
-                  <p>
-                    Midnight Magnolia emerged from the intersection of chronic illness, ADHD, and the deep need for
-                    healing tools that actually understand the complexities of living with invisible disabilities.
-                  </p>
-
-                  <p>
-                    As a Black woman navigating the wellness space, I found myself searching for resources that spoke to
-                    my experience—tools that honored both struggle and strength, that embraced the beauty in darkness
-                    alongside the light.
-                  </p>
-
-                  <p>
-                    Southern Gothic aesthetics became my language of healing, a way to process trauma while finding
-                    beauty in the broken places. This digital sanctuary was born from that journey.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center p-6 bg-sage-green/10 rounded-2xl">
-                  <div className="text-3xl font-playfair font-bold text-midnight-blue mb-2">2024</div>
-                  <div className="font-montserrat text-sm text-midnight-blue/70">Founded</div>
-                </div>
-                <div className="text-center p-6 bg-gold/10 rounded-2xl">
-                  <div className="text-3xl font-playfair font-bold text-midnight-blue mb-2">1000+</div>
-                  <div className="font-montserrat text-sm text-midnight-blue/70">Souls Served</div>
-                </div>
-              </div>
-            </motion.div>
+      <main className="min-h-screen bg-midnight-blue pt-24">
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-b from-midnight-blue to-midnight-teal">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="font-playfair text-5xl lg:text-6xl font-bold text-magnolia-white mb-6">
+                Our Sacred Story
+              </h1>
+              <p className="font-lora text-xl text-magnolia-white/80 leading-relaxed">
+                Born from transformation, rooted in resilience, and dedicated to creating digital sanctuaries where
+                healing and prosperity intertwine like Spanish moss on ancient magnolia trees.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Mission Section */}
-      <section className="py-20 bg-sage-green/10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-midnight-blue mb-8">
-              Our Sacred <span className="text-gold">Mission</span>
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-2xl shadow-sm">
-                <div className="bg-sage-green/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Heart className="h-8 w-8 text-sage-green" />
+        {/* Founder Story */}
+        <section className="py-20 bg-magnolia-white">
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <div>
+                  <p className="bg-sage-green text-magnolia-white font-montserrat text-sm tracking-wider uppercase px-4 py-2 rounded-full inline-block font-bold mb-6">
+                    Founder & Visionary
+                  </p>
+                  <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-midnight-blue mb-6">
+                    Latisha Vincent-Waters
+                  </h2>
+                  <p className="font-lora text-lg text-gray-800 leading-relaxed mb-6">
+                    Midnight Magnolia was born during my own season of transformation—a time when I needed to create not
+                    just a business, but a sanctuary. As a Black woman navigating chronic illness, career transition,
+                    and the call to build something meaningful, I found myself at the intersection of necessity and
+                    possibility.
+                  </p>
+                  <p className="font-lora text-lg text-gray-800 leading-relaxed mb-6">
+                    With a background in data analytics and newly earned HTML/CSS certification, I began weaving
+                    together my technical skills with my deep love for Southern heritage, spiritual practice, and the
+                    healing arts. What emerged was more than a brand—it became a digital altar where technology serves
+                    transformation.
+                  </p>
                 </div>
-                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-4">Trauma-Informed</h3>
-                <p className="font-lora text-midnight-blue/70">
-                  Every tool we create honors your healing journey and respects your pace
-                </p>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center p-6 bg-midnight-blue/5 rounded-2xl">
+                    <div className="text-3xl mb-2">🎓</div>
+                    <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-2">Certified</h3>
+                    <p className="font-lora text-gray-700 text-sm">HTML/CSS Development</p>
+                  </div>
+                  <div className="text-center p-6 bg-sage-green/10 rounded-2xl">
+                    <div className="text-3xl mb-2">📊</div>
+                    <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-2">Analytics</h3>
+                    <p className="font-lora text-gray-700 text-sm">Data-driven insights</p>
+                  </div>
+                </div>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm">
-                <div className="bg-gold/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Sparkles className="h-8 w-8 text-gold" />
+              <div className="relative">
+                <div className="relative w-full h-96 rounded-3xl overflow-hidden">
+                  <Image
+                    src="/founder-portrait.png"
+                    alt="Latisha Vincent-Waters, Founder of Midnight Magnolia"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-4">Inclusive</h3>
-                <p className="font-lora text-midnight-blue/70">
-                  A sanctuary for all bodies, minds, and spirits seeking gentle transformation
-                </p>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-sm">
-                <div className="bg-midnight-blue/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Moon className="h-8 w-8 text-midnight-blue" />
+                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gold rounded-full flex items-center justify-center">
+                  <div className="text-midnight-blue text-2xl">🌙</div>
                 </div>
-                <h3 className="font-playfair text-xl font-semibold text-midnight-blue mb-4">Sacred</h3>
-                <p className="font-lora text-midnight-blue/70">
-                  Honoring ancestral wisdom while embracing modern healing practices
-                </p>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-midnight-blue">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-magnolia-white mb-6">
-              Ready to Begin Your
-              <span className="block text-gold">Sacred Journey?</span>
+        {/* Mission & Values */}
+        <section className="py-20 bg-midnight-blue">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-magnolia-white mb-6">
+                Our Sacred Mission
+              </h2>
+              <p className="font-lora text-xl text-magnolia-white/80 max-w-3xl mx-auto leading-relaxed">
+                To create digital sanctuaries where Southern Gothic grace meets ancestral wisdom, supporting souls on
+                their journey toward healing, creativity, and sustainable prosperity.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: "🌱",
+                  title: "Trauma-Informed Design",
+                  description:
+                    "Every tool and experience is crafted with gentleness, understanding that healing happens at your own sacred pace.",
+                },
+                {
+                  icon: "🌸",
+                  title: "Ancestral Wisdom",
+                  description:
+                    "Honoring the strength and knowledge passed down through generations of resilient women who paved our paths.",
+                },
+                {
+                  icon: "✨",
+                  title: "Neurodivergent Friendly",
+                  description:
+                    "Celebrating different minds with tools that work with your brain's unique patterns, not against them.",
+                },
+                {
+                  icon: "🕊️",
+                  title: "Inclusive Sanctuary",
+                  description:
+                    "A safe space for all identities, especially centering Black women and marginalized voices in wellness.",
+                },
+                {
+                  icon: "🔮",
+                  title: "Digital Innovation",
+                  description:
+                    "Blending ancient wisdom with modern technology to create accessible, beautiful healing tools.",
+                },
+                {
+                  icon: "⚖️",
+                  title: "Justice & Healing",
+                  description:
+                    "Understanding that true wellness includes systemic change and community support for all.",
+                },
+              ].map((value, index) => (
+                <div
+                  key={value.title}
+                  className="bg-magnolia-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-magnolia-white/20 transition-all duration-300"
+                >
+                  <div className="text-4xl mb-4">{value.icon}</div>
+                  <h3 className="font-playfair text-xl font-semibold text-magnolia-white mb-4">{value.title}</h3>
+                  <p className="font-lora text-magnolia-white/80 leading-relaxed">{value.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Company Information */}
+        <section className="py-20 bg-[#F5EDD6]">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-16">
+                <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-midnight-blue mb-6">
+                  Rumi-Nations LLC
+                </h2>
+                <p className="font-lora text-xl text-gray-800 leading-relaxed">
+                  The parent company behind Midnight Magnolia, established to create sustainable, healing-centered
+                  businesses that serve our community with integrity and love.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="space-y-6">
+                  <h3 className="font-playfair text-2xl font-bold text-midnight-blue">Our Commitment</h3>
+                  <ul className="space-y-4 font-lora text-gray-800">
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-sage-green rounded-full mt-3 flex-shrink-0" />
+                      <span>Ethical business practices rooted in community care</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-sage-green rounded-full mt-3 flex-shrink-0" />
+                      <span>Sustainable income models that honor rest and boundaries</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-sage-green rounded-full mt-3 flex-shrink-0" />
+                      <span>Technology solutions that center accessibility and inclusion</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-sage-green rounded-full mt-3 flex-shrink-0" />
+                      <span>Creative expression as a pathway to healing and prosperity</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="space-y-6">
+                  <h3 className="font-playfair text-2xl font-bold text-midnight-blue">Contact Information</h3>
+                  <div className="space-y-4 font-lora text-gray-800">
+                    <div>
+                      <p className="font-semibold">Rumi-Nations LLC</p>
+                      <p>10070 Dorchester Rd, #51599</p>
+                      <p>Summerville, SC 29485</p>
+                    </div>
+                    <div>
+                      <p>Phone: (803) 387-2552</p>
+                      <p>Email: info@midnight-magnolia.com</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Business Hours:</p>
+                      <p>Monday - Friday: 9 AM - 5 PM EST</p>
+                      <p>Weekend: By appointment</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className="py-20 bg-midnight-blue">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="font-playfair text-4xl lg:text-5xl font-bold text-magnolia-white mb-6">
+              Ready to Begin Your Journey?
             </h2>
-            <p className="font-lora text-xl text-magnolia-white/80 mb-8 max-w-2xl mx-auto">
-              Join our community of healing souls and discover tools that honor your unique path
+            <p className="font-lora text-xl text-magnolia-white/80 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Whether you're seeking healing tools, digital products, or simply a community that understands your path,
+              we're here to support your transformation.
             </p>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/shop"
-                className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
-              >
-                Explore Sacred Tools
-              </Link>
-              <Link
-                href="/contact"
-                className="bg-transparent border-2 border-magnolia-white text-magnolia-white hover:bg-magnolia-white hover:text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300"
-              >
+              <button className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105">
+                Explore Our Products
+              </button>
+              <button className="border-2 border-sage-green hover:bg-sage-green text-sage-green hover:text-midnight-blue font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300">
                 Connect With Us
-              </Link>
+              </button>
             </div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+      </main>
+    </>
   )
 }

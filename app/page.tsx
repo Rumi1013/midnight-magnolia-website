@@ -1,17 +1,28 @@
 import Hero from "./components/Hero"
-import ProductGrid from "./components/ProductGrid"
 import AboutSection from "./components/AboutSection"
+import ProductsSection from "./components/ProductsSection"
+import ShopSection from "./components/ShopSection"
+import ShopifySection from "./components/ShopifySection"
 import BlogSection from "./components/BlogSection"
-import NewsletterSection from "./components/NewsletterSection"
+import JusticeSection from "./components/JusticeSection"
+import FloatingMoon from "./components/FloatingMoon"
+import FloatingZodiac from "./components/FloatingZodiac"
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <main className="min-h-screen bg-midnight-blue">
+    <>
+      {/* Floating elements - these need to be client components */}
+      <FloatingMoon />
+      <FloatingZodiac />
+
+      {/* Main content sections */}
       <Hero />
-      <ProductGrid products={[]} />
       <AboutSection />
+      <ProductsSection />
+      <ShopSection />
+      <ShopifySection />
       <BlogSection />
-      <NewsletterSection />
-    </main>
+      <JusticeSection />
+    </>
   )
 }
