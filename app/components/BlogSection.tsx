@@ -8,58 +8,60 @@ import { Calendar, Clock, ArrowRight } from "lucide-react"
 const featuredPosts = [
   {
     id: 1,
-    title: "Sacred Productivity for Chronic Illness Warriors",
-    excerpt: "Discover gentle systems that honor your energy cycles and create sustainable success without burnout.",
-    image: "/placeholder.svg?height=300&width=400&text=Sacred+Productivity",
+    title: "Gentle Productivity for Chronic Illness Warriors",
+    excerpt:
+      "Discover how to honor your energy cycles while building a sustainable creative practice that works with your body, not against it.",
+    image: "/placeholder.svg?height=300&width=400&text=Gentle+Productivity",
     category: "Wellness",
-    readTime: "8 min read",
     date: "Dec 15, 2024",
-    slug: "sacred-productivity-chronic-illness",
+    readTime: "8 min read",
+    slug: "gentle-productivity-chronic-illness",
   },
   {
     id: 2,
-    title: "Building Your Digital Sanctuary: A Beginner's Guide",
-    excerpt: "Step-by-step guidance for creating an online business that aligns with your values and healing journey.",
-    image: "/placeholder.svg?height=300&width=400&text=Digital+Sanctuary",
-    category: "Business",
-    readTime: "12 min read",
+    title: "Sacred Boundaries: The Art of Saying No with Grace",
+    excerpt:
+      "Learn to set boundaries that protect your energy while maintaining relationships, rooted in Southern wisdom and ancestral knowing.",
+    image: "/placeholder.svg?height=300&width=400&text=Sacred+Boundaries",
+    category: "Mindset",
     date: "Dec 12, 2024",
-    slug: "building-digital-sanctuary",
+    readTime: "6 min read",
+    slug: "sacred-boundaries-saying-no",
   },
   {
     id: 3,
-    title: "Moon Cycles and Manifestation for Entrepreneurs",
-    excerpt: "Harness lunar energy to align your business goals with natural rhythms and ancestral wisdom.",
-    image: "/placeholder.svg?height=300&width=400&text=Moon+Cycles",
-    category: "Spirituality",
-    readTime: "6 min read",
+    title: "Moon Phases and Business Cycles: Aligning with Natural Rhythms",
+    excerpt:
+      "Harness the power of lunar cycles to optimize your business strategy and honor your natural creative ebbs and flows.",
+    image: "/placeholder.svg?height=300&width=400&text=Moon+Business",
+    category: "Business",
     date: "Dec 10, 2024",
-    slug: "moon-cycles-manifestation",
+    readTime: "10 min read",
+    slug: "moon-phases-business-cycles",
   },
 ]
 
 export default function BlogSection() {
   return (
-    <section className="py-20 bg-midnight-blue">
+    <section className="py-20 bg-magnolia-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-playfair text-3xl md:text-5xl font-bold text-magnolia-white mb-6">
-            Sacred <span className="text-sage-green">Wisdom</span>
-          </h2>
-          <p className="font-lora text-xl text-magnolia-white/70 max-w-2xl mx-auto">
-            Gentle guidance, healing insights, and practical magic for your entrepreneurial journey
-          </p>
-        </motion.div>
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-playfair text-3xl md:text-5xl font-bold text-midnight-blue mb-6">
+              Sacred <span className="text-gold">Wisdom</span>
+            </h2>
+            <p className="font-lora text-xl text-midnight-blue/70 max-w-2xl mx-auto">
+              Gentle guidance, ancestral wisdom, and practical magic for your healing journey
+            </p>
+          </motion.div>
+        </div>
 
-        {/* Featured Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredPosts.map((post, index) => (
             <motion.article
               key={post.id}
@@ -67,9 +69,8 @@ export default function BlogSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group bg-magnolia-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              {/* Post Image */}
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={post.image || "/placeholder.svg"}
@@ -85,16 +86,15 @@ export default function BlogSection() {
                 </div>
               </div>
 
-              {/* Post Content */}
               <div className="p-6">
-                <div className="flex items-center gap-4 text-midnight-blue/60 text-xs font-montserrat mb-3">
+                <div className="flex items-center gap-4 text-xs text-midnight-blue/60 mb-3">
                   <div className="flex items-center gap-1">
-                    <Calendar size={12} />
-                    {post.date}
+                    <Calendar className="h-3 w-3" />
+                    <span className="font-montserrat">{post.date}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock size={12} />
-                    {post.readTime}
+                    <Clock className="h-3 w-3" />
+                    <span className="font-montserrat">{post.readTime}</span>
                   </div>
                 </div>
 
@@ -102,38 +102,29 @@ export default function BlogSection() {
                   {post.title}
                 </h3>
 
-                <p className="font-lora text-midnight-blue/70 text-sm leading-relaxed mb-4 line-clamp-3">
-                  {post.excerpt}
-                </p>
+                <p className="font-lora text-midnight-blue/70 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
 
                 <Link
                   href={`/blog/${post.slug}`}
                   className="inline-flex items-center gap-2 text-sage-green hover:text-sage-green/80 font-montserrat font-semibold text-sm transition-colors duration-200"
                 >
                   Read More
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
               </div>
             </motion.article>
           ))}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center mt-12">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 border-2 border-sage-green text-sage-green hover:bg-sage-green hover:text-midnight-blue font-montserrat font-bold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
+            className="inline-flex items-center gap-2 bg-midnight-blue hover:bg-midnight-blue/90 text-magnolia-white font-montserrat font-semibold py-4 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
           >
-            Enter the Garden of Wisdom
-            <ArrowRight size={18} />
+            Enter the Garden
+            <ArrowRight className="h-5 w-5" />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

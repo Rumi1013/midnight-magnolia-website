@@ -2,32 +2,29 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { Menu, X, ShoppingBag, User } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Shop", href: "/shop" },
-  { name: "Blog", href: "/blog" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-]
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/shop" },
+    { name: "Blog", href: "/blog" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ]
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-midnight-blue/95 backdrop-blur-sm border-b border-sage-green/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-sage-green rounded-full flex items-center justify-center">
-              <span className="text-midnight-blue font-bold text-sm">MM</span>
-            </div>
-            <span className="font-playfair text-xl font-bold text-magnolia-white">Midnight Magnolia</span>
+          <Link href="/" className="flex items-center">
+            <span className="font-playfair text-2xl font-bold text-magnolia-white">
+              Midnight <span className="text-gold">Magnolia</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -36,35 +33,36 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="font-lora text-magnolia-white hover:text-sage-green transition-colors duration-200"
+                className="font-montserrat text-magnolia-white hover:text-sage-green transition-colors duration-200"
               >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-full bg-sage-green/20 text-magnolia-white hover:bg-sage-green/30 transition-colors duration-200"
-            >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
+              <User className="h-5 w-5" />
             </button>
-
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-full bg-sage-green/20 text-magnolia-white hover:bg-sage-green/30 transition-colors duration-200"
-            >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
+              <ShoppingBag className="h-5 w-5" />
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-magnolia-white hover:text-sage-green transition-colors duration-200"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu */}
       <AnimatePresence>
-        {isOpen && (
+        {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
@@ -76,12 +74,20 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block font-lora text-magnolia-white hover:text-sage-green transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block font-montserrat text-magnolia-white hover:text-sage-green transition-colors duration-200"
                 >
                   {item.name}
                 </Link>
               ))}
+              <div className="flex items-center space-x-4 pt-4 border-t border-sage-green/20">
+                <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
+                  <User className="h-5 w-5" />
+                </button>
+                <button className="text-magnolia-white hover:text-sage-green transition-colors duration-200">
+                  <ShoppingBag className="h-5 w-5" />
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
