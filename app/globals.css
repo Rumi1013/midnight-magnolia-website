@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+
+    /* Midnight Magnolia Brand Colors */
+    --midnight-blue: #0a192f;
+    --midnight-indigo: #1a1a3e;
+    --magnolia-white: #faf3e0;
+    --rich-gold: #d4af37;
+    --sage-green: #a3b18a;
+    --lavender-mist: #9b8fb5;
+    --dewdrop-silver: #e8e5e0;
+    --petal-blush: #f5d5c8;
+    --deep-plum: #4a3556;
+    --warm-gray: #d4b99f;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Lora", serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-full px-8 py-4 text-base font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    font-family: "Montserrat", sans-serif;
+    min-height: 56px;
+  }
+
+  .btn-primary {
+    @apply bg-sage-green text-midnight-blue hover:scale-105 hover:shadow-lg;
+  }
+
+  .btn-primary:hover {
+    background-color: #9b8fb5;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    @apply border-2 border-magnolia-white/30 bg-transparent text-magnolia-white hover:border-gold hover:text-gold;
+  }
+
+  .btn-secondary:hover {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+
+  .card {
+    @apply rounded-3xl border border-dewdrop-silver bg-magnolia-white p-8 shadow-lg transition-all duration-300;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(10, 25, 47, 0.2);
+  }
+
+  .section {
+    @apply py-24;
+  }
+
+  .container {
+    @apply mx-auto max-w-7xl px-6;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #faf3e0;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #a3b18a;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d4af37;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

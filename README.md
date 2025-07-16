@@ -103,7 +103,7 @@ Our homepage follows proven patterns from successful sites like Fashion Steele N
 
 ## 📦 Component Architecture
 
-```
+\`\`\`
 src/components/
 ├── Layout/          # Navigation, Footer, Skip Links
 ├── Products/        # ShopSection, Portfolio, LogoShowcase  
@@ -112,11 +112,11 @@ src/components/
 ├── SpiritualResources/ # JusticeResources, Gallery, Archive
 ├── Effects/         # FireflyEffect, FloatingPetals
 └── MagicUI/         # Interactive components with animations
-```
+\`\`\`
 
 ## 🚀 Development
 
-```bash
+\`\`\`bash
 # Install dependencies
 npm install
 
@@ -125,7 +125,7 @@ npm run dev
 
 # Build for production  
 npm run build
-```
+\`\`\`
 
 ## 🌟 Business Model Alignment
 
