@@ -38,15 +38,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
-      - name: Run Codacy Analysis CLI
+      # Check if Codacy project token is available
+      - name: Check Codacy Configuration
+        id: check-config
+        run: |
+          if [ -n "${{ secrets.CODACY_PROJECT_TOKEN }}" ]; then
+            echo "project-token-available=true" >> $GITHUB_OUTPUT
+            echo "✅ Codacy project token is available"
+          else
+            echo "project-token-available=false" >> $GITHUB_OUTPUT
+            echo "⚠️ Codacy project token not found - running with default configurations"
+            echo "Note: For authenticated scanning, set CODACY_PROJECT_TOKEN secret"
+            echo "Local usage: export CODACY_PROJECT_TOKEN=your-token-here"
+          fi
+
+      # Execute Codacy Analysis CLI with token (when available)
+      - name: Run Codacy Analysis CLI (authenticated)
+        if: steps.check-config.outputs.project-token-available == 'true'
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
         timeout-minutes: 15
         continue-on-error: true
         env:
+          # Set project token as environment variable for both Analysis CLI and Coverage Reporter
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
         with:
-          # Project token for authenticated scanning (optional for public repos with default configs)
+          # Project token for authenticated scanning
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           # Enable verbose logging for debugging and transparency
           verbose: true
@@ -60,6 +76,25 @@ jobs:
           # Set maximum allowed issues to prevent workflow failure
           # Using max safe integer (2^31-1) to ensure SARIF generation regardless of issue count
           # GitHub Code Scanning will handle issue reporting and PR blocking decisions
+          max-allowed-issues: 2147483647
+
+      # Execute Codacy Analysis CLI without token (fallback mode)
+      - name: Run Codacy Analysis CLI (unauthenticated fallback)
+        if: steps.check-config.outputs.project-token-available == 'false'
+        uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
+        timeout-minutes: 15
+        continue-on-error: true
+        with:
+          # Run without project token using default tool configurations
+          # This works for public repositories with standard language detection
+          verbose: true
+          # Output file path for SARIF results
+          output: results.sarif
+          # Output format - SARIF for GitHub Code Scanning integration
+          format: sarif
+          # Enable GitHub Code Scanning compatibility mode
+          gh-code-scanning-compat: true
+          # Set maximum allowed issues to prevent workflow failure
           max-allowed-issues: 2147483647
 
       # Validate SARIF file was generated successfully
