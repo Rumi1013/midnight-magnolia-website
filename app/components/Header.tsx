@@ -91,7 +91,10 @@ export default function Header() {
           )}
 
           {/* CTA Button */}
-          <button className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
+          <button 
+            className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm"
+            aria-label="Enter the sacred garden"
+          >
             Enter Garden
           </button>
 
@@ -99,7 +102,9 @@ export default function Header() {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
           </button>
@@ -113,6 +118,9 @@ export default function Header() {
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           className="lg:hidden bg-midnight-blue border-t border-magnolia-white/10"
+          id="mobile-navigation"
+          role="navigation"
+          aria-label="Mobile navigation"
         >
           <div className="px-6 py-4 space-y-4">
             {navigation.map((item) => (
@@ -121,11 +129,15 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
                 className="block font-lora text-magnolia-white hover:text-sage-green transition-colors duration-300 py-2"
+                aria-describedby={`nav-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {item.name}
               </Link>
             ))}
-            <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4">
+            <button 
+              className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4"
+              aria-label="Enter the sacred garden"
+            >
               Enter Garden
             </button>
           </div>

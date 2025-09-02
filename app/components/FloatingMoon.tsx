@@ -16,6 +16,8 @@ function FloatingMoon() {
       }}
       whileHover={{ scale: 1.2 }}
       title="Your guiding moon"
+      aria-hidden="true"
+      role="presentation"
     >
       🌙
     </motion.div>

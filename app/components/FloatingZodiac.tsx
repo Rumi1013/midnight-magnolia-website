@@ -33,7 +33,7 @@ function FloatingZodiac() {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
       {" "}
       {/* z-index is 0 here, intended to be behind content */}
       {zodiacSigns.map((sign, index) => (
@@ -56,6 +56,7 @@ function FloatingZodiac() {
             ease: "easeInOut",
             delay: index * 0.5,
           }}
+          aria-label={`${sign.name} zodiac symbol`}
         >
           {sign.symbol}
         </motion.div>
