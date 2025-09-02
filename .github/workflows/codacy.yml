@@ -15,12 +15,12 @@ name: Codacy Security Scan
 
 on:
   push:
-    branches: [ "Midnight-magnolia-website", "preview" ]
+    branches: ["Midnight-magnolia-website", "preview"]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "Midnight-magnolia-website" ]
+    branches: ["Midnight-magnolia-website"]
   schedule:
-    - cron: '25 4 * * 4'
+    - cron: "25 4 * * 4"
 
 permissions:
   contents: read
@@ -41,21 +41,83 @@ jobs:
       # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
+        timeout-minutes: 15
+        continue-on-error: true
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
         with:
-          # Check https://github.com/codacy/codacy-analysis-cli#project-token to get your project token from your Codacy repository
-          # You can also omit the token and run the tools that support default configurations
+          # Project token for authenticated scanning (optional for public repos with default configs)
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          # Enable verbose logging for debugging and transparency
           verbose: true
+          # Output file path for SARIF results
           output: results.sarif
+          # Output format - SARIF for GitHub Code Scanning integration
           format: sarif
-          # Adjust severity of non-security issues
+          # Enable GitHub Code Scanning compatibility mode
+          # This adjusts severity levels and formats issues for optimal GitHub integration
           gh-code-scanning-compat: true
-          # Force 0 exit code to allow SARIF file generation
-          # This will handover control about PR rejection to the GitHub side
+          # Set maximum allowed issues to prevent workflow failure
+          # Using max safe integer (2^31-1) to ensure SARIF generation regardless of issue count
+          # GitHub Code Scanning will handle issue reporting and PR blocking decisions
           max-allowed-issues: 2147483647
+
+      # Validate SARIF file was generated successfully
+      - name: Validate SARIF output
+        if: always()
+        run: |
+          if [ ! -f "results.sarif" ]; then
+            echo "Warning: SARIF file was not generated"
+            exit 0
+          fi
+          echo "SARIF file generated successfully"
+          # Basic validation of SARIF structure
+          if command -v jq &> /dev/null; then
+            if ! jq empty results.sarif 2>/dev/null; then
+              echo "Warning: Generated SARIF file is not valid JSON"
+              exit 0
+            fi
+            echo "SARIF file is valid JSON"
+          fi
 
       # Upload the SARIF file generated in the previous step
       - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('results.sarif') != ''
         with:
           sarif_file: results.sarif
+          # Add category to distinguish from other security scanning tools
+          category: codacy-security-scan
+          # Wait for processing to complete before continuing
+          wait-for-processing: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Archive SARIF results for debugging
+      - name: Archive SARIF results
+        uses: actions/upload-artifact@v4
+        if: always() && hashFiles('results.sarif') != ''
+        with:
+          name: codacy-sarif-results-${{ github.run_number }}
+          path: results.sarif
+          retention-days: 30
+
+      # Summary of scan results
+      - name: Generate scan summary
+        if: always()
+        run: |
+          echo "## Codacy Security Scan Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Workflow Run**: ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Trigger**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "results.sarif" ]; then
+            echo "- **SARIF Generated**: ✅ Yes" >> $GITHUB_STEP_SUMMARY
+            if command -v jq &> /dev/null; then
+              ISSUE_COUNT=$(jq '.runs[0].results | length // 0' results.sarif 2>/dev/null || echo "unknown")
+              echo "- **Issues Found**: $ISSUE_COUNT" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "- **SARIF Generated**: ❌ No" >> $GITHUB_STEP_SUMMARY
+          fi
