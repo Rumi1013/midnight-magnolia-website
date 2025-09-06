@@ -156,4 +156,22 @@ export default function ThankYouPage() {
 
           {/* Support Information */}
           <div className="bg-sage-green/10 rounded-2xl p-6 max-w-2xl mx-auto">
-            <h3 className="font-playfair text-xl font-semibold text-magnolia-white mb-\
+            <h3 className="font-playfair text-xl font-semibold text-magnolia-white mb-3">
+              Need a hand?
+            </h3>
+            <p className="font-lora text-magnolia-white/80 mb-4">
+              If you have any questions or didn’t receive your email,
+              reach out and we’ll take care of you.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300"
+            >
+              Contact Support
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  )
+}
