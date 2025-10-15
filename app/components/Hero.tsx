@@ -21,14 +21,14 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-midnight-blue overflow-hidden flex items-center justify-center">
+    <section className="relative min-h-screen bg-midnight-blue overflow-hidden flex items-center justify-center" aria-label="Hero section - Welcome to Midnight Magnolia">
       {/* Background texture */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-br from-sage-green/20 to-transparent" />
       </div>
 
       {/* Floating magnolia petals */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
@@ -122,10 +122,16 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
             >
-              <button className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[56px] text-lg">
+              <button 
+                className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 min-h-[56px] text-lg"
+                aria-label="Enter the Garden - Start your healing journey"
+              >
                 Enter the Garden
               </button>
-              <button className="border-2 border-magnolia-white/30 hover:border-gold text-magnolia-white hover:text-gold font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 min-h-[56px] text-lg">
+              <button 
+                className="border-2 border-magnolia-white/30 hover:border-gold text-magnolia-white hover:text-gold font-montserrat font-semibold px-10 py-5 rounded-full transition-all duration-300 min-h-[56px] text-lg"
+                aria-label="Explore Sacred Tools - View our wellness products and resources"
+              >
                 Explore Sacred Tools
               </button>
             </motion.div>
@@ -135,17 +141,19 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.9 }}
               className="flex items-center justify-center lg:justify-start gap-8 pt-8"
+              role="region"
+              aria-label="Website statistics"
             >
               <div className="text-center">
-                <p className="text-gold font-playfair text-3xl font-bold">500+</p>
+                <p className="text-gold font-playfair text-3xl font-bold" aria-label="500 plus">500+</p>
                 <p className="text-magnolia-white/60 font-montserrat text-sm">Healing souls</p>
               </div>
-              <div className="w-px h-16 bg-magnolia-white/20" />
+              <div className="w-px h-16 bg-magnolia-white/20" aria-hidden="true" />
               <div className="text-center">
                 <p className="text-gold font-playfair text-3xl font-bold">78</p>
                 <p className="text-magnolia-white/60 font-montserrat text-sm">Tarot cards</p>
               </div>
-              <div className="w-px h-16 bg-magnolia-white/20" />
+              <div className="w-px h-16 bg-magnolia-white/20" aria-hidden="true" />
               <div className="text-center">
                 <p className="text-gold font-playfair text-3xl font-bold">24/7</p>
                 <p className="text-magnolia-white/60 font-montserrat text-sm">Gentle support</p>
@@ -190,6 +198,7 @@ export default function Hero() {
                 animate={{ y: [-15, 15, -15] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                 className="absolute top-16 right-16 text-5xl"
+                aria-hidden="true"
               >
                 🌙
               </motion.div>
@@ -198,6 +207,7 @@ export default function Hero() {
                 animate={{ y: [15, -15, 15] }}
                 transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
                 className="absolute bottom-16 left-16 text-4xl"
+                aria-hidden="true"
               >
                 ✨
               </motion.div>
@@ -206,6 +216,7 @@ export default function Hero() {
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="absolute top-32 left-8 text-3xl"
+                aria-hidden="true"
               >
                 🕯️
               </motion.div>
@@ -217,6 +228,7 @@ export default function Hero() {
                 }}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
                 className="absolute bottom-32 right-8 text-3xl"
+                aria-hidden="true"
               >
                 🌿
               </motion.div>
@@ -231,6 +243,8 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        role="region"
+        aria-label="Scroll indicator"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
@@ -238,7 +252,7 @@ export default function Hero() {
           className="text-magnolia-white/60 text-center"
         >
           <p className="font-montserrat text-sm mb-2">Begin your journey</p>
-          <div className="w-6 h-10 border-2 border-magnolia-white/30 rounded-full mx-auto flex justify-center">
+          <div className="w-6 h-10 border-2 border-magnolia-white/30 rounded-full mx-auto flex justify-center" aria-hidden="true">
             <div className="w-1 h-3 bg-magnolia-white/60 rounded-full mt-2" />
           </div>
         </motion.div>

@@ -21,9 +21,18 @@ export default function Footer() {
               and sacred rituals begins here.
             </p>
             <div className="flex gap-4 mt-6">
-              {["🌙", "✨", "🌱", "🕯️"].map((emoji, index) => (
-                <div key={index} className="text-2xl hover:scale-110 transition-transform duration-300 cursor-pointer">
-                  {emoji}
+              {[
+                { emoji: "🌙", label: "Moon" },
+                { emoji: "✨", label: "Stars" },
+                { emoji: "🌱", label: "Growth" },
+                { emoji: "🕯️", label: "Candle" },
+              ].map((item, index) => (
+                <div 
+                  key={index} 
+                  className="text-2xl hover:scale-110 transition-transform duration-300 cursor-pointer"
+                  aria-hidden="true"
+                >
+                  {item.emoji}
                 </div>
               ))}
             </div>
