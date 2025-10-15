@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Dependencies
 node_modules/
 **/node_modules/
@@ -45,11 +46,27 @@ stripe-webhook/.env
 stripe-webhook/**/.env
 
 # Debug
+=======
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+>>>>>>> origin/main
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+<<<<<<< HEAD
 # IDE
 .vscode/
 .idea/
@@ -112,11 +129,17 @@ yarn-error.log*
 # local env files
 .env*.local
 
+=======
+# env files
+.env*
+
+>>>>>>> origin/main
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+<<<<<<< HEAD
 next-env.d.ts
 
 # IDE
@@ -137,3 +160,6 @@ temp/
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+=======
+next-env.d.ts
+>>>>>>> origin/main
