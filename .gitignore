@@ -1,30 +1,177 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# ────────────────────────────────────────────────
+# 🌙 Midnight Magnolia .gitignore
+# Rooted in Mystery. Blooming in Truth.
+# Protects secrets, build files, and local environment
+# ────────────────────────────────────────────────
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# debug
+# === Node.js / Next.js ===
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
-
-# env files
-.env*
-
-# vercel
-.vercel
-
-# typescript
+pnpm-debug.log*
+package-lock.json
+.pnpm-store/
+dist/
+build/
+.next/
+out/
+.cache/
 *.tsbuildinfo
-next-env.d.ts
 
-#Ignore vscode AI rules
-.github/instructions/codacy.instructions.md
+# === Monorepo structure ===
+apps/*/node_modules/
+packages/*/node_modules/
+apps/*/.next/
+packages/*/.next/
+apps/*/dist/
+packages/*/dist/
+apps/*/out/
+packages/*/out/
+
+# === Environment & Config ===
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env*.local
+.envrc
+# Safe templates only:
+!.env.example
+!MidnightMagnolia_env_template.md
+
+# === OS / System ===
+.DS_Store
+Thumbs.db
+Icon?
+ehthumbs.db
+desktop.ini
+
+# === Logs & Diagnostics ===
+*.log
+logs/
+debug/
+*.pid
+*.seed
+*.pid.lock
+
+# === IDE / Editor ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.orig
+*.rej
+
+# === Replit ===
+.replit
+replit.nix
+__pycache__/
+*.pyc
+
+# === DigitalOcean / Deployment ===
+.do/
+.docker/
+.dockerignore
+docker-compose.yml
+Dockerfile
+.DS_Store
+
+# === Git / LFS / Cache ===
+.git/
+.gitignore~
+.gitmodules
+.gitconfig
+*.orig
+*.lock
+
+# === Compiled / Temporary Assets ===
+*.log
+*.csv~
+*.zip
+*.tar
+*.tar.gz
+*.tmp
+*.bak
+*.old
+*.swp
+*.swo
+.cache/
+coverage/
+*.map
+*.min.js
+*.min.css
+
+# === Local Workflows / AI Prompts / Backups ===
+_imports/
+_exports/
+_backups/
+MidnightMagnolia_MasterPrompt.txt
+MidnightMagnolia_StarterDataPack.zip
+MidnightMagnolia_MasterPrompt_Fixed.zip
+MidnightMagnolia_BusinessPlan.docx
+MidnightMagnolia_env_template.md
+
+# === VS Code / Local Build ===
+.vscode/
+.history/
+*.code-workspace
+*.workspace
+*.iml
+
+# === Media / Uploads (keep cloud-hosted only) ===
+public/uploads/
+public/tmp/
+*.mp4
+*.mov
+*.psd
+*.ai
+*.xcf
+*.tiff
+*.tif
+
+# === Python / Helper Scripts (Replit/AI use) ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+
+# === Testing & CI ===
+coverage/
+.nyc_output/
+junit.xml
+test-results.xml
+cypress/videos/
+cypress/screenshots/
+jest-html-reporters-*
+
+# === Miscellaneous ===
+*.bak
+*.tmp
+*.log
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+*.sql
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+*.sqlite3
+
+# === Optional Backups (keep excluded locally) ===
+midnight-magnolia-website._backup_*/
