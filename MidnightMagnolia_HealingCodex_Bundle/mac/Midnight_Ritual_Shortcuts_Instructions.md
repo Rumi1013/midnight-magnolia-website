@@ -1,0 +1,1 @@
+# Shortcuts Steps\n1) Set Brightness 30%\n2) Turn Night Shift On\n3) Open Notion URL\n4) Open Sound_Palette phase URL\n5) Notify: 'You made it to the quiet.'\n6) Wait 25m (optional)\n7) Do nothing; audio continues.\n

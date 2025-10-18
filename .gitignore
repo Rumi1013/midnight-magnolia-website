@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # ────────────────────────────────────────────────
 # 🌙 Midnight Magnolia .gitignore
 # Rooted in Mystery. Blooming in Truth.
@@ -175,3 +173,21 @@ jest-html-reporters-*
 
 # === Optional Backups (keep excluded locally) ===
 midnight-magnolia-website._backup_*/
+# --- Replit / local state noise ---
+.local/
+**/.replit/
+**/.replit/**
+
+# Replit agent/state blobs
+**/.agent_state_*.bin
+**/repl_state.bin
+**/filesystem/filesystem_state.json
+**/rapid_build_started
+**/.latest.json
+
+# Code quality tooling caches
+.config/.semgrep/
+.codacy/
+
+# Build & tooling extras (already mostly covered above)
+*.log

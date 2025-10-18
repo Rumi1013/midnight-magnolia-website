@@ -1,0 +1,13 @@
+:root{
+  --midnight: #0A0F14;
+  --magnolia: #F6F4EF;
+  --gold: #C19A33;
+  --sage: #8A9B6E;
+  --plum: #56334E;
+  --cream: #EDE9E2;
+
+  --font-header: 'Cormorant Garamond', serif;
+  --font-body: 'Merriweather', serif;
+  --font-ui: 'Poppins', sans-serif;
+  --font-accent: 'Cormorant SC', serif;
+}

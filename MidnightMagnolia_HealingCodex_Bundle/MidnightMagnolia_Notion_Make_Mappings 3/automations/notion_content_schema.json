@@ -1,0 +1,58 @@
+{
+  "title": {
+    "name": "Title",
+    "type": "title"
+  },
+  "status": {
+    "name": "Status",
+    "type": "status"
+  },
+  "publish_date": {
+    "name": "Publish Date",
+    "type": "date"
+  },
+  "channel": {
+    "name": "Channel",
+    "type": "select",
+    "select": {
+      "options": [
+        {
+          "name": "Blog",
+          "color": "blue"
+        },
+        {
+          "name": "Newsletter",
+          "color": "yellow"
+        },
+        {
+          "name": "Instagram",
+          "color": "pink"
+        },
+        {
+          "name": "Pinterest",
+          "color": "red"
+        }
+      ]
+    }
+  },
+  "cta": {
+    "name": "CTA",
+    "type": "url"
+  },
+  "excerpt": {
+    "name": "Excerpt",
+    "type": "rich_text"
+  },
+  "tags": {
+    "name": "Tags",
+    "type": "multi_select"
+  },
+  "asset_url": {
+    "name": "Asset URL",
+    "type": "url"
+  },
+  "campaign_id": {
+    "name": "Campaign ID",
+    "type": "rich_text"
+  }
+}
