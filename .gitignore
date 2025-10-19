@@ -191,3 +191,34 @@ midnight-magnolia-website._backup_*/
 
 # Build & tooling extras (already mostly covered above)
 *.log
+# envs
+.env
+.env.local
+.env.production
+MidnightMagnolia_env_template.md
+
+# backups and OS junk
+package.json.bak.*
+.DS_Store
+# --- Midnight Magnolia local ignores ---
+.env
+.env.local
+.env.production
+MidnightMagnolia_env_template.md
+
+# SQLite artifacts
+*.sqlite-shm
+*.sqlite-wal
+
+# Backups & OS junk
+package.json.bak.*
+.DS_Store
+
+# Local build output
+.next/
+dist/
+coverage/
+.turbo/
+
+# Bulk bundles (keep out until sanitized)
+MidnightMagnolia_HealingCodex_Bundle/
