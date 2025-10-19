@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,700&family=IBM+Plex+Serif:wght@400;500;600&family=Poppins:wght@400;500;600;700&family=Parisienne&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Midnight Magnolia Brand Colors */
+  --midnight-blue: hsl(213, 64%, 12%);
+  --magnolia-white: hsl(40, 44%, 93%);
+  --rich-gold: hsl(43, 64%, 52%);
+  --sage-green: hsl(90, 24%, 65%);
+  --deep-purple: hsl(271, 18%, 31%);
+  --soft-cream: hsl(50, 100%, 96%);
+  
+  /* Additional Brand Colors from Style Guide */
+  --iron: #1E1E1E;
+  --taupe: #BFAEA0;
+  --glow: #EEE3CF;
+  --mist: #889696;
+  --laurel: #7DA27E;
+  --amber: #D9A441;
+  --rose: #9C3F3F;
+  --river: #4C6D9C;
+  
+  /* Semantic Tokens */
+  --background: hsl(213, 64%, 12%);
+  --foreground: hsl(40, 44%, 93%);
+  --card: hsl(271, 18%, 31%);
+  --card-foreground: hsl(40, 44%, 93%);
+  --popover: hsl(213, 64%, 12%);
+  --popover-foreground: hsl(40, 44%, 93%);
+  --primary: hsl(43, 64%, 52%);
+  --primary-foreground: hsl(213, 64%, 12%);
+  --secondary: hsl(90, 24%, 65%);
+  --secondary-foreground: hsl(213, 64%, 12%);
+  --muted: hsl(271, 18%, 31%);
+  --muted-foreground: hsl(40, 44%, 80%);
+  --accent: hsl(43, 64%, 52%);
+  --accent-foreground: hsl(213, 64%, 12%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(40, 44%, 93%);
+  --border: hsl(90, 24%, 65%);
+  --input: hsl(271, 18%, 31%);
+  --ring: hsl(43, 64%, 52%);
+  
+  /* Font Families */
+  --font-display: 'Cormorant Garamond', 'Playfair Display', serif;
+  --font-body: 'IBM Plex Serif', 'Lora', serif;
+  --font-accent: 'Poppins', 'Montserrat', sans-serif;
+  --font-cursive: 'Parisienne', cursive;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(213, 64%, 8%);
+  --foreground: hsl(40, 44%, 95%);
+  --card: hsl(271, 18%, 25%);
+  --card-foreground: hsl(40, 44%, 95%);
+  --popover: hsl(213, 64%, 8%);
+  --popover-foreground: hsl(40, 44%, 95%);
+  --primary: hsl(43, 64%, 58%);
+  --primary-foreground: hsl(213, 64%, 8%);
+  --secondary: hsl(90, 24%, 70%);
+  --secondary-foreground: hsl(213, 64%, 8%);
+  --muted: hsl(271, 18%, 25%);
+  --muted-foreground: hsl(40, 44%, 75%);
+  --accent: hsl(43, 64%, 58%);
+  --accent-foreground: hsl(213, 64%, 8%);
+  --destructive: hsl(0, 84%, 65%);
+  --destructive-foreground: hsl(40, 44%, 95%);
+  --border: hsl(90, 24%, 70%);
+  --input: hsl(271, 18%, 25%);
+  --ring: hsl(43, 64%, 58%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply transition-all duration-300 hover:text-accent;
+    font-family: var(--font-accent);
+    text-shadow: 0 0 20px transparent;
+  }
+  
+  .nav-link:hover {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  
+  .gold-glow:hover {
+    @apply shadow-lg border-accent;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  }
+  
+  .product-card:hover {
+    @apply -translate-y-2 transition-all duration-300;
+  }
+  
+  .btn-gold {
+    @apply text-accent-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    background: linear-gradient(to bottom right, hsl(43, 64%, 52%), hsl(43, 64%, 45%));
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-sm border;
+    background: rgba(74, 63, 92, 0.3);
+    border-color: rgba(163, 177, 138, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  
+  .hero-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(163, 177, 138, 0.1) 0%, transparent 50%);
+  }
+  
+  .magnolia-icon {
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+  }
+  
+  .font-cursive {
+    font-family: var(--font-cursive);
+  }
+}
