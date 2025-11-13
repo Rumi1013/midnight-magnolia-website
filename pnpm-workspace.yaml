@@ -1,2 +1,9 @@
 onlyBuiltDependencies:
   - sharp
+
+packages:
+  # Root Next.js site (main app)
+  - '.'
+  # Sacred Essences Shopify app
+  - 'sacred-essences'
+  # No additional packages to add at this time.
