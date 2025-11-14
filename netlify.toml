@@ -17,6 +17,9 @@
   
   # Enable pnpm
   NPM_FLAGS = "--legacy-peer-deps"
+  
+  # Allow Stripe publishable key in build output (it's designed to be public)
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"
 
 # Redirect rules for clean URLs
 [[redirects]]
