@@ -12,8 +12,8 @@
   base = "."
 
 [build.environment]
-  # Node version
-  NODE_VERSION = "18"
+  # Node version (20+ required for Next.js 15 and Supabase)
+  NODE_VERSION = "20"
   
   # Enable pnpm
   NPM_FLAGS = "--legacy-peer-deps"
