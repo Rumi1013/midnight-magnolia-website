@@ -18,8 +18,9 @@
   # Enable pnpm
   NPM_FLAGS = "--legacy-peer-deps"
   
-  # Allow Stripe publishable key in build output (it's designed to be public)
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"
+  # Allow public keys in build output (Stripe publishable keys are designed to be public)
+  # Shopify storefront tokens are also safe for client-side use
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN,NEXT_PUBLIC_SHOPIFY_DOMAIN"
 
 # Redirect rules for clean URLs
 [[redirects]]
