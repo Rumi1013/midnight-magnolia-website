@@ -164,3 +164,4 @@ temp/
 next-env.d.ts
 >>>>>>> origin/main
 .env
+_archive/
