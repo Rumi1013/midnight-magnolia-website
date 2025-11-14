@@ -21,6 +21,10 @@
   # Allow public keys in build output (Stripe publishable keys are designed to be public)
   # Shopify storefront tokens are also safe for client-side use
   SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN,NEXT_PUBLIC_SHOPIFY_DOMAIN"
+  
+  # Skip secrets scanning in .next build directory (temporary artifacts, not deployed)
+  # Only the 'out' directory is published to production
+  SECRETS_SCAN_OMIT_PATHS = ".next/**"
 
 # Redirect rules for clean URLs
 [[redirects]]
