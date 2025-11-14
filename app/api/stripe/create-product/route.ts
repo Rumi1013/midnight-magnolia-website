@@ -1,13 +1,17 @@
 import { type NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 
-// Initialize Stripe with your secret key
-// In production, use environment variables
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2023-10-16",
-})
+function getStripe() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error("STRIPE_SECRET_KEY is not configured")
+  }
+  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2023-10-16",
+  })
+}
 
 export async function POST(request: NextRequest) {
+  const stripe = getStripe()
   try {
     const { name, description, amount, currency = "usd", type = "one-time", interval } = await request.json()
 

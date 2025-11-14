@@ -1,10 +1,12 @@
 import { neon } from "@neondatabase/serverless"
 
-const connectionString = process.env.POSTGRES_URL
-if (!connectionString) {
-  throw new Error("POSTGRES_URL environment variable is not set.")
+function getSQL() {
+  const connectionString = process.env.POSTGRES_URL
+  if (!connectionString) {
+    throw new Error("POSTGRES_URL environment variable is not set.")
+  }
+  return neon(connectionString)
 }
-const sql = neon(connectionString)
 
 export interface ShopifyCustomer {
   id?: number

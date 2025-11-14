@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o out",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "validate:env": "node scripts/check-env.mjs",
     "dev:validated": "npm run validate:env && pnpm dev",
-    "deploy": "npm run build && gh-pages -d out -t true"
+    "deploy": "next build && cp -r .next/static out && gh-pages -d out -t",
+    "deploy:gh": "next build && gh-pages -d out -t"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "1.4.0",
@@ -62,6 +63,7 @@
     "react-day-picker": "8.10.1",
     "react-dom": "19.2.0",
     "react-hook-form": "7.65.0",
+    "react-markdown": "^10.1.0",
     "react-resizable-panels": "2.1.9",
     "recharts": "2.15.0",
     "sonner": "1.7.4",

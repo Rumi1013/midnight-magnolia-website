@@ -1,0 +1,85 @@
+# Netlify Configuration for Midnight Magnolia
+# This file tells Netlify exactly how to build your site
+
+[build]
+  # Build command to run
+  command = "pnpm run build"
+  
+  # Directory with built files to publish
+  publish = "out"
+  
+  # Base directory (where package.json is)
+  base = "."
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "18"
+  
+  # Enable pnpm
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Redirect rules for clean URLs
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/shop/*"
+  to = "/shop/:splat"
+  status = 200
+
+# 404 page
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Headers for static assets (cache for 1 year)
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Form handling (if you add Netlify forms)
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = false
+  minify = true
+
+[build.processing.js]
+  bundle = false
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+

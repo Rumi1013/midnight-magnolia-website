@@ -1,0 +1,98 @@
+# Cursor Agent Rules for Midnight Magnolia Deployment
+
+## Project Context
+This is a Next.js 15 static site (output: 'export') for Midnight Magnolia, a trauma-informed digital sanctuary.
+
+## Deployment Platform
+- **Host:** Netlify
+- **Configuration:** netlify.toml (auto-configured)
+- **Build:** Static site generation
+- **Package Manager:** pnpm
+
+## Automated Deployment Steps
+
+### 1. Pre-Deployment Check
+```bash
+# Verify build works locally
+pnpm run build
+
+# Check git status
+git status
+
+# Ensure all changes are committed
+git add .
+git commit -m "Deploy: [description]"
+```
+
+### 2. Push to GitHub
+```bash
+# Push changes
+git push origin main
+```
+
+### 3. Netlify Auto-Deploys
+- Netlify monitors GitHub repo
+- Auto-builds on every push to main
+- Uses settings from netlify.toml
+
+## Environment Variables Required
+When setting up Netlify for the first time, add these:
+- STRIPE_SECRET_KEY
+- POSTGRES_URL  
+- SUPABASE_URL
+- SUPABASE_ANON_KEY
+- NEXT_PUBLIC_SHOPIFY_DOMAIN (optional)
+- NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN (optional)
+
+## Build Configuration
+- **Build command:** `pnpm run build`
+- **Publish directory:** `out`
+- **Node version:** 18
+- **Framework:** Next.js (static export)
+
+## File Structure
+```
+/
+├── app/                  # Next.js app directory
+├── public/              # Static assets
+├── netlify.toml         # Netlify config (auto-deploy)
+├── next.config.mjs      # Next.js config (output: 'export')
+└── package.json         # Dependencies & scripts
+```
+
+## Key Files
+- **netlify.toml:** Netlify build configuration
+- **next.config.mjs:** Must have `output: 'export'`
+- **.env.local:** Local secrets (NEVER commit!)
+
+## Deployment Verification
+After deployment, test these URLs:
+- / (homepage)
+- /blog
+- /blog/eulogy-for-the-life-i-survived
+- /shop
+- /shop/magnolia-reset-journal
+- /about
+- /contact
+- /community
+
+## Troubleshooting
+- **Build fails:** Check pnpm-lock.yaml is committed
+- **Images missing:** Verify all images in /public
+- **API routes fail:** They won't work in static export (expected)
+- **404 errors:** Check netlify.toml redirects
+
+## Agent Actions
+When user says "deploy" or "push to production":
+1. Run `git add .`
+2. Run `git commit -m "Deploy: [changes]"`
+3. Run `git push origin main`
+4. Netlify auto-deploys (wait 3-5 min)
+5. Verify deployment in Netlify dashboard
+
+## Important Notes
+- This is a STATIC site (no server-side rendering)
+- API routes in /app/api won't work (use external APIs)
+- Environment variables must be added in Netlify dashboard
+- Every git push = automatic deployment
+

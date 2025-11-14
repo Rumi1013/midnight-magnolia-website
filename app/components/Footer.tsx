@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -8,7 +9,15 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="text-3xl">🌸</div>
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/magnolia-logo.png"
+                  alt="Midnight Magnolia"
+                  width={48}
+                  height={48}
+                  className="object-contain"
+                />
+              </div>
               <div>
                 <div className="font-playfair text-2xl font-bold text-magnolia-white">Midnight Magnolia</div>
                 <div className="font-montserrat text-sm text-sage-green tracking-wider">
@@ -34,18 +43,18 @@ export default function Footer() {
             <h3 className="font-playfair text-lg font-semibold text-magnolia-white mb-4">Sacred Tools</h3>
             <ul className="space-y-3">
               {[
-                "The Magnolia Reset",
-                "Midnight Messages",
-                "Sacred Productivity",
-                "Healing Journals",
-                "Ritual Guides",
+                { name: "The Magnolia Reset", href: "/shop" },
+                { name: "Midnight Messages", href: "/blog" },
+                { name: "Sacred Productivity", href: "/shop" },
+                { name: "Healing Journals", href: "/shop" },
+                { name: "Ritual Guides", href: "/shop" },
               ].map((item) => (
-                <li key={item}>
+                <li key={item.name}>
                   <Link
-                    href="#"
+                    href={item.href}
                     className="font-lora text-magnolia-white/70 hover:text-sage-green transition-colors duration-300"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -56,13 +65,19 @@ export default function Footer() {
           <div>
             <h3 className="font-playfair text-lg font-semibold text-magnolia-white mb-4">Community</h3>
             <ul className="space-y-3">
-              {["Our Story", "Healing Circle", "Testimonials", "Support", "Contact"].map((item) => (
-                <li key={item}>
+              {[
+                { name: "Our Story", href: "/about" },
+                { name: "Healing Circle", href: "/community" },
+                { name: "Testimonials", href: "/about" },
+                { name: "Support", href: "/contact" },
+                { name: "Contact", href: "/contact" },
+              ].map((item) => (
+                <li key={item.name}>
                   <Link
-                    href="#"
+                    href={item.href}
                     className="font-lora text-magnolia-white/70 hover:text-sage-green transition-colors duration-300"
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}

@@ -121,11 +121,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${lora.variable} ${montserrat.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/magnolia-logo.svg" />
         <meta name="theme-color" content="#0A192F" />
         <meta name="msapplication-TileColor" content="#0A192F" />
       </head>
@@ -134,7 +132,7 @@ export default function RootLayout({
           <CartProvider>
             <div className="flex min-h-screen flex-col">
               <Header />
-              <main className="flex-1 pt-20">{children}</main>
+              <main id="main-content" className="flex-1 pt-20" role="main">{children}</main>
               <Footer />
             </div>
             <SacredCart />

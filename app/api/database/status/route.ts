@@ -5,7 +5,11 @@ import { createClient } from "@supabase/supabase-js"
 // 🌙 Check your existing database connections
 const neonSql = neon(process.env.DATABASE_URL!)
 
-const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!)
+const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+const supabase =
+  supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null
 
 export async function GET() {
   const status = {
@@ -39,16 +43,20 @@ export async function GET() {
   }
 
   // 🌿 Test Supabase connection
-  try {
-    const { data, error } = await supabase.from("_").select("*").limit(1)
-    if (!error || error.message.includes("does not exist")) {
-      status.supabase.connected = true
-      status.supabase.info = "Connected successfully"
-    } else {
+  if (supabase) {
+    try {
+      const { error } = await supabase.from("_").select("*").limit(1)
+      if (!error || error.message.includes("does not exist")) {
+        status.supabase.connected = true
+        status.supabase.info = "Connected successfully"
+      } else {
+        status.supabase.error = error.message
+      }
+    } catch (error: any) {
       status.supabase.error = error.message
     }
-  } catch (error: any) {
-    status.supabase.error = error.message
+  } else {
+    status.supabase.error = "Supabase environment variables not configured"
   }
 
   return NextResponse.json({
@@ -56,8 +64,8 @@ export async function GET() {
     databases: status,
     environment: {
       hasNeonUrl: !!process.env.DATABASE_URL,
-      hasSupabaseUrl: !!process.env.SUPABASE_URL,
-      hasSupabaseKey: !!process.env.SUPABASE_ANON_KEY,
+      hasSupabaseUrl: !!supabaseUrl,
+      hasSupabaseKey: !!supabaseAnonKey,
       nodeEnv: process.env.NODE_ENV,
     },
     timestamp: new Date().toISOString(),

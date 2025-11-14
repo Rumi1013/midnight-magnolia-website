@@ -1,19 +1,18 @@
 import { type NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 
-// Initialize Stripe with proper error handling
-const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: "2023-10-16",
-    })
-  : null
-
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || ""
+function getStripe() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error("Stripe not configured")
+  }
+  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2023-10-16",
+  })
+}
 
 export async function POST(request: NextRequest) {
-  if (!stripe) {
-    return NextResponse.json({ error: "Stripe not configured" }, { status: 500 })
-  }
+  const stripe = getStripe()
+  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
 
   if (!endpointSecret) {
     return NextResponse.json({ error: "Webhook secret not configured" }, { status: 500 })

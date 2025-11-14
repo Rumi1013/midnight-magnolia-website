@@ -35,25 +35,37 @@ export default function Header() {
   ]
 
   return (
-    <motion.header
-      className={`fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
-        scrolled ? "bg-midnight-blue/90 shadow-md" : "bg-midnight-blue/50"
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+    <>
+      {/* Skip to main content link for keyboard navigation - WCAG 2.4.1 */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-6 focus:py-3 focus:bg-sage-green focus:text-midnight-blue focus:font-montserrat focus:font-semibold focus:rounded-full focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+
+      <motion.header
+        className={`fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
+          scrolled ? "bg-midnight-blue/90 shadow-md" : "bg-midnight-blue/50"
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        role="banner"
+      >
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Main navigation">
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 group">
+          <Link href="/" className="-m-1.5 p-1.5 group" aria-label="Midnight Magnolia home">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 overflow-hidden rounded-full">
+              <div className="relative w-10 h-10">
                 <Image
-                  src="/images/logo-minimal.jpg"
-                  alt="Midnight Magnolia"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  src="/magnolia-logo.png"
+                  alt="Midnight Magnolia logo - magnolia flower"
+                  width={40}
+                  height={40}
+                  className="group-hover:scale-110 transition-transform duration-300"
+                  priority
                 />
               </div>
               <div>
@@ -103,7 +115,9 @@ export default function Header() {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
           </button>
@@ -113,10 +127,13 @@ export default function Header() {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <motion.div
+          id="mobile-menu"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           className="lg:hidden bg-midnight-blue border-t border-magnolia-white/10"
+          role="navigation"
+          aria-label="Mobile navigation"
         >
           <div className="px-6 py-4 space-y-4">
             {navigation.map((item) => (
@@ -136,5 +153,6 @@ export default function Header() {
         </motion.div>
       )}
     </motion.header>
+    </>
   )
 }

@@ -7,18 +7,10 @@ import { motion } from "framer-motion"
 import { Search, Calendar, Clock, Tag, ChevronRight } from "lucide-react"
 import FloatingMoon from "@/app/components/FloatingMoon"
 import FloatingZodiac from "@/app/components/FloatingZodiac"
+import { blogPosts, categories } from "./data/blogPosts"
 
-const categories = [
-  "All Posts",
-  "Ancestral Wisdom",
-  "Gentle Productivity",
-  "Healing Practices",
-  "Southern Gothic",
-  "ADHD & Neurodivergence",
-  "Ritual & Ceremony",
-]
-
-const blogPosts = [
+// Using imported blog posts from centralized data
+const allBlogPosts = [
   {
     id: 1,
     title: "Embracing the Shadows: Finding Healing in Southern Gothic Traditions",
@@ -121,7 +113,7 @@ export default function BlogPageClient() {
   const [selectedCategory, setSelectedCategory] = useState("All Posts")
   const [searchQuery, setSearchQuery] = useState("")
 
-  const filteredPosts = blogPosts.filter((post) => {
+  const filteredPosts = allBlogPosts.filter((post) => {
     // Filter by category
     if (selectedCategory !== "All Posts" && post.category !== selectedCategory) return false
 
@@ -137,7 +129,7 @@ export default function BlogPageClient() {
   })
 
   // Get featured posts
-  const featuredPosts = blogPosts.filter((post) => post.featured)
+  const featuredPosts = allBlogPosts.filter((post) => post.featured)
 
   return (
     <>
@@ -188,7 +180,7 @@ export default function BlogPageClient() {
                     transition={{ duration: 0.5 }}
                     className="group"
                   >
-                    <Link href={`/blog/${post.id}`} className="block">
+                      <Link href={`/blog/${post.slug}`} className="block">
                       <div className="relative h-80 overflow-hidden rounded-xl mb-6">
                         <Image
                           src={post.image || "/placeholder.svg"}
@@ -292,7 +284,7 @@ export default function BlogPageClient() {
                         transition={{ duration: 0.5 }}
                         className="bg-white rounded-xl shadow-sm overflow-hidden group"
                       >
-                        <Link href={`/blog/${post.id}`} className="block">
+                        <Link href={`/blog/${post.slug}`} className="block">
                           <div className="relative h-48 overflow-hidden">
                             <Image
                               src={post.image || "/placeholder.svg"}
