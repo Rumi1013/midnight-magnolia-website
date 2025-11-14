@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "c9ecb63025facbeb5745b7e89a85cfcb"
+name = "Sacred-essences"
+handle = "sacred-essences"
+application_url = "https://midnight-magnolia.com/"
+embedded = true
+
+[webhooks]
+api_version = "2024-10"
+
+[auth]
+redirect_urls = [
+  "https://midnight-magnolia.com/api/auth",
+  "https://midnight-magnoliasc.myshopify.com/"
+]
+
+[app_proxy]
+url = "https://midnight-magnoliasc.myshopify.com/apps/shops"
+subpath = "shops"
+prefix = "apps"
+
+[pos]
+embedded = true
+[[webhooks.subscriptions]]
+topics = ["carts/create"]
+uri = "/webhooks"
