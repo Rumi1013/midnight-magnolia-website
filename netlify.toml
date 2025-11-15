@@ -28,22 +28,9 @@
   # .cursorrules = cursor agent configuration with examples
   SECRETS_SCAN_OMIT_PATHS = ".next/**,*.md,.cursorrules"
 
-# Redirect rules for clean URLs
-[[redirects]]
-  from = "/blog/*"
-  to = "/blog/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/shop/*"
-  to = "/shop/:splat"
-  status = 200
-
-# 404 page
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
+# SPA fallback for client-side routing (but we're static, so this might cause issues)
+# Removed problematic catch-all redirect that was causing 404s
+# Next.js static export handles routing through file structure
 
 # Headers for security
 [[headers]]
