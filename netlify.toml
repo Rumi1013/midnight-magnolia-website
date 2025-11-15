@@ -5,8 +5,8 @@
   # Build command to run
   command = "pnpm run build"
   
-  # Directory with built files to publish
-  publish = "out"
+  # Directory with built files to publish (changed from 'out' to '.next' for server build)
+  publish = ".next/standalone"
   
   # Base directory (where package.json is)
   base = "."
