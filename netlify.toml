@@ -2,14 +2,18 @@
 # This file tells Netlify exactly how to build your site
 
 [build]
-  # Build command to run
+  # Build command to run  
   command = "pnpm run build"
   
-  # Directory with built files to publish (changed from 'out' to '.next' for server build)
-  publish = ".next/standalone"
+  # Netlify Next.js plugin will handle the publish directory automatically
+  # publish = "out"
   
   # Base directory (where package.json is)
   base = "."
+
+# Use Netlify's official Next.js plugin for full Next.js support
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [build.environment]
   # Node version (20+ required for Next.js 15 and Supabase)

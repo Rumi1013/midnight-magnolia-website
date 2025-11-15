@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Temporarily disable static export to debug
-  // output: 'export',
+  // Remove output: 'export' to allow API routes and server features
+  // Netlify plugin will handle deployment
   eslint: {
     ignoreDuringBuilds: true,
   },
