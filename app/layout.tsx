@@ -5,6 +5,9 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import dynamic from "next/dynamic"
+
+const CustomCursor = dynamic(() => import("./components/CustomCursor"), { ssr: false })
 
 // Font configurations
 const inter = Inter({ subsets: ["latin"] })
@@ -130,6 +133,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <div className="flex min-h-screen flex-col">
+            <CustomCursor />
             <Header />
             <main className="flex-1 pt-20">{children}</main>
             <Footer />
