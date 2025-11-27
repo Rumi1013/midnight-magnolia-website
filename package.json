@@ -118,6 +118,7 @@
   },
   "overrides": {
     "tar": ">=7.5.2",
+    "cookie": ">=0.7.0",
     "drizzle-kit": {
       "esbuild": ">=0.25.0",
       "@esbuild-kit/core-utils": {
