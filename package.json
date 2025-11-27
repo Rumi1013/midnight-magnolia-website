@@ -117,6 +117,9 @@
     "bufferutil": "^4.0.9"
   },
   "overrides": {
-    "tar": ">=7.5.2"
+    "tar": ">=7.5.2",
+    "@esbuild-kit/core-utils": {
+      "esbuild": ">=0.24.3"
+    }
   }
 }
