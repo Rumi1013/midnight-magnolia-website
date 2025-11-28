@@ -158,7 +158,7 @@ export default function AboutPage() {
             <p className="font-lora text-lg leading-relaxed text-magnolia-white/80">
               We translate recovery wisdom into interfaces that feel like a hush of magnolia petals. The brand voice is tender mentor and soft power—inviting you to experiment, rest, and bloom without urgency marketing or hustle tropes.
             </p>
-            <ul className="space-y-4">
+            <ul className="space-y-4" aria-label="Devotion highlights">
               {devotionHighlights.map((highlight) => (
                 <li key={highlight} className="flex gap-3 font-lora text-base leading-relaxed text-magnolia-white/80">
                   <span className="mt-1 inline-flex h-2.5 w-2.5 flex-shrink-0 rounded-full bg-gold" aria-hidden="true" />
@@ -204,7 +204,7 @@ export default function AboutPage() {
               <p className="font-lora text-lg leading-relaxed text-magnolia-white/80">
                 Healing interfaces must be safe to inhabit. We design with accessibility-first defaults so every member can linger without friction or sensory overwhelm.
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3" aria-label="Accessibility commitments">
                 {accessibilityCommitments.map((item) => (
                   <li key={item} className="flex gap-3 font-lora text-base leading-relaxed text-magnolia-white/80">
                     <span className="mt-2 inline-flex h-2.5 w-2.5 flex-shrink-0 rounded-full bg-sage-green" aria-hidden="true" />
