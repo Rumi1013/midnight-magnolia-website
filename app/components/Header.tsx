@@ -3,15 +3,18 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useTheme } from "next-themes"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { MoonIcon, SunIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 
 export default function Header() {
   const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null)
   const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
@@ -24,6 +27,11 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    // Close the mobile menu when navigating
+    setIsMenuOpen(false)
+  }, [pathname])
+
   const navigation = [
     { name: "Sacred Tools", href: "/shop" },
     { name: "Shop", href: "/shop" },
@@ -32,6 +40,16 @@ export default function Header() {
     { name: "Justice & Healing", href: "/justice" },
     { name: "Community", href: "/community" },
   ]
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/"
+    return pathname.startsWith(href)
+  }
+
+  const navItemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
+  }
 
   return (
     <motion.header
@@ -66,14 +84,31 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:gap-x-6">
           {navigation.map((item) => (
-            <Link
+            <div
               key={item.name}
-              href={item.href}
-              className="font-lora text-sm text-magnolia-white hover:text-sage-green transition-colors duration-300 relative group"
+              className="relative px-1"
+              onMouseEnter={() => setHoveredNav(item.href)}
+              onMouseLeave={() => setHoveredNav(null)}
             >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-sage-green transition-all duration-300 group-hover:w-full" />
-            </Link>
+              <Link
+                href={item.href}
+                className="font-lora text-sm text-magnolia-white transition-colors duration-300 relative z-10"
+              >
+                {item.name}
+              </Link>
+              <AnimatePresence>
+                {(hoveredNav === item.href || isActive(item.href)) && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-sage-green/80 rounded-full"
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    exit={{ opacity: 0, scaleX: 0 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
           ))}
         </div>
 
@@ -107,30 +142,51 @@ export default function Header() {
       </nav>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden bg-midnight-blue border-t border-magnolia-white/10"
-        >
-          <div className="px-6 py-4 space-y-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="block font-lora text-magnolia-white hover:text-sage-green transition-colors duration-300 py-2"
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lg:hidden fixed inset-0 z-40 bg-midnight-blue/95 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 120, damping: 14 }}
+              className="mt-20 border-t border-magnolia-white/10"
+            >
+              <motion.div
+                className="px-6 py-6 space-y-4"
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={{
+                  hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+                  visible: { transition: { staggerChildren: 0.07 } },
+                }}
               >
-                {item.name}
-              </Link>
-            ))}
-            <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4">
-              Enter Garden
-            </button>
-          </div>
-        </motion.div>
-      )}
+                {navigation.map((item) => (
+                  <motion.div key={item.name} variants={navItemVariants}>
+                    <Link
+                      href={item.href}
+                      className="block font-lora text-lg text-magnolia-white hover:text-sage-green transition-colors duration-300 py-2"
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div variants={navItemVariants}>
+                  <button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4 shadow-lg shadow-sage-green/20">
+                    Enter Garden
+                  </button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }
