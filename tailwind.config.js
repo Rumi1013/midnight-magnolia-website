@@ -67,6 +67,10 @@ module.exports = {
         lora: ["var(--font-lora)", ...fontFamily.serif],
         montserrat: ["var(--font-montserrat)", ...fontFamily.sans],
         sans: ["var(--font-montserrat)", ...fontFamily.sans],
+        body: ["var(--font-body)", ...fontFamily.serif],
+        display: ["var(--font-display)", ...fontFamily.serif],
+        accent: ["var(--font-accent)", ...fontFamily.sans],
+        cursive: ["var(--font-cursive)", "cursive"],
       },
       borderRadius: {
         lg: "var(--radius)",
