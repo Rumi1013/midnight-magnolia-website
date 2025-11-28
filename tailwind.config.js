@@ -4,11 +4,9 @@ const { fontFamily } = require("tailwindcss/defaultTheme")
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
+    "./client/index.html",
+    "./client/src/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -66,7 +64,12 @@ module.exports = {
         playfair: ["var(--font-playfair)", ...fontFamily.serif],
         lora: ["var(--font-lora)", ...fontFamily.serif],
         montserrat: ["var(--font-montserrat)", ...fontFamily.sans],
-        sans: ["var(--font-montserrat)", ...fontFamily.sans],
+        display: ["var(--font-display)"],
+        body: ["var(--font-body)"],
+        accent: ["var(--font-accent)"],
+        sans: ["var(--font-sans)"],
+        serif: ["var(--font-serif)"],
+        mono: ["var(--font-mono)"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -99,5 +102,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }
