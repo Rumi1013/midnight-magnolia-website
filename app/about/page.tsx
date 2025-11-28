@@ -207,7 +207,7 @@ export default function AboutPage() {
               <ul className="space-y-3">
                 {accessibilityCommitments.map((item) => (
                   <li key={item} className="flex gap-3 font-lora text-base leading-relaxed text-magnolia-white/80">
-                    <span className="mt-2 inline-flex h-2 w-6 flex-shrink-0 rounded-full bg-sage-green" aria-hidden="true" />
+                    <span className="mt-2 inline-flex h-2.5 w-2.5 flex-shrink-0 rounded-full bg-sage-green" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
