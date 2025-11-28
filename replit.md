@@ -30,9 +30,9 @@ Midnight Magnolia is a platform for spiritual creators to sell mystical products
 - Rich Gold: `hsl(43, 64%, 52%)` - Accent color and CTAs
 
 **Typography:**
-- Headings: Playfair Display (serif)
-- Body: Lora (serif)
-- Accents: Montserrat (sans-serif)
+- Headings: Cormorant Garamond (serif)
+- Body: Merriweather (serif)
+- Accents: Poppins (sans-serif)
 
 **Logo:** Magnolia and crescent moon imagery (`attached_assets/DD927ECB-BEA2-4D80-A9A5-22E371277B56_1760072655904.png`)
 
