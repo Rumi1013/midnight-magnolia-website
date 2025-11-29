@@ -45,6 +45,7 @@ colors: {
   "sage-green": "#A3B18A",
   "gold": "#D4AF37",
   "warm-gray": "#D4B99F",
+  "plum": "#56334E",
 }
 ```
 
