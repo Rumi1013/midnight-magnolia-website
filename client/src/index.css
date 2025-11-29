@@ -12,7 +12,7 @@
   --sage-green: hsl(90, 24%, 65%);
   --deep-purple: hsl(271, 18%, 31%);
   --soft-cream: hsl(50, 100%, 96%);
-  
+
   /* Additional Brand Colors from Style Guide */
   --iron: #1E1E1E;
   --taupe: #BFAEA0;
@@ -22,7 +22,7 @@
   --amber: #D9A441;
   --rose: #9C3F3F;
   --river: #4C6D9C;
-  
+
   /* Semantic Tokens */
   --background: hsl(213, 64%, 12%);
   --foreground: hsl(40, 44%, 93%);
@@ -43,7 +43,7 @@
   --border: hsl(90, 24%, 65%);
   --input: hsl(271, 18%, 31%);
   --ring: hsl(43, 64%, 52%);
-  
+
   /* Font Families */
   --font-display: 'Cormorant Garamond', 'Playfair Display', serif;
   --font-body: 'IBM Plex Serif', 'Lora', serif;
@@ -52,7 +52,7 @@
   --font-sans: 'IBM Plex Sans', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
   --font-mono: 'IBM Plex Mono', monospace;
-  
+
   --radius: 0.5rem;
 }
 
@@ -86,7 +86,7 @@
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
   }
@@ -98,43 +98,84 @@
     font-family: var(--font-accent);
     text-shadow: 0 0 20px transparent;
   }
-  
+
   .nav-link:hover {
     text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
   }
-  
+
   .gold-glow:hover {
     @apply shadow-lg border-accent;
     box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
   }
-  
+
   .product-card:hover {
     @apply -translate-y-2 transition-all duration-300;
   }
-  
+
   .btn-gold {
     @apply text-accent-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
     background: linear-gradient(to bottom right, hsl(43, 64%, 52%), hsl(43, 64%, 45%));
     box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
   }
-  
+
   .glass-card {
     @apply backdrop-blur-sm border;
     background: rgba(74, 63, 92, 0.3);
     border-color: rgba(163, 177, 138, 0.2);
     backdrop-filter: blur(10px);
   }
-  
+
   .hero-pattern {
-    background-image: 
+    background-image:
       radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
       radial-gradient(circle at 80% 80%, rgba(163, 177, 138, 0.1) 0%, transparent 50%);
   }
-  
+
+  /* Site header styling to match screenshot */
+  .site-header {
+    background: linear-gradient(180deg, rgba(12,18,32,0.98), rgba(7,12,22,0.96));
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Hero title split styling */
+  .hero-title {
+    font-size: clamp(2.4rem, 6.6vw, 5.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .hero-title .word-1 {
+    color: var(--foreground);
+    display: inline-block;
+    margin-right: 0.25rem;
+    text-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  }
+  .hero-title .word-2 {
+    color: var(--accent);
+    display: inline-block;
+    -webkit-text-stroke: 0.5px rgba(0,0,0,0.06);
+    text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+
+  /* Toned down gold button and soft border to match screenshots */
+  .btn-gold {
+    @apply text-accent-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    background: linear-gradient(180deg, rgba(212,175,55,0.95), rgba(200,150,40,0.95));
+    box-shadow: 0 10px 30px rgba(212,175,55,0.12);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* Slightly darker hero background for depth */
+  .hero-pattern {
+    background-image: radial-gradient(circle at 10% 20%, rgba(212,175,55,0.03), transparent 10%),
+                      radial-gradient(circle at 85% 80%, rgba(120,60,150,0.02), transparent 12%),
+                      linear-gradient(180deg, #081627 0%, #071426 100%);
+  }
+
   .magnolia-icon {
     filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
   }
-  
+
   .font-cursive {
     font-family: var(--font-cursive);
   }
