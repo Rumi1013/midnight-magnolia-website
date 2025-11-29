@@ -22,6 +22,7 @@ export default {
 				"sage-green": "#A3B18A",
 				"gold": "#D4AF37",
 				"warm-gray": "#D4B99F",
+				"plum": "#56334E",
 
 				// Shadcn UI colors
 				"background": "hsl(var(--background))",

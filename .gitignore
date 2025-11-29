@@ -225,3 +225,9 @@ MidnightMagnolia_HealingCodex_Bundle/
 # block sensitive bundles & config dumps
 MidnightMagnolia_HealingCodex_Bundle/
 *.secret
+
+# === Duplicate Directories ===
+# These folders contain duplicate/legacy code that should not be committed
+# The primary codebase is in /app, /components, /styles, and /agents
+midnight magnolia-2/
+MidnightMagnolia_VSCodeScaffold/
