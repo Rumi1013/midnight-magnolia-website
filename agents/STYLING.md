@@ -187,7 +187,7 @@ colors: {
   color: var(--midnight-blue);
   border-radius: 999px;
   padding: 0.85rem 1.6rem;
-  font-family: var(--font-accent);
+  font-family: var(--font-montserrat);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -203,7 +203,7 @@ colors: {
 
 ```css
 .nav-link {
-  font-family: var(--font-accent);
+  font-family: var(--font-montserrat);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(246, 244, 239, 0.82);
