@@ -36,7 +36,7 @@ Execution rules:
 - One return per method where possible for code.
 - Use descriptive variable names; avoid magic numbers.
 - Always provide a minimal validation checklist.
-- Use Midnight Magnolia brand colors: midnight-blue (#0A192F), magnolia-white (#FAF3E0), sage-green (#A3B18A), gold (#D4AF37).
+- For styling, reference STYLING.md for the canonical brand color values.
 
 Coordination:
 

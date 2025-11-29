@@ -12,12 +12,14 @@ Midnight Magnolia channels **southern-gothic softness** — moonlit magnolia blo
 
 ### Primary Palette
 
+The canonical color values used in the codebase are:
+
 | Name | Hex | RGB | Usage |
 |------|-----|-----|-------|
-| Midnight Navy | `#0A0F14` | `10, 15, 20` | Primary background, typography anchors, modal overlays |
-| Magnolia White | `#F6F4EF` / `#FAF3E0` | `246, 244, 239` | Body text on dark backgrounds, highlights, form fields |
-| Southern Gold | `#C19A33` / `#D4AF37` | `212, 175, 55` | CTAs, hover states, icons, accents |
-| Sage Moss | `#8A9B6E` / `#A3B18A` | `163, 177, 138` | Secondary buttons, supportive text, badges |
+| Midnight Blue | `#0A192F` | `10, 25, 47` | Primary background, typography anchors, modal overlays |
+| Magnolia White | `#FAF3E0` | `250, 243, 224` | Body text on dark backgrounds, highlights, form fields |
+| Southern Gold | `#D4AF37` | `212, 175, 55` | CTAs, hover states, icons, accents |
+| Sage Green | `#A3B18A` | `163, 177, 138` | Secondary buttons, supportive text, badges |
 | Mulberry Plum | `#56334E` | `86, 51, 78` | Section dividers, alerts, footer gradients |
 | Warm Gray | `#D4B99F` | `212, 185, 159` | Muted elements, borders, inputs |
 

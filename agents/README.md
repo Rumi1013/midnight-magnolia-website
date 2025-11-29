@@ -27,10 +27,10 @@ All agents should reference the **Midnight Magnolia Brand Guide** for consistent
 ### Color Palette
 | Name | Hex | CSS Variable |
 |------|-----|--------------|
-| Midnight Navy | `#0A0F14` | `--midnight-blue` |
-| Magnolia White | `#F6F4EF` | `--magnolia-white` |
-| Southern Gold | `#C19A33` / `#D4AF37` | `--gold` |
-| Sage Moss | `#8A9B6E` / `#A3B18A` | `--sage-green` |
+| Midnight Blue | `#0A192F` | `--midnight-blue` |
+| Magnolia White | `#FAF3E0` | `--magnolia-white` |
+| Southern Gold | `#D4AF37` | `--gold` |
+| Sage Green | `#A3B18A` | `--sage-green` |
 | Mulberry Plum | `#56334E` | `--plum` |
 | Warm Gray | `#D4B99F` | `--warm-gray` |
 
