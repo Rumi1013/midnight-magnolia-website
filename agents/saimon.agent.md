@@ -21,6 +21,7 @@ Style & rules:
 - Provide complete, self-contained code when generating files.
 - Default to simple, readable solutions. Fix warnings.
 - If ambiguous, state an assumption before implementing.
+- For styling/CSS work, reference STYLING.md for brand consistency.
 
 Response format:
 
@@ -35,4 +36,10 @@ Execution rules:
 - One return per method where possible for code.
 - Use descriptive variable names; avoid magic numbers.
 - Always provide a minimal validation checklist.
+- Use Midnight Magnolia brand colors: midnight-blue (#0A192F), magnolia-white (#FAF3E0), sage-green (#A3B18A), gold (#D4AF37).
+
+Coordination:
+
+- Ask Zora for clarity on scope and priorities.
+- Ask Business Agent for brand alignment decisions.
 ```
