@@ -225,3 +225,8 @@ MidnightMagnolia_HealingCodex_Bundle/
 # block sensitive bundles & config dumps
 MidnightMagnolia_HealingCodex_Bundle/
 *.secret
+
+# === Duplicate/Legacy Directories ===
+# These folders contain older versions or scaffolds that should not be tracked
+midnight magnolia-2/
+MidnightMagnolia_VSCodeScaffold/
