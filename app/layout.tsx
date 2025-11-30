@@ -1,5 +1,5 @@
 import type React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
 	Inter,
 	Playfair_Display,
@@ -14,6 +14,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import dynamic from "next/dynamic";
+import { siteConfig } from "@/lib/seo";
 
 const CustomCursor = dynamic(() => import("./components/CustomCursor"), {
 	ssr: false,
@@ -81,27 +82,32 @@ function getSafeUrl(
 // Get site URL safely
 const siteUrl = getSafeUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
+// Viewport configuration (separated from metadata in Next.js 14+)
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 5,
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#0A192F" },
+		{ media: "(prefers-color-scheme: dark)", color: "#0A192F" },
+	],
+	colorScheme: "dark",
+};
+
 export const metadata: Metadata = {
 	title: {
-		default: "Midnight Magnolia | Southern Gothic Wellness Sanctuary",
+		default: "Midnight Magnolia | Digital Sanctuary for Healing & Transformation",
 		template: "%s | Midnight Magnolia",
 	},
 	description:
-		"Digital sanctuary for healing through Southern Gothic grace. Blending ancestral wisdom, gentle productivity, and sacred wellness for people with chronic illness and ADHD.",
-	keywords: [
-		"wellness",
-		"Southern Gothic",
-		"chronic illness",
-		"ADHD",
-		"healing",
-		"ancestral wisdom",
-		"digital sanctuary",
-		"productivity",
-		"self-care",
+		"Digital sanctuary for healing & transformation. Blending ancestral wisdom, Southern Gothic grace, and neurodivergent-friendly tools for those seeking healing, sobriety support, and gentle productivity.",
+	keywords: siteConfig.keywords,
+	authors: [
+		{ name: siteConfig.founder },
+		{ name: siteConfig.name },
 	],
-	authors: [{ name: "Midnight Magnolia" }],
-	creator: "Midnight Magnolia",
-	publisher: "Midnight Magnolia",
+	creator: siteConfig.founder,
+	publisher: siteConfig.parentCompany,
 	metadataBase: new URL(siteUrl),
 	alternates: {
 		canonical: "/",
@@ -110,26 +116,27 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "en_US",
 		url: siteUrl,
-		title: "Midnight Magnolia | Southern Gothic Wellness Sanctuary",
+		title: "Midnight Magnolia | Digital Sanctuary for Healing & Transformation",
 		description:
-			"Digital sanctuary for healing through Southern Gothic grace. Blending ancestral wisdom and gentle productivity.",
-		siteName: "Midnight Magnolia",
+			"Digital sanctuary for healing & transformation. Blending ancestral wisdom, Southern Gothic grace, and neurodivergent-friendly tools for healing, sobriety support, and gentle productivity.",
+		siteName: siteConfig.name,
 		images: [
 			{
 				url: "/images/og-image.jpg",
 				width: 1200,
 				height: 630,
-				alt: "Midnight Magnolia - Southern Gothic Wellness Sanctuary",
+				alt: "Midnight Magnolia - Digital Sanctuary for Healing & Transformation",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Midnight Magnolia | Southern Gothic Wellness Sanctuary",
+		title: "Midnight Magnolia | Digital Sanctuary for Healing & Transformation",
 		description:
-			"Digital sanctuary for healing through Southern Gothic grace. Blending ancestral wisdom and gentle productivity.",
+			"Digital sanctuary for healing & transformation. Blending ancestral wisdom, Southern Gothic grace, and neurodivergent-friendly tools.",
 		images: ["/images/og-image.jpg"],
-		creator: "@midnightmagnolia",
+		creator: siteConfig.social.twitter,
+		site: siteConfig.social.twitter,
 	},
 	robots: {
 		index: true,
@@ -145,7 +152,35 @@ export const metadata: Metadata = {
 	verification: {
 		google: process.env.GOOGLE_SITE_VERIFICATION,
 	},
-	generator: "v0.dev",
+	category: "wellness",
+	classification: "Digital Wellness & Healing Tools",
+	referrer: "origin-when-cross-origin",
+	formatDetection: {
+		email: false,
+		address: false,
+		telephone: false,
+	},
+	manifest: "/site.webmanifest",
+	icons: {
+		icon: [
+			{ url: "/favicon.ico" },
+			{ url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+			{ url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+		],
+		apple: [
+			{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+		],
+	},
+	appleWebApp: {
+		capable: true,
+		statusBarStyle: "black-translucent",
+		title: siteConfig.name,
+	},
+	applicationName: siteConfig.name,
+	generator: "Next.js",
+	other: {
+		"msapplication-TileColor": "#0A192F",
+	},
 };
 
 export default function RootLayout({
@@ -192,7 +227,7 @@ export default function RootLayout({
 					content="#0A192F"
 				/>
 			</head>
-			<body className={`${inter.className} antialiased`}>
+			<body className="antialiased bg-midnight-blue text-magnolia-white">
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="dark"

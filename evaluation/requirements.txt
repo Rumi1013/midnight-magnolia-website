@@ -1,0 +1,8 @@
+# Midnight Magnolia AI Evaluation Framework
+# Dependencies for evaluating AI-generated content
+
+azure-ai-evaluation>=1.0.0
+promptflow>=1.0.0
+openai>=1.0.0
+python-dotenv>=1.0.0
+pandas>=2.0.0
