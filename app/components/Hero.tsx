@@ -128,7 +128,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-sage-green font-montserrat text-sm tracking-[0.25em] uppercase font-medium"
             >
-              Welcome to your digital sanctuary
+              Rooted in Mystery. Blooming in Truth.
             </motion.p>
 
             {/* Main Heading */}
@@ -155,7 +155,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="font-lora text-lg lg:text-xl text-magnolia-white/80 leading-relaxed max-w-xl"
             >
-              Where ancestral wisdom meets Southern Gothic grace. Begin your journey of healing through gentle productivity, sacred rituals, and transformative digital tools.
+              A Southern Gothic digital sanctuary where art, ancestry, automation, and healing coexist — helping you earn with ease, create with freedom, and live with intention.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -169,10 +169,10 @@ export default function Hero() {
                 className="bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 text-base"
                 style={{ boxShadow: '0 0 30px rgba(163, 177, 138, 0.25)' }}
               >
-                Enter the Garden
+                Shop Sacred Tools
               </button>
               <button className="border-2 border-magnolia-white/30 hover:border-gold/60 text-magnolia-white hover:text-gold font-montserrat font-semibold px-8 py-4 rounded-full transition-all duration-300 text-base hover:bg-gold/5">
-                Explore Sacred Tools
+                Start Your Journey
               </button>
             </motion.div>
           </motion.div>

@@ -16,14 +16,36 @@ export default {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			colors: {
-				// Midnight Magnolia brand colors
+				// ═══════════════════════════════════════════════════════════════
+				// Midnight Magnolia Brand Colors (from Business Plan)
+				// ═══════════════════════════════════════════════════════════════
 				"midnight-blue": "#0A192F",
+				"midnight-navy": "#0A192F",
 				"magnolia-white": "#FAF3E0",
 				"sage-green": "#A3B18A",
+				"sage-moss": "#A3B18A",
 				"gold": "#D4AF37",
+				"southern-gold": "#D4AF37",
 				"warm-gray": "#D4B99F",
+				"magnolia-blush": "#F5E6E0",
+				"copper-brown": "#B87333",
+				"plum-violet": "#56334E",
+				"deep-plum": "#56334E",
+				"indigo-blue": "#3D5A80",
+				"forest-moss": "#5E6B4E",
+				"parchment-cream": "#F8F4E8",
 
-				// Shadcn UI colors
+				// Extended palette
+				"iron": "#1E1E1E",
+				"taupe": "#BFAEA0",
+				"glow": "#EEE3CF",
+				"mist": "#889696",
+				"laurel": "#7DA27E",
+				"amber": "#D9A441",
+				"rose": "#9C3F3F",
+				"river": "#4C6D9C",
+
+				// Shadcn UI semantic colors
 				"background": "hsl(var(--background))",
 				"foreground": "hsl(var(--foreground))",
 				"card": {
@@ -59,15 +81,20 @@ export default {
 				"ring": "hsl(var(--ring))",
 			},
 			fontFamily: {
+				// Brand fonts
 				playfair: ["var(--font-playfair)", "serif"],
 				lora: ["var(--font-lora)", "serif"],
 				montserrat: ["var(--font-montserrat)", "sans-serif"],
-				display: ["var(--font-display)"],
-				body: ["var(--font-body)"],
-				accent: ["var(--font-accent)"],
-				sans: ["var(--font-sans)"],
-				serif: ["var(--font-serif)"],
-				mono: ["var(--font-mono)"],
+				cormorant: ["var(--font-cormorant)", "serif"],
+				merriweather: ["var(--font-merriweather)", "serif"],
+				poppins: ["var(--font-poppins)", "sans-serif"],
+				// Semantic fonts
+				display: ["var(--font-cormorant)", "var(--font-playfair)", "serif"],
+				body: ["var(--font-merriweather)", "var(--font-lora)", "serif"],
+				accent: ["var(--font-poppins)", "var(--font-montserrat)", "sans-serif"],
+				sans: ["var(--font-poppins)", "sans-serif"],
+				serif: ["var(--font-cormorant)", "serif"],
+				mono: ["var(--font-mono)", "monospace"],
 			},
 			keyframes: {
 				"accordion-down": {

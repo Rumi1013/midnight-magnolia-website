@@ -2,17 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   🌸 MIDNIGHT MAGNOLIA - Global Styles
+   A Southern Gothic Digital Sanctuary for Healing, Art, and Creative Tech
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 @layer base {
   :root {
+    /* ─────────────────────────────────────────────────────────────────────────
+       Midnight Magnolia Brand Colors (from Business Plan)
+       ───────────────────────────────────────────────────────────────────────── */
+    --midnight-navy: #0A192F;
+    --magnolia-white: #FAF3E0;
+    --southern-gold: #D4AF37;
+    --sage-moss: #A3B18A;
+    --magnolia-blush: #F5E6E0;
+    --copper-brown: #B87333;
+    --plum-violet: #56334E;
+    --indigo-blue: #3D5A80;
+    --forest-moss: #5E6B4E;
+    --warm-gray: #D4B99F;
+    --parchment-cream: #F8F4E8;
+
+    /* Extended palette from style guide */
+    --iron: #1E1E1E;
+    --taupe: #BFAEA0;
+    --glow: #EEE3CF;
+    --mist: #889696;
+    --laurel: #7DA27E;
+    --amber: #D9A441;
+    --rose: #9C3F3F;
+    --river: #4C6D9C;
+
+    /* Semantic Tokens - Light Mode */
     --background: 250 243 224; /* magnolia-white */
-    --foreground: 10 25 47; /* midnight-blue */
+    --foreground: 10 25 47; /* midnight-navy */
     --card: 250 243 224;
     --card-foreground: 10 25 47;
     --popover: 250 243 224;
     --popover-foreground: 10 25 47;
-    --primary: 163 177 138; /* sage-green */
+    --primary: 163 177 138; /* sage-moss */
     --primary-foreground: 10 25 47;
-    --secondary: 212 175 55; /* gold */
+    --secondary: 212 175 55; /* southern-gold */
     --secondary-foreground: 10 25 47;
     --muted: 212 185 159; /* warm-gray */
     --muted-foreground: 10 25 47;
@@ -24,28 +55,48 @@
     --input: 212 185 159;
     --ring: 212 175 55;
     --radius: 1rem;
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       Typography - Brand Fonts
+       Headers: Cormorant Garamond Bold Italic, Cormorant SC Medium
+       Body: Merriweather, Garalda, Matrix II OT
+       Accents: Poppins
+       ───────────────────────────────────────────────────────────────────────── */
+    --font-display: var(--font-cormorant), 'Cormorant Garamond', serif;
+    --font-body: var(--font-merriweather), 'Merriweather', serif;
+    --font-accent: var(--font-poppins), 'Poppins', sans-serif;
+    --font-serif: var(--font-lora), 'Lora', serif;
+
+    /* Spacing & Layout */
+    --line-height-body: 1.8;
+    --max-text-width: 70ch;
+    --shadow-soft: 0 24px 60px rgba(10, 25, 47, 0.15);
+    --shadow-gold: 0 12px 36px rgba(212, 175, 55, 0.28);
   }
 
   .dark {
-    --background: 10 25 47; /* midnight-blue */
+    --background: 10 25 47; /* midnight-navy */
     --foreground: 250 243 224; /* magnolia-white */
     --card: 10 25 47;
     --card-foreground: 250 243 224;
     --popover: 10 25 47;
     --popover-foreground: 250 243 224;
-    --primary: 163 177 138; /* sage-green */
+    --primary: 163 177 138; /* sage-moss */
     --primary-foreground: 10 25 47;
-    --secondary: 212 175 55; /* gold */
+    --secondary: 212 175 55; /* southern-gold */
     --secondary-foreground: 10 25 47;
-    --muted: 212 185 159; /* warm-gray */
+    --muted: 86 51 78; /* plum-violet */
     --muted-foreground: 250 243 224;
-    --accent: 163 177 138;
+    --accent: 212 175 55;
     --accent-foreground: 10 25 47;
     --destructive: 220 38 38;
     --destructive-foreground: 250 243 224;
-    --border: 212 185 159;
-    --input: 212 185 159;
+    --border: 163 177 138;
+    --input: 86 51 78;
     --ring: 212 175 55;
+
+    --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.4);
+    --shadow-gold: 0 12px 36px rgba(212, 175, 55, 0.35);
   }
 }
 
@@ -56,29 +107,61 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
     font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: var(--line-height-body);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   html {
     scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar */
+  /* Typography Hierarchy - Southern Gothic Elegance */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+  }
+
+  p, li {
+    max-width: var(--max-text-width);
+  }
+
+  /* Custom scrollbar - Southern Gothic theme */
   ::-webkit-scrollbar {
     width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #0a192f;
+    background: var(--midnight-navy);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #a3b18a;
+    background: var(--sage-moss);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #d4af37;
+    background: var(--southern-gold);
   }
 }
 
@@ -109,6 +192,164 @@
       @apply text-midnight-blue;
     }
   }
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Southern Gothic UI Components
+     ───────────────────────────────────────────────────────────────────────── */
+
+  /* Navigation Links */
+  .nav-link {
+    font-family: var(--font-accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    @apply transition-all duration-300;
+  }
+
+  .nav-link:hover {
+    text-shadow: 0 0 18px rgba(212, 175, 55, 0.4);
+  }
+
+  /* Primary CTA Button - Gold */
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full;
+    @apply text-midnight-blue font-semibold transition-all duration-300;
+    font-family: var(--font-accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, var(--southern-gold), #C49A30);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 45px rgba(212, 175, 55, 0.4);
+  }
+
+  /* Secondary CTA - Sage */
+  .btn-sage {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full;
+    @apply text-midnight-blue font-semibold transition-all duration-300;
+    font-family: var(--font-accent);
+    background: var(--sage-moss);
+    box-shadow: 0 12px 30px rgba(163, 177, 138, 0.25);
+  }
+
+  .btn-sage:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(163, 177, 138, 0.35);
+  }
+
+  /* Outline Button */
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full;
+    @apply border-2 border-current transition-all duration-300;
+    font-family: var(--font-accent);
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    background: rgba(212, 175, 55, 0.1);
+  }
+
+  /* Glass Card Effect */
+  .glass-card {
+    background: rgba(10, 25, 47, 0.68);
+    border: 1px solid rgba(163, 177, 138, 0.2);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(16px);
+    border-radius: 1.125rem;
+  }
+
+  /* Product Card */
+  .product-card {
+    @apply rounded-3xl p-8 transition-all duration-300;
+    background: var(--magnolia-white);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 70px rgba(10, 25, 47, 0.2);
+  }
+
+  /* Gold Glow on Hover */
+  .gold-glow:hover {
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.35);
+    border-color: var(--southern-gold);
+  }
+
+  /* Magnolia Icon Filter */
+  .magnolia-icon {
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.45));
+  }
+
+  /* Hero Pattern Background */
+  .hero-pattern {
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(86, 51, 78, 0.08), transparent 50%),
+      linear-gradient(180deg, #0A192F 0%, #071426 100%);
+  }
+
+  /* Mood Ring Animation (from midnight magnolia-2) */
+  .mood-ring {
+    position: relative;
+    padding: 1.6rem;
+    border-radius: 1.8rem;
+    overflow: hidden;
+    background: radial-gradient(circle at 20% 20%, rgba(86, 51, 78, 0.22), rgba(10, 25, 47, 0.7));
+    animation: moodRing 24s ease-in-out infinite;
+  }
+
+  @keyframes moodRing {
+    0% { box-shadow: inset 0 0 40px rgba(163, 177, 138, 0.24); }
+    33% { box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.2); }
+    66% { box-shadow: inset 0 0 40px rgba(86, 51, 78, 0.22); }
+    100% { box-shadow: inset 0 0 40px rgba(10, 25, 47, 0.2); }
+  }
+
+  /* Site Header */
+  .site-header {
+    background: linear-gradient(180deg, rgba(10, 25, 47, 0.98), rgba(7, 12, 22, 0.96));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Tagline Style */
+  .tagline {
+    font-family: var(--font-accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: var(--southern-gold);
+  }
+
+  /* Section Container */
+  .section-container {
+    width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+
+  /* Adinkra Symbol Styling */
+  .adinkra-symbol {
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+    opacity: 0.7;
+  }
+
+  /* Ironwork Divider */
+  .ironwork-divider {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--sage-moss) 20%,
+      var(--southern-gold) 50%,
+      var(--sage-moss) 80%,
+      transparent
+    );
+    opacity: 0.4;
+  }
 }
 
 @layer utilities {
@@ -130,6 +371,10 @@
 
   .shadow-sage-glow {
     box-shadow: 0 0 30px rgba(163, 177, 138, 0.3), 0 0 60px rgba(163, 177, 138, 0.1);
+  }
+
+  .shadow-plum-glow {
+    box-shadow: 0 0 30px rgba(86, 51, 78, 0.3), 0 0 60px rgba(86, 51, 78, 0.1);
   }
 
   .backdrop-blur-mystical {
@@ -175,5 +420,50 @@
 
   .animate-constellation-pulse {
     animation: constellation-pulse 4s ease-in-out infinite;
+  }
+
+  /* Magnolia bloom animation */
+  @keyframes magnolia-bloom {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+    50% { transform: scale(1.05) rotate(3deg); opacity: 1; }
+  }
+
+  .animate-magnolia-bloom {
+    animation: magnolia-bloom 8s ease-in-out infinite;
+  }
+
+  /* Gentle float for decorative elements */
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-gentle-float {
+    animation: gentle-float 4s ease-in-out infinite;
+  }
+
+  /* Cursive font utility */
+  .font-cursive {
+    font-family: 'Cormorant SC', var(--font-display);
+    letter-spacing: 0.1em;
+  }
+
+  /* Dyslexia-friendly formatting */
+  .dyslexia-friendly {
+    font-family: var(--font-body);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    word-spacing: 0.1em;
+  }
+
+  /* Southern Gothic decorative border */
+  .border-gothic {
+    border: 1px solid rgba(163, 177, 138, 0.3);
+    border-image: linear-gradient(
+      135deg,
+      var(--sage-moss) 0%,
+      var(--southern-gold) 50%,
+      var(--sage-moss) 100%
+    ) 1;
   }
 }

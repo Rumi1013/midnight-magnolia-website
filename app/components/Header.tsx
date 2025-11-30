@@ -38,12 +38,12 @@ export default function Header() {
 	}, [pathname]);
 
 	const navigation = [
-		{ name: "Sacred Tools", href: "/shop" },
 		{ name: "Shop", href: "/shop" },
+		{ name: "Services", href: "/services" },
 		{ name: "Our Story", href: "/about" },
 		{ name: "Midnight Musings", href: "/blog" },
-		{ name: "Justice & Healing", href: "/justice" },
-		{ name: "Community", href: "/community" },
+		{ name: "Patreon", href: "/community" },
+		{ name: "Contact", href: "/contact" },
 	];
 
 	const isActive = (href: string) => {

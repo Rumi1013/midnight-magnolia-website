@@ -1,0 +1,177 @@
+{
+  "metadata": {
+    "name": "Midnight Magnolia AI Evaluation Dataset",
+    "description": "Test queries for evaluating AI-generated content across journal, affirmation, and document generation features",
+    "created": "2025-11-30",
+    "version": "1.0.0",
+    "brand": "Midnight Magnolia",
+    "categories": ["journal_generation", "affirmation_cards", "document_builder", "tarot_content", "creative_prompts"]
+  },
+  "queries": [
+    {
+      "id": "journal_001",
+      "category": "journal_generation",
+      "subcategory": "sobriety_journal",
+      "query": "Generate a 90-day sobriety journal entry for day 15. Theme: finding peace in stillness. Include a morning reflection prompt and evening gratitude section.",
+      "context": {
+        "day_number": 15,
+        "mood": "contemplative",
+        "theme": "peace_in_stillness"
+      }
+    },
+    {
+      "id": "journal_002",
+      "category": "journal_generation",
+      "subcategory": "sobriety_journal",
+      "query": "Create a day 45 sobriety journal page focused on rebuilding trust with yourself. Include affirmations and a 'small wins' tracker.",
+      "context": {
+        "day_number": 45,
+        "mood": "hopeful",
+        "theme": "self_trust"
+      }
+    },
+    {
+      "id": "journal_003",
+      "category": "journal_generation",
+      "subcategory": "adhd_planner",
+      "query": "Design an ADHD-friendly daily planner page with time blocks, dopamine menu suggestions, and a 'brain dump' section. Keep it gentle and non-judgmental.",
+      "context": {
+        "format": "daily_planner",
+        "accessibility": "adhd_friendly",
+        "tone": "gentle"
+      }
+    },
+    {
+      "id": "journal_004",
+      "category": "journal_generation",
+      "subcategory": "healing_journal",
+      "query": "Write a healing journal prompt about reconnecting with your inner child through Southern memories. Include sensory details like magnolia blooms and summer evenings.",
+      "context": {
+        "theme": "inner_child",
+        "aesthetic": "southern_gothic",
+        "sensory_elements": true
+      }
+    },
+    {
+      "id": "affirmation_001",
+      "category": "affirmation_cards",
+      "subcategory": "magnolia_messages",
+      "query": "Create a 'Magnolia Messages' affirmation card about ancestral strength and resilience. Use Southern Gothic imagery and healing-centered language.",
+      "context": {
+        "deck": "magnolia_messages",
+        "theme": "ancestral_strength",
+        "aesthetic": "southern_gothic"
+      }
+    },
+    {
+      "id": "affirmation_002",
+      "category": "affirmation_cards",
+      "subcategory": "softest_wins",
+      "query": "Generate a 'Softest Wins' affirmation about choosing rest as a radical act of self-love. Make it trauma-informed and gentle.",
+      "context": {
+        "deck": "softest_wins",
+        "theme": "rest_as_strategy",
+        "tone": "trauma_informed"
+      }
+    },
+    {
+      "id": "affirmation_003",
+      "category": "affirmation_cards",
+      "subcategory": "magnolia_messages",
+      "query": "Write an affirmation card for a Black woman entrepreneur about turning creative brilliance into sustainable income without burnout.",
+      "context": {
+        "deck": "magnolia_messages",
+        "audience": "black_women_entrepreneurs",
+        "theme": "sustainable_success"
+      }
+    },
+    {
+      "id": "document_001",
+      "category": "document_builder",
+      "subcategory": "resume",
+      "query": "Create a healing-centered resume summary for a creative entrepreneur transitioning from corporate work to digital product creation. Highlight transferable skills warmly.",
+      "context": {
+        "document_type": "resume_summary",
+        "career_stage": "transition",
+        "industry": "creative_entrepreneurship"
+      }
+    },
+    {
+      "id": "document_002",
+      "category": "document_builder",
+      "subcategory": "grant_letter",
+      "query": "Write a grant application letter for a small business focused on healing arts and digital wellness tools for underserved communities.",
+      "context": {
+        "document_type": "grant_letter",
+        "focus": "healing_arts",
+        "audience": "underserved_communities"
+      }
+    },
+    {
+      "id": "document_003",
+      "category": "document_builder",
+      "subcategory": "professional_bio",
+      "query": "Generate a professional bio for a digital healer and artist who creates Southern Gothic journals and tarot content. Keep it warm but professional.",
+      "context": {
+        "document_type": "professional_bio",
+        "tone": "warm_professional",
+        "niche": "southern_gothic_healing"
+      }
+    },
+    {
+      "id": "tarot_001",
+      "category": "tarot_content",
+      "subcategory": "card_interpretation",
+      "query": "Write a Southern Gothic interpretation of The High Priestess card, connecting it to ancestral wisdom and intuition. Include imagery of magnolias and moonlight.",
+      "context": {
+        "card": "the_high_priestess",
+        "style": "southern_gothic",
+        "imagery": ["magnolias", "moonlight", "ancestral_wisdom"]
+      }
+    },
+    {
+      "id": "tarot_002",
+      "category": "tarot_content",
+      "subcategory": "daily_reading",
+      "query": "Create a daily tarot reading introduction for someone seeking guidance on their creative business. Use the Midnight Magnolia voice - warm, mystical, and empowering.",
+      "context": {
+        "reading_type": "daily",
+        "focus": "creative_business",
+        "voice": "midnight_magnolia"
+      }
+    },
+    {
+      "id": "prompt_001",
+      "category": "creative_prompts",
+      "subcategory": "writing_prompt",
+      "query": "Generate a Southern Gothic creative writing prompt about a woman discovering her grandmother's hidden journals in an old magnolia-shaded house.",
+      "context": {
+        "genre": "southern_gothic",
+        "theme": "ancestral_discovery",
+        "setting": "old_southern_house"
+      }
+    },
+    {
+      "id": "prompt_002",
+      "category": "creative_prompts",
+      "subcategory": "art_prompt",
+      "query": "Create an AI art prompt for a digital illustration featuring: crescent moon, magnolia blooms, antique gold frame, and Adinkra symbols. Southern Gothic aesthetic.",
+      "context": {
+        "medium": "digital_illustration",
+        "elements": ["crescent_moon", "magnolia_blooms", "antique_gold", "adinkra_symbols"],
+        "aesthetic": "southern_gothic"
+      }
+    },
+    {
+      "id": "prompt_003",
+      "category": "creative_prompts",
+      "subcategory": "journal_prompt",
+      "query": "Write a genealogy reflection prompt that helps someone explore their family history through the lens of healing and ancestral wisdom.",
+      "context": {
+        "type": "genealogy_reflection",
+        "lens": "healing_ancestral_wisdom",
+        "format": "guided_prompt"
+      }
+    }
+  ]
+}
