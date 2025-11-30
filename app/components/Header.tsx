@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
 	MoonIcon,
 	SunIcon,
@@ -12,14 +12,18 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import Button, { IconButton } from "./ui/Button";
+import { magneticHover, buttonLift, scaleOnTap } from "@/lib/animations";
 
 export default function Header() {
 	const [mounted, setMounted] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 	const [hoveredNav, setHoveredNav] = useState<string | null>(null);
+	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 	const { theme, setTheme } = useTheme();
 	const pathname = usePathname();
+	const prefersReducedMotion = useReducedMotion();
 
 	useEffect(() => {
 		setMounted(true);
@@ -28,8 +32,17 @@ export default function Header() {
 			setScrolled(window.scrollY > 10);
 		};
 
+		const handleMouseMove = (e: MouseEvent) => {
+			setMousePosition({ x: e.clientX, y: e.clientY });
+		};
+
 		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
+		window.addEventListener("mousemove", handleMouseMove);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+			window.removeEventListener("mousemove", handleMouseMove);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -94,11 +107,20 @@ export default function Header() {
 				{/* Desktop Navigation */}
 				<div className="hidden lg:flex lg:gap-x-8">
 					{navigation.map((item) => (
-						<div
+						<motion.div
 							key={item.name}
 							className="relative px-2 py-1"
 							onMouseEnter={() => setHoveredNav(item.href)}
-							onMouseLeave={() => setHoveredNav(null)}>
+							onMouseLeave={() => setHoveredNav(null)}
+							whileHover={
+								prefersReducedMotion
+									? {}
+									: magneticHover.hover({
+										x: (mousePosition.x - window.innerWidth / 2) * 0.02,
+										y: (mousePosition.y - window.innerHeight / 2) * 0.02,
+									})
+							}
+							transition={{ type: "spring", stiffness: 200, damping: 20 }}>
 							<Link
 								href={item.href}
 								className={`font-lora text-sm transition-all duration-300 relative z-10 ${
@@ -127,7 +149,7 @@ export default function Header() {
 									/>
 								)}
 							</AnimatePresence>
-						</div>
+						</motion.div>
 					))}
 				</div>
 
@@ -135,34 +157,33 @@ export default function Header() {
 				<div className="flex flex-1 justify-end items-center gap-4">
 					{/* Theme toggle */}
 					{mounted && (
-						<button
+						<IconButton
+							icon={theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
 							onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-							className="rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
-							aria-label="Toggle theme">
-							{theme === "dark" ? (
-								<SunIcon className="h-5 w-5" />
-							) : (
-								<MoonIcon className="h-5 w-5" />
-							)}
-						</button>
+							variant="ghost"
+							aria-label="Toggle theme"
+							className="bg-magnolia-white/10 hover:bg-sage-green/20 hover:text-sage-green"
+						/>
 					)}
 
 					{/* CTA Button */}
-					<button className="hidden sm:block bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm">
+					<Button
+						variant="primary"
+						size="sm"
+						className="hidden sm:block"
+						whileHover={prefersReducedMotion ? {} : buttonLift}
+						whileTap={prefersReducedMotion ? {} : scaleOnTap}>
 						Enter Garden
-					</button>
+					</Button>
 
 					{/* Mobile menu button */}
-					<button
+					<IconButton
+						icon={isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
 						onClick={() => setIsMenuOpen(!isMenuOpen)}
-						className="lg:hidden rounded-full p-2 bg-magnolia-white/10 text-magnolia-white hover:bg-sage-green/20 hover:text-sage-green transition-colors duration-300"
-						aria-label="Toggle menu">
-						{isMenuOpen ? (
-							<XMarkIcon className="h-6 w-6" />
-						) : (
-							<Bars3Icon className="h-6 w-6" />
-						)}
-					</button>
+						variant="ghost"
+						aria-label="Toggle menu"
+						className="lg:hidden bg-magnolia-white/10 hover:bg-sage-green/20 hover:text-sage-green"
+					/>
 				</div>
 			</nav>
 
@@ -203,9 +224,15 @@ export default function Header() {
 									</motion.div>
 								))}
 								<motion.div variants={navItemVariants}>
-									<button className="w-full bg-sage-green hover:bg-sage-green/90 text-midnight-blue font-montserrat font-semibold px-6 py-3 rounded-full transition-all duration-300 mt-4 shadow-lg shadow-sage-green/20">
+									<Button
+										variant="primary"
+										size="md"
+										fullWidth
+										className="mt-4 shadow-lg shadow-sage-green/20"
+										whileHover={prefersReducedMotion ? {} : buttonLift}
+										whileTap={prefersReducedMotion ? {} : scaleOnTap}>
 										Enter Garden
-									</button>
+									</Button>
 								</motion.div>
 							</motion.div>
 						</motion.div>
